@@ -1,0 +1,126 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#define pigreco 3.14
+
+typedef struct{
+    float lato;
+} DatiQuadrato;
+
+typedef struct{
+    float base, altezza;
+} DatiRettangolo;
+
+typedef struct{
+    float a, b, c;
+} DatiTriangolo;
+
+typedef struct{
+    float raggio;
+} DatiCerchio;
+
+typedef struct{
+    enum{
+        Quadrato, Rettangolo,
+        Triangolo, Cerchio
+    }tipo_figura;
+
+    union{
+        DatiQuadrato datiQuadrato;
+        DatiRettangolo datiRettangolo;
+        DatiTriangolo datiTriangolo;
+        DatiCerchio datiCerchio;
+    } dati_figura;
+}Figura;
+
+void quadrato(Figura *pf, float l){
+    pf->tipo_figura = Quadrato;
+    pf->dati_figura.datiQuadrato.lato = l;
+}
+
+void rettangolo(Figura *pf, float b, float h){
+    pf->tipo_figura = Rettangolo;
+    pf->dati_figura.datiRettangolo.base = b;
+    pf->dati_figura.datiRettangolo.altezza = h;
+}
+
+void triangolo(Figura *pf, float a, float b, float c){
+    pf->tipo_figura = Triangolo;
+    pf->dati_figura.datiTriangolo.a = a;
+    pf->dati_figura.datiTriangolo.b = b;
+    pf->dati_figura.datiTriangolo.c = c;
+}
+
+void cerchio(Figura *pf, float r){
+    pf->tipo_figura = Cerchio;
+    pf->dati_figura.datiCerchio.raggio = r;
+}
+
+float perimetro(Figura *pf){
+    switch (pf->tipo_figura)
+    {
+    case Quadrato:
+        return pf->dati_figura.datiQuadrato.lato*4;
+        break;
+    case Rettangolo:
+        return (pf->dati_figura.datiRettangolo.altezza + 
+        pf->dati_figura.datiRettangolo.base) * 2;
+        break;
+    case Triangolo:
+        return  pf->dati_figura.datiTriangolo.a + 
+                pf->dati_figura.datiTriangolo.b +
+                pf->dati_figura.datiTriangolo.c;
+        break;
+    case Cerchio:
+        return pf->dati_figura.datiCerchio.raggio * pigreco * 2;
+        break;
+    default:
+        break;
+    }
+}
+
+float area(Figura *pf){
+    switch (pf->tipo_figura)
+    {
+    case Quadrato:
+        return pf->dati_figura.datiQuadrato.lato * pf->dati_figura.datiQuadrato.lato;
+        break;
+    case Rettangolo:
+        return pf->dati_figura.datiRettangolo.base * pf->dati_figura.datiRettangolo.altezza;
+        break;
+    case Triangolo:
+        return  sqrt(perimetro(pf)/2 * 
+        (perimetro(pf)/2 - pf->dati_figura.datiTriangolo.a) *
+        (perimetro(pf)/2 - pf->dati_figura.datiTriangolo.b) *
+        (perimetro(pf)/2 - pf->dati_figura.datiTriangolo.c));
+        break;
+    case Cerchio:
+        return pf->dati_figura.datiCerchio.raggio * 
+        pf->dati_figura.datiCerchio.raggio * 
+        pigreco;
+        break;
+    default:
+        break;
+    }
+}
+
+int main(){
+    Figura f;
+
+    rettangolo(&f, 3, 2);
+    printf("Perimetro: %.2f\n",perimetro(&f));
+    printf("Area: %.2f\n",area(&f));
+
+    quadrato(&f, 3);
+    printf("Perimetro: %.2f\n",perimetro(&f));
+    printf("Area: %.2f\n",area(&f));
+
+    triangolo(&f, 4, 5, 8);
+    printf("Perimetro: %.2f\n",perimetro(&f));
+    printf("Area: %.2f\n",area(&f));
+
+    cerchio(&f, 3);
+    printf("Perimetro: %.2f\n",perimetro(&f));
+    printf("Area: %.2f\n",area(&f));
+    return 0;
+}
