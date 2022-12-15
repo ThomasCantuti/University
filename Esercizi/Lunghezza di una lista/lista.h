@@ -9,3 +9,4 @@ typedef Nodo* Lista;
 
 void listaNonOrdinata(Lista *pl, int n);
 int lunghezza(Lista l);
+int massimo(Lista l);

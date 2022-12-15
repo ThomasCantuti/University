@@ -4,5 +4,6 @@
 int main(){
     Lista l;
     listaNonOrdinata(&l, 6);
-    printf("Lunghezza lista: %d\n", lunghezza(l));
+    printf("Lunghezza: %d\n", lunghezza(l));
+    printf("Massimo: %d\n", massimo(l));
 }

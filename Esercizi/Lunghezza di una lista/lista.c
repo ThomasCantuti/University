@@ -1,5 +1,6 @@
 #include "lista.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void listaNonOrdinata(Lista* pl, int n) {
 
@@ -23,4 +24,22 @@ int lunghezza(Lista l){
         p = p->next++;
     }
     return contatore;
+}
+
+int massimo(Lista l){
+    int max;
+    Nodo *p;
+    if( l == NULL){
+        printf("Il massimo di una lista vuota non è definito\n");
+        return 0;
+    }
+    max = l->dato;
+    p = l->next;
+    while(p != NULL){
+        if(p->dato > max){
+            max = p->dato;
+            p = p->next++;
+        }
+    }
+    return max;
 }
