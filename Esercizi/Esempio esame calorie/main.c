@@ -4,8 +4,13 @@
 
 int main(int argc, char *argv[]){
     FILE *fb;
+    FILE *ft;
     Lista l;
     Record r;
+    char nomeAlimento[31];
+    float quantita;
+    float calorieAlimento;
+    float calorieTotali;
 
     if(argc != 3){
         printf("Uso: %s file_binario file_testo\n", argv[0]);
@@ -20,9 +25,26 @@ int main(int argc, char *argv[]){
         exit(2);
     }
 
-    fread(&r, sizeof(Record), 1, fb);
-    insCoda(&l, r);
-
+    while(fread(&r, sizeof(Record), 1, fb) == 1){
+        insCoda(&l, r);
+    }
+    
     fclose(fb);
+
+    ft = fopen(argv[2], "rt");
+    if(ft == NULL){
+        printf("Errore apertura %s\n", argv[2]);
+        exit(2);
+    }
+
+    calorieTotali = 0;
+
+    while(fscanf(ft,"%s%f", nomeAlimento, &quantita) == 2){
+        calorieAlimento = calorie100grammi(l, nomeAlimento) / 100 * quantita;
+        calorieTotali+= calorieAlimento;
+    }
+    
+    printf("Calorie totali: %.2f\n", calorieTotali);
+
     return 0;
 }

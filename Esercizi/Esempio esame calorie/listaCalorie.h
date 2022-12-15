@@ -12,3 +12,4 @@ typedef struct{
 
 void lista_vuota(Lista *pl);
 void insCoda(Lista *pl, Record r);
+float calorie100grammi(Lista l, char nome[]);
