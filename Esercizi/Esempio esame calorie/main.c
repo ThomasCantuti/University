@@ -34,7 +34,7 @@ int main(int argc, char *argv[]){
     ft = fopen(argv[2], "rt");
     if(ft == NULL){
         printf("Errore apertura %s\n", argv[2]);
-        exit(2);
+        exit(3);
     }
 
     calorieTotali = 0;
