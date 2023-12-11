@@ -1,0 +1,545 @@
+variabili senza tipo -> sono solo etichette/riferimenti ad un oggetto
+tutto è un oggetto
+python usa duck typing
+
+tipi di dato:
+- int (Immutabile) -> Numeri Interi: 1
+- bool (Immutabile) -> Booleani: True, False
+- float (Immutabile) -> Numeri a virgola mobile: 2.3
+- complex (Immutabile) -> Numeri complessi con parte reale e immaginaria: 1+2.3j
+- str (Immutabile) -> Stringa: 'hi'
+- tuple (Immutabile) -> Può contenere tipi diversi: (1,'hi',False)
+- bytes, bytearray (Immutabile) -> Sequenza di byte
+- list (Mutabile) -> Lista, può contenere tipi differenti: [1,'hi',False]
+- set, frozenset (Mutabile) -> Insieme non ordinato, può contenere tipi differenti: {1,'hi',False}
+- dict (Mutabile) -> Array associativi, mappe: {'key':1,3:'string'}
+
+Mutabilità:
+- immutabile -> oggetto con valore fisso, oggetti non possono essere modificati
+- mutabile -> oggetto mutabile può cambiare valore
+
+
+type(qualcosa) -> restituisce il tipo del valore contenuto tra parentesi
+isinstance(qualcosa, tipo) -> booleano che dice se variabile appartiene al tipo
+None -> restituito da funzioni void o che hanno return senza argomenti (NoneType)
+bool(variabile) -> restituisce valore booleano di variabile
+
+
+operatori:
+• + somma
+• - sottrazione
+• * moltiplicazione
+• / divisione (50/25=2.0, 59/60 = 0.9833)
+• // divisione intera (2//2= 1, 2.5//2 = 1.0)
+• ** esponenziale
+• % modulo (10%3 = 1)
+
+operatori bitwise:
+• x << y Ritorna x con i bit shiftati verso sinistra di y posizioni (e i nuovi
+bit inseriti a destra saranno pari a 0).
+    • Equivale a moltiplicare x per 2**y.
+• x >> y Ritorna x con i bit shiftati a destra di y posizioni.
+    • Equivale a fare la divisione intera // di x per 2**y.
+• x & y fa un “AND bit a bit".
+• x | y fa un “OR bit a bit".
+• ~ x Ritorna il complemento di x, numero che si ottiene
+cambiando tutti gli 1 in 0 e tutti gli 0 in 1.
+• x ^ y fa un " XOR bit a bit“.
+
+
+0, "" (stringa vuota), False e None sono tutti considerati come false.
+Tutto il resto viene considerato come true.
+
+
+• + concatenazione
+    • 'Hello' + 'World' = 'Hello World’
+• * ripetizione
+    • 'Hi'*3 = 'HiHiHi' = 'Hi' + 'Hi' + 'Hi'
+    • 'Ba' + 'na'*2 = 'Banana'
+• # commento in linea
+    • x = 10 # questo è un assegnamento
+• = assegnamento, può essere multiplo
+    • x = 10 # questo è un assegnamento
+    • x, y, z = 10, 20, 30 # questo è un assegnamento
+    multiplo
+
+
+conversioni di tipo:
+• int(a,base) : converte qualsiasi tipo di dato in un intero. 
+"base" specifica la base in cui si trova la stringa se il tipo di dati è una stringa
+(esempio int('1101',2))
+• float() : converte qualsiasi tipo di dato in un numero a virgola mobile
+• str() : converte in una stringa..
+• ord() : converte un carattere in un intero.
+• hex() : converte un intero in una stringa esadecimale.
+• oct() : converte un intero in un ottale
+• bin()[2:] : converte un intero in un binario, ritorna stringa
+• tuple() : converte in una tupla.
+• set() : converte in un insieme.
+• list() : converte un qualsiasi tipo in un tipo lista.
+• dict() : converte le tuple (chiave,valore) in un dizionario.
+• complex(real,imag) : converte numeri reali in numeri complessi
+
+
+funzioni informazioni:
+help(obj) -> breve descrizione dell'oggetto
+dir(obj) -> lista di metodi e attributi dell'oggetto
+
+
+caratteri speciali preceduti da \ (uso r''):
+print('C:\some\name') -> C:\some
+print(r'C:\some\name') -> C:\some\name
+
+
+Stringhe:
+stringa = "python"
+
+- Indexing: usare un indice per indicare carattere in una stringa
+    esempio: s[0] = "p"; s[-1] = "n" (ultimo); s[-4] = "t" (quart'ultimo)
+
+- Slicing: ottenere sottostringhe usando l'indexing
+    esempio: s[0:2] = "py"; s[:2] = "py"; s[4:] = "on"; s[-2:] = "on"
+
+- Test di inclusione: usando operatori "in" e "not in"
+    esempio: p in s -> True
+
+- Lunghezza stringa: funzione len
+    len("Python")
+    6
+
+- Formato di una stringa: metodo format
+    x, y = 10, 12.3
+    s = "x is equal to {}, while y is {}"
+    s.format(x,y)
+    "x is equal to 10, while y is 12.3"
+
+- find(substring): fornisce l'indice del primo carattere di una corrispondenza della sottostringa da sinistra o -1 se tale carattere non esiste.
+
+- rfind(substring): come il precedente ma da destra
+
+- find(substring,i,j): come find(), ma cerca solo all’interno di string[i:j].
+
+- split(): divide una stringa in una lista di sottostringhe in corrispondenza degli spazi bianchi o di una stringa passata per argomento.
+
+- "".join(list): concatena tutte le stringhe di una lista
+
+
+costrutto if:
+if condizione1:
+    istruzioni
+elif condizione2:
+    istruzioni
+elif condizione3:
+    istruzioni
+else:
+    istruzioni
+
+
+Comandi:
+a = 1 + 2 + 3 + \
+4 + 5 + 6 + \
+7 + 8 + 9
+\ -> estende su più linee un'espressione
+
+a = (1 + 2 + 3 +
+4 + 5 + 6 +
+7 + 8 + 9)
+(), [], {} -> continuazione di righe implicita
+
+a = 1; b = 2; c = 3
+; -> fa scrivere più comandi su stesa linea
+
+
+cicli:
+- while
+while condizione:
+    istruzione
+- for
+for item in list:
+    statements
+con indici:
+- range(i)
+- range(i, j)
+- range(i, j, k)
+- for i in range(len(list)): ... -> modifica ogni valore della lista
+
+
+Liste:
+identificate da [] -> mutabili
+sono di tipo list
+indexing come per stringhe
+lista[-i] -> ritorna l'i-esimo a partire dall'ultimo
+
+funzioni:
+len(), min(), max(), sum()
+metodi:
+- append(value)
+- sort()
+- insert(index, value)
+- remove(value)
+- count(value)
+- index(value)
+- pop()
+slicing:
+y = x[i:j] -> y diventa lista con valori di x da i a j-1
+    x[:] -> copia lista x
+    x[i:] -> lista con elem da i a fine
+    x[:j] -> lista con elementi da inizio a j-1
+
+liste innestate (esempio matrici):
+se serve ciclare su ogni elemento:
+for item in list:
+    for item2 in item:
+        ...
+
+
+Tuple:
+identificate da () -> immutabili
+sono di tipo tuple
+se hanno 1 elemento usare "," per evitare stranezze-> (8+3, )
+
+
+List comprehensions:
+se faccio:
+for x in range(10):
+    var.append(x**2)
+x continuerà ad esistere ...
+... allora posso usare:
+var = [x**2 for x in range(10)]
+list comprehension -> lista fatta con parentesi [] contenenti un'espressione seguita da if o for
+l'espressione iniziale può anche essere un'espressione arbitraria (es. un'altra list comprehension)
+
+
+istruzione del
+del a[0] -> elimina elemento da lista senza ritornare valore (a[0].pop() rimuove e ritorna valore)
+del a -> elimina variabili
+
+
+Array:
+non esiste un tipo integrato
+due moduli per definire array:
+- array(liste con elementi omogenei):
+from array import array
+arr = array('I', range(3))
+- numpy(ottimizzati per operazioni aritmetiche e si comportano diversamente dalle liste):
+from numpy import array
+arr = array(range(3))
+
+
+Dizionari:
+coppie di (key, value) -> {key0: val0, key1: val1, ..., keyN: valN}
+sono di tipo dict
+sono non ordinati
+key -> immutabile
+value -> mutabile, no None
+
+assegnamento:
+dict_name[key] = value
+dict_name = {"name": "thomas", "age": 20}
+
+metodi:
+- len(dict_name) -> lunghezza dict_name
+- dict.setdefault(key, any) -> imposta il key con qualsiasi tipo di value e restituisce value di key se key in dict altrimenti restituisce any
+- dict.keys() -> restituisce le chiavi secondo un qualche ordine.
+- dict.values() -> restituisce i valori secondo un qualche ordine.
+- dict.items() -> restituisce le coppie (key, value) secondo un qualche ordine
+- key in dict -> restituisce True se dizionario ha key al suo interno
+- dict.get(key) -> restituisce il value associato a key o None se key non esiste
+- dict.clear() -> rimuove tutte le coppie chiave valore presenti all’interno di dict
+- dict.copy() -> copia l’intero dizionario
+    - Attenzione che i dizionari sono oggetti mutabili
+    - Si potrebbero presentare le stesse problematiche delle liste innestate
+- dict.update(dict_name) -> aggiunge le coppie chiave-valore in dict_name a dict
+- dict.pop(key) -> rimuove la coppia key-value e la restituisce come valore di ritorno
+- del(dict_name[key]) -> rimuove elementi di dict_name
+- del dict_name[key] -> rimuove dict_name
+
+cicli sui dizionari:
+for key in d:
+    print(key, d[key])
+
+for val in d.values():
+    print(val)
+
+for key,val in d.items():
+    print(key, val)
+
+cicli ordinati sui dizionari:
+dict_keys = dict_name.keys()
+dict_keys = sorted(dict_keys)
+for key in dict_keys:
+    print(key, dict_name[key])
+
+
+Insiemi - Sets:
+collezione non ordinata senza elementi ripetuti
+sono di tipo set
+uso -> elimina elementi duplicati, verifica di appartenenza di un elemento
+uso per operazioni matematiche -> unione, intersezione, differenza, diff simmetrica
+creare oggetti set -> {} o set()
+NB: per creare set vuoto usare set() ... {} creerebbe dizionario vuoto
+
+esempi uso:
+basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+output: {'orange', 'banana', 'pear', 'apple'}
+
+'orange' in basket
+output: True
+
+esempi operazioni matematiche:
+a = set('abracadabra')
+b = set('alacazam')
+
+input: a (lettere uniche in a)
+output: {'a', 'r', 'b', 'c', 'd'}
+
+input: a - b (lettere in a ma non in b)
+output: {'r', 'd', 'b'}
+
+input: a | b (lettere in a o in b oppure in entrambi)
+output: {'a', 'c', 'r', 'd', 'b', 'm', 'z', 'l'}
+
+input: a & b (lettere sia in a che in b)
+output: {'a', 'c'}
+
+input: a ^ b (lettere in a o in b ma non in entrambi)
+output: {'r', 'd', 'b', 'm', 'z', 'l'}
+
+Set comprehension:
+come per le liste
+esempio:
+a = {x for x in 'abracadabra' if x not in 'abc'}
+
+
+Funzioni:
+def func_name(arg):
+    instructions
+
+gli arg possono essere 0 o + variabili
+se c'è return espressione -> restituisce valore
+se non c'è return -> restituisce None
+
+Nomi funzioni:
+- iniziare con una lettera o _
+- può includere lettere, _, numeri
+
+def f(x, y, n = 5, s = 'ciao'):
+    ...
+'n' e 's' sono argomenti di default -> attenzione a quelli mutabili
+
+def f(a, L = None):
+    ...
+None è immutabile, ogni modifica crea nuovo valore
+
+Funzioni con numero variabile di argomenti:
+def func_name(arg1, arg2, *argl, **argm):
+    ...
+- *argl -> lista di lunghezza arbitraria
+- **argm -> dizionario di lunghezza arbitraria
+esempio:
+input: func_name(1, 2, 3, 4, val1 = 5, val2 = 6)
+output: arg1 = 1, arg2 = 2, argl = [3, 4] e argm = {'val1': 5, 'val2': 6}
+
+* -> può essere usato per passare valori alla funzione
+esempio:
+def f(x, y):
+    ...
+l = [1, 2]
+f(*l) -> assegna 1 a x e 2 a y
+
+** -> può essere usato per passare valori a una funzione
+esempio:
+def f(x, y):
+    ...
+m = {'y': 1, 'x': 2}
+f(**m) -> assegna 2 a x e 1 a y (l'ordine non è importante)
+
+help() -> informazioni su funzioni, anche fatte da noi, con un docstring 
+docstring = informazioni scritte tra ''' ''' e devono stare nella prima linea del modulo/funzione
+esempio:
+def name(s):
+    '''
+    this function print s
+    '''
+    print(s)
+
+
+Type hints:
+dichiarazioni di tipi per variabili, parametri e valori di ritorno di funzioni
+
+per variabili:
+age: int = 1
+age: int
+x: list[int] = [1]
+x: set[int] = {6,7}
+x: dict[str, float] = {"ciao": 2.0}
+x: tuple[int, str, float] = (3, "yes", 7.5)
+x: list[int | str] = [3, 5, "test", "ciao"]
+
+per funzioni e parametri:
+def func_name(num: int) -> str:
+    return str(num)
+def func_name(value: str, num: int = 10) -> None:
+    print(value + "!" * num)
+
+
+Moduli:
+definire gruppi di funzioni e variabili tra loro in relazione
+
+per usare modulo usare import per importarlo: import module_name
+per richiamare modulo: module_name.func_name()
+
+ogni modulo ha una variabile implicita -> __name__
+module_name.__name__ == module_name quando importo modulo
+__name__ == "__main__" quando eseguo modulo (python module_name.py)
+from module_name import func_name_1, func_name_2 -> importare solo quelle funzioni e richiamarle senza usare nome modulo
+from module_name import * -> importa tutte le funzioni nel modulo
+import module_name as ciao -> rinominare un nome di modulo e usarlo con quel nome
+from module_name import func_name as func -> stessa cosa ma con funzioni del modulo importato
+func = module_name.func_name -> stessa cosa
+
+Metodi vs Funzioni:
+i metodi sono funzioni collegati al tipo di oggetto
+sono definiti all'interno della definizione di una classe
+esempio uso:
+s = "ciao"
+s.upper() -> metodo (appertiene ad un oggetto)
+len(s) -> funzione (appartiene ad un modulo)
+
+
+Classi:
+una classe è un nuovo tipo che "istanzia" oggetti
+la classe è definita con class
+esempio definizione classe:
+class MyClass:
+    ...
+esempio definizione istanza:
+x = MyClass() -> crea nuovo oggetto vuoto
+
+inizzializzare attributi nel metodo __init__() -> automaticamente invocato alla creazione di un oggetto
+si possono anche passare valori nel metodo __init__()
+ATTENZIONE: può essere definito solo un costruttore
+nel metodo __init__() bisogna passare self come primo argomento per far si che le 
+operazioni vengano eseguite sulla specifica istanza
+esempio:
+class Point:
+    def __init__(self, x = 0, y = 0):
+        self.x = x
+        self.y = y
+
+p1 = Point() # senza parametri in ingresso
+p2 = Point(1) # passando x
+p3 = Point(1, 2) # passando x ed y
+p4 = Point(y = 2) # passando solo y
+p1.x # accedo all'attributo della classe
+
+
+Metodi:
+esempio definizione metodo:
+def method_name(self, arguments):
+    ...
+
+valgono le stesse regole delle funzioni
+per riferirsi agli attributi dell'oggetto si usa self
+aggiungere self come primo argomento di ogni metodo
+esempio invocazione metodi (modalità identiche):
+istanza.method()
+Class.method(istanza)
+
+
+Attributi:
+può essere definito in una classe:
+- fuori da qualunque metodo (attributo di classe, condiviso fra istanze)
+- dentro un metodo (attributo di istanza, unico per ogni istanza)
+esempio:
+class Uomo:
+    sesso = 'maschio' # -> attr. di classe
+    def __init__(self, name):
+        self.name = name # -> attr. di istanza
+accesso agli attributi:
+- nei metodi di classe si usa self o nome classe (self.sesso o Uomo.sesso)
+- dall'esterno usando un'istanza o nome classe (persona1.sesso o Uomo.sesso)
+
+
+Metodi speciali:
+__ -> indica metodo speciale (esempio __init__)
+Esempi:
+• __str__ è usato per stampare (converte lo stato di un oggetto in una stringa).
+• __cmp__ è usato per consentire l’uso di operazioni di confronto
+• __cmp__(self,other) restituisce -1 se self è “più piccolo” di other , 0 se sono uguali e 1 altrimenti.
+    • __eq__, __lt__, __gt__
+• __add__ è usato per consentire l’operazione +
+• __iter__ è usato per consentire al nuovo tipo di essere usato in un ciclo.
+• __doc__ restituisce una docstring
+
+
+Attributi speciali:
+__class__ -> contiene il nome della classe
+Esempio confronto classi:
+def __comp_(self, other):
+    if other.__class__ is self.__class__:
+        ...
+
+
+Convezioni classi:
+- nome della classe usa convenzione UpperCamelCase
+- metodi e istanze iniziano con lettera minuscola e separano parole con _
+- definizioni metodi possono avere docstring come definizioni funzioni
+- classi dovrebbero avere docstring per descrivere cosa fanno
+
+
+Oggetti (mutabilità e immutabilità):
+gli oggetti int, str, ... sono immutabili
+se si modifica un oggetto si creerà una nuova istanza e si eliminerà quella precedente
+
+esempio immutabilità (uso per oggetti "piccoli"):
+x = 10
+y = x
+x = 5
+print(x, y) -> stampa 5 e 10 perchè gli interi sono immutabili
+
+esempio mutabilità (uso per oggetti "grandi"):
+x = mutable_obj
+y = x
+# x.change_something() -> modifica momentanea
+# print(x, y) -> stampa due volte x
+x = x.change_something()
+print(x, y) -> stampa x modificato e y = x precedente
+
+
+Ereditarietà:
+superclasse passata quando si definisce una classe
+esempio:
+class MyClass(SuperClasse):
+    ...
+ogni classe eredita da una superclasse -> se non si mette è object di default
+esempio:
+class MyClass(object): == class MyClass:
+    ...                       ...
+si possono usare espressioni arbitrarie come superclasse
+esempio:
+class MyClass(module.SuperClass):
+    ...
+istanziare attributi di una superclasse nella classe -> super().__init__(variabile)
+esempio:
+class Pet:
+    owner = "unknown"
+    def __init__(self,id):
+        print("pet")
+        self.id = id
+
+class Dog(Pet):
+    def __init__(self, name, id):
+        print("dog")
+        super().__init__(id)
+        self.name = name
+
+funzioni che lavorano con ereditarietà:
+- isinstance() -> verifica il tipo di una istanza
+- issubclass() -> verifica la classe padre
+esempi:
+1. isinstance(obj, int) è True se obj.__class__è int o deriva da int
+2. issubclass(float, int) è False perchè float non è sottoclasse di int
+3. issubclass(bool, int) è True perchè bool è sottoclasse di int
+
+Ereditarietà multiclasse:
