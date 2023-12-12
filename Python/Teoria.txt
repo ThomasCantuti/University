@@ -543,3 +543,45 @@ esempi:
 3. issubclass(bool, int) è True perchè bool è sottoclasse di int
 
 Ereditarietà multiclasse:
+la ricerca di attributi e metodi viene fatta nella classe e, nel caso non venisse 
+trovata, viene cercata nelle classi ereditate da sx a dx
+esempio:
+class MyClass(Class1, Class2):
+    ...
+
+MRO (Method Resolution Order) -> ricerca eseguita secondo un ordine prestabilito
+attributo __mro__ -> contiene elenco delle classi cercate
+
+se superclassi hanno metodi uguali:
+- super().metodo() nella classe attuale -> metodo della superclasse
+- ClassName.metodo(self) nella classe attuale -> metodo della classe esplicitata
+
+
+Variabili private:
+_name -> un nome preceduto da _ si considera privato (name mangling)
+
+
+Name mangling:
+__name (2 _ iniziali e massimo 1 _ finale) -> sostituito con _classname__name 
+(classname è il nome della classe)
+si usa per attributi e metodi che si vuole non vengano usati nelle sottoclassi
+esempio:
+class Test():
+    def __init__(self):
+        self._prova1 = 'ciao'
+        self.__prova2 = 'ecco'
+t = Test()
+t._prova1 # -> stampa ciao
+t.__prova2 # -> errore: non esiste questo attributo
+t._Test__prova2 # -> stampa ecco
+
+
+Metodi statici:
+usare il decoratore @staticmethod per creare metodo statico
+non riceve self come primo argomento
+i metodi statici possono essere chiamati su classi o istanze
+esempio:
+class Point:
+    @staticmethod
+    def distance(p1, p2):
+        ...
