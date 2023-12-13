@@ -37,6 +37,18 @@ class Car (Vehicle):
                 acceleration = 0.0
         super().__init__(speed, acceleration)
     
+    def set_speed (self, other):
+        if self.running == True:
+            self.speed = float(other)
+        else:
+            self.speed = 0.0
+
+    def set_acceleration (self, other):
+        if self.running == True:
+            self.acceleration = float(other)
+        else:
+            self.acceleration = 0.0
+    
     def start (self):
         self.running = True
     
@@ -47,6 +59,7 @@ class Car (Vehicle):
     
     def accelerate (self, acceleration: float, seconds: int):
         if self.running == True:
+            self.acceleration = acceleration
             self.speed += self.compute_speed_increment(acceleration, seconds)
     
     @staticmethod
