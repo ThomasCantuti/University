@@ -585,3 +585,56 @@ class Point:
     @staticmethod
     def distance(p1, p2):
         ...
+
+
+Iteratori:
+for chiama funzione iter() sull'oggetto contenitore
+iter() restituisce oggetto iteratore con metodo __next__()
+__next__() accede agli elementi del contenitore uno alla volta
+se non ci sono più elementi -> eccezione StopIteration da __next__()
+esempio:
+s = 'abc'
+it = iter(s)
+next(it) # -> restituisce a
+...
+
+Iteratori nelle classi:
+definire metodo __iter__() che restituire un oggetto con metodo __next__()
+se nella classe viene definito metodo __next__() allora __iter__() restituisce self
+oggetti con metodo __iter__() -> iterabili
+esempio:
+class Reverse:
+"""Iterator for looping over a sequence backwards."""
+    def __init__(self, data):
+        self.data = data
+        self.index = len(data)
+    
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.index == 0:
+            raise StopIteration
+        self.index = self.index - 1
+        return self.data[self.index]
+
+
+Generatori:
+utili per creare iteratori
+scritti come funzioni con yield al posto di return per restituire dati
+quando viene chiamato next() su un generatore riprende da dov'era stato interrotto
+(ricorda valori dei dati e ultima istruzione eseguita)
+esempio:
+def reverse(data):
+    for index in range(len(data) - 1, -1, -1):
+        yield data[index]
+
+for c in reverse('ciao'):
+    print(c)
+output: o a i c
+
+quello che si può fare con gli iteratori su classi si può fare con i generatori
+generatori più compatti perchè:
+- __iter__() e __next__() crati automaticamente,
+- variabili locali e stato di esecuzione salvati automaticamente, 
+- attivazione automatica di StopIteration quando terminano
