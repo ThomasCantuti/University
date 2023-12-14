@@ -638,3 +638,43 @@ generatori più compatti perchè:
 - __iter__() e __next__() crati automaticamente,
 - variabili locali e stato di esecuzione salvati automaticamente, 
 - attivazione automatica di StopIteration quando terminano
+
+Espressioni Generatore:
+si possono scrivere generatori come espressioni simili alle list comprehension
+sono più compatte ma meno versatili delle definizioni normali
+occupano meno memoria
+esempi:
+sum(i*i for i in range(10))
+output: 285
+
+unique_words = set(word for line in page for word in line.split())
+
+valedictorian = max((student.gpa, student.name) for student in graduates)
+
+list(data[i] for i in range(len(data)-1, -1, -1))
+output: ['f', 'l', 'o', 'g']
+
+
+Funzione map:
+applica una funzione a tutti gli elementi di un oggetto iterabile
+map(function, iterable, ...)
+esempi:
+items = [1, 2, 3, 4, 5]
+squared = list(map(square, items))
+
+è come fare:
+items = [1, 2, 3, 4, 5]
+squared = []
+for i in items:
+    squared.append(i**2)
+def square(x):
+    return x*x
+
+def myfunc(a, b):
+    return a + b
+x = map(myfunc, ('apple', 'banana', 'cherry'), ('orange', 'lemon', 'pineapple'))
+print(x) # stampa <map object at 0x034244F0>
+#convert the map into a list, for readability:
+print(list(x)) # stampa ['appleorange', 'bananalemon', 'cherrypineapple']
+
+
