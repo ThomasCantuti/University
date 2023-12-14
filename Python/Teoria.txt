@@ -538,7 +538,7 @@ funzioni che lavorano con ereditarietà:
 - isinstance() -> verifica il tipo di una istanza
 - issubclass() -> verifica la classe padre
 esempi:
-1. isinstance(obj, int) è True se obj.__class__è int o deriva da int
+1. isinstance(obj, int) è True se obj.__class__ è int o deriva da int
 2. issubclass(float, int) è False perchè float non è sottoclasse di int
 3. issubclass(bool, int) è True perchè bool è sottoclasse di int
 
@@ -678,3 +678,62 @@ print(x) # stampa <map object at 0x034244F0>
 print(list(x)) # stampa ['appleorange', 'bananalemon', 'cherrypineapple']
 
 
+Eccezioni:
+errori di sintassi -> mostrati dal compilatore
+errori di esecuzione -> exceptions (eccezioni)
+eccezioni non gestite -> generano messaggio di errore e terminano programma
+
+Gestione delle eccezioni:
+usare istruzione try
+esempio:
+try:
+    x = int('a')
+except ValueError:
+    print("Wrong number format")
+    x = 0
+
+istruzioni dentro try vengono eseguite:
+- se eccezione in try -> si salta a except senza continuare le istruzioni successive
+- se nessun problema -> si salta a dopo except
+
+istruzione try può avere:
+- except che catturano più eccezioni: 
+  except (TypeError, ValueError): 
+      ...
+- più except:
+  except TypeError:
+      ...
+  except ValueError:
+      ...
+- except può rinominare eccezioni per lavorare su esse
+  except TypeError as e:
+      ...
+
+except può gestire eccezioni indicate nella classe e sottoclasse
+
+dopo tutte le except si può mettere else (opzionale)
+meglio aggiungere else al posto di altri try
+esempio:
+try:
+    # istruzione che può generare IOError
+except IOError:
+    # gestione eccezione
+else:
+    # istruzione che può generare IOError ma non si vuole catturare eccezione
+finally:
+    # qualcosa che viene sempre eseguito
+
+alla fine di tutto si può mettere finally (opzionale)
+finally viene eseguita sempre (con o senza eccezione)
+se in try o except c'è return -> finally eseguito prima di return
+esempio:
+try:
+    result = x / y
+except ZeroDivisionError:
+    print("division by zero!")
+else:
+    print("result is", result)
+finally:
+    print("executing finally clause")
+
+Sollevare un'eccezione:
