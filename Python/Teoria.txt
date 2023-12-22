@@ -736,4 +736,101 @@ else:
 finally:
     print("executing finally clause")
 
-Sollevare un'eccezione:
+Sollevare un'eccezione -> istruzione "raise"
+esempi:
+1. raise TypeError # -> solleva TypeError()
+2. raise TypeError('message') # -> solleva TypeError e stampa message
+3. try:
+       # istruzioni
+   except TypeError:
+       print('TypeError occurred')
+       raise # -> rilancia l'eccezione senza gestirla
+
+Definire eccezioni:
+possono derivare da Exception o da sua sottoclasse
+le eccezioni sono classi molto semplici e possono avere alcuni argomenti per dare
+informazioni a proposito dell'errore stesso
+esempio:
+class MyError(Exception)
+    pass
+
+class MyMoreSpecificError(MyError)
+    def __init__(self,why,mess):
+        self.why = why
+        self.mess = mess
+
+istruzione with -> semplifica try-except-finally
+esempio:
+with expression:    -->     expression
+    # istruzione            try:
+                                # istruzione
+                            except:
+                                # gestione eccezione possibile
+                            finally:
+                                # operazione di chiusura
+
+
+
+File:
+open(filename, mode) -> per aprire un file, restituisce un oggetto di tipo file
+mode può essere:
+- r -> lettura, se file esiste già viene aperto con puntatore all'inizio
+    - r+ -> apre in lettura e scrittura
+    - rb -> apre in lettura per file binari
+- w -> scrittura, se esiste già il file lo sovrascrive svuotandolo prima e puntatore all'inizio
+    - w+ -> apre in lettura e scrittura
+    - wb -> apre in scrittura per file binari
+- a -> append, file non sovrascritto se esiste già e puntatore alla fine
+    - a+ -> apre in lettura e append
+    - ab -> apre in append per file binari
+
+oggetto file "f" ha 3 attributi:
+- f.closed -> True se file chiuso
+- f.mode -> modalità apertura file
+- f.name -> nome del file
+
+f.read() -> legge intero file e restituisce il contenuto, si può passare un argomento
+            per leggere un numero fissato di caratteri o byte
+esempio1:                   esempio2:
+f = open('text.txt')        with open(text.txt) as f:
+read_data = f.read()            read_data = f.read()
+f.close()
+
+(nell'esempio2 non serve f.close() poichè è già stato definito il significato 
+dell'istruzione with)
+
+f.readline() -> legge singola riga, alla fine viene inserito \n
+                restituisce '' se fine file
+                restituisce '\n' se riga vuota
+esempio1:                       esempio2:
+line = f.readline()             with open('text.txt') as f:
+while line != '':                   for line in f:
+    print(line, end = '')               print(line)
+    line = f.readline()
+f.close()
+
+f.readlines() == list(f) -> inizializza la lista inserendo le linee del file
+
+f.write("qualcosa") -> scrivere nel file
+f.tell() -> restituisce il numero della posizione corrente
+f.seek(offset, from) -> sposta il puntatore di offset posizioni a partire da from
+                        - from può essere anche predefinito:
+                            - 0 se all'inizio
+                            - 1 se posizione corrente
+                            - 2 se fine file
+
+
+modulo os per la gestione del File System:
+- os.rename(filename, new_filename) -> rinomina un file
+- os.remove(filename) -> rimuove un file
+- os.mkdir(dirname) -> crea una nuova cartella
+- os.chdir(dirname) -> per spostarsi nella cartella
+- os.cwd() -> restituisce la cartella corrente di lavoro
+- os.rmdir(dirname) -> rimuove la cartella passata, la cartella dev’essere vuota
+
+
+modulo Pickle:
+per salvare e recuperare oggetti su/da file
+import pickle -> per importare
+pickle.dump(object_name, file) -> salvare un oggetto
+object_name = pickle.load(file) -> per recuperare un oggetto
