@@ -1,5 +1,6 @@
 f = open("/home/thomas/Documenti/GitHub/University/Python/Esami/Gestione_Supermercati/supermercati.txt", "r")
 line = f.readline().strip()
+print(line)
 line2 = f.readline().strip()
 word = line2.split()
 print(line)
