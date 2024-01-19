@@ -834,3 +834,62 @@ per salvare e recuperare oggetti su/da file
 import pickle -> per importare
 pickle.dump(object_name, file) -> salvare un oggetto
 object_name = pickle.load(file) -> per recuperare un oggetto
+
+
+
+Argomenti da linea di comando:
+modulo sys -> utile per interagire con SO
+sys.argv[0] -> nome del file
+sys.stdout/stdin -> ridireziona il processo verso lo stdIO
+
+modulo argparse -> analisi della linea di comando
+parser = argparse.ArgumentParser()
+parser.parse_args()
+parser.add_argument("echo")
+args = parser.parse_args()
+
+metodo strip -> rimuove caratteri a sx e dx in base all'argomento
+metodo split -> divide una stringa in un elenco in cui ogni parola è un elemento dell'elenco
+esempi:
+string = 'android is awesome'
+print(string.strip('an'))
+output: droid is awesome
+
+txt = "welcome to the jungle"
+x = txt.split()
+output: ['welcome', 'to', 'the', 'jungle']
+
+
+
+Funzioni Lambda:
+sono funzioni anonime usate qunado si vuole passare una funzione come argomento di
+un'altra funzione
+sintassi: lambda x : x
+prima x -> elenco di argomenti
+seconda x -> espressione per valutare gli argomenti (espressione singola, una linea di codice)
+Esempi:
+ml = lambda x,y : x + y
+print(ml(1,2))
+
+def myfunc(n):
+    return lambda a : a ** n
+
+
+
+Scope:
+variabile definita all'inizio dello script -> globale quindi accessibile ovunque
+variabile definita in una funzione -> locale quindi accessibile solo dentro la funzione
+global nomeVariabile -> parola chiave "global" indica di usare la variabile globale
+nonlocal nomeVariabile -> la variabile si riferisce alla variabile nello scope più vicino (utile con funzioni innestate)
+
+regola LEGB -> per capire in quale ordine Python accede agli spazi dei nomi
+LEGB -> Local, Enclosed, Global, Built-In
+Esempio:
+# Global scope
+x = 0
+def outer():
+    # Enclosed scope
+    x = 1
+    def inner():
+        # Local scope
+        x = 2
