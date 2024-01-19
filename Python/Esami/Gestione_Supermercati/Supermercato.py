@@ -12,6 +12,5 @@ class Supermercato:
     def getCode(self):
         return self._codice
 
-
     def __str__(self):
-        return str(self._codice) + "\t"+self._tipo + "\t" + self._indirizzo + "\t"
+        return str(self._codice) + "\t" + self._tipo + "\t" + self._indirizzo + "\t"

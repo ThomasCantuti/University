@@ -53,7 +53,8 @@ class Gestione:
                 c = Cliente(cognome, nome)
                 clienti.append(c)
                 line = f.readline()
-                while(line != "\n" and line !=''):
+                # a capo o termine
+                while(line != "\n" and line != ''):
                     tok = line.split()
                     cod = int(tok[0])
                     spesa = float(tok[1])
@@ -65,6 +66,7 @@ class Gestione:
         except IOError as i:
             print(i)
 
+        # stampa elenco supermercati
         print("codice, tipo, indirizzo, apertura, chiusura, superficie, n. addetti, centro commerciale")
 
         for s in supermercati:
@@ -72,6 +74,7 @@ class Gestione:
 
         print("\n")
 
+        # stampa elenco clienti
         for c in clienti:
             print(c)
 
@@ -85,9 +88,9 @@ class Gestione:
                 visite = c.getVisite()
                 for v in visite:
                     if (cod == v.getCodice()):
-                        n_visite = n_visite +1 
+                        n_visite = n_visite + 1
                         tot = tot + v.getSpesa()
-            spesa_media = tot/n_visite
+            spesa_media = tot / n_visite
             print(str(cod) + "\t" + str(spesa_media))
 
         except IOError as i:
