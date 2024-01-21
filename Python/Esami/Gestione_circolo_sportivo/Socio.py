@@ -1,4 +1,4 @@
-class Soci:
+class Socio:
     def __init__(self, codice, nome, cognome, eta, categoria):
         self._codice = codice
         self._cognome = cognome
