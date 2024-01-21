@@ -13,6 +13,7 @@ class Gestione:
     def main(self):
         progetti = []
         ricercatori = []
+        progetto_dict = {}
         try:
             f = open("/home/thomas/Documenti/GitHub/University/Python/Esami/Gestione_progetti_ricerca/progetti.txt", "r")
             line = f.readline().strip()
@@ -31,11 +32,13 @@ class Gestione:
                     importo = float(f.readline().strip())
                     r = Ricerca(cod, titolo, coordinatore, organizzazione, importo, argomento, partner)
                     progetti.append(r)
+                    progetto_dict[cod] = r
                 else:
                     aziende = int(tok[0])
                     importo = float(tok[1])
                     i = Innovazione(cod, titolo,coordinatore, organizzazione, importo, aziende)
                     progetti.append(i)
+                    progetto_dict[cod] = i
 
                 line = f.readline().strip()
             f.close()
@@ -56,12 +59,14 @@ class Gestione:
                 # a capo o termine
                 while(line != "\n" and line != ''):
                     tok = line.split()
-                    cod = int(tok[0])
+                    codice_progetto = int(tok[0])
                     orario = float(tok[1])
-                    partecipazione = Partecipazione(cod, orario)
-                    c.addPartecipazione(partecipazione)
+                    progetto = progetto_dict[codice_progetto]
+                    partecipazione = Partecipazione(progetto, orario)
+                    r.addPartecipazione(partecipazione)
                     line = f.readline()
                 line = f.readline().strip()
+
             f.close()
         except IOError as i:
             print(i)
@@ -82,11 +87,10 @@ class Gestione:
 
         try:
             cognome = self._arg
-            for r in ricercatori:
-                cognome_ricercatore = r.getCognome()
-                if cognome_ricercatore == cognome:
-                    pass
-                print(r._nome +"\t"+ r._cognome +"\t")
+            for ricercatore in ricercatori:
+                if ricercatore._cognome == cognome:
+                    partecipazione = ricercatore.getImpegno_Max()
+                    print(ricercatore._nome +"\t"+ ricercatore._cognome +"\t"+ str(partecipazione._orario) +"\t"+ partecipazione._progetto._titolo)
 
         except IOError as i:
             print(i)
