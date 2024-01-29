@@ -24,6 +24,10 @@ int main () {
     if (pid == 0) {
     
         // istruzioni figlio
+        if (pipe(fd) < 0) { // crea pipe
+            perror("pipe fallita");
+            exit(1);
+        }
         read(fd[0], dati, sizeof(dati)); // legge/riceve da fd[0] i dati
         write(fd[1], dati, sizeof(dati)); // scrive/comunica su fd[1] i dati
         close(0); // chiude stdin nel file descriptor del figlio

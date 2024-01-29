@@ -14,6 +14,15 @@ int main () {
    int pid;
    char dati[100] = "ciao";
 
+   if (pipe(p0p1) < 0) { // crea pipe
+        perror("pipe fallita");
+        exit(1);
+    }
+    if (pipe(p1p0) < 0) { // crea pipe
+        perror("pipe fallita");
+        exit(1);
+    }
+
     // voglio mandare/scrivere informazioni da P0 a P1
     // voglio ricevere/leggere informazioni da P1 a P0
 
