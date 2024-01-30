@@ -34,6 +34,38 @@ int main (int argc, char** argv) {
 
     // controllo che <destinazione> esista
     sprintf(filepath, "%s/%s.txt", ROOT_PATH, argv[1]);
+    fd = open(filepath, O_RDONLY);
+    if (fd < 0) {
+        perror("P0: errore in open");
+        exit(3);
+    }
+    close(fd);
+
+    // imposto la gestione del segnale CTRL-C
+    signal(SIGINT, handler);
+
+    while(1) {
+        // chiedo <giorno>, <mese>, <anno>
+        printf("Inserire giorno mese anno (GG MM YYYY): ");
+        scanf("%d %d %d", &gg, &mm, &yyyy);
+
+        if (gg == -1 || mm == -1 || yyyy == -1)
+            break;
+        else if (gg < 0 || mm < 0 || yyyy < 0) {
+            printf("errore: Inserire interi positivi\n");
+            continue;
+        } else if (gg < 1 || gg > 31) {
+            printf("errore: Inserire giorno compresi tra 1 e 31\n");
+            continue;
+        } else if (mm < 1 || mm > 12) {
+            printf("errore: Inserire mese compreso tra 1 e 12 \n");
+            continue;
+        }
+
+        sprintf(date, "%02d%02d%04d", gg, mm, yyyy);
+
+        // creo pipe
+    }
 
     return 0;
 }
