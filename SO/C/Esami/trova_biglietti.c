@@ -17,7 +17,7 @@ void handler () {
 int main (int argc, char** argv) {
 
     int fd, n, gg, mm, yyyy, p1p2[2], p2p3[2], pid, status;
-    char *filepath, *date, str_n;
+    char *filepath, *date, *str_n;
 
     // controllo che il numero dei parametri sia corretto
     if (argc != 3) {
@@ -147,7 +147,7 @@ int main (int argc, char** argv) {
             close(p2p3[1]);
 
             // ordino biglietti dal più economico
-            execlp("sort", "sort", "-n");
+            execlp("sort", "sort", "-n", date, NULL);
             perror("P2: sort");
             exit(9);
         }
