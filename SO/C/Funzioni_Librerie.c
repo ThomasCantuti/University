@@ -37,7 +37,7 @@ Funzioni della libreria errno.h:
 
 Funzioni della libreria signal.h:
     sig_atomic_t
-    kill()
+    kill() -> manda segnale al figlio
     killpg()
     signal()
     SIGUSR1 -> kill -USR1 pid
