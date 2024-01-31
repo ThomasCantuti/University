@@ -27,7 +27,8 @@ int main (int argc, char** argv) {
     }
 
     // controllo che n sia intero positivo
-    if ( (n = atoi(argv[2])) <= 0 ) {
+    n = atoi(argv[2]);
+    if ( n <= 0 ) {
         printf("errore: <n> deve essere un intero positivo\n");
         exit(2);
     }
@@ -42,15 +43,7 @@ int main (int argc, char** argv) {
     close(fd);
 
     // imposto la gestione del segnale CTRL-C
-    // signal(SIGINT, handler);
-    struct sigaction saP0;
-    sigemptyset(&saP0.sa_mask);
-    saP0.sa_flags = 0;
-    saP0.sa_handler = handler;
-    if(sigaction(SIGINT,&saP0,NULL) < 0) {
-        perror("Errore in sigaction, SIGINT P0");
-        exit(-3);
-    }
+    signal(SIGINT, handler);
 
     while(1) {
         // chiedo <giorno>, <mese>, <anno>
@@ -93,15 +86,7 @@ int main (int argc, char** argv) {
             // codice di P1
 
             // imposto segnale SIGINT gestito come default
-            // signal(SIGINT, SIG_DFL);
-            struct sigaction saP1;
-            sigemptyset(&saP1.sa_mask);
-            saP1.sa_flags = 0;
-            saP1.sa_handler = SIG_DFL;
-            if(sigaction(SIGINT,&saP1,NULL) < 0) {
-                perror("Errore in sigaction, SIGINT P1");
-                exit(-3);
-            }
+            signal(SIGINT, SIG_DFL);
 
             // chiusura pipe tra P2 e P3
             close(p2p3[0]);
