@@ -17,7 +17,7 @@ void handler () {
 int main (int argc, char** argv) {
 
     int fd, n, gg, mm, yyyy, p1p2[2], p2p3[2], pid, status;
-    char *filepath, *date, *str_n;
+    char filepath[100], date[50], str_n[4];
 
     // controllo che il numero dei parametri sia corretto
     if (argc != 3) {
@@ -132,7 +132,7 @@ int main (int argc, char** argv) {
             close(p2p3[1]);
 
             // ordino biglietti dal più economico
-            execlp("sort", "sort", "-n", date, NULL);
+            execlp("sort", "sort", "-n", NULL);
             perror("P2: sort");
             exit(9);
         }
@@ -159,7 +159,7 @@ int main (int argc, char** argv) {
 
             // restituisco le prime N offerte più economiche
             sprintf(str_n, "%d", n);
-            execlp("head", "head", "-n", str_n, date, NULL);
+            execlp("head", "head", "-n", str_n, NULL);
             perror("P3: head");
             exit(11);
         }

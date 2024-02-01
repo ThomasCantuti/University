@@ -17,7 +17,7 @@ void handler () {
 int main (int argc, char **argv) {
 
     int pid, fd, status, p1p2[2], p2p3[2], p0p3[2], N, nread;
-    char nomeSpettacolo[20], filepath[100], results[50], str_n[50];
+    char nomeSpettacolo[20], filepath[100], results[50], str_n[4];
 
     // controllo numero argomenti
     if (argc != 2) {
@@ -26,7 +26,7 @@ int main (int argc, char **argv) {
     }
 
     // controllo se file esiste ed è leggibile
-    sprintf(filepath, "%s/%s", ROOT_PATH, argv[1]);
+    sprintf(filepath, "%s/%s.txt", ROOT_PATH, argv[1]);
     if ( (fd = open(filepath, O_RDONLY)) < 0 ) {
         perror("Errore: open file\n");
         exit(2);
