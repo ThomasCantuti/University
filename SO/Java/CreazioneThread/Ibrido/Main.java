@@ -6,5 +6,6 @@ public class Main {
         EsempioIbrido ct;
         ct = new EsempioIbrido();
         ct.start();
+
     }
 }

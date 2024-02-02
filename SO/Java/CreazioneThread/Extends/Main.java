@@ -6,5 +6,12 @@ public class Main {
         EsempioExtends ct;
         ct = new EsempioExtends();
         ct.start();
+
+        try {
+            ct.join();
+        } catch(InterruptedException e) {
+            e.printStackTrace();
+        }
+        
     }
 }

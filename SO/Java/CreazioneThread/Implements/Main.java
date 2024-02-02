@@ -5,5 +5,11 @@ public class Main {
         Thread ct;
         ct = new Thread(new EsempioRunnable());
         ct.start();
+
+        try {
+            ct.join();
+        } catch(InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
