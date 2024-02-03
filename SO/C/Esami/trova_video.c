@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <signal.h>
-#include <sys/wait>
+#include <sys/wait.h>
 
 static volatile sig_atomic_t count = 0;
 
@@ -16,6 +16,7 @@ int main (int argc, char** argv) {
 
     int pid, fd, p1p2[2], status;
     char filepath[200], tipo_video[20], data[20];
+    char dirRelativa[2];
 
     // controllo numero argomenti
     if (argc != 2) {
@@ -24,7 +25,7 @@ int main (int argc, char** argv) {
     }
 
     // controllo se dir è directory relativa
-    if (argv[1][0] == "/") {
+    if (argv[1][0] == '/') {
         perror("Errore: dir è directory assoluta\n");
         exit(2);
     }
@@ -34,6 +35,7 @@ int main (int argc, char** argv) {
         perror("Errore: dir non è una directory");
         exit(3);
     }
+    close(fd);
 
 
     signal(SIGINT, handler);
@@ -93,13 +95,17 @@ int main (int argc, char** argv) {
             dup(p1p2[0]);
             close(p1p2[0]);
 
-            execlp("sort", "sort", "-n", NULL);
+            execlp("sort", "sort", "-r", "-n", NULL);
             perror("P2: errore sort\n");
             exit(8);
         }
 
-        count ++;
+        close(p1p2[0]);
+        close(p1p2[1]);
         wait(&status);
+        wait(&status);
+        count ++;
+        
     }
 
     printf("Numero di richieste servite: %d\n", count);
