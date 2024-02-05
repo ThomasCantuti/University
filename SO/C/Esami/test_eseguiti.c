@@ -4,7 +4,7 @@
 #include <signal.h>
 #include <fcntl.h>
 #include <string.h>
-#include <sys/wait>
+#include <sys/wait.h>
 
 static volatile sig_atomic_t count = 0;
 
@@ -31,7 +31,7 @@ int main (int argc, char** argv) {
     }
 
     // controllo se dir è direcotory esistente
-    if ( (fd = open(argv[1], O_DIRECTORY)) < 0 ) {
+    if ( (fd = open(argv[1], __O_DIRECTORY)) < 0 ) {
         perror("Errore: open directory\n");
         exit(3);
     }
