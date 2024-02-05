@@ -147,7 +147,6 @@ int main (int argc, char **argv) {
         close(p2p3[0]);
         close(p2p3[1]);
         close(p0p3[1]);
-        close(p0p3[1]);
 
         wait(&status);
         wait(&status);
