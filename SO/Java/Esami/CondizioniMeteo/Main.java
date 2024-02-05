@@ -9,8 +9,8 @@ public class Main {
     
     public static void main(String[] args) {
         
-        PipedOutputStream pos = null;
         PipedInputStream pis = new PipedInputStream();
+        PipedOutputStream pos = new PipedOutputStream();
 
         try {
             pis = new PipedInputStream(pos);
@@ -18,19 +18,35 @@ public class Main {
             e.printStackTrace();
         }
 
-        Thread gd = new Thread(new GeneraDati(pos));
-        gd.start();
+        GeneraDati gd = new GeneraDati(pos);
+        Thread tgd = new Thread(gd);
+        tgd.start();
 
+
+        ObjectInputStream ois = null;
         try {
-            ObjectInputStream ois = new ObjectInputStream(pis);
+            ois = new ObjectInputStream(pis);
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(-1);
         }
 
+        Misure m = null;
+        try {
+            m = (Misure)ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        int umidita = 14;
+
+        while (m.getUmidita() + 0.2*m.getUmidita() > umidita) {
+            umidita = m.getUmidita();
+        }
         
+        gd.finisci();
 
         try {
-            gd.join();
+            tgd.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
