@@ -24,6 +24,7 @@
 - visualizzare i dati -> presentazione dei dati in diversi formati
 
 Esempio di database -> rubrica telefonica
+
 ![alt text](image.png)
 
 ## Caratteristiche dell'approccio con database
