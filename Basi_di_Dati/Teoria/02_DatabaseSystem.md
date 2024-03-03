@@ -32,6 +32,7 @@
     - **schema esterno** -> descrive la struttura di una vista dell'utente
 
 Per gli schemi è necessaria una mappatura tra i livelli per trasformare le richieste ed i dati:
+
 ![alt text](image-1.png)
 
 ## Indipendenza dei dati
