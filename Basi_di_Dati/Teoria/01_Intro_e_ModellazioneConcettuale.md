@@ -25,7 +25,7 @@
 
 Esempio di database -> rubrica telefonica
 
-![alt text](image.png)
+![alt text](image/01_00.png)
 
 ## Caratteristiche dell'approccio con database
 ### Natura autodescrittiva di un database system:
