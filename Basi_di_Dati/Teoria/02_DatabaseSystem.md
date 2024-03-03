@@ -73,26 +73,31 @@ quando si cambia uno schema, gli altri non devono essere influenzati
 
 ## Architettura centralizzate e Client-Server
 - **DBMS Centralizzato** -> unico server, tutti i client si collegano a lui
+
 ![alt text](db.jpg)
 - **DBMS Client-Server** -> server centrale, client si collegano a lui, server può collegarsi ad altri server
+
 ![alt text](client-server-network.webp)
 
 ### Architettura Client-Server di base
 - server specializzati (file, stampa, web, e-mail)
 - client -> interfaccia utente che usa risorse del server, sono connessi al server tramite rete (LAN, wireless, ...), possono essere PC, smartphone, tablet, ... con installato solo il programma client
 - DBMS server -> gestisce query e transazioni ai client
+
 ![alt text](dbCSbase.png)
 
 ### Architettura Client-Server a 2 livelli per DBMS
 - interfaccia utente e programmi applicativi eseguiti sulla macchina client
 - l'interfaccia ODBC (Open Database Connectivity) permette di collegare il client al server tramite API (Application Programming Interface)
 - un client può collegarsi a più DBMS
+
 ![alt text](db2level.png)
 
 ### Architettura Client-Server a 3 livelli
 - usato per applicazioni web
 - ha un livello intermedio (web server) che gestisce le richieste dei client e le inoltra al DBMS server e viceversa
 - ha funzioni di sicurezza (cifratura dei dati prima della trasmissione e decrittazione sul client)
+
 ![alt text](db3level.png)
 
 ### Classificazione dei DBMS
