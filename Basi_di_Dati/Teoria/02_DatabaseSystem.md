@@ -51,7 +51,7 @@ quando si cambia uno schema, gli altri non devono essere influenzati
 - **Linguaggi di basso livello** (procedurali) -> specificano come estrarre i dati, usano cicli, lavorano su un record per volta (C, Java, Python)
 
 ## Interfacce dei DBMS
-- interfacce basete su:
+- interfacce basate su:
     - menù con richieste composte da più step
     - app per mobile
     - moduli (form, comuni sul web)
