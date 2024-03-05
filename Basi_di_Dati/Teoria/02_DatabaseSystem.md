@@ -80,9 +80,9 @@ quando si cambia uno schema, gli altri non devono essere influenzati
 ![alt text](image/02_02.png)
 
 ### Architettura Client-Server di base
-- server specializzati (file, stampa, web, e-mail)
-- client -> interfaccia utente che usa risorse del server, sono connessi al server tramite rete (LAN, wireless, ...), possono essere PC, smartphone, tablet, ... con installato solo il programma client
-- DBMS server -> gestisce query e transazioni ai client
+- **server specializzati** (file, stampa, web, e-mail)
+- **client** -> interfaccia utente che usa risorse del server, sono connessi al server tramite rete (LAN, wireless, ...), possono essere PC, smartphone, tablet, ... con installato solo il programma client
+- **DBMS server** -> gestisce query e transazioni ai client
 
 ![alt text](image/02_03.png)
 
@@ -96,15 +96,15 @@ quando si cambia uno schema, gli altri non devono essere influenzati
 ### Architettura Client-Server a 3 livelli
 - usato per applicazioni web
 - ha un livello intermedio (web server) che gestisce le richieste dei client e le inoltra al DBMS server e viceversa
-- ha funzioni di sicurezza (cifratura dei dati prima della trasmissione e decrittazione sul client)
+- ha funzioni di sicurezza (cifratura dei dati prima della trasmissione e decrittazione sul client -> http**s**)
 
 ![alt text](image/02_05.png)
 
 ### Classificazione dei DBMS
 - basata sul modello dei dati:
     - Legacy (reticolari, gerarchici)
-    - Tradizionali (relazionali)
-    - Emergenti (NOSQL, Key-Value, Document)
+    - Relazionali (più diffuso, SQL)
+    - Emergenti (NOSQL (not only SQL), Key-Value, Document)
 - altri criteri:
     - single-user vs multi-user
     - centralizzati (un pc con un db) vs distribuiti (più pc con più db)
