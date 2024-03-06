@@ -5,21 +5,17 @@ FILE *in_file;
 FILE *out_file;
 
 int solve (int n) {
+    int ans = 1;
 
-    if (n == 1) {
-        fprintf(out_file, "%d ", n);
-        return n;
-    }
+    while (n != 1) {
 
-    if (n % 2 == 0) {
-        fprintf(out_file, "%d ", n);
-        return solve(n / 2);
-    }
-    else {
-        fprintf(out_file, "%d ", n);
-        return solve(n * 3 + 1);
-    }
+        if (n % 2 == 0) n = n / 2;
+        else n = n * 3 + 1;
 
+        ans ++;
+    }
+    return ans;
+    
 }
 
 int main () {
@@ -27,7 +23,7 @@ int main () {
     int n;
 
     in_file = fopen("input.txt", "r");
-    out_file = fopen("output.txt", "a");
+    out_file = fopen("output.txt", "w");
     
     if (in_file == NULL || out_file == NULL) {
         fprintf(stderr, "I/O Error");
@@ -35,7 +31,7 @@ int main () {
     }
 
     fscanf(in_file, "%d", &n);
-    solve(n);
+    fprintf(out_file, "%d", solve(n));
     
     if (fclose(in_file) != 0 || fclose(out_file) != 0) {
         fprintf(stderr, "I/O Error");
