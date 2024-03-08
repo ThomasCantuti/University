@@ -19,7 +19,7 @@ Entità e Attributi:
 - **Tipo di dati** -> insieme di valori per un attributo (stringa, numero (chiedersi se ci si può fare dei conti, se possibile è un numero altrimenti è una stringa))
 
 ## Tipi di Attributi
-- **Semplici** -> non può essere suddiviso in parti più piccole (nome, cognome, CF, sesso)
+- **Semplici** -> non può essere suddiviso in parti più piccole, solo l'attributo semplice può essere un attributo chiave (nome, cognome, CF, sesso)
 - **Composti ()** -> può essere suddiviso in parti più piccole (indirizzo -> via, città, CAP)
 - **Multivalore {}** -> può avere più valori (titoli di studio (può averne uno o più))
 
@@ -33,3 +33,27 @@ auto2: ((BO, 371166), TD729, Fiat, Panda, 2004, {nero, bianco})
 
 ## Notazione ER
 ![alt text](image/03_00.png)
+
+## Esempio Database Azienda per gestire: Dipartimenti, Progetti e Dipendenti
+Entità: Dipartimento, Progetto, Dipendente
+
+## Associazioni
+- **Associazione** -> relazione tra due o più entità con un significato (dipendente lavora in un dipartimento, progetto è assegnato a un dipartimento)
+- **Istanza di associazione** -> mette in riferimento due o più istanze di entità (Mario Rossi lavora nel dipartimento Vendite)
+- **Grado di un'associazione** -> numero di entità coinvolte
+
+## Istanze dell'associazione LAVORA PER
+![alt text](image.png)
+
+## Istanze dell'associazione LAVORA SU
+![alt text](image-1.png)
+
+## Vincoli sulle Associazioni
+- **Cardinalità massima**:
+    - 1:1 (uno a uno)
+    - 1:N (uno a molti) o N:1 (molti a uno)
+    - M:N (molti a molti)
+- **Cardinalità minima**:
+    - 0 (partecipazione opzionale)
+    - 1 o più (partecipazione obbligatorio)
+
