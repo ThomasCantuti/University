@@ -92,19 +92,19 @@ La logica di un algoritmo è data dalle operazioni logiche e aritmetiche, non da
 Quindi per calolare la complessità di un algoritmo si considerano solo le operazioni logiche e aritmetiche
 
 ### Notazione asintotica
-$f(n)$ è limitata da (oppure è un "o" grande di) $g(n)$ (scritto: $f(n) = O(g(n))$) $<--> \exist$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ : 
+$f(n)$ è limitata da (oppure è un "o" grande di) $g(n)$ (scritto: $f(n) = O(g(n))$) $<--> \exists$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ : 
 
 0 $\leq f(n) \leq c * g(n)$
 
 $\lim_{n\to\infty} \frac{f(n)}{g(n)} = 0$
 
-$f(n)$ è limitata dal basso da (oppure è un omega grande di) $g(n)$ (scritto: $f(n) = \Omega(g(n))$) $<--> \exist$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ : 
+$f(n)$ è limitata dal basso da (oppure è un omega grande di) $g(n)$ (scritto: $f(n) = \Omega(g(n))$) $<--> \exists$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ : 
 
 0 $\leq c * g(n) \leq f(n)$
 
 $\lim_{n\to\infty} \frac{f(n)}{g(n)} = \infty$
 
-$f(n)$ è dello stesso ordine di $g(n)$ $<--> \exist$ due costanti $c_1, c_2 > 0$ t.c. per tutti gli $n \geq n_0$ :
+$f(n)$ è dello stesso ordine di $g(n)$ $<--> \exists$ due costanti $c_1, c_2 > 0$ t.c. per tutti gli $n \geq n_0$ :
 
 0 $\leq c_1 * g(n) \leq f(n) \leq c_2 * g(n)$
 
