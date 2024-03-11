@@ -111,3 +111,17 @@ $f(n)$ è dello stesso ordine di $g(n)$ $<--> \exists$ due costanti $c_1, c_2 > 
 Quindi l'insieme $O(g(n))$ contiene tutte e sole quelle funzioni $f(n)$ tali che, a partire da un certo momento in poi (per tutti gli $n ≥ n_0$), il valore di $f(n)$ è descritto dal valore $g(n)$ a meno di una costante. Quindi, asintoticamente, $f(n)$ si comporta come $g(n)$
 
 Per confrontare gli ordini di grandezza delle funzioni si usano $\omicron()$ e $\omega()$ (o piccolo e omega piccolo)
+
+
+## Proprietà di interesse di $O(), \Omega(), \Theta(), \omega(), \theta() $
+- **transitività**: se $f(n) = O(g(n))$ e $g(n) = O(h(n))$ allora $f(n) = O(h(n))$
+- **simmetria**: se $f(n) = O(g(n))$ allora $g(n) = \Omega(f(n))$
+- **riflessività**: $f(n) = \Theta(f(n))$
+- **asimmetria**: se $f(n) = O(g(n))$ allora $g(n) \neq O(f(n))$
+- **antisimmetria**: se $f(n) = \Theta(g(n))$ e $g(n) = \Theta(f(n))$ allora $f(n) = \Theta(g(n))$
+- **somma**: se $f(n) = O(h(n))$ e $g(n) = O(h(n))$ allora $f(n) + g(n) = O(h(n))$
+- $f(n) = O(g(n)) in realtà sto dicendo che f(n) appartiene O(g(n))$
+
+## Esempi
+O() è transitiva
+dim: voglio dimostrare che $f(n) appartiene O(h(n)) e g(n) appartiene O(h(n))$
