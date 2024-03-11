@@ -27,30 +27,33 @@ proc InsertionSort (A) {
 }
 ```
 - **terminazione** -> ciclo for termina quando j < A.length e ciclo while termina quando i <= 0 e A[i] <= key -> terminazione garantita da ciclo esterno e interno
-- **correttezza** -> stabilire una proprietà del ciclo principale che sia vera prima, durante e dopo l'esecuzione del ciclo -> tecnica dell'invariante con A[1, ..., j-1] sempre ordinato
-- **complessità**:
+- **correttezza** -> stabilire una proprietà di un ciclo che sia vera prima, durante e dopo l'esecuzione del ciclo -> tecnica/proprietà dell'invariante con A[1, ..., j-1] sempre ordinato
+- **complessità**: definizione matematica del numero di passi necessari per eseguire l'algoritmo in termini della dimensione dell'input (annotare ogni istruzione, es. for, if, while, ecc., con il numero di passi che effettivamente compie)
 ```pseudocode
 proc InsertionSort (A) {
     for (j = 2 to A.length) { --> n * c1
-        key = A[j] --> (n-1) * c2
-        i = j − 1 --> (n-1) * c3
+        key = A[j] --> (n - 1) * c2
+        i = j − 1 --> (n - 1) * c3
         while ((i > 0) and (A[i] > key)) { --> c4 * Σ_{j=2}^{n} (t_j)
-            A[i + 1] = A[i] --> c5 * Σ_{j=2}^{n} (t_j - 1)
-            i = i − 1 --> c6 * Σ_{j=2}^{n} (t_j - 1)
+            A[i + 1] = A[i] --> c5 * Σ_{j=2}^{n} (t_j) - 1
+            i = i − 1 --> c6 * Σ_{j=2}^{n} (t_j) - 1
         }
-        A[i + 1] = key --> (n-1) * c7
+        A[i + 1] = key --> (n - 1) * c7
     }
 }
 ```
-- c1, c2, c3, c4, c5, c6, c7 sono costanti
+- c1, c2, c3, c4, c5, c6, c7 sono costanti che dipendo da tante cose come il tipo di linguaggio, la macchina, ecc.
 - n è la dimensione dell'input
-- $t_j$ è il tempo di esecuzione del ciclo while al passo j (va da 2 ad n, nel caso migliore $t_j$ = 1 ovvero input già ordinato, nel caso peggiore $t_j$ = j ovvero input ordinato al contrario)
+- $t_j$ è il passo di esecuzione del ciclo while al passo j (va da 2 ad n):
+    - caso migliore -> $t_j$ = 1 (ovvero input già ordinato)
+    - caso peggiore -> $t_j$ = j (ovvero input ordinato al contrario)
 
 - **caso migliore**:
 $$T(n) = C + c4 * (n - 1)$$
-con $C = c1 * n + c2 * (n-1) + c3 * (n-1) c7 * (n-1)$
-risulta una funzione lineare (con a,b costanti):
+con $C = c1 * n + c2 * (n - 1) + c3 * (n - 1) c7 * (n - 1)$ 
+risulta una funzione di tempo lineare (con a,b costanti che non dipendono da n):
 $T(n) = a * n + b$
+con $a = c1 + c2 + c3 + c7+ c4$ e $b = -c2 - c3 - c7 - c4$
 
 - **caso peggiore**: $$T(n) = C + c4 * ( (n * (n + 1) / 2) - 1) + c5 * ( (n * (n - 1) / 2) ) + c6 * ( (n * (n - 1) / 2) )$$
 risulta una funzione quadratica (con a,b,c costanti):
@@ -73,14 +76,14 @@ proc RecursiveBinarySearch (A, low, high, k) {
 }
 ```
 - **terminazione** -> termina quando low > high
-- **correttezza** -> concentrarsi su quello che accade dopo ogni chiamata ricorsiva -> tecnica dell'invariante induttiva
+- **correttezza** -> concentrarsi su quello che accade dopo ogni chiamata ricorsiva -> tecnica/proprietà dell'invariante induttiva
 - **complessità**:
 $T(n) = T(\frac{n}{2}) + 1$
 
 ## Notazione asintotica
 ### Studiare la complessità
-$T(n) = O(f(n))$ se si ottiene da $f(n)$ eliminando tutti i termini di ordine inferiore al maggiore e tutte le sue costanti
-esempio: $T(n) = 3n^2 + 2n + 1$ diventa $O(n^2)$
+$T(n) = \Theta(f(n))$ se si ottiene da $f(n)$ eliminando tutti i termini di ordine inferiore al maggiore e tutte le sue costanti
+esempio: $T(n) = 3n^2 + 2n + 1$ diventa $\Theta(n^2)$
 
 Si confrontano quindi differenti algoritmi in base al loro comportmaneto asintotico nel caso peggiore
 
