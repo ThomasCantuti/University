@@ -22,6 +22,8 @@ Entità e Attributi:
 - **Semplici** -> non può essere suddiviso in parti più piccole, solo l'attributo semplice può essere un attributo chiave (nome, cognome, CF, sesso)
 - **Composti ()** -> può essere suddiviso in parti più piccole (indirizzo -> via, città, CAP)
 - **Multivalore {}** -> può avere più valori (titoli di studio (può averne uno o più))
+- **Derivati** -> può essere calcolato da altri attributi (età, data di nascita)
+- **Data** -> esiste un'attributo tutto suo (data di nascita, data di assunzione)
 
 ## Entità, Istanze e Attributi chiave
 Entità (o tipi di entità) -> Istanza -> Attributo (o attributo chiave) -> Valore
