@@ -43,10 +43,10 @@ Entità: Dipartimento, Progetto, Dipendente
 - **Grado di un'associazione** -> numero di entità coinvolte
 
 ## Istanze dell'associazione LAVORA PER
-![alt text](image.png)
+![alt text](image/03_01.png)
 
 ## Istanze dell'associazione LAVORA SU
-![alt text](image-1.png)
+![alt text](image/03_02.png)
 
 ## Entità Deboli ed Associazioni Identificative
 - **Entità Debole** -> non ha un attributo chiave proprio, ma dipende da un'altra entità (dipendente, auto, figlio)
