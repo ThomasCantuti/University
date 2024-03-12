@@ -48,12 +48,21 @@ Entità: Dipartimento, Progetto, Dipendente
 ## Istanze dell'associazione LAVORA SU
 ![alt text](image-1.png)
 
+## Entità Deboli ed Associazioni Identificative
+- **Entità Debole** -> non ha un attributo chiave proprio, ma dipende da un'altra entità (dipendente, auto, figlio)
+- **Associazione Identificativa** -> associazione che identifica un'entità debole (dipendente lavora in un dipartimento, auto è di un proprietario, figlio è di un genitore)
+
 ## Vincoli sulle Associazioni
-- **Cardinalità massima**:
+- **Cardinalità massima** ->  quanti collegamenti possono esserci tra le entità coinvolte (1:1, 1:N, M:N):
     - 1:1 (uno a uno)
     - 1:N (uno a molti) o N:1 (molti a uno)
     - M:N (molti a molti)
-- **Cardinalità minima**:
+- **Cardinalità minima** -> quanti collegamenti devono almeno esserci tra le entità coinvolte (0, 1):
     - 0 (partecipazione opzionale)
     - 1 o più (partecipazione obbligatorio)
 
+## Associazioni Ricorsive
+- **Associazione Ricorsiva** -> un'entità è associata a se stessa (dipendente è comandato (supervisionato) da un altro dipendente)
+
+## Notazione alternativa (min, max)
+specifica la quantità minima e massima di istanze delle entità coinvolte in almeno min e al massimo max istanze dell'associazione
