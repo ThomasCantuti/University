@@ -43,12 +43,17 @@ Entità: Dipartimento, Progetto, Dipendente
 - **Associazione** -> relazione tra due o più entità con un significato (dipendente lavora in un dipartimento, progetto è assegnato a un dipartimento)
 - **Istanza di associazione** -> mette in riferimento due o più istanze di entità (Mario Rossi lavora nel dipartimento Vendite)
 - **Grado di un'associazione** -> numero di entità coinvolte
+- **Associazione Ricorsiva** -> un'entità è associata a se stessa (dipendente è comandato (supervisionato) da un altro dipendente)
+- possono avere attributi propri (LAVORA SU -> ore_settimanali)
 
 ## Istanze dell'associazione LAVORA PER
 ![alt text](image/03_01.png)
 
 ## Istanze dell'associazione LAVORA SU
 ![alt text](image/03_02.png)
+
+## Associazione Ricorsiva COMANDATO DA
+![alt text](image/03_03.png)
 
 ## Entità Deboli ed Associazioni Identificative
 - **Entità Debole** -> non ha un attributo chiave proprio, ma dipende da un'altra entità (dipendente, auto, figlio)
@@ -63,8 +68,16 @@ Entità: Dipartimento, Progetto, Dipendente
     - 0 (partecipazione opzionale)
     - 1 o più (partecipazione obbligatorio)
 
-## Associazioni Ricorsive
-- **Associazione Ricorsiva** -> un'entità è associata a se stessa (dipendente è comandato (supervisionato) da un altro dipendente)
-
 ## Notazione alternativa (min, max)
-specifica la quantità minima e massima di istanze delle entità coinvolte in almeno min e al massimo max istanze dell'associazione
+Specifica la quantità minima e massima di istanze delle entità coinvolte in almeno min e al massimo max istanze dell'associazione
+
+### Esempio:
+1. Un dipartimento ha esattamente un direttore e un dipendente può dirigere (al massimo) un solo dipartimento:
+    - Specificare (0,1) per la partecipazione di DIPENDENTE in DIRIGE
+    - Specificare (1,1) per la partecipazione di DIPARTIMENTO in DIRIGE
+![alt text](image/03_04.png)
+
+2. Un dipendente può lavorare per uno ed uno solo dipartimento ma un dipartimento può avere un numero qualsiasi di dipendenti:
+    - Specificare (1,1) per la partecipazione di DIPENDENTE in LAVORA PER
+    - Specificare (0,n) per la partecipazione di DIPARTIMENTO in LAVORA PER
+![alt text](image/03_05.png)
