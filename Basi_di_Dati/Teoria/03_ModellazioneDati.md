@@ -16,7 +16,7 @@ Entità e Attributi:
 - **Attributo** -> proprietà per descrivere un'entità (nome, cognome di un dipendente)
 - **Attributo chiave** -> attributo che identifica univocamente un'istanza di un'entità (codice fiscale di un dipendente)
 - **Valore** -> valore di un attributo per un'istanza (nome = 'Mario', cognome = 'Rossi', data di nascita = '01/01/1990')
-- **Tipo di dati** -> insieme di valori per un attributo (stringa, numero (chiedersi se ci si può fare dei conti, se possibile è un numero altrimenti è una stringa))
+- **Tipo di dati** -> insieme di valori per un attributo (stringa, carattere, int (chiedersi se ci si può fare dei conti, se possibile è un numero altrimenti è una stringa), float, data)
 
 ## Tipi di Attributi
 - **Semplici** -> non può essere suddiviso in parti più piccole, solo l'attributo semplice può essere un attributo chiave (nome, cognome, CF, sesso)
