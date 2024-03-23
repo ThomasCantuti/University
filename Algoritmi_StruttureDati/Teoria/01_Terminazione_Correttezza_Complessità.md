@@ -1,16 +1,16 @@
 # Terminazione, Correttezza, Complessità
-come si analizza un algoritmo e come di studia la sua complessità
-distinzione tra iterazione e ricorsione
-notazione asintotica
+1. come si analizza un algoritmo e come di studia la sua complessità
+2. distinzione tra iterazione e ricorsione
+3. notazione asintotica
 
-## Analizzare gli algoritmi
+## 1. Analizzare gli algoritmi
 4 caratteristiche principali di un algoritmo:
 - **correttezza**: l'algoritmo restituisce sempre la risposta corretta
 - **completezza**: ogni risposta corretta è restituita dall'algoritmo
 - **terminazione**: l'algoritmo termina sempre (non entra in loop infiniti)
 - **complessità**: l'algoritmo termina in un tempo ragionevole
 
-## Caso iterativo
+## 2.a Caso iterativo
 ### Analisi algoritmica
 esempio: InsertionSort
 ```pseudocode
@@ -55,11 +55,11 @@ risulta una funzione di tempo lineare (con a,b costanti che non dipendono da n):
 $T(n) = a * n + b$
 con $a = c1 + c2 + c3 + c7+ c4$ e $b = -c2 - c3 - c7 - c4$
 
-- **caso peggiore**: $$T(n) = C + c4 * ( (n * (n + 1) / 2) - 1) + c5 * ( (n * (n - 1) / 2) ) + c6 * ( (n * (n - 1) / 2) )$$
+- **caso peggiore**: $$T(n) = C + c4 * ( \frac{n * (n + 1)}{2} - 1) + c5 * ( \frac{n * (n - 1)}{2} ) + c6 * ( \frac{n * (n - 1)}{2} )$$
 risulta una funzione quadratica (con a,b,c costanti):
 $T(n) = a * n^2 + b * n + c$
 
-## Caso ricorsivo
+## 2.b Caso ricorsivo
 ### Analisi algoritmica
 esempio: RecursiveBinarySearch
 ```pseudocode
@@ -76,41 +76,53 @@ proc RecursiveBinarySearch (A, low, high, k) {
 }
 ```
 - **terminazione** -> termina quando low > high
-- **correttezza** -> concentrarsi su quello che accade dopo ogni chiamata ricorsiva -> tecnica/proprietà dell'invariante induttiva
+- **correttezza** -> concentrarsi su quello che accade dopo ogni chiamata ricorsiva -> tecnica/proprietà dell'invariante induttiva (es. A[low, ..., high] contiene sempre k)
+    - **caso base**: alla prima chiamata low = 1 e high = n quindi se k è in A allora è sicuramente in A[low, ..., high]
+    - **caso induttivo**: poichè A è ordinato si può affermare che:
+        - se A[mid] = k -> restituisco mid
+        - se A[mid] < k -> cerco in A[mid+1, ..., high]
+        - se a[mid] > k -> cerco in A[low, ..., mid-1]
 - **complessità**:
-$T(n) = T(\frac{n}{2}) + 1$
+$T(n) = T(\frac{n}{2}) + c$
 
-## Notazione asintotica
+## 3. Notazione asintotica
 ### Studiare la complessità
 $T(n) = \Theta(f(n))$ se si ottiene da $f(n)$ eliminando tutti i termini di ordine inferiore al maggiore e tutte le sue costanti
 esempio: $T(n) = 3n^2 + 2n + 1$ diventa $\Theta(n^2)$
 
-Si confrontano quindi differenti algoritmi in base al loro comportmaneto asintotico nel caso peggiore
-
-La logica di un algoritmo è data dalle operazioni logiche e aritmetiche, non dalle operazioni di assegnamento
-
-Quindi per calolare la complessità di un algoritmo si considerano solo le operazioni logiche e aritmetiche
+- Si confrontano quindi differenti algoritmi in base al loro comportmaneto asintotico nel caso peggiore
+- La logica di un algoritmo è data dalle operazioni logiche e aritmetiche (for, while, ...), non dalle operazioni di assegnamento
+- Quindi per calolare la complessità di un algoritmo si considerano solo le operazioni logiche e aritmetiche
 
 ### Notazione asintotica
-$f(n)$ è limitata da (oppure è un "o" grande di) $g(n)$ (scritto: $f(n) = O(g(n))$) $<--> \exists$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ : 
+#### 1) $O()$
+$f(n)$ è limitata da (oppure è un "o" grande di) $g(n)$ (scritto: $f(n) = O(g(n))$) $\Leftrightarrow \exists$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ : 
 
 0 $\leq f(n) \leq c * g(n)$
 
-$\lim_{n\to\infty} \frac{f(n)}{g(n)} = 0$
+![alt text](images/01_00.png)
 
-$f(n)$ è limitata dal basso da (oppure è un omega grande di) $g(n)$ (scritto: $f(n) = \Omega(g(n))$) $<--> \exists$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ : 
+#### 2) $\Omega()$
+$f(n)$ è limitata dal basso da (oppure è un omega grande di) $g(n)$ (scritto: $f(n) = \Omega(g(n))$) $\Leftrightarrow \exists$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ : 
 
 0 $\leq c * g(n) \leq f(n)$
 
-$\lim_{n\to\infty} \frac{f(n)}{g(n)} = \infty$
+![alt text](images/01_01.png)
 
-$f(n)$ è dello stesso ordine di $g(n)$ $<--> \exists$ due costanti $c_1, c_2 > 0$ t.c. per tutti gli $n \geq n_0$ :
+#### 3) $\Theta()$
+$f(n)$ è dello stesso ordine di $g(n)$ $\Leftrightarrow \exists$ due costanti $c_1, c_2 > 0$ t.c. per tutti gli $n \geq n_0$ :
 
 0 $\leq c_1 * g(n) \leq f(n) \leq c_2 * g(n)$
 
-Quindi l'insieme $O(g(n))$ contiene tutte e sole quelle funzioni $f(n)$ tali che, a partire da un certo momento in poi (per tutti gli $n ≥ n_0$), il valore di $f(n)$ è descritto dal valore $g(n)$ a meno di una costante. Quindi, asintoticamente, $f(n)$ si comporta come $g(n)$
+quindi $f(n) = \Theta(g(n)) \quad \Leftrightarrow \quad f(n) = O(g(n)) \text{ e } f(n) = \Omega(g(n))$
 
+![alt text](images/01_02.png)
+
+#### 4) $\omicron()$ e $\omega()$
 Per confrontare gli ordini di grandezza delle funzioni si usano $\omicron()$ e $\omega()$ (o piccolo e omega piccolo)
+
+- con $\omicron()$: $\lim_{n\to\infty} \frac{f(n)}{g(n)} = 0$
+- con $\omega()$: $\lim_{n\to\infty} \frac{f(n)}{g(n)} = \infty$
 
 
 ## Proprietà di interesse di $O(), \Omega(), \Theta(), \omega(), \theta() $
