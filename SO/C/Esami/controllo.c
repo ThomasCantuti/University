@@ -26,7 +26,7 @@ int main (int argc, char** argv) {
     }
 
     // controllo che dir sia cartella e che sia dir assoluta
-    if ( (fd = open(argv[1], __O_DIRECTORY)) < 0  ) {
+    if ( (fd = open(argv[1], O_DIRECTORY)) < 0  ) {
         printf("Errore: directory non esistente\n");
         exit(2);
     }
