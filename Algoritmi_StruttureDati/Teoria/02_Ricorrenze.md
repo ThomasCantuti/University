@@ -20,29 +20,41 @@ $T(n) = T(frazione\ di\ n) + f(n)$
 
 Osservazione: la chiamata più piccola possibile è T(1) = 1 (somma di casi base o parti non ricorsive)
 
+### Esempi di sviluppi di alberi di ricorsione
+- $T(n) = T(\frac{n}{2}) + 1$
+
+![alt text](images/02_00.png)
+
+- $T(n) = 2*T(\frac{n}{2}) + n$
+
+![alt text](images/02_01.png)
+
+- $T(n) = 3*T(\frac{n}{2}) + n^2$
+
+![alt text](images/02_02.png)
+
 ## Master Theorem
 Formula generale per le ricorrenze:
 
 $T(n) = a*T(\frac{n}{b}) + f(n)$
 
-Sviluppo in serie generale (se n è potenza esatta di b):
+Sviluppo in serie generale se n è potenza esatta di b (non float):
 
 $T(n) = \sum_{i=0}^{log_b(n)-1} a^i * f\left(\frac{n}{b^i}\right) + O\left(n^{log_b(a)}\right)$
 
+### Il $T(n)$ finale dipende molto da $f(n)$ quindi si distinguono 3 casi quando si generalizza:
+
+- $f(n) = O(n^{(\log_a{(b)} - \epsilon)})$
+
+- $f(n) = \Theta(n^{(\log_a{(b)})})$
+
+- $f(n) = \Omega(n^{(\log_a{(b)} + \epsilon)})$
+
+![alt text](images/02_03.png)
 
 
-### $f(n) = O(n^{(\log_a{(b)} - \epsilon)})$
-dimostrazione
-### $f(n) = \Theta(n^{(\log_a{(b)})})$
-dimostrazione
-### $f(n) = \Omega(n^{(\log_a{(b)} + \epsilon)})$
-dimostrazione
-
-![alt text](images/02_00.png)
-
-
-## Master Theorem non basta -> Soluzioni
-### Metodo di sostituzione
+## Metodo di sostituzione
+Quando il Master Theorem non basta si può usare il metodo di sostituzione
 Indovinare il risultato e poi dimostrarlo per induzione
 
 Strategia generale:
