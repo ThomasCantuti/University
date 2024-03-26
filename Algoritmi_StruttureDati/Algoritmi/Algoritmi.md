@@ -16,7 +16,7 @@ proc InsertionSort (A) {
 }
 ```
 
-- **utilizzo**: quando si ha un piccolo numero di elementi da ordinare o quando l'array è già quasi ordinato
+- **utilizzo**: Quando si ha un piccolo numero di elementi da ordinare o quando l'array è già quasi ordinato
 - **complessità**: 
     - **caso migliore**: $O(n)$
     - **caso peggiore**: $O(n^2)$
@@ -36,7 +36,7 @@ proc SelectionSort (A) {
 }
 ```
 
-- **utilizzo**: quando si ha un piccolo numero di elementi da ordinare
+- **utilizzo**: Quando si ha un piccolo numero di elementi da ordinare
 - **complessità**: 
     - **caso migliore**: $O(n^2)$
     - **caso peggiore**: $O(n^2)$
@@ -81,6 +81,12 @@ proc MergeSort (A, p, r) {
 }
 ```
 
+- **utilizzo**: Quando si ha un grande numero di elementi da ordinare e si vuole un algoritmo stabile grazie al suo approccio "divide et conquer"
+- **complessità**: 
+    - **caso migliore**: $O(n \log n)$
+    - **caso peggiore**: $O(n \log n)$
+    - **caso medio**: $O(n \log n)$
+
 ## QuickSort
 ```pseudocode
 proc Partition (A, p, r) {
@@ -108,6 +114,12 @@ proc QuickSort (A, p, r) {
     }
 }
 ```
+
+- **utilizzo**: Quando si ha un grande numero di elementi da ordinare e non si ha bisogno di un algoritmo stabile
+- **complessità**: 
+    - **caso migliore**: $O(n \log n)$
+    - **caso peggiore**: $O(n^2)$
+    - **caso medio**: $O(n \log n)$
 
 ## RandomizedQuickSort
 ```pseudocode
@@ -139,6 +151,12 @@ proc RandomizedQuickSort (A, p, r) {
 }
 ```
 
+- **utilizzo**: Quando si ha un grande numero di elementi da ordinare e non si ha bisogno di un algoritmo stabile, ma si vuole evitare il caso peggiore di QuickSort
+- **complessità**: 
+    - **caso migliore**: $O(n \log n)$
+    - **caso peggiore**: $O(n \log n)$
+    - **caso medio**: $O(n \log n)$
+
 ## CountingSort
 ```pseudocodice
 proc CountingSort (A, B, k) {
@@ -153,11 +171,27 @@ proc CountingSort (A, B, k) {
 }
 ```
 
+- **utilizzo**: Quando gli elementi da ordinare sono interi positivi con un range limitato
+- **complessità**: 
+    - **caso migliore**: $O(n + k)$
+    - **caso peggiore**: $O(n + k)$
+    - **caso medio**: $O(n + k)$
+
+Dove $k$ è il valore massimo dell'array A
+
 ## RadixSort
 ```pseudocodice
 proc RadixSort (A, d)
     for (i = 1 to d) AnyStableSort(A) on digit i
 ```
+
+- **utilizzo**: Sfrutta le singole cifre degli elementi da ordinare ed è efficiente per ordinare interi o stringhe con chiavi di lunghezza fissa
+- **complessità**: 
+    - **caso migliore**: $O(d(n + k))$
+    - **caso peggiore**: $O(d(n + k))$
+    - **caso medio**: $O(d(n + k))$
+
+Dove $d$ è il numero di cifre e $k$ è il valore massimo dell'array A
 
 # Algoritmi di ricerca
 
@@ -176,4 +210,8 @@ proc RecursiveBinarySearch (A, low, high, k) {
 }
 ```
 
-- **utilizzo**: per trovare l'indice dell'elemento k richiesto in un array ordinato, con high e low indici di inizio e fine array
+- **utilizzo**: per trovare l'indice dell'elemento $k$ richiesto in un array ordinato, con high e low indici di inizio e fine array
+- **complessità**: 
+    - **caso migliore**: $O(1)$
+    - **caso peggiore**: $O(\log n)$
+    - **caso medio**: $O(\log n)$
