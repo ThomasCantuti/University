@@ -1,7 +1,6 @@
 # Algoritmi di ordinamento
 
 ## Insertion Sort
-esempio: InsertionSort
 ```pseudocode
 proc InsertionSort (A) {
     for (j = 2 to A.length) {
@@ -18,9 +17,9 @@ proc InsertionSort (A) {
 
 - **utilizzo**: Quando si ha un piccolo numero di elementi da ordinare o quando l'array è già quasi ordinato
 - **complessità**: 
-    - **caso migliore**: $O(n)$
-    - **caso peggiore**: $O(n^2)$
-    - **caso medio**: $O(n^2)$
+    - **caso migliore**: $\Theta(n)$
+    - **caso peggiore**: $\Theta(n^2)$
+    - **caso medio**: $\Theta(n^2)$
 
 ## SelectionSort
 ```pseudocode
@@ -69,6 +68,8 @@ proc Merge (A, p, q, r) {
 }
 ```
 
+- **complessità**: $\Theta(n)$
+
 ```pseudocode
 proc MergeSort (A, p, r) {
     if (p < r ){
@@ -82,10 +83,7 @@ proc MergeSort (A, p, r) {
 ```
 
 - **utilizzo**: Quando si ha un grande numero di elementi da ordinare e si vuole un algoritmo stabile grazie al suo approccio "divide et conquer"
-- **complessità**: 
-    - **caso migliore**: $O(n \log n)$
-    - **caso peggiore**: $O(n \log n)$
-    - **caso medio**: $O(n \log n)$
+- **complessità**: $\Theta(n \cdot \log_2(n))$
 
 ## QuickSort
 ```pseudocode
@@ -104,6 +102,8 @@ proc Partition (A, p, r) {
 }
 ```
 
+- **complessità**: $\Theta(n)$
+
 ```pseudocode
 proc QuickSort (A, p, r) {
     if (p < r) {
@@ -117,9 +117,9 @@ proc QuickSort (A, p, r) {
 
 - **utilizzo**: Quando si ha un grande numero di elementi da ordinare e non si ha bisogno di un algoritmo stabile
 - **complessità**: 
-    - **caso migliore**: $O(n \log n)$
-    - **caso peggiore**: $O(n^2)$
-    - **caso medio**: $O(n \log n)$
+    - **caso migliore**: $\Theta(n \cdot \log_2(n))$ -> partizione bilanciata (quando si sceglie un pivot che ad ogni passo genera due sottoproblemi di dimensione n/2)
+    - **caso peggiore**: $\Theta(n^2)$ -> partizione sbilanciata (quando si sceglie un pivot che ad ogni passo genera due sottoproblemi: uno di dimensione 0 e uno di dimensione n-1)
+    - **caso medio**: $O(n \cdot \log_2(n))$
 
 ## RandomizedQuickSort
 ```pseudocode
@@ -140,6 +140,8 @@ proc RandomizedPartition (A, p, r) {
 }
 ```
 
+- **complessità**: $\Theta(n)$
+
 ```pseudocode
 proc RandomizedQuickSort (A, p, r) {
     if (p < r) {
@@ -152,10 +154,7 @@ proc RandomizedQuickSort (A, p, r) {
 ```
 
 - **utilizzo**: Quando si ha un grande numero di elementi da ordinare e non si ha bisogno di un algoritmo stabile, ma si vuole evitare il caso peggiore di QuickSort
-- **complessità**: 
-    - **caso migliore**: $O(n \log n)$
-    - **caso peggiore**: $O(n \log n)$
-    - **caso medio**: $O(n \log n)$
+- **complessità**: $O(n \cdot \log_2(n))$
 
 ## CountingSort
 ```pseudocodice
@@ -172,10 +171,7 @@ proc CountingSort (A, B, k) {
 ```
 
 - **utilizzo**: Quando gli elementi da ordinare sono interi positivi con un range limitato
-- **complessità**: 
-    - **caso migliore**: $O(n + k)$
-    - **caso peggiore**: $O(n + k)$
-    - **caso medio**: $O(n + k)$
+- **complessità**: $\Theta(n + k)$ con il simbolo $+$ che indica il massimo tra $n$ e $k$
 
 Dove $k$ è il valore massimo dell'array A
 
@@ -187,9 +183,8 @@ proc RadixSort (A, d)
 
 - **utilizzo**: Sfrutta le singole cifre degli elementi da ordinare ed è efficiente per ordinare interi o stringhe con chiavi di lunghezza fissa
 - **complessità**: 
-    - **caso migliore**: $O(d(n + k))$
-    - **caso peggiore**: $O(d(n + k))$
-    - **caso medio**: $O(d(n + k))$
+    - **caso peggiore**: $O(d \cdot f(n))$ con $f(n)$ complessità nel caso peggiore dell'algoritmo AnyStableSort
+    - **caso medio**: $\Theta(d \cdot (n + k))$
 
 Dove $d$ è il numero di cifre e $k$ è il valore massimo dell'array A
 
@@ -212,6 +207,6 @@ proc RecursiveBinarySearch (A, low, high, k) {
 
 - **utilizzo**: per trovare l'indice dell'elemento $k$ richiesto in un array ordinato, con high e low indici di inizio e fine array
 - **complessità**: 
-    - **caso migliore**: $O(1)$
-    - **caso peggiore**: $O(\log n)$
-    - **caso medio**: $O(\log n)$
+    - **caso migliore**: $\Theta(1)$
+    - **caso peggiore**: $\Theta(\log_2(n))$
+    - **caso medio**: $\Theta(\log_2(n))$
