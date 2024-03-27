@@ -32,30 +32,41 @@ con $\lfloor \log_2(n) \rfloor$ -> numero di volte che si può dividere n prima 
 ![alt text](images/02_02.png)
 
 ## Master Theorem
-Formula generale per le ricorrenze:
-
+Formula generale per le ricorrenze:  
 $T(n) = a*T(\frac{n}{b}) + f(n)$
 
-Sviluppo in serie generale se n è potenza esatta di b (non float):
-
+Sviluppo in serie generale se n è potenza esatta di b (non float):  
 $T(n) = \sum_{i=0}^{log_b(n)-1} a^i * f\left(\frac{n}{b^i}\right) + O\left(n^{log_b(a)}\right)$
 
 ### Il $T(n)$ finale dipende molto da $f(n)$ quindi si distinguono 3 casi quando si generalizza:
+- $f(n) = O(n^{(\log_b{(a)} - \epsilon)})$ -> $f(n)$ polinomicamente di grado inferiore a $n^{(\log_b{(a)})}$
+- $f(n) = \Theta(n^{(\log_b{(a)})})$
+- $f(n) = \Omega(n^{(\log_b{(a)} + \epsilon)})$ -> $f(n)$ polinomicamente di grado superiore a $n^{(\log_b{(a)})}$
+![alt text](02_03.png)
+**Esempi**:
+1. **$T(n) = T(\frac{n}{2}) + 1$** ---> $a = 1$, $b = 2$, $f(n) = 1$  
+    $f(n) = O(n^{(\log_2{(1)} - \epsilon)}) = O(1)$ -> caso 1 del Master Theorem -> $T(n) = \Theta(\log(n))$  
+    con $a = 1, b = 2$
 
-- $f(n) = O(n^{(\log_a{(b)} - \epsilon)})$
+2. **$T(n) = 2*T(\frac{n}{2}) + n$** ---> $a = 2$, $b = 2$, $f(n) = n$  
+    $f(n) = \Theta(n^{(\log_2{(2)})}) = \Theta(n)$ -> caso 2 del Master Theorem -> $T(n) = \Theta(n*\log(n))$  
+    con $a = 2, b = 2, k = 0$
 
-- $f(n) = \Theta(n^{(\log_a{(b)})})$
+3. **$T(n) = 3*T(\frac{n}{2}) + n^2$** ---> $a = 3$, $b = 2$, $f(n) = n^2$  
+    $f(n) = \Omega(n^{(\log_2{(3)} + \epsilon)}) = \Omega(n^{1.58})$ -> caso 3 del Master Theorem -> $T(n) = \Theta(n^2)$  
+    con $a = 3, b = 2$
 
-- $f(n) = \Omega(n^{(\log_a{(b)} + \epsilon)})$
-
-![alt text](images/02_03.png)
-
+4. **$T(n) = 4*T(\frac{n}{2}) + n^2 * \log_2(n)$** ---> $a = 4$, $b = 2$, $exp = \log_2(4) = 2$, $f(n) = n^{exp} * \log_2(n)$  
+    $f(n) = n^{(\log_2{(4)})} * \log_2(n) = \Theta(n^2 * \log_2(n))$ -> caso 2 del Master Theorem -> $T(n) = \Theta(n^2 * \log^2(n))$  
+    con $a = 4, b = 2, k = 1$
+    
 
 ## Metodo di sostituzione
-Quando il Master Theorem non basta si può usare il metodo di sostituzione
+Quando il Master Theorem non basta si può usare il metodo di sostituzione  
 Indovinare il risultato e poi dimostrarlo per induzione
 
-Strategia generale:
-1. si prova il Master Theorem
-2. se non funziona:
-    1. sviluppare in serie
+
+
+## Strategia generale:
+1. provare a risolvere la ricorrenza con il Master Theorem e se non funziona passare allo step 2
+2. sviluppare in serie l'albero di ricorsione per poi verificare il risultato, se necessario, con una o più sostituzioni (più sostituzioni per verificare se $O(), \Omega(), \Theta()$ o se si è sbagliato)
