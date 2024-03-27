@@ -126,14 +126,34 @@ Per confrontare gli ordini di grandezza delle funzioni si usano $\omicron()$ e $
 
 
 ## Proprietà di interesse di $O(), \Omega(), \Theta(), \omega(), \theta() $
-- **transitività**: se $f(n) = O(g(n))$ e $g(n) = O(h(n))$ allora $f(n) = O(h(n))$
-- **simmetria**: se $f(n) = O(g(n))$ allora $g(n) = \Omega(f(n))$
-- **riflessività**: $f(n) = \Theta(f(n))$
-- **asimmetria**: se $f(n) = O(g(n))$ allora $g(n) \neq O(f(n))$
-- **antisimmetria**: se $f(n) = \Theta(g(n))$ e $g(n) = \Theta(f(n))$ allora $f(n) = \Theta(g(n))$
-- **somma**: se $f(n) = O(h(n))$ e $g(n) = O(h(n))$ allora $f(n) + g(n) = O(h(n))$
-- $f(n) = O(g(n)) in realtà sto dicendo che f(n) appartiene O(g(n))$
+In ambito algoritmico, le notazioni O(), Θ(), e Ω() sono utilizzate per descrivere il comportamento asintotico degli algoritmi, ovvero come il tempo di esecuzione o lo spazio utilizzato da un algoritmo scala rispetto alla dimensione dell'input.
 
-## Esempi
-O() è transitiva
-dim: voglio dimostrare che $f(n) appartiene O(h(n)) e g(n) appartiene O(h(n))$
+**Proprietà di interesse:**
+
+1. **Riflessività**:
+   - f(n) = O(f(n)): ogni funzione è un limite superiore di se stessa.
+   - f(n) = Ω(f(n)): ogni funzione è un limite inferiore di se stessa.
+   - f(n) = Θ(f(n)): ogni funzione è uguale a se stessa in termini di crescita asintotica.
+
+2. **Transitività**:
+   - Se f(n) = O(g(n)) e g(n) = O(h(n)), allora f(n) = O(h(n)).
+   - Se f(n) = Ω(g(n)) e g(n) = Ω(h(n)), allora f(n) = Ω(h(n)).
+   - Se f(n) = Θ(g(n)) e g(n) = Θ(h(n)), allora f(n) = Θ(h(n)).
+
+3. **Simmetria**:
+   - f(n) = Θ(g(n)) se e solo se g(n) = Θ(f(n)): se due funzioni hanno lo stesso ordine di crescita, la relazione Θ è simmetrica.
+
+4. **Asimmetria**:
+   - Se f(n) = O(g(n)), non è necessariamente vero che g(n) = O(f(n)). Ad esempio, n = O(n^2), ma n^2 ≠ O(n).
+   - Analogamente, se f(n) = Ω(g(n)), non è necessariamente vero che g(n) = Ω(f(n)).
+
+5. **Altre proprietà**:
+   - Somma: se f(n) = O(g(n)) e f(n) = O(h(n)), allora f(n) = O(max(g(n), h(n))).
+   - Prodotto: se f(n) = O(g(n)) e h(n) = O(i(n)), allora f(n)h(n) = O(g(n)i(n)).
+   - Multiplo costante: se f(n) = O(g(n)), allora kf(n) = O(g(n)) per qualsiasi costante k > 0.
+
+Queste proprietà sono fondamentali per analizzare e confrontare gli algoritmi in base alla loro complessità asintotica.  
+Permettono di stabilire relazioni tra funzioni di crescita e di semplificare le espressioni di complessità.
+
+Esempio:  
+Sapendo che f(n) = O(g(n)) e g(n) = O(h(n)), possiamo concludere che f(n) = O(h(n)) grazie alla proprietà transitiva, senza dover analizzare direttamente la relazione tra f(n) e h(n).
