@@ -28,10 +28,14 @@ Osservazione: la chiamata più piccola possibile è T(1) = 1 (somma di casi base
 con $\lfloor \log_2(n) \rfloor$ -> numero di volte che si può dividere n prima di non poterlo più fare e avere $T(1)$ ($\lfloor n \rfloor$ rappresenta l'arrotondamento alla parte intera di $n$)
 
 - **$T(n) = 2*T(\frac{n}{2}) + n$** -> 2 chiamate ricorsive ognuna delle quali viene fatta su circa la metà dei suoi elementi $(\frac{n}{2})$ + 1 chiamata non ricorsiva che costa tanti quanti sono gli elementi di quell'istanza $(n)$
+
 ![alt text](images/02_01.png)
 
+
 - **$T(n) = 3*T(\frac{n}{2}) + n^2$** -> 3 chiamate ricorsive ognuna delle quali viene fatta su circa la metà dei suoi elementi $(\frac{n}{2})$ + 1 chiamata non ricorsiva che costa tanti quanti sono gli elementi di quell'istanza $(n^2)$
+
 ![alt text](images/02_02.png)
+
 
 ## Master Theorem
 Formula generale per le ricorrenze:  
@@ -44,7 +48,9 @@ $T(n) = \sum_{i=0}^{log_b(n)-1} a^i * f\left(\frac{n}{b^i}\right) + O\left(n^{lo
 - $f(n) = O(n^{(\log_b{(a)} - \epsilon)})$ -> $f(n)$ polinomicamente di grado inferiore a $n^{(\log_b{(a)})}$
 - $f(n) = \Theta(n^{(\log_b{(a)})})$
 - $f(n) = \Omega(n^{(\log_b{(a)} + \epsilon)})$ -> $f(n)$ polinomicamente di grado superiore a $n^{(\log_b{(a)})}$
+
 ![alt text](02_03.png)
+
 **Esempi**:
 1. **$T(n) = T(\frac{n}{2}) + 1$** ---> $a = 1$, $b = 2$, $f(n) = 1$  
     $f(n) = O(n^{(\log_2{(1)} - \epsilon)}) = O(1)$ -> caso 1 del Master Theorem -> $T(n) = \Theta(\log(n))$  
@@ -70,9 +76,13 @@ Indovinare il risultato e poi dimostrarlo per induzione
 **Esempio**:
 $T(n) = T(\frac{n}{3}) + T(\frac{2}{3}\cdot n) + n$
 1. Uso il metodo di sviluppo poichè non so minimamente di che forma è la ricorrenza
+
 ![alt text](images/02_04.png)
+
 2. Provo ad indovinare che $T(n) = O(n \cdot \log_2(n))$ assumendo che $T(n) \leq c \cdot n \cdot \log_2(n)$ per qualche $c > 0$ :
+
 ![alt text](images/02_05.png)
+
 poichè $\log_2(3) = 1.58$ e $\frac{2}{3} = 0.6$ la condizione $c > 0$ si verifica quindi posso concludere che $T(n) = O(n \cdot \log_2(n))$
 3. Si può proseguire con le sostituzioni per verificare se $T(n) = \Omega(n \cdot \log_2(n))$ :
     - se si -> $T(n) = \Theta(n \cdot \log_2(n))$
