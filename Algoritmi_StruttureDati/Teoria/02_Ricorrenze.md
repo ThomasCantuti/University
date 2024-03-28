@@ -22,7 +22,9 @@ Osservazione: la chiamata più piccola possibile è T(1) = 1 (somma di casi base
 
 ### Esempi di sviluppi di alberi di ricorsione
 - **$T(n) = T(\frac{n}{2}) + 1$** -> 1 chiamata ricorsiva su $\frac{n}{2}$ elementi e ognuna di esse costa 1
+
 ![alt text](images/02_00.png)
+
 con $\lfloor \log_2(n) \rfloor$ -> numero di volte che si può dividere n prima di non poterlo più fare e avere $T(1)$ ($\lfloor n \rfloor$ rappresenta l'arrotondamento alla parte intera di $n$)
 
 - **$T(n) = 2*T(\frac{n}{2}) + n$** -> 2 chiamate ricorsive ognuna delle quali viene fatta su circa la metà dei suoi elementi $(\frac{n}{2})$ + 1 chiamata non ricorsiva che costa tanti quanti sono gli elementi di quell'istanza $(n)$
