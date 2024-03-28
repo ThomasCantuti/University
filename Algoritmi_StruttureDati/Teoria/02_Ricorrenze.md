@@ -49,7 +49,7 @@ $T(n) = \sum_{i=0}^{log_b(n)-1} a^i * f\left(\frac{n}{b^i}\right) + O\left(n^{lo
 - $f(n) = \Theta(n^{(\log_b{(a)})})$
 - $f(n) = \Omega(n^{(\log_b{(a)} + \epsilon)})$ -> $f(n)$ polinomicamente di grado superiore a $n^{(\log_b{(a)})}$
 
-![alt text](02_03.png)
+![alt text](images/02_03.png)
 
 **Esempi**:
 1. **$T(n) = T(\frac{n}{2}) + 1$** ---> $a = 1$, $b = 2$, $f(n) = 1$  
