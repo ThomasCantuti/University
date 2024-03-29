@@ -19,13 +19,11 @@ proc SelectionSort (A) {
 }
 ```
 
-dimostrazione
-
 ## MergeSort
 ### Merge
-prima si studia un algoritmo che risolve il problema di costruire una sequenza ordinata partendo da due sequenze ordinate
+Algoritmo che risolve il problema di costruire una sequenza ordinata partendo da due sequenze ordinate
 
-Input -> Array A, indici p,q,r con $p\leq q \leq r$ e A[p, ..., q] e A[q+1, ..., r] sono ordinati
+Input -> Array A, indici p, q, r con $p\leq q \leq r$ e A[p, ..., q] e A[q+1, ..., r] sono ordinati  
 Output -> A[p, ..., r] ordinato
 
 ```pseudocode
@@ -37,12 +35,12 @@ proc Merge (A, p, q, r) {
     for (j = 1 to n2) R[j] = A[q + j]
     i = 1
     j = 1
-    for (k = p to r ){
-        if (i ≤ n1){
+    for (k = p to r ) {
+        if (i ≤ n1) { --> L e R non sono ancora finiti
             then
-            if (j ≤ n2){ --> L e R non sono ancora finiti
+            if (j ≤ n2) { 
                 then
-                if (L[i] ≤ R[j]){
+                if (L[i] ≤ R[j]) {
                     then CopyFromL(i)
                     else CopyFromR(j)
                 }
@@ -54,10 +52,10 @@ proc Merge (A, p, q, r) {
 }
 ```
 
-dimostrazione
-
-- **terminazione** -> i primi due cicli for terminano per $i = n_1$ e $j = n_2$ mentre il terzo for ...
-- **correttezza** -> 
+- **terminazione** -> i primi due cicli for terminano per $i = n_1$ e $j = n_2$ mentre il terzo for termina per $k = r$
+- **correttezza** -> per l'invariante del terzo ciclo ovvero dopo ogni iterazione del ciclo for, A[p, ..., k − 1] è ordinato
+    - caso base ->
+    - caso induttivo ->
 - **complessità** -> i primi due cicli for sono $\Theta(n_1)$ e $\Theta(n_2)$ quindi uguali a $\Theta(n)$ e il terzo for vale $\Theta(n)$ quindi la complessità vale $\Theta(n)$ e non devo distinguere tra i tre casi
 
 ### MergeSort
@@ -65,20 +63,26 @@ si usa l'algoritmo Merge come sotto-funzione per un nuovo algoritmo di ordinamen
 
 ```pseudocode
 proc MergeSort (A, p, r) {
-    if (p < r ){
+    if (p < r) {
         then
-        q = [(p + r )/2]
+        q = [(p + r) / 2]
         MergeSort(A, p, q)
-        MergeSort(A, q + 1,r )
-        Merge(A, p, q,r )
+        MergeSort(A, q + 1, r)
+        Merge(A, p, q, r)
     }
 }
 ```
-image di dimostrazione slide 14
+
+![alt text](images/03_00.png)
 
 - **terminazione** -> ad ogni chiamata la distanza tra p e r deve diminuire, si effettua la nuova chiamata solo se $p \lt r$
 - **correttezza** -> con invariante ricorsiva ovvero dopo ogni chiamata ricorsiva MergeSort(A, p, r), A[p, ..., r] è ordinato
     - caso base -> 
     - caso induttivo -> 
-- **complessità** -> $T(n) = 2 * T(\frac{n}{2}) + \Theta(n)$ anche se in realtà sarebbe $T(n) = \Theta(n * \log(n))$ (Master Theorem caso II)
+- **complessità** -> $T(n) = 2 * T(\frac{n}{2}) + \Theta(n)$ e per il Master Theorem (caso 2) diventa $T(n) = \Theta(n \cdot \log(n))$
 
+## QuickSort
+### Partition
+
+
+### QuickSort
