@@ -16,10 +16,6 @@ int main () {
         return -2;
     }
 
-    // riempimento di null nell'array di risposta
-    for (int i = 0; i < Q; i ++)
-        ans[i] = 0;
-
     // lettura N Q
     fscanf(in_file, "%d %d", &N, &Q);
     // lettura id Sn x0...xSn-1
@@ -39,6 +35,7 @@ int main () {
             printf("%d ", file[i][j]);
         printf("\n");
     }
+    
 /*
     // soluzione
     for (int row = 0; row < Q; row ++) {
