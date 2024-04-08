@@ -64,3 +64,5 @@ una sottoclasse con più di una superclasse (possibile solo in un reticolo)
 
 ## Esempio
 ![alt text](image/04_01.png)
+
+## Categorie (tipi Unione)
