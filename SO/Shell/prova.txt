@@ -1,0 +1,3 @@
+totale 8
+-rw-rw-r-- 1 thomas thomas 5049 ott  5 10:02 ComandiShell
+-rw-rw-r-- 1 thomas thomas    0 ott  5 10:08 prova.txt

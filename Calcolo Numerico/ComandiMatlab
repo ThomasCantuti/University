@@ -1,0 +1,251 @@
+~ = ALTGR+ì (linux)
+whos = visualizza variabili con dimensione e memoria occupata
+
+Variabili numeriche:
+x = [] -> crea variabile vuota
+ans -> variabile temporanea con risultato dell'ultima operazione
+
+Visualizzazione:
+disp(x) -> visualizza valore variabile
+fprintf('messaggio') -> visualizzare messaggi o variabili su shell
+
+Input da tastiera:
+x = input('inserisci x: ') -> inserisce dati da tastiera
+
+Creazione Vettori:
+v = [12, pi, 0] -> dichiarazioni di vettori riga
+w = [9     -> dichiarazione di vettori colonna
+42
+pi/2]
+w(n) -> elemento del vettore
+b = 3:15 -> crea vettore da 3 a 15 con passo 1
+c = 0:0.1:2 -> crea vettore da 0 a 2 con passo 0.1
+d = linespace(5,7,101) -> crea vettore da 5 a 7 con 101 elementi
+var' -> apostrofo " ' " fa la trasposta
+
+Operazioni con vettori:
+No somme di vettori con dimensioni diverse
+a = [2; 3]
+b = [4; 6]
+c = a + b
+c = 6
+    9
+dot(a, b) -> prodotto scalare (a, b -> stesse dimensioni)
+<a, b> = a'*b -> prodotto scalare
+a./b = [1/2  1/2] -> divisione componente per componente a dx
+a.\b = [2  2] -> divisione componente per componente a sx
+a.*b -> prodotto
+a.^n -> ogni elemento elevato ad n
+a.^b -> eleva ogni elemento di a ad ogni elemento di b
+
+Funzioni su vettori:
+sum(v) -> somma degli elementi dell'argomento
+prod(v) -> prodotto
+numel(v) -> numero di argomenti
+length(v) -> massimo numero di elementi fra dim dell'argomento
+size(v) -> vettore riga con dimensioni dell'argomento
+rand(n, m) -> genera matrice n x m di valori nell'intervallo [0, 1]
+rand(n, m)*(b-a)+a -> stessa cosa ma tra [a, b]
+v(:,:,1) -> tutte le righe e colonne del foglio 1
+v(:, 3:2, 1) -> tutte le righe delle colonne da 3 a 2
+max(v) -> massimo del vettore
+min(v) -> minimo del vettore
+mean(v) -> media del vettore
+std(v) -> deviazione standard del vettore
+find(espr_logica) -> restituisce gli indici per cui espr_logica è verificata (es. w < 10)
+log( abs(sin (a) ) ) -> concatenare più funzioni
+
+vettori e costanti:
+v + 2 -> numero come vettore con ogni componente uguale a numero (es. [2, 2])
+v * n -> prodotto di componente per componente tra v ed n (dim(n) = dim(v), n è un vettore formato da soli n)
+
+Matrici:
+A(2,3) -> accesso agli indici di riga 2 e colonna 3
+A(:1) -> prima colonna
+A(2, :) -> seconda riga
+A[4 5 pi; 0 6 2; 1 0 exp(1)] -> crea matrice
+malloc() -> crea spazio dinamicamente
+eye(n) -> crea matrice identità di ordine n
+zeros(n) -> crea matrice di ordine n di 0
+ones(n) -> crea matrice di ordine n di 1
+funzione ; funzione -> con il ; si possono mettere più funzioni su stessa riga
+
+Operazioni di Matrici:
+A + B -> somma componente per componente
+A - B -> 
+A * B ->
+A \ B ->
+A / B ->
+A' ->
+A^2 ->
+sum(Matrice) -> somma colonne
+sum(Matrice') o sum(Matrice, 2) -> somma righe (2 = seconda dimensione)
+det(A) -> determinante di A
+inv(A) -> inversa di A ---> NON USARE
+operazioni punto----
+confronto tra matrici----
+prodotto matrice-vettore----
+vpa(mat, n) -> 
+
+M-script e M-function -> due tipi di sorgenti
+M-script -> si possono scrivere istruzioni ed eseguirle insieme
+M-function -> quando eseguita viene creato spazio esclusivo
+clear all -> cancella tutte le variabili nel workspace
+close all -> chiude tutte le finestre aperte
+clc -> cancella tutti i comandi sulla shell
+
+Costrutto if-then-else:
+1)
+if condizione1
+    istruzione1
+else
+    istruzione2
+end
+
+2)
+if condizione1
+    istruzione1
+elseif condizione2
+    istruzione2
+...
+else --> facoltativo ultimo else
+    istruzione
+end
+
+3) elseif != else if
+
+Costrutto switch-case:
+switch var
+    case 1
+        istruzione1
+    case 2
+        istruzione2
+    ...
+    otherwise
+        istruzione
+end
+
+4) for variabile = inizio:passo:fine
+	...
+   end
+
+Stringhe e caratteri:
+s = 'nome'
+t = 'cognome'
+[s, t] -> unisce le due stringhe
+
+Find e isempty:
+[riga, colonna] = find(A > 8) con A matrice -> trova gli indici degli elementi che soddisfano una condizione (es. A > 8)
+rng() -> imposta numero di partenza ("seme" della funzione rand), può contenere 'default' o un numero
+isempty(x) -> true se x è vuota, false se x contiene qualcosa
+any(A) -> determina se degli elementi sono diversi da zero
+
+Struct:
+le struct sono array multidimensionali di tipo diverso
+s = struct('nome', 'Thomas', 'cognome', 'Cantuti', 'anno', 2003)
+s.nome o s(1) -> accedere al campo
+t = struct('rubrica', s) -> struct s dentro struct t
+
+Cell array:
+tipi di dato che possono contenere dati di qualsiasi tipo, creazione di un vettore
+usati per la gestione di I/O
+c = cell(2, 2) -> inizializzazione cell array
+c{1, 1} -> accesso agli elementi della posizione degli indici
+varargin = variabile che gestisce gli input (variabile di tipo cell)
+varargout = variabile di ingresso che gestisce gli output (variabile di tipo cell)
+nargin = gestisce il numero di dati in input
+nargout = gestisce il numero di dati in output
+
+Grafica 2D:
+usare anche properties figure
+plot(x) -> grafico di x
+plot(x, y) -> grafico di x e y
+plot(x, y, a, b) -> più funzioni nel grafico
+plot(x, [y, sqrt(y), sin(x).*y]) -> grafico con x ascissa e vettore di y (il numero di y deve essere lo stesso delle righe di x)
+plot(x, y, 'b--', x, sqrt(y), 'r:', x, sin(x).*y) -> opzioni sulla linea di funzione
+plot(x(1:25:end), y(1:25:end), 'b--o') -> funzione campionata
+plot(x, y, 'b--o', 'Linewidth', 3) -> dimensiona la larghezza della linea di funzione
+ph = plot(...) -> ph è un oggetto contenente le proprietà del grafico
+set(ph, 'LineStyle', '-', ...) -> cambia le proprietà di un grafico rendendolo dinamico
+set(gca) -> gca = get current axis
+get(ph, 'LineJoin') -> scrivere una sola proprietà, restituisce il valore della proprietà
+axis([x1 x2 y1 y2]) -> limita visualizzazione tra x1 e x2 per ascisse e y1 e y2 per le ordinate, si può scrivere anche una proprietà
+axes() -> imposta coppie proprietà-valore di tutti gli assi
+xlabel e ylabel ('') -> etichetta sull'asse x e sull'asse y
+title('') -> stringa come titolo del grafico
+hold on -> tutti i grafici successivi vengono aggiunti a quello precedente
+legend({'Dati', 'Modello'}) -> disegna la legenda del grafico
+box off -> elimina la "scatola" attorno al grafico
+Linewidth -> specifica spessore della linea, si possono ...
+Proprietà:
+...
+subplot(m, n, i) -> crea una griglia con m righe e n colonne, alla i-esima posizione verrà posizionato un grafico
+figure -> crea una nuova finestra grafica (figure(n) crea/mostra la finestra grafica n-esima etichettata con n)
+semilogx, semilogy, loglog -> disegnare grafici usando scala logaritmica su ascisse, ordinate, entrambe
+text(x, y, str) -> inserisce stringa nel punto x,y
+gtext(str) -> inserisce stringa nel punto in cui si clicca con il mouse
+fill(x, y, colore) -> crea poligono di vertici aventi coordinate x(i), y(i) e lo riempie con il colore specificato
+print -d"driver" [-rndpi] nomefile.ext -> salva contenuto della finestra grafica corrente nel file nomefile.ext con risoluzione "ndpi"
+pause -> sospende l'esecuzione (riprende quando clicchi un tasto se non si specifica il numero di secondi di attesa in input)
+
+Matrici sparse:
+matrici con numero di elementi != 0 molto minori del numero totale di elementi
+sparse(A) -> creazione di una matrice sparsa
+spy(A) -> visualizza graficamente la sparsità degli elementi non nulli di una matrice
+full(A) -> matrice piena (se matrice ha tanti zeri riempe memoria per niente)
+spdiags(B, indDiag, m, n) -> B = matrice, indDiag = vettore con numero di elementi pari al numero di colonne di B, m = righe, n = colonne, restituisce matrice con elementi di B scritti in diagonale a partire dagli indici scritti nel vettore indDiag (1° colonna di B scritta in diagonale a partire dal primo indice che si trova nel vettore indDiag, ...)
+speye(n) -> genera versione sparsa della matrice identità di dim n
+sprand(A) -> genera matrice sparsa ad elementi random tra [0, 1] con la stessa struttura della matrice
+sprandn(A) -> come sprand ma con numeri di distribuzione normale
+sprandsym(A) -> genera matrice sparsa simmetrica con elementi di distribuzione normale
+nnz(S) -> fornisce numero di elementi non nulli di una matrice
+nonzeros(S) -> vettore con numeri non nulli di una matrice
+nzmax(S) -> uguale a nnz() tranne se S è stata creata con operazioni di riempimento
+gplot() -> visualizzare il grafo di una matrice
+
+IO in forma binaria su file:
+fid = fopen('myData.dat', 'r')
+[A, count] = fread(fid, num, precision, skip) -> legge dati in binario da file (fid), num = numero di elemnti da leggere, precision = quale formato sono i "num" elementi da leggere, skip = quanti byte saltati dopo aver letto un elemento
+fid = fopen('myData.dat', 'w')
+count = fwrite(fid, A, precision, skip) -> scrive su file (fid) il contenuto di A
+
+Spline cubiche:
+(pp = piecewise polynomial = polinomio a tratti)
+pp = spline(x, y) -> restituisce la struttura (in forma pp) della spline cubica interpolante i valori y sui nodi x
+yy = spline(x, y, xx) -> restituisce i valori della spline cubica interpolante i valori y sui nodi x, valutata nei punti xx
+pp = mkpp(x, coeff) -> restituisce la struttura, in forma pp, del generico
+polinomio a tratti di grado k-1 sulla partizione x, dove k è il numero di colonne della
+matrice coeff dei coefficienti su ciascun intervallo della partizione
+[x, coeff, n, k, d] = unmkpp(pp) estrae dal polinomio a tratti pp i nodi x,
+la matrice coeff dei coefficienti su ciascun intervallo, il numero n di intervalli della
+partizione, l’ordine massimo k (ordine = grado + 1) dei polinomi e la dimensione d dei
+coefficienti
+yy = ppval(pp, xx) restituisce i valori del polinomio a tratti rappresentato nella
+struttura pp (in forma “pp”) valutato nei punti xx
+
+
+Funzioni da lezione:
+R = chol(A)
+L = chol(A,’lower’) -> genera matrice triangolare inferiore
+R = chol(A,’upper’) -> genera matrice triangolare superiore
+[R,p] = chol(A) -> se A non è def. pos., p = 1, altr. p = 0
+[L,p] = chol(A,’lower’) -> se A non def. pos, p = 1, altr. p = 0
+[R,p] = chol(A,’upper’) -> se A non def. pos, p = 1, altr. p = 0
+Fattorizzazioni:
+[L,R] = lu(A) -> se non è necessario non c'è pivoting (strategia diagonale)
+[L,R,P] = lu(A) -> pivoting parziale
+[L,R,P,Q] = lu(A) -> pivoting totale (SOLO PER MATRICI SPARSE)
+[L,R,P,Q,D] = lu(A) -> con scalatura per righe (SOLO MATRICI SPARSE)
+tril(A) -> genera mat inf di A
+triu(A) -> genera mat sup di A
+rng('default') -> inizializza generatore numeri casuali
+get() -> 
+hold on/off ->
+set() -> 
+ceil() -> arrotondamento eccesso
+floar() -> arrotondamento difetto
+fix() -> arrotondamento all'intero
+y = feval(funzione, x) -> valuta la funzione in x e restituisce y
+polyval(p, x) -> valuta polinomio p in ogni x
+polyfit(x, y, n) -> restituisce i coefficienti per un polinomio p(x) di grado n che è
+la miglior approssimazione per il dato in y
