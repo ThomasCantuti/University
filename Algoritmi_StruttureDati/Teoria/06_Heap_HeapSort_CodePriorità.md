@@ -1,15 +1,13 @@
 # Heap, HeapSort, Code di Priorità
 
 ## Heap
-Le heap sono strutture dati astratte parzialmente basate sull'ordinamento e compatta (basata su array)
+Le heap sono strutture dati astratte necessariamente compatte parzialmente basate sull'ordinamento e sono semi-ordinate (basata su array)
 
-obiettivo: tenere ordinato un'array di elementi mantenendi la proprietà di heap
+Utilizzo: come struttura dati per implementare code di priorità e algoritmi di ordinamento (risolve i problemi di MergeSort, non in place, e QuickSort, tempo quadratico nel caso peggiore)
 
 Applicazioni delle heap:
 - HeapSort
 - Code di Priorità
-
-le heap servono a dimostrare che un algoritmo di ordinamento perfetto esiste risolvendo il problema di MergeSort (non in place) e QuickSort (tempo quadratico nel caso peggiore)
 
 ## Heap binarie su array
 (min/max) heap -> array H visto come un albero binario quasi completo
@@ -50,16 +48,17 @@ Esempio di min-heap:
 ![alt text](<Screenshot 2024-04-08 alle 14.43.08.png>)
 ```
 
-Relazione tra la cardinalità di una heap e l'altezza:  
-immagine tabella
+Relazione tra la cardinalità di una heap e l'altezza:
 ```
-    | altezza | cardinalità |
-    |---------|-------------|
-    |    0    |      1      |
-    |    1    |      2      |
-    |    2    |      4      |
-    |    3    |      8      |
-    |    h    |  2^(h+1) - 1|
+    |    h    |     min     |     max     |
+    |---------|-------------|-------------|
+    |    0    |      1      |      1      |
+    |    1    |      2      |      3      |
+    |    2    |      4      |      7      |
+    |    .    |      .      |      .      |
+    |    .    |      .      |      .      |
+    |    .    |      .      |      .      |
+    |    h    |     2^h     | 2^(h+1) - 1 |
 ```
 2^h ≤ n ≤ 2 h+1 − 1 ⇒ 2 h ≤ n < 2 h+1 ⇒ h ≤ log(n) < h + 1  
 Quindi, dalla prima si ottiene che h ≤ log(n) cioè h = O(log(n)), e dalla
