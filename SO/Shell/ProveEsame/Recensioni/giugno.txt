@@ -1,0 +1,2 @@
+1,horror,mano,zacchi,serie,65
+2,fantastico,luce,ecosos,film,95

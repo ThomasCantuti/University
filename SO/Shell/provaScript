@@ -1,0 +1,4 @@
+#!/bin/sh
+# Thomas Cantuti 187390
+PATH=$PATH:`pwd`
+export PATH

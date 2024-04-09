@@ -1,0 +1,3 @@
+/home/thomas/Documenti prova.log
+/home/thomas/Documenti/Esercizi prova2.log
+/home/thomas/Documenti/Esercizi prova3.log

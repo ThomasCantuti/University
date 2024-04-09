@@ -1,0 +1,66 @@
+Grafici:
+- plot(x, y, type = "p"): grafico con x e y coordinate e type è
+  il tipo di grafico
+- lines(x, y, type = "i"): sovrapposizione di grafico
+- boxplot(x): boxplot dei dati x
+- barplot(x): diagramma a barre
+- pie(x): diagramma a torta
+- hist(x): istogramma di x
+- breaks = n: dimensione delle linee dell'istogramma, n piccolo
+  corrisponde a linee grosse
+- freq = TRUE/FALSE: 
+  se TRUE in ordinata ci sono valori interi di frequenza
+  se FALSE in ordinata ci sono valori decimali(%) di densità
+
+Statistica descrittiva:
+- factorial(n): fattoriale di n
+- choose(n,k): coeff. binom. di n su k
+- sample(x, size, replace = TRUE): estrazione/generazione
+  di un campione casuale, dim = size, da un vettore x. 
+  Può essere con o senza reimmissione (replace = T/F)
+- mean(x): media di x
+- median(x): mediana di x
+- var(x): varianza di x
+- cor(x, y): correlazione tra x e y
+- sd(x): deviazione standard di x
+- table(x): distribuzioni di frequenze assolute fa(x)
+- prop.table(x): distr. di frequenze relative fr(x)
+- cumsum(x): funzione cumulativa empirica F(x)
+- duplicated(y): verificare se in y ci sono duplicati con T/F
+- anyDuplicated(y): quanti elem. duplicati ci sono in y
+- sum(x): somma di elem. di un vettore
+- for(i in 1:length(x)){...} dove x è un vettore
+- seq(N, F, pass): crea vettore con N = numero di partenza,
+  F = numero terminale, pass = increm/decrem passo-passo
+
+V.A. Binom:
+- dbinom(Sk, n, p): PMF con Sk = supporto di k,
+  n = dim, p = prob
+- pbinom(Sk, n, p): CDF
+- rbinom(Sy, n, p): generazione di v.a. binomiale
+
+V.A. Gaussiana:
+- dnorm(x, mean, sd, log = FALSE): PDF con x = vettore di quantità,
+  mean = valore atteso, sd = dev. standard,
+  log = se TRUE le prob. sono date come log(p)
+- pnorm(x, mean, sd, lower.tail = TRUE, log.p = FALSE): CDF
+  lower.tail = se TRUE è P[X <= x], se FALSE è P[X > x],
+  log.p = se TRUE le prob. sono date come log(p)
+- rnorm(n, mean, sd): generazione di v.a. Gaussiana
+- qnorm(p, mean, sd, lower.tail = TRUE, log.p = FALSE): data un'area,
+  trova il valore marginale che determina quest'area
+  (in P[Z <= zα] calcola lo zα)
+
+V.A. Esponenziale:
+- dexp(x, rate, log = FALSE): PDF con x = vettore di quantità,
+  rate = lambda
+- pexp(x, rate, lower.tail = TRUE, log.p = FALSE):CDF
+- rexp(n, rate):generazione di v.a. Esponenziale
+- qexp(p, rate, lower.tail = TRUE, log.p = FALSE): normalizzazione
+  con p = livello di significatività
+
+TLC:
+- matrix(x, nr, nc): genera matrice con x = vettore di dati,
+  nr = n° righe, nc = n° colonne
+- rowSums(y): con y = matrice, somma le righe della matrice
+- colSums(y): con y = matrice, somma le colonne della matrice

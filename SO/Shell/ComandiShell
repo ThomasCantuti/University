@@ -1,0 +1,207 @@
+TEORIA:
+Shell -> programma che fa interagire utente con SO
+scelta della Shell -> variabile ed è memorizzata in /etc/passwd
+directory di partenza -> variabile ed è memorizzata in /etc/passwd
+comandi principali -> in directory /bin
+si possono realizzare nuovi comandi
+formato dei comandi (spesso) -> nome -opzioni argomenti
+[opzione] -> opzione/argomento che possono essere omessi
+arg1|arg2 -> due opzioni/argomenti sono mutuamente esclusivi (si verifica uno o l'altro, no entrambi)
+arg... -> quando un argomento può essere ripetuto più volte
+
+FILESYSTEM:
+File -> risorsa logica, sequenza di bit
+File -> possono essere ordinari, directory, speciali
+File -> uno o più nomi simbolici (link) e uno solo descrittore (i-node) identificato da un intero (i-number)
+Directory -> filesystem Linux organizzato come un grafo diretto aciclico (con root che ha tutti i file di amministratore)
+bin -> contiene app e programmi eseguibili
+dev -> file relativi a device (come USB)
+etc -> file di configurazione di sistema
+home -> ci sono le directory personali di ciascun utente
+lib -> contiene le librerie con il codice disponibile alle applicazioni
+proc -> contiene informazioni su CPU o Kernel in cui il SO sta eseguendo
+root -> directory home dell'amministratore di sistema
+sbin -> come bin ma contiene solo applicazioni eseguibili dall'amministratore
+usr -> contiene risorse che necessitano di essere condivise tra applicazioni e servizi
+var -> contiene variabili e altri dati che tendono a variare di frequente
+nome relativo -> posizione dell'utente (directory corrente)
+nome assolto -> riferito a radice della gerarchia "/"
+posizionarsi nel filesystem:
+. -> directory corrente
+.. -> directory padre
+~ -> home utente
+nomi di file diversi possono arrivare allo stesso file fisico
+nome* -> "*" tutti i file che iniziano con nome
+nome[1-4] -> tutti i file che iniziano con nome e hanno nel nome da 1 a 4
+
+UTENTI E GRUPPI:
+informazioni su file con esempio:
+-rw-r-----   1 root shadow  1242 mag 24 20:51 shadow
+1. 1 blocco -> tipo di file (-=file, d=directory)
+2. 1 blocco da 9 -> permessi (3 per user, 3 per group, 3 per other)
+3. 1 blocco -> numero di (hard) link
+4. 1 blocco -> proprietario (es. root)
+5. 1 blocco -> gruppo (es. shadow)
+6. 1 blocco -> dimensione (in byte)
+7. 1 blocco da 3 -> data ultima modifica (mese, giorno, ora)
+8. 1 blocco -> nome file
+ogni utente appartiene a un gruppo
+autorizzazioni -> user (proprietario), group (gruppo del proprietario), other (tutti altri utenti)
+accessi a file -> lettura (r), scrittura (w), esecuzione (x)
+12 bit di protezione per file -> User-id e Group-id dell'user
+Bit di protezione:
+12: SUID bit -> solo per programmi eseguibili, 1 = utente che sta eseguendo il programma viene considerato come proprietario
+11: SGID bit -> come SUID ma per il gruppo
+10: Sticky bit -> il sistema cerca di mantenere in memoria l'immagine del programma
+
+COMANDI, PIPING E RIDIREZIONE:
+possibilità di ridigere input/output da file:
+1. input: comando < file_input -> aperto in lettura
+2. output: comando > file_output -> aperto in scrittura (nuovo o sovrascritto)
+           comando >> file_output -> scrittura in append
+           > file_output -> crea file
+piping -> l'output di un comando può essere ridiretto a diventare l'input di un altro comando, si realizza con "|"
+comando1 | comando2 -> output di comando1 diventa input di comando2 (piping)
+esecuzione comandi shell -> in UNIX alcuni comandi sono eseguiti dalla shell corrente e altri da una nuova shell momentanea
+shell -> programma che esegue i comandi forniti da terminale o da file
+invocazione shell -> sh [<filecomandi>]
+                     csh [<filecomandi>]
+shell rientranti -> più processi possono condividere il codice senza errori e interferenze
+
+METACARATTERI ED ESPANSIONE:
+shell riconosce caratteri speciali (wildcard):
+* -> una qualunque stringa di zero o più caratteri in un nome di file
+? -> un qualunque carattere in un nome di file
+[] -> un qualunque carattere tra quelli elencati
+{} -> una qualunque stringa tra quelle elencate
+# -> commento fino a fine riga
+\ -> escape (non fa' interpretare il carattere successivo come speciale)
+variabili in shell (sono stringhe) -> si possono definire un insieme di variabili con nome e valore
+riferimenti -> $nomevariabile
+assegnamenti -> nomevariabile=$nomevariabile (no spazio prima/dopo =)
+ambiente di esecuzione -> ogni comando esegue nell'ambiente associato alla shell
+variabili di riferimento nell'ambiente -> PATH, USER, TERM, ..., user-defined
+parsing -> prima della esecuzione il comando viene scandito alla ricerca di caratteri speciali
+1. prepara i comandi come filtri
+2. se shell trova caratteri speciali produce sostituzioni
+passi di sostituzione:
+1. sostituzione dei comandi (comandi tra ` ` sono eseguiti e sostituiti dal risultato prodotto)
+2. sostituzione delle variabili e dei parametri (nomi di variabili "$nome" sono espansi nei valori corrispondenti)
+3. sostituzione dei metacaratteri in nomi di file (metacaratteri espansi in nomi di file)
+inibizione caratteri speciali:
+\ -> carattere successivo come normale carattere
+` ` -> proteggono da qualsiasi espansione (altgr+')
+" " -> proteggono dalle espansioni tranne con $, \, ` `
+
+SCRIPTING: realizzare file comandi
+RAD = rapid application development
+shell non è unica -> diversi tipi di shell (si può scegliere)
+file comandi (per eseguire -> bash nomefile.sh):
+1° riga specificare quale shell usare: #! <shell voluta> (es. #!/bin/bash)
+se non presente viene usata la shell dell'utente
+# -> commento
+#! -> identificatore di file di script
+argomenti -> variabili posizionali
+es. ./nomefile arg1 arg2 ...
+$* -> insieme di tutte le variabili posizionali
+$# -> numero di argomenti passati ($0 escluso)
+$? -> valore (int) restituito dall'ultimo comando eseguito (usato per controllo di flusso)
+$$ -> id numerico del processo in esecuzione (pid)
+input/output semplici:
+read var1 var2 var3 -> input
+echo var1 vale $var1 -> output
+strutture di controllo:
+valore di stato -> ogni comando in uscite restituisce un valore che si trova nella variabile ? (zero -> comando ok; valore positivo -> errore)
+1) comando test o $?
+2) if - then - else - elif -fi
+3) case
+uscite anormale:
+continue, break, return, exit[status]
+sintassi alternativa:
+[ ... ] = test ...
+$( ... ) = ` ... `
+
+
+
+
+
+
+
+
+
+
+
+
+COMANDI:
+passwd -> cambiare la propria password
+exit -> uscire da una shell qualsiasi
+logout, ctrl+D, ctrl+C -> uscire dalla shell di login
+man nome_comando -> manuale con ogni comando
+pwd -> visualizza percorso completo
+cd -> spostarsi da una directory all'altra
+ls [opzioni] [file] -> visualizza nomi di file
+mkdir <nomedir> -> crea nuova directory
+rmdir <nomedir> -> cancella directory
+ln <vecchionome> <nuovonome> -> link
+cp <filesorgente> <filedestinazione> -> copia
+mv <vecchionome> <nuovonome> -> rinomina/sposta
+rm <nomefile> -> cancellazione
+cat <nomefile> -> visualizza contenuto
+echo -> stampa a video stringa passata come parametro
+sort <nomefile> -> riordina le righe di un file in ordine alfabetico
+sort -o <nomefile> -> stampa su file
+sort -n <nomefile> -> interpeta le righe come numeri
+diff <file1> <file2> -> stampa le differenze del contenuto tra i due file
+wc <nomefile> -> stampa numero di righe, parole, caratteri in un file
+wc -l <nomefile> -> conta le linee
+wc -w <nomefile> -> conta parole
+wc -c <nomefile> -> conta caratteri
+shift -> scorre tutti gli argomenti verso sinistra
+grep stringa <nomefile> -> seleziona le righe di un file che contengono la stringa passata come parametro e stampa a video
+head <nomefile> -> mostra prime righe di un file
+tail <nomefile> -> mostra ultime righe di un file
+time <nomecomando> -> cronometra il tempo di esecuzione di un comando
+who -> mostra utenti attualmente collegati al sistema
+ps -> mostra i processi attivi dell'utente sulla bash
+   a -> processi altri utenti
+   u -> nome dell'utente che ha lanciato il processo
+   x -> processi senza terminale di controllo
+ps aux -> info complete
+top -> aggiornamento periodico dei processi
+htop -> versione avanzata di top
+pgrep nomeprocesso -> restituisce i pid dei processi del processo
+pkill nomeprocesso -> invia segnale di "uccisione" del processo
+kill -> termina il processo
+kill -l -> mostra segnali
+kill -s <PID> -> interrompe un processo
+whoami -> utente attuale
+id -> utenti presenti
+chmod [u g o] [+ -] [rwx] <nomefile> -> varia bit di protezione (scrivere tutto attaccato)
+chown [<nomeproprietario>] | [<nomegruppo>] <nomefile> -> cambia il proprietario e/o il gruppo di ciascun <nomefile> in <nomeproprietario> e/o <nomegruppo>
+chgrp <nomegruppo> <nomefile> -> cambia il gruppo di ogni <nomefile> in <nomegruppo>
+grep <testo> [<file>...] -> ricerca di testo, input: lista di file
+tee <file> -> scrive l'input sia su file, sia sul canale di output
+sort [<file>...] -> ordina alfabeticamente le linee, input: lista di file
+rev <file> -> inverte l'ordine delle linee di file
+cut [-options] <file> -> seleziona colonne da file
+cut -c -> seleziona caratteri della stringa in posizioni specifiche
+cut -f -> dividere una stringa in più campi
+cut -d -> selezionare campi desiderati
+set -> visualizzare tutte le variabili di ambiente
+expr n1 + n2 -> forza l'interpretazione numerica di stringhe con valori numerici
+eval nomecomando -> esegue il comando dopo il parsing (es. forza la scrittura della variabile)
+tr [opzione] stringa1 [stringa2] -> trasforma/elimina stringa1 in stringa2
+seq [OPZIONE]... [PRIMO] [INCREMENTO] ULTIMO -> stampa sequenze di numeri
+find -> cercare file all'interno del filesystem
+read var1 var2 ...-> la stringa in ingresso viene attribuita alla/e variabile/i secondo corrispondenza posizionale
+<nomecomando> $? -> valore di stato del comando usato l'ultima volta
+test -<opzione> <nomefile> -> valutazione di un'espressione, 0 -> true, non-0 -> false
+     -f <nomefile> -> esistenza di file
+     -d <nomefile> -> esistenza di direttori
+     -r <nomefile> -> diritto di lettura sul file
+     -z <stringa> -> vero se stringa nulla
+     <stringa> -> vero se stringa non nulla
+test <stringa1> = <stringa2> -> uguaglianza stringhe (!= -> diversità)
+select -> realizzare semplici menù testuali
+sh -x <nomeFile> <parametri> -> debug del file sh
+set +-x -> attivo/disattivo tracing

@@ -1,0 +1,4 @@
+
+1,mano,65
+5,ascia,70
+9,doccia,50

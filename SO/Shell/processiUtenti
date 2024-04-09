@@ -1,0 +1,333 @@
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0 168920 13404 ?        Ss   08:25   0:02 /sbin/init splash
+root           2  0.0  0.0      0     0 ?        S    08:25   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   08:25   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   08:25   0:00 [rcu_par_gp]
+root           5  0.0  0.0      0     0 ?        I<   08:25   0:00 [slub_flushwq]
+root           6  0.0  0.0      0     0 ?        I<   08:25   0:00 [netns]
+root           7  0.0  0.0      0     0 ?        I    08:25   0:01 [kworker/0:0-events]
+root           8  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/0:0H-events_highpri]
+root          10  0.0  0.0      0     0 ?        I<   08:25   0:00 [mm_percpu_wq]
+root          11  0.0  0.0      0     0 ?        I    08:25   0:00 [rcu_tasks_kthread]
+root          12  0.0  0.0      0     0 ?        I    08:25   0:00 [rcu_tasks_rude_kthread]
+root          13  0.0  0.0      0     0 ?        I    08:25   0:00 [rcu_tasks_trace_kthread]
+root          14  0.0  0.0      0     0 ?        S    08:25   0:00 [ksoftirqd/0]
+root          15  0.0  0.0      0     0 ?        I    08:25   0:05 [rcu_preempt]
+root          16  0.0  0.0      0     0 ?        S    08:25   0:00 [migration/0]
+root          17  0.0  0.0      0     0 ?        S    08:25   0:00 [idle_inject/0]
+root          19  0.0  0.0      0     0 ?        S    08:25   0:00 [cpuhp/0]
+root          20  0.0  0.0      0     0 ?        S    08:25   0:00 [cpuhp/1]
+root          21  0.0  0.0      0     0 ?        S    08:25   0:00 [idle_inject/1]
+root          22  0.0  0.0      0     0 ?        S    08:25   0:00 [migration/1]
+root          23  0.0  0.0      0     0 ?        S    08:25   0:00 [ksoftirqd/1]
+root          25  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/1:0H-events_highpri]
+root          26  0.0  0.0      0     0 ?        S    08:25   0:00 [cpuhp/2]
+root          27  0.0  0.0      0     0 ?        S    08:25   0:00 [idle_inject/2]
+root          28  0.0  0.0      0     0 ?        S    08:25   0:00 [migration/2]
+root          29  0.0  0.0      0     0 ?        S    08:25   0:00 [ksoftirqd/2]
+root          31  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/2:0H-events_highpri]
+root          32  0.0  0.0      0     0 ?        S    08:25   0:00 [cpuhp/3]
+root          33  0.0  0.0      0     0 ?        S    08:25   0:00 [idle_inject/3]
+root          34  0.0  0.0      0     0 ?        S    08:25   0:00 [migration/3]
+root          35  0.0  0.0      0     0 ?        S    08:25   0:00 [ksoftirqd/3]
+root          37  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/3:0H-events_highpri]
+root          38  0.0  0.0      0     0 ?        S    08:25   0:00 [cpuhp/4]
+root          39  0.0  0.0      0     0 ?        S    08:25   0:00 [idle_inject/4]
+root          40  0.0  0.0      0     0 ?        S    08:25   0:00 [migration/4]
+root          41  0.0  0.0      0     0 ?        S    08:25   0:00 [ksoftirqd/4]
+root          43  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/4:0H-events_highpri]
+root          44  0.0  0.0      0     0 ?        S    08:25   0:00 [cpuhp/5]
+root          45  0.0  0.0      0     0 ?        S    08:25   0:00 [idle_inject/5]
+root          46  0.0  0.0      0     0 ?        S    08:25   0:00 [migration/5]
+root          47  0.0  0.0      0     0 ?        S    08:25   0:00 [ksoftirqd/5]
+root          49  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/5:0H-events_highpri]
+root          50  0.0  0.0      0     0 ?        S    08:25   0:00 [cpuhp/6]
+root          51  0.0  0.0      0     0 ?        S    08:25   0:00 [idle_inject/6]
+root          52  0.0  0.0      0     0 ?        S    08:25   0:00 [migration/6]
+root          53  0.0  0.0      0     0 ?        S    08:25   0:00 [ksoftirqd/6]
+root          55  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/6:0H-events_highpri]
+root          56  0.0  0.0      0     0 ?        S    08:25   0:00 [cpuhp/7]
+root          57  0.0  0.0      0     0 ?        S    08:25   0:00 [idle_inject/7]
+root          58  0.0  0.0      0     0 ?        S    08:25   0:00 [migration/7]
+root          59  0.0  0.0      0     0 ?        S    08:25   0:00 [ksoftirqd/7]
+root          61  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/7:0H-events_highpri]
+root          62  0.0  0.0      0     0 ?        S    08:25   0:00 [cpuhp/8]
+root          63  0.0  0.0      0     0 ?        S    08:25   0:00 [idle_inject/8]
+root          64  0.0  0.0      0     0 ?        S    08:25   0:00 [migration/8]
+root          65  0.0  0.0      0     0 ?        S    08:25   0:00 [ksoftirqd/8]
+root          67  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/8:0H-events_highpri]
+root          68  0.0  0.0      0     0 ?        S    08:25   0:00 [cpuhp/9]
+root          69  0.0  0.0      0     0 ?        S    08:25   0:00 [idle_inject/9]
+root          70  0.0  0.0      0     0 ?        S    08:25   0:00 [migration/9]
+root          71  0.0  0.0      0     0 ?        S    08:25   0:00 [ksoftirqd/9]
+root          73  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/9:0H-events_highpri]
+root          74  0.0  0.0      0     0 ?        S    08:25   0:00 [cpuhp/10]
+root          75  0.0  0.0      0     0 ?        S    08:25   0:00 [idle_inject/10]
+root          76  0.0  0.0      0     0 ?        S    08:25   0:00 [migration/10]
+root          77  0.0  0.0      0     0 ?        S    08:25   0:00 [ksoftirqd/10]
+root          79  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/10:0H-events_highpri]
+root          80  0.0  0.0      0     0 ?        S    08:25   0:00 [cpuhp/11]
+root          81  0.0  0.0      0     0 ?        S    08:25   0:00 [idle_inject/11]
+root          82  0.0  0.0      0     0 ?        S    08:25   0:00 [migration/11]
+root          83  0.0  0.0      0     0 ?        S    08:25   0:00 [ksoftirqd/11]
+root          85  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/11:0H-events_highpri]
+root          86  0.0  0.0      0     0 ?        S    08:25   0:00 [kdevtmpfs]
+root          87  0.0  0.0      0     0 ?        I<   08:25   0:00 [inet_frag_wq]
+root          88  0.0  0.0      0     0 ?        S    08:25   0:00 [kauditd]
+root          89  0.0  0.0      0     0 ?        S    08:25   0:00 [khungtaskd]
+root          91  0.0  0.0      0     0 ?        S    08:25   0:00 [oom_reaper]
+root          93  0.0  0.0      0     0 ?        I<   08:25   0:00 [writeback]
+root          94  0.0  0.0      0     0 ?        S    08:25   0:00 [kcompactd0]
+root          95  0.0  0.0      0     0 ?        SN   08:25   0:00 [ksmd]
+root          97  0.0  0.0      0     0 ?        SN   08:25   0:00 [khugepaged]
+root          98  0.0  0.0      0     0 ?        I<   08:25   0:00 [kintegrityd]
+root          99  0.0  0.0      0     0 ?        I<   08:25   0:00 [kblockd]
+root         100  0.0  0.0      0     0 ?        I<   08:25   0:00 [blkcg_punt_bio]
+root         101  0.0  0.0      0     0 ?        I<   08:25   0:00 [tpm_dev_wq]
+root         102  0.0  0.0      0     0 ?        I<   08:25   0:00 [ata_sff]
+root         103  0.0  0.0      0     0 ?        I<   08:25   0:00 [md]
+root         104  0.0  0.0      0     0 ?        I<   08:25   0:00 [edac-poller]
+root         105  0.0  0.0      0     0 ?        I<   08:25   0:00 [devfreq_wq]
+root         106  0.0  0.0      0     0 ?        S    08:25   0:00 [watchdogd]
+root         107  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/1:1H-events_highpri]
+root         108  0.0  0.0      0     0 ?        S    08:25   0:00 [kswapd0]
+root         109  0.0  0.0      0     0 ?        S    08:25   0:00 [ecryptfs-kthread]
+root         111  0.0  0.0      0     0 ?        I<   08:25   0:00 [kthrotld]
+root         112  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/123-aerdrv]
+root         113  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/123-pcie-dpc]
+root         114  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/124-aerdrv]
+root         115  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/124-pcie-dpc]
+root         116  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/125-aerdrv]
+root         117  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/125-pcie-dpc]
+root         125  0.0  0.0      0     0 ?        I    08:25   0:01 [kworker/10:1-cgroup_destroy]
+root         127  0.0  0.0      0     0 ?        I<   08:25   0:00 [acpi_thermal_pm]
+root         128  0.0  0.0      0     0 ?        S    08:25   0:00 [xenbus_probe]
+root         129  0.0  0.0      0     0 ?        S    08:25   0:00 [hwrng]
+root         130  0.0  0.0      0     0 ?        I<   08:25   0:00 [mld]
+root         131  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/10:1H-kblockd]
+root         132  0.0  0.0      0     0 ?        I<   08:25   0:00 [ipv6_addrconf]
+root         140  0.0  0.0      0     0 ?        I<   08:25   0:00 [kstrp]
+root         142  0.0  0.0      0     0 ?        I<   08:25   0:00 [zswap-shrink]
+root         148  0.0  0.0      0     0 ?        I<   08:25   0:00 [charger_manager]
+root         171  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/5:1H-events_highpri]
+root         175  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/2:1H-events_highpri]
+root         188  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/8:1H-kblockd]
+root         191  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/7:1H-kblockd]
+root         192  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/11:1H-kblockd]
+root         193  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/3:1H-events_highpri]
+root         194  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/9:1H-kblockd]
+root         195  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/4:1H-kblockd]
+root         196  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/6:1H-kblockd]
+root         197  0.0  0.0      0     0 ?        I<   08:25   0:00 [kworker/0:1H-events_highpri]
+root         239  0.0  0.0      0     0 ?        I<   08:25   0:00 [nvme-wq]
+root         240  0.0  0.0      0     0 ?        I<   08:25   0:00 [nvme-reset-wq]
+root         241  0.0  0.0      0     0 ?        I<   08:25   0:00 [nvme-delete-wq]
+root         242  0.0  0.0      0     0 ?        I<   08:25   0:00 [nvme-auth-wq]
+root         243  0.0  0.0      0     0 ?        S    08:25   0:00 [scsi_eh_0]
+root         244  0.0  0.0      0     0 ?        I<   08:25   0:00 [scsi_tmf_0]
+root         245  0.0  0.0      0     0 ?        S    08:25   0:00 [scsi_eh_1]
+root         246  0.0  0.0      0     0 ?        I<   08:25   0:00 [scsi_tmf_1]
+root         247  0.0  0.0      0     0 ?        S    08:25   0:00 [scsi_eh_2]
+root         248  0.0  0.0      0     0 ?        I<   08:25   0:00 [scsi_tmf_2]
+root         249  0.0  0.0      0     0 ?        S    08:25   0:00 [scsi_eh_3]
+root         250  0.0  0.0      0     0 ?        I<   08:25   0:00 [scsi_tmf_3]
+root         251  0.0  0.0      0     0 ?        S    08:25   0:00 [scsi_eh_4]
+root         252  0.0  0.0      0     0 ?        I<   08:25   0:00 [scsi_tmf_4]
+root         259  0.2  0.0      0     0 ?        S    08:25   0:31 [irq/129-SYNA7DB5:01]
+root         262  0.0  0.0      0     0 ?        I    08:25   0:02 [kworker/8:2-events]
+root         282  0.0  0.0      0     0 ?        S    08:25   0:00 [jbd2/nvme0n1p5-8]
+root         283  0.0  0.0      0     0 ?        I<   08:25   0:00 [ext4-rsv-conver]
+root         295  0.0  0.0      0     0 ?        I    08:25   0:01 [kworker/10:2-events]
+root         323  0.0  0.0  49852 18760 ?        S<s  08:25   0:00 /lib/systemd/systemd-journald
+root         354  0.0  0.0  28528  8072 ?        Ss   08:25   0:00 /lib/systemd/systemd-udevd
+root         459  0.0  0.0      0     0 ?        I<   08:25   0:00 [cfg80211]
+root         465  0.0  0.0      0     0 ?        I<   08:25   0:00 [cryptd]
+root         485  0.0  0.0      0     0 ?        S    08:25   0:01 [irq/144-iwlwifi:default_queue]
+root         486  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/145-iwlwifi:queue_1]
+root         487  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/146-iwlwifi:queue_2]
+root         489  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/147-iwlwifi:queue_3]
+root         490  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/148-iwlwifi:queue_4]
+root         491  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/149-iwlwifi:queue_5]
+root         492  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/150-iwlwifi:queue_6]
+root         493  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/151-iwlwifi:queue_7]
+root         494  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/152-iwlwifi:queue_8]
+root         495  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/153-iwlwifi:queue_9]
+root         496  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/154-iwlwifi:queue_10]
+root         497  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/155-iwlwifi:queue_11]
+root         498  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/156-iwlwifi:queue_12]
+root         499  0.0  0.0      0     0 ?        S    08:25   0:00 [irq/157-iwlwifi:exception]
+root         578  0.0  0.0      0     0 ?        I    08:25   0:00 [kworker/1:2-events]
+root         620  0.0  0.0      0     0 ?        I<   08:25   0:00 [nvkm-disp]
+root         621  0.0  0.0      0     0 ?        S    08:25   0:00 [card0-crtc0]
+root         622  0.0  0.0      0     0 ?        S    08:25   0:00 [card0-crtc1]
+root         623  0.0  0.0      0     0 ?        S    08:25   0:00 [card0-crtc2]
+root         624  0.0  0.0      0     0 ?        S    08:25   0:00 [card0-crtc3]
+root         635  0.0  0.0      0     0 ?        S    08:25   0:00 [card1-crtc0]
+root         636  0.0  0.0      0     0 ?        S    08:25   0:00 [card1-crtc1]
+root         637  0.0  0.0      0     0 ?        S    08:25   0:00 [card1-crtc2]
+systemd+     719  0.1  0.0  16204  7304 ?        Ss   08:25   0:15 /lib/systemd/systemd-oomd
+systemd+     720  0.0  0.0  20348 13004 ?        Ss   08:25   0:00 /lib/systemd/systemd-resolved
+systemd+     721  0.0  0.0  89692  7504 ?        Ssl  08:25   0:00 /lib/systemd/systemd-timesyncd
+root         773  0.0  0.0 314008  8472 ?        Ssl  08:25   0:00 /usr/libexec/accounts-daemon
+avahi        775  0.0  0.0   8424  4336 ?        Ss   08:25   0:00 avahi-daemon: running [thomas-Nitro-AN515-54.local]
+root         776  0.0  0.0  10968  5772 ?        Ss   08:25   0:00 /usr/lib/bluetooth/bluetoothd
+root         777  0.0  0.0   9360  2836 ?        Ss   08:25   0:00 /usr/sbin/cron -f -P
+message+     778  0.0  0.0  12088  7276 ?        Ss   08:25   0:02 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root         784  0.0  0.0  82852  4024 ?        Ssl  08:25   0:01 /usr/sbin/irqbalance --foreground
+root         788  0.0  0.0 310064 10840 ?        Ssl  08:25   0:03 /usr/libexec/polkitd --no-debug
+root         790  0.0  0.0 313556  7796 ?        Ssl  08:25   0:00 /usr/libexec/power-profiles-daemon
+root         803  0.0  0.0 2058592 33432 ?       Ssl  08:25   0:03 /usr/lib/snapd/snapd
+root         808  0.0  0.0 309768  6796 ?        Ssl  08:25   0:00 /usr/libexec/switcheroo-control
+root         817  0.0  0.0  49556  8888 ?        Ss   08:25   0:00 /lib/systemd/systemd-logind
+root         819  0.0  0.0 203688 10380 ?        Ssl  08:25   0:00 /usr/sbin/thermald --systemd --dbus-enable --adaptive
+root         821  0.0  0.0 467104 13708 ?        Ssl  08:25   0:00 /usr/libexec/udisks2/udisksd
+avahi        832  0.0  0.0   8232  1504 ?        S    08:25   0:00 avahi-daemon: chroot helper
+root         845  0.0  0.0 688052 20148 ?        Ssl  08:25   0:02 /usr/sbin/NetworkManager --no-daemon
+root         847  0.0  0.0  17348 11404 ?        Ss   08:25   0:00 /sbin/wpa_supplicant -u -s -O DIR=/run/wpa_supplicant GROUP=netdev
+root         852  0.0  0.0 390984 12380 ?        Ssl  08:25   0:00 /usr/sbin/ModemManager
+root         907  0.0  0.0  37240 11456 ?        Ss   08:25   0:00 /usr/sbin/cupsd -l
+root         912  0.0  0.0 113264 23116 ?        Ssl  08:25   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+syslog       930  0.0  0.0 222300  5536 ?        Ssl  08:25   0:00 /usr/sbin/rsyslogd -n -iNONE
+cups-br+    1170  0.0  0.0 260424 17856 ?        Ssl  08:26   0:00 /usr/sbin/cups-browsed
+kernoops    1176  0.0  0.0  12520  2300 ?        Ss   08:26   0:00 /usr/sbin/kerneloops --test
+kernoops    1180  0.0  0.0  12520  2296 ?        Ss   08:26   0:00 /usr/sbin/kerneloops
+root        1195  0.0  0.0 314528  8976 ?        Ssl  08:26   0:00 /usr/sbin/gdm3
+rtkit       1242  0.0  0.0  22788  3336 ?        SNsl 08:26   0:00 /usr/libexec/rtkit-daemon
+root        1385  0.0  0.0 311248  8052 ?        Ssl  08:26   0:01 /usr/libexec/upowerd
+root        1416  0.0  0.0      0     0 ?        S<   08:26   0:00 [krfcommd]
+colord      1490  0.0  0.0 319072 13600 ?        Ssl  08:26   0:00 /usr/libexec/colord
+root        1754  0.0  0.0 389616 10908 ?        Sl   08:26   0:00 gdm-session-worker [pam/gdm-password]
+thomas      1765  0.0  0.0  19872 11900 ?        Ss   08:26   0:01 /lib/systemd/systemd --user
+thomas      1766  0.0  0.0 104732  6672 ?        S    08:26   0:00 (sd-pam)
+thomas      1772  0.0  0.0  66360 14388 ?        S<sl 08:26   0:00 /usr/bin/pipewire
+thomas      1776  0.0  0.0 338792 24716 ?        S<sl 08:26   0:00 /usr/bin/wireplumber
+thomas      1783  0.0  0.0  37296 11408 ?        S<sl 08:26   0:00 /usr/bin/pipewire-pulse
+thomas      1794  0.0  0.0 316300 10688 ?        SLsl 08:26   0:00 /usr/bin/gnome-keyring-daemon --foreground --components=pkcs11,secrets --control-directory=/run/user/1000/keyring
+thomas      1795  0.0  0.0  11140  6692 ?        Ss   08:26   0:01 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+thomas      1803  0.0  0.0 313888  7920 ?        Ssl  08:26   0:00 /usr/libexec/gvfsd
+thomas      1814  0.0  0.0 454020  6560 ?        Sl   08:26   0:00 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f
+thomas      1832  0.0  0.0 536660  7500 ?        Ssl  08:26   0:00 /usr/libexec/xdg-document-portal
+thomas      1837  0.0  0.0 309620  6360 ?        Ssl  08:26   0:00 /usr/libexec/xdg-permission-store
+root        1844  0.0  0.0   2636  1892 ?        Ss   08:26   0:00 fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user/1000/doc
+thomas      1850  0.0  0.0 777612 37844 ?        SNsl 08:26   0:05 /usr/libexec/tracker-miner-fs-3
+thomas      1874  0.0  0.0 235732  6280 tty2     Ssl+ 08:26   0:00 /usr/libexec/gdm-wayland-session env GNOME_SHELL_SESSION_MODE=ubuntu /usr/bin/gnome-session --session=ubuntu
+thomas      1878  0.0  0.0 298004 16348 tty2     Sl+  08:26   0:00 /usr/libexec/gnome-session-binary --session=ubuntu
+thomas      1886  0.0  0.0 389448 11036 ?        Ssl  08:26   0:00 /usr/libexec/gvfs-udisks2-volume-monitor
+thomas      1919  0.0  0.0 388628  8212 ?        Ssl  08:26   0:00 /usr/libexec/gvfs-afc-volume-monitor
+thomas      1927  0.0  0.0 310604  7596 ?        Ssl  08:26   0:00 /usr/libexec/gvfs-goa-volume-monitor
+thomas      1933  0.0  0.1 714696 54104 ?        SLl  08:26   0:00 /usr/libexec/goa-daemon
+thomas      1934  0.0  0.0 162056  7124 ?        Ssl  08:26   0:00 /usr/libexec/gcr-ssh-agent /run/user/1000/gcr
+thomas      1935  0.0  0.0  91352  5508 ?        Ssl  08:26   0:00 /usr/libexec/gnome-session-ctl --monitor
+thomas      1937  0.0  0.0   7576  5184 ?        Ss   08:26   0:00 ssh-agent -D -a /run/user/1000/openssh_agent
+thomas      1947  0.0  0.0 667948 18260 ?        Ssl  08:26   0:00 /usr/libexec/gnome-session-binary --systemd-service --session=ubuntu
+thomas      1955  0.0  0.0 388960  9640 ?        Sl   08:26   0:00 /usr/libexec/goa-identity-service
+thomas      1965  0.0  0.0 310740  7208 ?        Ssl  08:26   0:00 /usr/libexec/gvfs-gphoto2-volume-monitor
+thomas      1978  0.0  0.0 309788  6684 ?        Ssl  08:26   0:00 /usr/libexec/gvfs-mtp-volume-monitor
+thomas      1996  0.0  0.0 382776  7684 ?        Sl   08:26   0:00 /usr/libexec/at-spi-bus-launcher --launch-immediately
+thomas      1999  1.2  0.7 5491548 303748 ?      Ssl  08:26   2:09 /usr/bin/gnome-shell
+thomas      2007  0.0  0.0   9356  4864 ?        S    08:26   0:00 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 11 --address=unix:path=/run/user/1000/at-spi/bus
+thomas      2098  0.0  0.0 868420 21316 ?        Sl   08:26   0:00 /usr/libexec/gnome-shell-calendar-server
+thomas      2105  0.0  0.1 1252460 44216 ?       Ssl  08:26   0:00 /usr/libexec/evolution-source-registry
+thomas      2117  0.0  0.0 236468  6860 ?        Ssl  08:26   0:00 /usr/libexec/gvfsd-metadata
+thomas      2119  0.0  0.0 2858136 26996 ?       Sl   08:26   0:00 /usr/bin/gjs /usr/share/gnome-shell/org.gnome.Shell.Notifications
+thomas      2141  0.0  0.1 1657872 49188 ?       Ssl  08:26   0:01 /usr/libexec/evolution-calendar-factory
+thomas      2161  0.0  0.0 819852 28476 ?        Ssl  08:26   0:00 /usr/libexec/evolution-addressbook-factory
+thomas      2168  0.0  0.0 388380  9176 ?        Sl   08:26   0:00 /usr/libexec/gvfsd-trash --spawner :1.6 /org/gtk/gvfs/exec_spaw/0
+thomas      2195  0.0  0.0 235828  7488 ?        Sl   08:26   0:00 /usr/libexec/at-spi2-registryd --use-gnome-session
+thomas      2205  0.0  0.0   2732  1412 ?        Ss   08:26   0:00 sh -c /usr/bin/ibus-daemon --panel disable $([ "$XDG_SESSION_TYPE" = "x11" ] && echo "--xim")
+thomas      2206  0.0  0.0 383832  6980 ?        Ssl  08:26   0:00 /usr/libexec/gsd-a11y-settings
+thomas      2208  0.0  0.0 389048 12348 ?        Sl   08:26   0:03 /usr/bin/ibus-daemon --panel disable
+thomas      2209  0.0  0.0 415024 23496 ?        Ssl  08:26   0:00 /usr/libexec/gsd-color
+thomas      2212  0.0  0.0 432152 12732 ?        Ssl  08:26   0:00 /usr/libexec/gsd-datetime
+thomas      2216  0.0  0.0 459356  8384 ?        Ssl  08:26   0:00 /usr/libexec/gsd-housekeeping
+thomas      2219  0.0  0.0 413884 22676 ?        Ssl  08:26   0:00 /usr/libexec/gsd-keyboard
+thomas      2223  0.0  0.0 743820 28296 ?        Ssl  08:26   0:00 /usr/libexec/gsd-media-keys
+thomas      2224  0.0  0.0 525796 27176 ?        Ssl  08:26   0:00 /usr/libexec/gsd-power
+thomas      2229  0.0  0.0 323252 11496 ?        Ssl  08:26   0:00 /usr/libexec/gsd-print-notifications
+thomas      2230  0.0  0.0 531128  6852 ?        Ssl  08:26   0:00 /usr/libexec/gsd-rfkill
+thomas      2237  0.0  0.0 309676  6384 ?        Ssl  08:26   0:00 /usr/libexec/gsd-screensaver-proxy
+thomas      2238  0.0  0.0 539560 11200 ?        Ssl  08:26   0:00 /usr/libexec/gsd-sharing
+thomas      2243  0.0  0.0 385724  8332 ?        Ssl  08:26   0:00 /usr/libexec/gsd-smartcard
+thomas      2252  0.0  0.0 393860 10160 ?        Ssl  08:26   0:00 /usr/libexec/gsd-sound
+thomas      2254  0.0  0.0 414184 22952 ?        Ssl  08:26   0:00 /usr/libexec/gsd-wacom
+thomas      2262  0.0  0.1 876448 63316 ?        Sl   08:26   0:00 /usr/libexec/evolution-data-server/evolution-alarm-notify
+thomas      2269  0.0  0.0 305292  7524 ?        Sl   08:26   0:00 /usr/libexec/gsd-disk-utility-notify
+thomas      2279  0.1  0.3 2337896 124612 ?      Sl   08:26   0:18 /home/thomas/.MathWorks/ServiceHost/thomas-Nitro-AN515-54/v2023.9.0.2/bin/glnxa64/MathWorksServiceHost service --realm-id companion@prod@production
+thomas      2351  0.0  0.0 415396 14872 ?        Sl   08:26   0:00 /usr/libexec/gsd-printer
+thomas      2353  0.0  0.0 236828  7376 ?        Sl   08:26   0:00 /usr/libexec/ibus-memconf
+thomas      2354  0.0  0.0 421024 29540 ?        Sl   08:26   0:03 /usr/libexec/ibus-extension-gtk3
+thomas      2365  0.0  0.0 310576  7400 ?        Sl   08:26   0:00 /usr/libexec/ibus-portal
+thomas      2366  0.0  0.2 851572 111748 ?       Sl   08:26   0:03 /snap/snap-store/959/usr/bin/snap-store --gapplication-service
+thomas      2436  0.0  0.0 236960  7536 ?        Sl   08:26   0:00 /usr/libexec/ibus-engine-simple
+thomas      2500  0.0  0.0 697456 14588 ?        Ssl  08:26   0:00 /usr/libexec/xdg-desktop-portal
+thomas      2534  0.0  0.0 748912 34952 ?        Ssl  08:26   0:00 /usr/libexec/xdg-desktop-portal-gnome
+thomas      2556  0.0  0.0 2858132 27032 ?       Sl   08:26   0:00 /usr/bin/gjs /usr/share/gnome-shell/org.gnome.ScreenSaver
+thomas      2614  0.0  0.0 418228 27240 ?        Ssl  08:26   0:00 /usr/libexec/xdg-desktop-portal-gtk
+thomas      2623  0.0  0.0  76252 14208 ?        Ss   08:26   0:00 /snap/snapd-desktop-integration/83/usr/bin/snapd-desktop-integration
+thomas      2752  0.0  0.0 308100 24844 ?        Sl   08:26   0:00 /snap/snapd-desktop-integration/83/usr/bin/snapd-desktop-integration
+thomas      2792  0.0  0.0 230228  5892 ?        Ssl  08:26   0:00 /usr/libexec/dconf-service
+root        2894  0.0  0.0 474624 38764 ?        Ssl  08:26   0:02 /usr/libexec/fwupd/fwupd
+thomas      3185  0.0  0.0 492380 28656 ?        Sl   08:27   0:00 /usr/bin/update-notifier
+thomas      3227  1.0  0.7 34239916 298356 ?     SLl  08:27   1:47 /usr/lib/x86_64-linux-gnu/opera/opera
+thomas      3230  0.0  0.0 33575820 3340 ?       Sl   08:27   0:00 /usr/lib/x86_64-linux-gnu/opera/opera_crashreporter --monitor-self-annotation=ptype=crashpad-handler --database=/home/thomas/.config/opera/Crash Reports --url=https://crashstats-collector.opera.com/collector/submit --annotation=channel=Stable --annotation=lsb-release=Ubuntu 23.04 --annotation=plat=Linux --annotation=prod=OperaDesktop --annotation=ver=103.0.4928.16 --initial-client-fd=5 --shared-client-connection
+thomas      3235  0.0  0.1 33939264 54252 ?      S    08:27   0:00 /usr/lib/x86_64-linux-gnu/opera/opera --type=zygote --no-zygote-sandbox --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable
+thomas      3236  0.0  0.1 33939256 54628 ?      S    08:27   0:00 /usr/lib/x86_64-linux-gnu/opera/opera --type=zygote --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable
+thomas      3238  0.0  0.0 33939284 14568 ?      S    08:27   0:00 /usr/lib/x86_64-linux-gnu/opera/opera --type=zygote --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable
+thomas      3247  0.2  0.2 1138664 82316 ?       Sl   08:27   0:30 /usr/bin/Xwayland :0 -rootless -noreset -accessx -core -auth /run/user/1000/.mutter-Xwaylandauth.VNQZC2 -listenfd 4 -listenfd 5 -displayfd 6 -initfd 7
+thomas      3274  0.0  0.2 1344144 83164 ?       Ssl  08:27   0:00 /usr/libexec/gsd-xsettings
+thomas      3305  0.0  0.0 267412 25760 ?        Sl   08:27   0:00 /usr/libexec/ibus-x11
+thomas      3311  0.0  0.2 1492708 85312 ?       Sl   08:27   0:00 /usr/libexec/mutter-x11-frames
+thomas      3352  1.8  0.4 34994944 178788 ?     Sl   08:27   3:13 /usr/lib/x86_64-linux-gnu/opera/opera --type=gpu-process --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --gpu-preferences=WAAAAAAAAAAgAAAEAAAAAAAAAAAAAAAAAABgAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAGAAAAAAAAAAYAAAAAAAAAAgAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --shared-files --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      3358  0.4  0.2 33952360 88660 ?      Sl   08:27   0:42 /usr/lib/x86_64-linux-gnu/opera/opera --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --enable-quic --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      3380  0.0  0.0 33974132 35976 ?      Sl   08:27   0:00 /usr/lib/x86_64-linux-gnu/opera/opera --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=utility --enable-quic --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      3440  0.0  0.2 1186909440 89344 ?    Sl   08:27   0:00 /usr/lib/x86_64-linux-gnu/opera/opera --type=renderer --crashpad-handler-pid=3230 --extension-process --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1696832749929562 --launch-time-ticks=96558652 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      3455  0.0  0.2 1186975836 110880 ?   Sl   08:27   0:01 /usr/lib/x86_64-linux-gnu/opera/opera --type=renderer --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=10 --time-ticks-at-unix-epoch=-1696832749929562 --launch-time-ticks=96678758 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      3471  0.0  0.3 1186992420 131024 ?   Sl   08:27   0:05 /usr/lib/x86_64-linux-gnu/opera/opera --type=renderer --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=15 --time-ticks-at-unix-epoch=-1696832749929562 --launch-time-ticks=96738415 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      3472  0.0  0.2 1186983212 89916 ?    Sl   08:27   0:00 /usr/lib/x86_64-linux-gnu/opera/opera --type=renderer --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=16 --time-ticks-at-unix-epoch=-1696832749929562 --launch-time-ticks=96740387 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      3512  0.0  0.2 1186966812 106816 ?   Sl   08:27   0:02 /usr/lib/x86_64-linux-gnu/opera/opera --type=renderer --crashpad-handler-pid=3230 --extension-process --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=6 --time-ticks-at-unix-epoch=-1696832749929562 --launch-time-ticks=96808017 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      3536  0.0  0.1 33983136 61396 ?      Sl   08:27   0:00 /usr/lib/x86_64-linux-gnu/opera/opera --type=utility --utility-sub-type=audio.mojom.AudioService --lang=en-US --service-sandbox-type=none --enable-quic --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      3577  0.0  0.2 1186966812 98372 ?    Sl   08:27   0:00 /usr/lib/x86_64-linux-gnu/opera/opera --type=renderer --crashpad-handler-pid=3230 --extension-process --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1696832749929562 --launch-time-ticks=96900290 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      3592  0.0  0.2 1186934028 94944 ?    Sl   08:27   0:00 /usr/lib/x86_64-linux-gnu/opera/opera --type=renderer --crashpad-handler-pid=3230 --extension-process --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=9 --time-ticks-at-unix-epoch=-1696832749929562 --launch-time-ticks=96955135 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      3638  0.0  0.3 1189099324 152024 ?   Sl   08:27   0:02 /usr/lib/x86_64-linux-gnu/opera/opera --type=renderer --crashpad-handler-pid=3230 --extension-process --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=12 --time-ticks-at-unix-epoch=-1696832749929562 --launch-time-ticks=99050794 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      3690  0.0  0.3 1187009588 155096 ?   Sl   08:27   0:08 /usr/lib/x86_64-linux-gnu/opera/opera --type=renderer --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=23 --time-ticks-at-unix-epoch=-1696832749929562 --launch-time-ticks=99421167 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      3752  2.5  0.5 1187011096 229600 ?   Sl   08:27   4:32 /usr/lib/x86_64-linux-gnu/opera/opera --type=renderer --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=26 --time-ticks-at-unix-epoch=-1696832749929562 --launch-time-ticks=102544735 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+thomas      4017  0.0  0.2 1186991884 115700 ?   Sl   08:29   0:01 /usr/lib/x86_64-linux-gnu/opera/opera --type=renderer --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=42 --time-ticks-at-unix-epoch=-1696832749929562 --launch-time-ticks=238005867 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+root        4243  0.0  0.0 313644  8172 ?        Ssl  08:30   0:00 /usr/libexec/boltd
+thomas      4250  0.0  0.0  49072  8388 ?        Ss   08:30   0:00 /usr/lib/bluetooth/obexd
+thomas      4322  0.0  0.2 1186975812 101892 ?   Sl   08:31   0:00 /usr/lib/x86_64-linux-gnu/opera/opera --type=renderer --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=48 --time-ticks-at-unix-epoch=-1696832749929562 --launch-time-ticks=335443830 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+root        4344  0.0  0.0      0     0 ?        I    08:31   0:00 [kworker/3:3-events]
+thomas      4381  0.0  0.1 1186909308 57636 ?    Sl   08:32   0:00 /usr/lib/x86_64-linux-gnu/opera/opera --type=renderer --crashpad-handler-pid=3230 --change-stack-guard-on-fork=enable --with-feature:address-bar-dropdown-cities=on --with-feature:address-bar-keywords-monetization=on --with-feature:aliexpress-modal=off --with-feature:amazon-new-ids=on --with-feature:cashback-assistant=off --with-feature:continue-on-booking=on --with-feature:continue-on-shopping-via-amp=on --with-feature:continue-shopping=on --with-feature:continue-shopping-2=on --with-feature:continue-shopping-5=on --with-feature:continue-shopping-structured-partners=on --with-feature:feature-remote-disable-updates-testing-flag=off --with-feature:feature-remote-updates-testing-flag=on --with-feature:game-maker-studio-integration=on --with-feature:gaming-api=on --with-feature:gen-v=on --with-feature:lucid-mode-hide-text=on --with-feature:native-crypto-wallet=on --with-feature:play-again=on --with-feature:premium-valve-in=on --with-feature:realtime-impressions-reporting=on --with-feature:sd-suggestions-external=on --with-feature:session-restore-attribution=on --with-feature:shodan-extension=off --with-feature:sitecheck-age=on --with-feature:specific-keywords=on --with-feature:startpage-sync-banner=on --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=49 --time-ticks-at-unix-epoch=-1696832749929562 --launch-time-ticks=374285908 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=0,i,10945688345889499422,15343330310418793200,262144
+root        4403  0.0  0.0      0     0 ?        I    08:35   0:00 [kworker/6:0-ipv6_addrconf]
+root        4548  0.0  0.0      0     0 ?        I    09:26   0:00 [kworker/4:1-events]
+root        5165  0.0  0.0      0     0 ?        I    10:41   0:00 [kworker/1:0-mm_percpu_wq]
+root        5166  0.0  0.0      0     0 ?        I    10:41   0:00 [kworker/2:2-events]
+root        5168  0.0  0.0      0     0 ?        I    10:41   0:00 [kworker/4:0-mm_percpu_wq]
+root        5169  0.0  0.0      0     0 ?        I    10:41   0:00 [kworker/6:2-events]
+root        5189  0.0  0.0      0     0 ?        I    10:41   0:00 [kworker/u24:36-i915]
+root        5217  0.0  0.0      0     0 ?        S    10:41   0:00 [irq/130-mei_me]
+root        5278  0.0  0.0      0     0 ?        I<   10:41   0:00 [kworker/u25:3-rb_allocator]
+thomas      5306  0.0  0.1 3091864 64820 ?       Sl   10:41   0:00 gjs /usr/share/gnome-shell/extensions/ding@rastersoft.com/ding.js -E -P /usr/share/gnome-shell/extensions/ding@rastersoft.com
+root        5399  0.0  0.0      0     0 ?        I    10:41   0:00 [kworker/0:1-cgroup_destroy]
+thomas      5455  0.0  0.3 2569204 152576 ?      Sl   10:41   0:01 /usr/bin/nautilus --gapplication-service
+thomas      5490  0.0  0.0 389284  9312 ?        Sl   10:41   0:00 /usr/libexec/gvfsd-recent --spawner :1.6 /org/gtk/gvfs/exec_spaw/1
+thomas      5513  0.3  0.3 2491088 160744 ?      Sl   10:41   0:08 /usr/bin/gnome-text-editor --gapplication-service
+thomas      5609  0.4  0.1 634828 56760 ?        Ssl  10:47   0:09 /usr/libexec/gnome-terminal-server
+thomas      5628  0.0  0.0  11452  5504 pts/0    Ss   10:47   0:00 bash
+root        5637  0.0  0.0      0     0 ?        I    10:47   0:00 [kworker/7:2-mm_percpu_wq]
+root        5672  0.0  0.0      0     0 ?        I    10:51   0:00 [kworker/9:0-mm_percpu_wq]
+root        5680  0.0  0.0      0     0 ?        I    10:54   0:00 [kworker/7:0-mm_percpu_wq]
+root        5684  0.0  0.0      0     0 ?        I    11:00   0:00 [kworker/u24:0-events_power_efficient]
+root        5693  0.0  0.0      0     0 ?        I<   11:01   0:00 [kworker/u25:1-rb_allocator]
+root        5699  0.0  0.0      0     0 ?        I    11:02   0:00 [kworker/9:1-events]
+root        5718  0.0  0.0      0     0 ?        I    11:06   0:00 [kworker/5:0-events]
+root        5747  0.0  0.0      0     0 ?        I    11:08   0:00 [kworker/11:2-events]
+root        5771  0.0  0.0      0     0 ?        I    11:12   0:00 [kworker/5:2-events]
+root        5779  0.0  0.0      0     0 ?        I    11:13   0:00 [kworker/2:1]
+root        5780  0.0  0.0      0     0 ?        I    11:13   0:00 [kworker/11:0-events]
+root        5781  0.0  0.0      0     0 ?        I    11:13   0:00 [kworker/3:1-events]
+root        5782  0.0  0.0      0     0 ?        I    11:13   0:00 [kworker/u24:2-events_unbound]
+root        5815  0.0  0.0      0     0 ?        D<   11:17   0:00 [kworker/u25:0+i915_flip]
+root        5816  0.0  0.0      0     0 ?        I    11:17   0:00 [kworker/8:1]
+root        5832  0.0  0.0      0     0 ?        I    11:18   0:00 [kworker/3:0-mm_percpu_wq]
+root        5840  0.0  0.0      0     0 ?        I    11:20   0:00 [kworker/5:1-events]
+thomas      5884  100  0.0  14160  4992 pts/0    R+   11:23   0:00 ps aux
