@@ -72,12 +72,12 @@ proc Merge (A, p, q, r) {
 
 ```pseudocode
 proc MergeSort (A, p, r) {
-    if (p < r ){
+    if (p < r) {
         then
-        q = [(p + r )/2]
+        q = [(p + r ) / 2]
         MergeSort(A, p, q)
-        MergeSort(A, q + 1,r )
-        Merge(A, p, q,r )
+        MergeSort(A, q + 1, r)
+        Merge(A, p, q, r)
     }
 }
 ```
