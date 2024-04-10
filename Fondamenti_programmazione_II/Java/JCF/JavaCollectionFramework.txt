@@ -1,0 +1,125 @@
+JFC -> forniscono supporto per molte strutture dati (collezioni di oggetti):
+- interfacce -> definiscono tipi di strutture dati
+- classe Collections -> definisce algoritmi polimorfi sottoforma di funzioni statiche
+- classi -> forniscono implementazioni dei tipi di strutture dati specificati dalle interfacce
+
+Obiettivo JCF -> strutture dati per "elementi generici"
+
+JCF -> package java.util
+
+INTERFACCE FONDAMENTALI:
+Collection -> nessuna ipotesi sul tipo di collezione
+    Set -> insieme di elementi (senza duplicati), non conosce sequenze e posizioni
+        SortedSet -> ordinamento totale fra gli elementi
+    List -> sequenza
+    Queue -> coda di elementi
+        Deque -> coda in cui si possono inserire/togliere elementi da entrambe le estremità
+Map -> tabella che associa chiavi a valori (tabella a 2 colonne: key, value)
+    SortedMap -> tabella ordinata
+
+Metodi principali delle interfacce:
+- Collection: add(Object o), remove(Object o), contains(Object o), isEmpty(),
+              size(), toArray(), equals(Collection c)
+- Set extends Collection: add() aggiunge un elemento solo se non già presente, 
+                          equals() verifica se due set sono uguali
+- List extends Collection: add() aggiunge elemento in fondo alla lista (append),
+                           equals() true se gli elementi chiesti sono tutti uguali,
+                           set() remove() get() accedono per posizione
+- SortedSet extends Set: first() restituisce primo elem nell'ordine,
+                         last() restituisce ultimo elem nell'ordine,
+                         headSet() return sottoinsiemi ordinati minori di quelli dati,
+                         subSet() return sottoinsiemi ordinati compresi fra i due dati,
+                         tailSet() return sottoinsiemi ordinati maggiori di quelli dati
+- Queue extends Collection: remove() rimuove elemento "in testa" alla coda,
+                            element() estrae elemento senza rimuoverlo
+- Deque extends Queue
+- Map: hash() date le chiavi restituisce posizione in tabella di value
+       put(key, value) inserisce in tabella una coppia key-value
+       get(key) accede ad un value in tabella
+       containsKey(key) verifica se una key è presente in tabella
+       containsValue(value) verifica se presente value in tabella
+       keySet() estrae tutta la colonna key -> return Set
+       values() estrae tutta la colonna value -> return Collection
+       entrySet() estrae tutte le coppie key-value -> return Set di entry
+- SortedMap extends Map: firstKey() return prima key nell'ordine
+                         lastKey() return ultima key nell'ordine
+                         headMap() return sottotabelle con sole entry le cui key sono minori di quella data
+                         subMap() return sottotabelle con sole entry le cui key sono comprese di quella data
+                         tailMap() return sottotabelle con sole entry le cui key sono maggiorni di quella data
+- Collections: contiene metodi statici per collezione (es. sort(List), reverse(List), copy(List dest, List src), binarySearch(List, Object)), 
+               fornisce alcune costanti (es. EMPTY LIST, EMPTY SET, EMPTY MAP)
+
+Iteratori: mezzo per iterare su collezione di elementi
+Metodi:
+- boolean hasNext(); -> per sapere se ci sono altri elementi successivi
+- Object next(); -> return elemento successivo della collezione
+- void remove();
+- void set(Object o); 
+- void add(Object o);
+
+ListIterator extends Iterator:
+- boolean hasPrevious(); -> per sapere se ci sono altri elementi precedenti
+- Object previous(); -> return elemento precedente della collezione
+- int nextIndex(); -> return indice successivo
+- int previousIndex(); -> return indice precedente
+
+
+IMPLEMENTAZIONI INTERFACCE:
+- Set: HashSet, TreeSet, LinkedHashSet
+- List: ArrayList,LinkedList
+- Map: HashMap, TreeMap, LinkedHashMap
+- Deque: ArrayDeque,LinkedList
+
+se è importante l'ordine:
+- Map -> TreeMap
+- Set -> TreeSet
+altrimenti usare (più efficienti):
+- Map -> HashMap
+- Set -> HashSet
+
+per le List:
+ArrayList -> usare di norma (accesso costante)
+LinkedList -> usare se l'operazione più frequente è aggiunta in testa o elim di elem in mezzo
+
+
+
+SOLUZIONE AI PROBLEMI DEGLI OBJECT GENERICI:
+definire collezioni di T (T = tipo generico)
+prima:
+List myIntList = new ArrayList();
+dopo:
+List<Integer> myList = new ArrayList<Integer>();
+
+classi Integer, Double, Float derivano da Number (lista di Number può tenere ogni tipo di numeri)
+List<Number> list = new LinkedList<Number>();
+
+
+
+SOLUZIONE AI PROBLEMI DEGLI ARRAY (covarianza & controvarianza):
+stabilire assoluta incompatibilità fra collezioni di tipi diversi
+evitare gli array nei casi critici
+
+
+
+TIPI PARAMETRICI VARIANTI (covarianza, controvarianza, bivarianza)
+bisogna essere più flessibili nei tipi di collezioni accettati come argomenti
+o restituiti da singoli metodi
+
+quindi nuova notazione -> wildcard
+utilizzo wildcard -> specificare collezioni che siano argomenti (o tipi di ritorno) di metodi
+
+? -> se non serve il nome
+<E extends T> o <? extends T> (tipo controvariante rispetto a T): può essere passato 
+in quel punto un argomento di qualunque tipo E che estenda T
+uso -> tipi-collezione in cui si devono inserire, aggiungere, "scrivere" elementi di tipo (al più) T
+
+<E super T> o <? super T> (tipo covariante rispetto a T): può essere passato in quel 
+punto un argomento di qualunque tipo E che sia esteso da T
+uso -> tipi-collezione da cui si devono estrarre, togliere, "leggere" elementi di tipo (al più) T
+
+<?> (tipo bivariante rispetto a T): può essere passato in quel punto un argomento di qualunque tipo
+uso -> tipi-collezione sui cui elementi non si devono fare ipotesi (tipo sconosciuto): 
+in tali collezioni non si possono né scrivere, né leggere elementi di tipo T.
+
+<? extends T> -> upper bound (liste di "almeno" T, estendono T)
+<? super T> -> lower bound (liste di "al più" T, stanno sopra T)

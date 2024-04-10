@@ -1,0 +1,23 @@
+Visitare sito Oracle:
+https://www.oracle.com/java/technologies/install-javafx-sdk.html
+
+dal sito installare il file .sh e il file .zip (per linux)
+Nota: bisogna refistrarsi a Oracle per scaricare i file
+
+chmod a+x javafx_sdk-1_2_3-linux-i586.sh 
+./javafx_sdk-1_2_3-linux-i586.sh 
+
+sudo -s chmod +x javafx_sdk-1_3_1-b05a-linux-i586.zip 
+sudo unzip /home/thomas/Scaricati/javafx_sdk-1_3_1-b05a-linux-i586.zip 
+sudo apt-get install openjfx
+
+wget https://mirrors.estointernet.in/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+tar -xvf apache-maven-3.6.3-bin.tar.gz
+sudo apt install maven
+
+Installare estensione maven for Java su VSCode
+
+Riavviare Pc
+
+Per creare un file JavaFx su VSCode leggere la documentazione nella pagina:
+https://code.visualstudio.com/docs/java/java-gui

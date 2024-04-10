@@ -1,0 +1,59 @@
+linguaggi convenzionali/procedurali -> cambio di stato, costrutto principale: assegnamento
+sono nelle macchine d Von Neumann
+
+possibilità di usare linguaggi senza usare variabili modificabili -> si riscrive l'espressione
+nelle macchine senza stato (programmazione funzionale) c'è solo ricorsione e funzioni di ordine superiore (funzioni che prendono come argomenti funzioni superiori)
+
+linguaggi funzionali -> LISP (per programmi di AI), Scheme, ML, Miranda, Haskell
+
+Haskell
+definire una funzione:
+f x = x*x con x parametro
+definire nomi che definiscono funzioni:
+square = f
+four = f 2
+
+funzione senza nome:
+(\x -> x+1) (6)
+
+funzione con nome e parametri:
+add x = (\y -> x + y)
+input: add 1 2
+output: 3
+
+composizione di funzione: -> funzione di ordine superiore
+comp f g x = f(g(x))
+comp f g x = (f.g) x -> . fa la potenza
+
+esempio fattoriale:
+fatt n = if n==0 then 1 else n*fatt(n-1)
+input: fatt 3
+output: 6
+
+Definizioni:
+Riduzione -> descrivere procedura usata per trasformare espressione complessa nel suo valore
+costrutti principali:
+- abstraction -> data qualsiasi exp (espressione) e x (identificatore) costruisce un'espressione \x->exp
+- applicazione f_exp a_exp -> applicazione di espressione f_exp ad un'altra espressione a_exp
+redex (espressione riducibile) -> ((\x -> body) arg)
+reductum di un redex -> espressione che si ottiene sostituendo nel body ogni occorrenza di x
+beta-rule -> espressione exp ridotta a exp1 ottenuta sostituendo redex con reductum
+valore -> espressione che non può essere ulteriormente riscritta
+valore: primitivo e funzioni
+
+Valori funzionali:
+esempio con: g x = ((\y -> y+1) 2)
+espressione \x -> exp è valore quindi i redex in exp non vengono mai riscritti finchè espressione non applicata a qualche argomento
+
+Strategie di valutazione:
+ordine di valutazione da sinistra
+- valutazione per valore -> redex valutato solo se l'espressione, che ha suo arg, è già un valore:
+ scansiona exp da valutare da sx a dx (f_exp a_exp)
+ 1. valuta, ricorsivamente, f_exp finchè non è ridotto a valore della forma \x->...
+ 2. valuta parte dell'arg a_exp in modo che sia ridotto a un valore (val)
+ 3. riduci il redex ((\x->...)val) usando beta-rule e ricomincia dal primo punto
+- valutazione per nome -> redex valutato prima della sua parte di arg:
+ 1. scansiona exp da sx scegliendo la prima applicazione (f_exp a_exp)
+ 2. valuta f_exp (ricorsivamente) finchè non è ridotto a un valore della forma (\x->...)
+ 3. riduci il redex a ((\x->...)a_exp) usando beta-rule e ricomincia dal primo punto
+- valutazione pigra (lazy)

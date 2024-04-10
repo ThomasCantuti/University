@@ -1,0 +1,90 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Gestione",
+            "request": "launch",
+            "mainClass": "EserciziEsame.GestioneNoleggioVeicoliRicreativi.Gestione",
+            "projectName": "Java_c3405e0"
+        },
+        {
+            "type": "java",
+            "name": "Gestione",
+            "request": "launch",
+            "mainClass": "EserciziEsame.GestionePolisportiva.Gestione",
+            "projectName": "Java_c3405e0"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "EserciziEsame.GestioneProgettiRicerca.Main",
+            "projectName": "Java_c3405e0",
+            "args": "Mazzini"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "EserciziEsame.Autonoleggio.Main",
+            "projectName": "Java_c3405e0",
+            "args": "BB323SC"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "EserciziEsame.GestioneCircoloSportivo.Main",
+            "projectName": "Java_c3405e0",
+            "args": "1"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "EserciziEsame.Es2.Main",
+            "projectName": "Java_c3405e0"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "EserciziEsame.Es1.Main",
+            "projectName": "Java_c3405e0"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "InputOutput.EsFile.Main",
+            "projectName": "Java_c3405e0",
+            "args": [
+                "ciao",
+                "come",
+                "va"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "EsMapTipoGenerico",
+            "request": "launch",
+            "mainClass": "JCF.EsMapTipoGenerico",
+            "projectName": "Java_c3405e0",
+            "args": [
+                "ciao",
+                "come",
+                "ciao"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        }
+    ]
+}
