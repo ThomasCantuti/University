@@ -93,7 +93,7 @@ Esempio: se in una scuola si ha l'attributo età e si vuole che sia compreso tra
 - una serie di operazioni di aggiornamento possono essere raggruppate insieme (bulk insert)
 - le operazioni di aggiornamento possono creare in automatico altri aggiornamenti
 
-Se un'operazione di aggioernamento viola un vincolo di integrità:
+Se un'operazione di aggiornamento viola un vincolo di integrità:
 - si annulla l'operazione che causa la violazione (REJECT)
 - eseguire l'operazione, informando l'utente della violazione
 - eseguire altri aggiornamenti per correggere la violazzione (CASCADE, SET NULL)
