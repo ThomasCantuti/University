@@ -59,7 +59,7 @@ void merge_sort(struct pair *pairs, int start, int end) {
  */
 struct pair find (struct pair *pairs, int low ,size_t pairs_size, int target) {
     if (low > pairs_size)
-        return ;
+        return pairs[0];
     
     int mid = (low + pairs_size) / 2;
     if (pairs[mid].x == target)
