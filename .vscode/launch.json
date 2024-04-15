@@ -2,23 +2,24 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "C/C++ Runner: Debug Session",
-      "type": "cppdbg",
+      "type": "java",
+      "name": "Launch with Arguments Prompt",
       "request": "launch",
-      "args": [],
-      "stopAtEntry": false,
-      "externalConsole": true,
-      "cwd": "c:/Users/thoma/Desktop/Università/SistemiOperativi/RipassoTutorato",
-      "program": "c:/Users/thoma/Desktop/Università/SistemiOperativi/RipassoTutorato/build/Debug/outDebug",
-      "MIMode": "gdb",
-      "miDebuggerPath": "gdb",
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        }
-      ]
+      "mainClass": "",
+      "args": "${command:SpecifyProgramArgs}"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "Main",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Launch Java Program",
+      "request": "launch",
+      "mainClass": ""
     }
   ]
 }
