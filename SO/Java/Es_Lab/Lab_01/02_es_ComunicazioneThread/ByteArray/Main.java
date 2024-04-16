@@ -6,7 +6,7 @@ public class Main {
         PipedOutputStream pos = new PipedOutputStream();
         PipedInputStream pis = new PipedInputStream(pos);
     
-        FromInpuPt fromInput = new FromInpuPt(pos);
+        FromInput fromInput = new FromInput(pos);
         ToOutput toOutput = new ToOutput(pis);
     
         fromInput.start();

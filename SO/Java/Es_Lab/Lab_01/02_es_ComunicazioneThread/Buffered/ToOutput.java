@@ -14,10 +14,8 @@ public class ToOutput extends Thread {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(pis));
             String message = null;
-            System.out.println("From-Output: ");
             while ((message = br.readLine()) != null) {
-                System.out.println(message);
-                System.out.println("From-Output: ");
+                System.out.println("From-Output: " + message);
             }
         } catch (IOException e) {
             e.printStackTrace();
