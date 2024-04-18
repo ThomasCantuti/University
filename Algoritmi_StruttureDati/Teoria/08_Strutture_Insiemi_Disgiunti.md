@@ -1,50 +1,64 @@
 # Strutture per insiemi disgiunti
 
-Sono una struttura dati astratta, parzialmente dinamica, parzialmente sparsa, non basata sull'ordinamento
+Sono una struttura dati astratta, parzialmente dinamica, parzialmente sparsa, non basata sull'ordinamento  
+Hanno un'applicazione fondamnetale in uno degli algoritmi su grafi
 
 Caratteristica principale -> operazioni ad esso associate sono:
 - **MAKE-SET()**: crea un nuovo insieme disgiunto
-- **UNION()**: unisce due insiemi disgiunti
-- **FIND-SET()**: restituisce un rappresentante dell'insieme al quale appartiene un'elemento
+- **UNION()**: unisce due insiemi disgiunti in uno solo
+- **FIND-SET()**: trova il rappresentante dell'insieme al quale appartiene l'elemento
 
-Ogni insieme è dotato di un elemento rappresentativo, detto rappresentante  
-Gli insiemi crescono in due modi
-- quando vengono creati gli insiemi
-- quando vengono uniti due insiemi
+Ogni insieme è dotato di un elemento rappresentativo, detto rappresentante (un elemento qualsiasi dell'insieme)  
+Gli insiemi crescono in due modi:
+- quando vengono creati (e hanno un solo elemento)
+- quando vengono uniti due insiemi in unico che contiene gli elementi di entrambi
 
-Visualizzazione astratta di un insieme di insiemi disgiunti e la sua evoluzione
-![alt text](Disegno.png)
-dopo un'operazione di unione (es. union(a, b))
-![alt text](<Disegno 2.png>)
-dopo un certo numero di unioni potrei essere arrivato qui
-![alt text](<Disegno 3.png>)
+## Visualizzazione astratta di un insieme di insiemi disgiunti e la sua evoluzione
+Esempio:
+1. Insieme iniziale
+![alt text](images/08_00.png)
+
+2. Dopo un'operazione di unione (es. union(a, b))
+![alt text](images/08_01.png)
+
+3. Dopo un certo numero di unioni potrei essere arrivato qui
+![alt text](images/08_02.png)
 
 Esempio numerico:  
 $S_1 = \{5, 12, 50\}$  
 $S_2 = \{7\}$  
 $S_3 = \{13, 2\}$  
-ognuno di essi può essere rappresentato da uno dei suoi elementi e vogliamo l'informazione sull'insieme stesso ma non ha una struttura interna quindi $S$ ha almeno un array con tutte queste chiavi
+Ognuno di essi può essere rappresentato da uno dei suoi elementi e vogliamo l'informazione sull'insieme stesso ma non ha una struttura interna quindi $S$ ha almeno un array con tutte queste chiavi
 
 ## Insiemi disgiunti: liste
-Uso di liste collegate per gestire $S$  
+Uso di liste collegate per gestire $S$ (`calS`)  
 S $\in S$ è una lista con:
-- S.head
-- S.tail
-ogni elemento x è dotato di:
-- x.next
-- x.head
+- `S.head` -> punta al primo elemento
+- `S.tail` -> punta all'ultimo elemento
 
-![alt text](<Screenshot 2024-04-15 alle 14.44.58.png>)
+Ogni elemento x è dotato di:
+- `x.next` -> punta all'elemento successivo
+- `x.head` -> punta all'insieme S che lo contiene
 
-l'informazione che contiene ogni $S$[i] è un puntatore a i (casella x che contiene la chiave i) -> $S$[i].set
+![alt text](images/08_03.png)
 
-![alt text](<Screenshot 2024-04-15 alle 14.48.24.png>)
+L'informazione aggiuntiva che contiene ogni `calS[i]` è un puntatore all'elemento `i` in memoria (casella x che contiene la chiave i) -> `calS[i].set`
 
-- MakeSet(x) -> crea nuovo oggetto S (S.head = S.tail = x) quindi costa $O(1)$
-- FindSet(x) -> restituisce il rappresentante dell'insieme di x (dato x, si cerca prima x.head poi x.head.head) -> $O(1)$
+![alt text](images/08_04.png)
+
+Esempio:
+![alt text](images/08_05.png)
+
+- MakeSet(x) -> crea nuovo oggetto S (`S.head = S.tail = x`) quindi costa $O(1)$
+- Rappresentante di ogni S -> `S.head`
+- FindSet(x) -> dato x, si cerca prima x.head poi x.head.head (restituisce il rappresentante dell'insieme di x) -> $O(1)$
 - Union(x, y) -> unisce due insiemi in uno già esistente ed eliminando l'altro (es. Union(5, 7) -> $S_1 = \{5, 12, 50, 7\}, S_3 = \{13, 2\}$) -> $\Theta(n)$
 
-## Operazioni con insiemi disgiunti
+![alt text](images/08_06.png)
+
+![alt text](images/08_07.png)
+
+### Codici delle operazioni
 ```pseudocode
 proc MakeSet (calS, S, x, i) {
     calS[i].set = x
@@ -76,17 +90,16 @@ proc Union (x, y) {
 }
 ```
 
-## Complessità -> Analisi ammortizzata
-Calcolare il costo medio di un'operazione su un insieme di insiemi disgiunti piuttosto che il costo per operazione
+#### Complessità -> Analisi ammortizzata
+**Analisi ammortizzata** -> calcolare il costo medio di un'operazione qualsiasi in un gruppo di operazioni piuttosto che il costo per operazione
 
-nell'implementazione con liste il caso peggiore si ha quando le operazioni iniziano con n MakeSet seguite da n-m Union nel peggior ordine possibile
+Nell'implementazione con liste il caso peggiore si ha quando le operazioni iniziano con n MakeSet seguite da n-m Union nel peggior ordine possibile
 
-1. non ci sono findSet
-2. tutte le unionsono n-1 -> m = 2*n-1
+![alt text](images/08_08.png)
 
 la prima union costa 1, la 2 costa 2, ..., fino all'ultima che costa n -> totale è $\Theta(n^2)$
 
-sapendo che m operazioni di cui n sono MakeSet() danno il caso peggiore nella situazione vista prima e che in quella situazione, m = 2n-1 = $\Theta(n)$, il costo medio ammortizzato di un'operazione è $\frac{\Theta(n^2)}{\Theta(n)} = \Theta(n)$
+Sapendo che m operazioni di cui n sono MakeSet() danno il caso peggiore nella situazione vista prima e che in quella situazione, $m = 2\cdot n-1 = \Theta(n)$, il costo medio ammortizzato di un'operazione è $\frac{\Theta(n^2)}{\Theta(n)} = \Theta(n)$
 
 ## Insiemi disgiunti: liste con unione pesata (strategia o euristica)
 un euristica é una strategia migliorativa, non una implementazione diversa ha un effetto soprattutto dal punto di vista pratico  
