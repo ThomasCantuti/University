@@ -1,10 +1,10 @@
 import java.io.PipedInputStream;
 import java.util.Scanner;
 
-public class ToOutput extends Thread {
+public class ToOutpu extends Thread {
     private PipedInputStream pis;
 
-    public ToOutput(PipedInputStream pis) {
+    public ToOutpu(PipedInputStream pis) {
         this.pis = pis;
     }
 
