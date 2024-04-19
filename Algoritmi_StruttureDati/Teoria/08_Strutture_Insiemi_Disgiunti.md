@@ -90,7 +90,7 @@ proc Union (x, y) {
 }
 ```
 
-#### Complessità -> Analisi ammortizzata
+### Complessità -> Analisi ammortizzata
 **Analisi ammortizzata** -> calcolare il costo medio di un'operazione qualsiasi in un gruppo di operazioni piuttosto che il costo per operazione
 
 Nell'implementazione con liste il caso peggiore si ha quando le operazioni iniziano con n MakeSet seguite da n-m Union nel peggior ordine possibile
@@ -101,18 +101,24 @@ la prima union costa 1, la 2 costa 2, ..., fino all'ultima che costa n -> totale
 
 Sapendo che m operazioni di cui n sono MakeSet() danno il caso peggiore nella situazione vista prima e che in quella situazione, $m = 2\cdot n-1 = \Theta(n)$, il costo medio ammortizzato di un'operazione è $\frac{\Theta(n^2)}{\Theta(n)} = \Theta(n)$
 
-## Insiemi disgiunti: liste con unione pesata (strategia o euristica)
-un euristica é una strategia migliorativa, non una implementazione diversa ha un effetto soprattutto dal punto di vista pratico  
-un algoritmo euristico é un algoritmo che da una soluzione non ottimale ad un problema la cui soluzione ottimale esiste e lo si fa per scelta per evitare il costo computazionale che avrebbe avuto quella esecuzione
+### Differenza tra analisi costo medio e costo ammortizzato
+Nell'analisi di costo ammortizzato non ci sono considerazioni probabilistiche, calcola il costo medio di ogni operazione nei casi ottimo, medio, pessimo del gruppo di operazioni in questione.  
+Si usa in questo caso poichè le operazioni su insiemi disgiunti sono tali che si influenzano a vicenda
 
-Se si mantengono in ogni insieme S anche il numero degli elementi dell'insieme (rank) -> si può implementare Union() perchè gli aggiornamenti dei puntatori si facciano sempre sull'insieme più piccolo
+## Insiemi disgiunti: liste con unione pesata (strategia o euristica)
+**Euristica** -> strategia migliorativa e non un'implementazione diversa, ha un effetto soprattutto dal punto di vista pratico  
+**Algoritmo Euristico** -> algoritmo che da una soluzione non ottimale si trova un problema la cui soluzione ottimale esiste, lo si fa per scelta per evitare il costo computazionale che avrebbe avuto quella esecuzione
+
+Una strategia/euristica per migliorare l'implementazione con liste è usare l'unione pesata -> in ogni `S` si scrive anche il numero di elementi (`S.rank`) e con le `Union()` si fanno gli aggiornamenti dei puntatori sempre sull'insieme più piccolo
+
+![alt text](images/08_09.png)
 
 ```pseudocode
 proc MakeSet (calS, S, x, i) {
     calS[i].set = x
     S.head = x
     S.tail = x
-    S.rank = 0
+    S.rank = 1
 }
 ```
 
