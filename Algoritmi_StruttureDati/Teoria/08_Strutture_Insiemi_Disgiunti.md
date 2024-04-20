@@ -143,31 +143,77 @@ proc Union (x, y) {
 }
 ```
 
-nell'implementazione con lista e unione per rango il caso pessimo occorre qunado uniamo sempre liste della stessa lunghezza
-![alt text](Disegno-1.png)
+### Complessità
+Nell'implementazione con lista e unione per rango si ha il caso peggiore quando tutti gli `S` sono di dimensione uguale (quando unisco liste della stessa lunghezza).
 
-1. la prima costa n, la seconda n/2, la terza n/4, ..., l'ultima 1 -> costo totale per arrivare a una sola lista è $\Theta(n)$
-2. costo totale delle $\Theta(n)$ unioni è $\Theta(n \cdot log(n))$
+![alt text](images/08_10.png)
 
-allora so che le n operazioni sono distribuite tra:  
-n (MakeSet) + $\Theta$ (findSet) + $\Theta(n)$ (Union) è costante
+1. la prima costa n, la seconda n/2, la terza n/4, ..., l'ultima 1 -> per arrivare a una sola lista devo fare $\frac{n}{2} + \frac{n}{4} + \frac{n}{8} + ... + 1 = \sum_{i=1}^{\log(n)}{\frac{n}{2^i}} = \Theta(n)$ unioni
+2. costo totale delle $\Theta(n)$ unioni è $\frac{n}{2} + 2 \cdot \frac{n}{4} + 4 \cdot \frac{n}{8} + ... = \log(n) \rightarrow \Theta(n \cdot log(n))$
 
-$\Theta(n)$ + $\Theta(n)$ + $\Theta(n \cdot log(n)) = \Theta(n \cdot log(n))$
+Le n operazioni sono distribuite tra:  
+n (MakeSet) + 0 (findSet) + $\Theta(n)$ (Union) e costante  
+quindi:  
+$\Theta(n)$ + $\Theta(1)$ + $\Theta(n \cdot log(n)) = \Theta(n \cdot log(n))$  
+poichè $m = \Theta(n)$, il costo medio è:  
+$\frac{\Theta(n \cdot log(n))}{\Theta(n)} = \Theta(log(n))$
 
 ## Insiemi disgiunti: foreste di alberi
-nella rappresentazione a foresta di alberi gli elementi vivono come prima nelle strutture S e sono puntati in un albero  
-i rank sono i limiti superiori dell'altezza dell'albero
+Il metodo più efficiente per implementare insiemi disgiunti è usare le foreste di alberi.  
+In questa rappresentazione gli elementi vivono come prima, nelle strutture S, e sono puntati in un albero, mentre i rank sono i limiti superiori dell'altezza dell'albero.
 
-![alt text](Disegno-2.png)
+Rappresentazione:
+- nodo x (elemento che non ha puntatore ai figli) contiene:
+    - x.p -> padre
+    - x.rank -> rango
+- alberi (insiemi disgiunti) k-ari e formano una foresta `calS`
 
-nodo x (elemento) ha informazioni:
-- x.p -> padre
-- x.rank -> rango
+### Operazioni
+#### MakeSet(x)
+Crea un nuovo albero di altezza massima 0 (`rank = 0`) con il solo nodo x
 
+#### FindSet(x)
+Scorrendo i puntatori verso l'alto li aggiorna appiattendo il ramo al quale appartiene il rappresentante e lo restituisce
 
-nodo di un albero k-ario non ha nessun puntatore ai figli  
+![alt text](images/08_11.png)
 
-poichè gli alberi k-ari hanno una struttura libera è facile implementare l'unione
+#### Union(x, y)
+1. si trovano i rappresentanti degli elementi (x, y) usati come indici
+2. si sceglie l'elemento di rango inferiore e si aggiorna solo il padre (si fa puntare il rappresentante con rango inferiore al rappresentante con rango superiore)
+
+![alt text](images/08_12.png)
+
+### Codici delle operazioni
+```pseudocode
+proc MakeSet (x) {
+    x.p = x
+    x.rank = 0
+}
+```
+
+```pseudocode
+proc FindSet (x) {
+    if (x ≠ x.p) {
+        then x.p = FindSet(x.p)
+    }
+    return x.p
+}
+```
+
+```pseudocode
+proc Union (x, y) {
+    x = FindSet(x)
+    y = FindSet(y)
+    if (x.rank > y.rank) {
+        then y.p = x
+    } else {
+        x.p = y
+        if (x.rank = y.rank) {
+            then y.rank = y.rank + 1
+        }
+    }
+}
+```
 
 ### Complessità
-$O(m \cdot \alpha(n))$ con $\alpha(n)$ funzione inversa di Ackermann che cresce lentamente (tanto da essere costante) quindi il costo è $O(m)$
+La complessità di $m$ operazioni si vede con $O(m \cdot \alpha(n))$ con $\alpha(n)$ funzione inversa di Ackermann che cresce lentamente (tanto da essere costante) quindi il costo è $O(m)$
