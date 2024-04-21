@@ -16,12 +16,15 @@ Gli insiemi crescono in due modi:
 ## Visualizzazione astratta di un insieme di insiemi disgiunti e la sua evoluzione
 Esempio:
 1. Insieme iniziale
+
 ![alt text](images/08_00.png)
 
 2. Dopo un'operazione di unione (es. union(a, b))
+
 ![alt text](images/08_01.png)
 
 3. Dopo un certo numero di unioni potrei essere arrivato qui
+
 ![alt text](images/08_02.png)
 
 Esempio numerico:  
@@ -47,6 +50,7 @@ L'informazione aggiuntiva che contiene ogni `calS[i]` è un puntatore all'elemen
 ![alt text](images/08_04.png)
 
 Esempio:
+
 ![alt text](images/08_05.png)
 
 - MakeSet(x) -> crea nuovo oggetto S (`S.head = S.tail = x`) quindi costa $O(1)$
