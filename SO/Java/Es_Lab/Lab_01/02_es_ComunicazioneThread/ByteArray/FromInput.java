@@ -2,10 +2,10 @@ import java.io.PipedOutputStream;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 
-public class FromInpuPipedOutputStream extends Thread {
+public class FromInput extends Thread {
     private PipedOutputStream pos;
 
-    public FromInpuPipedOutputStream(PipedOutputStream pos) {
+    public FromInput(PipedOutputStream pos) {
         this.pos = pos;
     }
 
