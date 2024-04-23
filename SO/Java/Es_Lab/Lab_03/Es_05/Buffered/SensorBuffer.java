@@ -1,10 +1,12 @@
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PipedOutputStream;
 
-public class Sensor extends Thread {
+public class SensorBuffer extends Thread {
     private PipedOutputStream pos = new PipedOutputStream();
 
-    public Sensor (PipedOutputStream pos) {
+    public SensorBuffer (PipedOutputStream pos) {
         this.pos = pos;
     }
 
@@ -13,10 +15,10 @@ public class Sensor extends Thread {
             double temp = temperatureGeneretor();
             System.out.println("Temperatura attuale: " + temp);
             String stringTemp = temp + "";
-            byte[] buffer = stringTemp.getBytes();
-            pos.write(buffer);
-            pos.flush();
-
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(pos));
+            bw.write(stringTemp);
+            bw.flush();
+            bw.close();
             Thread.sleep(300);
         } catch (InterruptedException | IOException e) {
             e.printStackTrace();
