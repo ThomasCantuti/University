@@ -247,3 +247,109 @@ proc ListDelete (L, x) {
     }
 }
 ```
+
+## Pile
+### Pile basate su array
+```pseudocode
+proc Empty (S) {
+    if (S.top == 0)
+        then return true
+    return false
+}
+```
+
+```pseudocode
+proc Push (S, x) {
+    if (S.top == S.max) 
+        then error "overflow"
+    S.top = S.top + 1
+    S[S.top] = x
+}
+```
+
+```pseudocode
+proc Pop (S) {
+    if (Empty(S)) 
+        then error "underflow"
+    S.top = S.top - 1
+    return S[S.top + 1]
+}
+```
+
+### Pile basate su liste
+```pseudocode
+proc Empty (S) {
+    if (S.head == nil)
+        then return true
+    return false
+}
+```
+
+```pseudocode
+proc Push (S, x) {
+    ListInsert(S, x)
+}
+```
+
+```pseudocode
+proc Pop (S) {
+    if (Empty(S)) 
+        then error "underflow"
+    x = S.head
+    ListDelete(S, x)
+    return x.key
+}
+```
+
+## Code
+### Code basate su array
+```pseudocode
+proc Enqueue (Q, x) {
+    if (Q.dim == Q.length)
+        then error "overflow"
+    Q[Q.tail] = x
+    if (Q.tail == Q.length)
+        then Q.tail = 1
+        else Q.tail = Q.tail + 1
+    Q.dim = Q.dim + 1
+}
+```
+
+```pseudocode
+proc Dequeue (Q) {
+    if (Q.dim == 0)
+        then error "underflow"
+    x = Q[Q.head]
+    if (Q.head == Q.length)
+        then Q.head = 1
+        else Q.head = Q.head + 1
+    Q.dim = Q.dim - 1
+    return x
+}
+```
+
+### Code basate su liste
+```pseudocode
+proc Empty (Q) {
+    if (Q.head == nil)
+        then return true
+    return false
+}
+```
+
+```pseudocode
+proc Enqueue (Q, x) {
+    ListInsert(Q, x)
+}
+```
+
+```pseudocode
+proc Dequeue (Q) {
+    if (Empty(Q))
+        then error "underflow"
+    x = Q.tail
+    Q.tail = x.prev
+    ListDelete(Q, x)
+    return x.key
+}
+```
