@@ -1,52 +1,68 @@
 # Heap, HeapSort, Code di Priorità
 
 ## Heap
-Le heap sono strutture dati astratte necessariamente compatte parzialmente basate sull'ordinamento e sono semi-ordinate (basata su array)
+Le heap sono strutture dati astratte necessariamente compatte (basata su array), parzialmente basate sull'ordinamento, mantiene le chiavi semi-ordinate
 
-Utilizzo: come struttura dati per implementare code di priorità e algoritmi di ordinamento (risolve i problemi di MergeSort, non in place, e QuickSort, tempo quadratico nel caso peggiore)
-
-Applicazioni delle heap:
-- HeapSort
-- Code di Priorità
+Utilizzo: 
+- come base per implementare **code di priorità** (struttura dati astratta)
+- algoritmi di ordinamento **heapSort**, risolve i problemi di:
+    - MergeSort -> non in place
+    - QuickSort -> tempo quadratico nel caso peggiore
 
 ## Heap binarie su array
-(min/max) heap -> array H visto come un albero binario quasi completo
+**(min/max) heap** -> Array H visto come un albero binario quasi completo
 
-immagine di un array visto come albero binario quasi completo, completo e pieno
-```
-    0
-   / \
-  1   2
- / \ / \
+```pseudocode
+typedef struct {
+    int H[..];
+    int length;
+    int heapsize;
+} Heap
 ```
 
-Una heap è un array che vedo come albero (binario quasi completo) e ne eredita la terminalogia infatti parlo di **nodi**, di **altezza** e di **radice**
-- **altezza**: altezza dell'albero (H.length)
-- **radice**: primo elemento dell'array (H[1])
-- **nodo**: elemento dell'array (H[i])
+![alt text](images/06_00.png)
+
+**Caratteristiche**:
+- i nodi dell'albero sono gli elementi dell'array
+- `H[1]` -> la radice dell'albero
+- `H.length` -> lunghezza massima raggiungibile
+- `H.heapsize` -> dimensione corrente
+- 0 ≤ `H.heapsize` ≤ `H.length`
+- la Heap è un array, da non confondere con l'albero binario che viene usato solo come rappresentazione visuale e per terminologia (radice, nodi, altezza)
+
+Convenzioni:
+- **altezza**: altezza dell'albero (`H.length`)
+- **radice**: primo elemento dell'array (`H[1]`)
+- **nodo**: elemento dell'array (`H[i]`)
 
 ```pseudocode
 proc Parent(i) {
     return i/2 // divisione intera
 }
+```
 
+```pseudocode
 proc Left(i) {
     return 2*i
 }
+```
 
+```pseudocode
 proc Right(i) {
     return 2*i + 1
 }
-
 ```
 
-max-heap: ogni nodo è maggiore o uguale ai suoi figli -> H[Parent(i)] >= H[i]  
-min-heap: ogni nodo è minore o uguale ai suoi figli -> H[Parent(i)] <= H[i]
+![alt text](images/06_01.png)
 
-Esempio di min-heap:
-```
-![alt text](<Screenshot 2024-04-08 alle 14.43.08.png>)
-```
+- max-heap: il valore della chiave di un elemento è sempre maggiore di quella di entrambi i suoi figli (`H[Parent(i)]` ≥ `H[i]`)  
+- min-heap: il valore della chiave di un elemento è sempre minore di quella di entrambi i suoi figli (`H[Parent(i)]` ≤ `H[i]`)
+- altezza: lunghezza del cammino più lungo (numero di archi) dalla radice a una foglia
+
+Esempio di min-heap e max-heap:
+
+![alt text](images/06_02.png)
+
 
 Relazione tra la cardinalità di una heap e l'altezza:
 ```
