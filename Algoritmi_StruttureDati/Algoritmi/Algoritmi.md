@@ -210,3 +210,40 @@ proc RecursiveBinarySearch (A, low, high, k) {
     - **caso migliore**: $\Theta(1)$
     - **caso peggiore**: $\Theta(\log_2(n))$
     - **caso medio**: $\Theta(\log_2(n))$
+
+# Algoritmi per liste, pile e code
+## Liste
+
+```pseudocode
+proc ListInsert (L, x) {
+    x.next = L.head
+    if (L.head != nil) {
+        L.head.prev = x
+    }
+    L.head = x
+    x.prev = nil
+}
+```
+
+```pseudocode
+proc ListSearch (L, k) {
+    x = L.head
+    while (x != nil and x.key != k) {
+        x = x.next
+    }
+    return x
+}
+```
+
+```pseudocode
+proc ListDelete (L, x) {
+    if (x.prev != nil) {
+        x.prev.next = x.next
+    } else {
+        L.head = x.next
+    }
+    if (x.next != nil) {
+        x.next.prev = x.prev
+    }
+}
+```
