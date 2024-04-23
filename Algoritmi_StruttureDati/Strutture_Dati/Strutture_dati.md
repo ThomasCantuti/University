@@ -32,6 +32,37 @@ L.numel = 0;
 ```
 
 # Pile
+Struttura dati dinamica, non basata sull'ordinamento, sparsa (basata su liste) o compatta (basata su array)
 
+## Pile basate su array
+```pseudocode
+typedef struct {
+    int key;
+} elemPila;
+```
+
+## Pile basate su liste
+```pseudocode
+typedef struct {
+    int key;
+    struct elemPila *next;
+} elemPila;
+```
 
 # Code
+Struttura dati dinamica, non basata sull'ordinamento, sparsa (basata su liste) o compatta (basata su array)
+
+## Code basate su array
+```pseudocode
+typedef struct {
+    int key;
+} elemCoda;
+```
+
+## Code basate su liste
+```pseudocode
+typedef struct {
+    int key;
+    struct elemCoda *next;
+} elemCoda;
+```
