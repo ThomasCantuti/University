@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner tastiera = new Scanner(System.in);
-        SysteMainObjectBuffert.print("Inserire numero di operatori: ");
+        System.out.print("Inserire numero di operatori: ");
         int N = tastiera.nextInt();
         tastiera.close();
 
