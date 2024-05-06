@@ -42,7 +42,7 @@ Un processo UNIX è composto da:
       - necessario solo se processo in running
       - se processo in swapping la user structure può essere trasferita in memoria secondaria
 
-![alt text](immagine_processo.png)
+![alt text](images/immagine_processo.png)
 
 Mentre un processo in generale è rappresentato da:
 - **codice (text)** del programma eseguito
@@ -104,7 +104,7 @@ Quando un processo riceve un segnale, può gestirlo in 3 modi diversi:
    - **molti-a-molti**: piu' processi possono spedire messaggi attraverso la stessa pipe, piu' processi possono ricevere messaggi attraverso la stessa pipe
    - **capacità limitata**: in grado di gestire l'accodamento di un numero limitato d messaggi, gestiti in modo FIFO.
 
-![alt text](pipe.png)
+![alt text](images/pipe.png)
 
 - **FIFO**: è un canale di comunicazione tra processi anche non appartenenti alla stessa gerarchia:
    - **unidirezionale**: come le pipe del tipo FIFO
@@ -137,99 +137,147 @@ I file sono implementati dal sistema operativo con tecniche diverse per ciò che
 - ...
 
 ## 14 - Scelta della pagina vittima
-La finalità di ogni algoritmo di sostituzione è sostituire quelle pagine la cui probabilità di essere acceduta a breve termine è bassa.
+Se pagina in memoria centrale -> nessuna operazione  
+Se pagina non in memoria centrale (mem. secondaria o invalida) -> page fault
 
-- **LFU (Last Frequently Used)**: sostituita la pagina che è stata usta meno frequentemente, è necessario associare un contatore degli accessi ad ogni pagina, la vittima è quella con minimo valore del contatore
+**Trattamento page fault:**
+1. salvataggio del contesto del processo
+2. verifica del motivo del page fault
+   - violazione delle politiche di protezione
+   - pagina in memoria secondaria
+3. copia della pagina in frame libero
+4. aggiornamento page table
+5. ripristino del contesto del processo
 
-- **FIFO**: sostituita la pagina che è da piu' tempo caricata in memoria (indipendentemente dal suo uso), è necessario memorizzare la cronologia dei caricamenti in memoria
+**Problema**: sovrallocazione in memoria centrale in seguito al page fault  
+**Soluzione**: algoritmi di sostituzione delle pagine vittime con le pagine nuove da caricare
 
-- **LRU (Least Recently Used)**: di solito preferibile per principio di località, viene sostituita la pagina che è stata usata meno recentemente, è necessario registrare la frequenza di accessi alle pagine in memoria; overhead, dovuto all'aggiornamento della sequenza degli accessi per ogni accesso in memoria
+**Algoritmi di sostituzione (esamina dirty bit):**
+
+- **LFU (Least Frequently Used)**:
+   - sostituzione della pagina usata meno frequentemente (tempo prefissato)
+   - necessità di un contatore degli accessi per ogni pagina
+   - minimo valore del contatore -> pagina vittima meno usata
+
+- **FIFO (First In First Out)**:
+   - sostituzione della pagina caricata in memoria da più tempo
+   - necessità di memorizzare la cronologia dei caricamenti in memoria
+
+- **LRU (Least Recently Used)**:
+   - sostituzione della pagina usata meno recentemente (preferibile per principio di località)
+   - necessità di registrare la sequenza degli accessi alle pagine in memoria
+   - overhead per l'aggiornamento della sequenza degli accessi
 
 ## 15 - Working set
-In alternativa alla paginazione su domanda, tecniche di gestione della memoria che si basano si pre- paginazione: si prevede un set di pagine il cui processo da caricare ha bisgno per la prossima fase di esecuzione. working set può essere individuato in base ai criteri di località temporale.
+Tecnica di gestione memoria basata su pre-paginazione.  
+Prevede il set di pagine che un processo ha bisogno di caricare per la prossima fase di esecuzione (individuate per la località temporale).
+
+Fasi:
+1. caricamento processo = caricamento del working set iniziale
+2. SO mantiene il working set di ogni processo aggiornandolo con località temporale dinamicamente
+
+Vantaggi -> riduzione del numero di page fault
 
 ## 16 - Paginazione su richiesta  
-Di solito la memoria virtuale è realizzata mediante tecniche di paginazione su richiesta: tutte le pagine di ogni processo risiedono in memoria di massa; durante l'esecuzione alcune di esse vengono trasferite, all'occorrenza, in memoria centrale.
+Tutte le pagine in memoria secondaria vengono trasferite (tramite il **pager**) in memoria centrale all'occorrenza.
 
-**Pager**: modulo del SO che realizza i trasferimenti delle pagine da/verso memoria secondaria / centrale ("swapper" di pagine).
+**Pager**: modulo del SO che realizza i trasferimenti delle pagine da/verso memoria secondaria/centrale ("swapper" di pagine).
 
-**Paginazione su richiesta (o "su domanda")**: pager lazy trasferisce in memoria centrale una pagina soltanto se ritenuta necessaria
+**Paginazione su richiesta (o "su domanda")**:
+- pager lazy trasferisce in memoria centrale una pagina soltanto se ritenuta necessaria
+- working set
 
 ## 17 - System calls
-La system call serve per ottenere l'esecuzione di istruzioni privilegiate, un programma i utente deve chiamare una system call:
-- invio di un'interruzione software al SO
-- salvataggio dello stato (PC, registri, bit di modo, ...) del programma chiamante e trasferimento del controllo a SO
-- SO esegue in modo kernel l'operazione richiesta
-- al termine dell'operazione, il controllo ritorna al programma chiamante (ritorno al modo user)
+La system call serve per ottenere l'esecuzione di istruzioni privilegiate.  
+Essa avviene in 4 fasi:
+1. invio di un'interruzione software al SO
+2. salvataggio dello stato (PC, registri, bit di modo, ...) del programma chiamante e trasferimento del controllo a SO
+3. SO esegue in modo kernel l'operazione richiesta
+4. al termine dell'operazione, il controllo ritorna al programma chiamante (ritorno al modo user)
 
 Le system call ci servono anche per una gestione ottimale di file e directory.
 
 ## 18 - System calls in C
-Le system call in C vengono utilizzate per la gestione dei processi. Per esempio con la system call `fork()` possiamo creare un processo, con la `exit()` possiamo terminarlo, con la `wait()` lo mettiamo in sospensione in attesa della terminazione dei figli e poi ci sono altre system call per la sostituzione di codice e dati come la `exec()`.
+Le system call in C vengono utilizzate per la gestione dei processi.
+- `fork()`: creazione di un nuovo processo
+- `exec()`: sostituzione del codice del processo invocante
+- `wait()`: sospensione in attesa della terminazione di un processo figlio
+- `exit()`: terminazione di un processo
 
 ## 19 - Gestione dei segnali a valle della fork e a valle dell'exec
 **Fork**:
-- `fork()` copia User Structure del padre in quella del figlio
-- padre e figlio condividono lo stesso codice, quindi il figlio eredita dal padre le informazioni relative alla gestione dei segnali:
-   - ignora gli stessi segnali ignorati dal padre
-   - gestisce con le stesse funzioni gli stessi segnali gestiti dal padre
-   - segnali a default del figlio sono gli stessi del padre
-- ovviamente `signal()` del figlio successive alla `fork()` non hanno effetto sulla gestione dei segnali del padre
+   - `fork()` copia User Structure del padre in quella del figlio
+   - padre e figlio condividono lo stesso codice, quindi il figlio eredita dal padre le informazioni relative alla gestione dei segnali:
+      - ignora gli stessi segnali ignorati dal padre
+      - gestisce con le stesse funzioni gli stessi segnali gestiti dal padre
+      - segnali a default del figlio sono gli stessi del padre
+   - ovviamente `signal()` del figlio successive alla `fork()` non hanno effetto sulla gestione dei segnali del padre
 
 **Exec**:  
-- `exec()` sostituisce codice e dati del processo invocante
-- User Structure viene mantenuta, tranne le informazioni legate al codice del processo (ad esempio, le funzioni di gestione dei segnali, che dopo `exec()` non sono piu' visibili)
-- dopo `exec()`, un processo:
-   - ignora gli stessi segnali ignorati prima di `exec()`  
-   - i segnali a default rimangono a default ma
-   - i segnali che prima erano festiti, vengono riportati a default
+   - `exec()` sostituisce codice e dati del processo invocante
+   - User Structure viene mantenuta, tranne le informazioni legate al codice del processo (ad esempio, le funzioni di gestione dei segnali, che dopo `exec()` non sono piu' visibili)
+   - dopo `exec()`, un processo:
+      - ignora gli stessi segnali ignorati prima di `exec()`  
+      - i segnali a default rimangono a default ma
+      - i segnali che prima erano gestiti, vengono riportati a default
 
 ## 20 - Segnale SIGCHLD
-SIGCHLD è il segnale che il kernel del SO invia a un processo padre quando uno dei suoi figli termina. Tramite l'uso di segnali è possibile svincolare il padre da un'attesa esplicita della terminazione del figlio, mediante un'apposita funzione handler per la gestione di SIGCHLD:
+SIGCHLD è il segnale che il kernel del SO invia a un processo padre quando uno dei suoi figli termina.  
+Tramite l'uso di segnali è possibile svincolare il padre da un'attesa esplicita della terminazione del figlio, mediante un'apposita funzione handler per la gestione di SIGCHLD:
 - la funzione handler verrà attivata in modo asincrono alla ricezione del segnale
-- handler chiamerà `wait()` con cui il padre portà raccoglier ed eventualmente gestire lo stato di terminazione del figlio
+- handler chiamerà `wait()` con cui il padre portà raccogliere ed eventualmente gestire lo stato di terminazione del figlio
 
 ## 21 - Bit di protezione dei file (Shell)
-Per proteggere un file vengono usati i bit di protezione (di solito 12). I primi 9 contengono i permessi (lettura, scrittura e esecuzione) di user, gruop and others. Gli ultimi 3 contengono il SUID (Set User ID, identificatore di utente effettivo), SGID (Set Group ID, identico al SUID ma per i gruppi) e lo Sticky bit (Il sistema cerca di mantenere in memoria l'immagine del programma, anche se non è in esecuzione).
+Per proteggere un file vengono usati i bit di protezione (di solito 12).  
+I primi 9 contengono i permessi (lettura, scrittura e esecuzione) di user, group and others.  
+Gli ultimi 3 contengono:
+- SUID (Set User ID) -> identificatore di utente effettivo
+- SGID (Set Group ID) -> come SUID ma per i gruppi
+- Sticky bit -> il sistema cerca di mantenere in memoria l'immagine del programma, anche se non è in esecuzione
+
+![alt text](Images/Bit_protezione.png)
 
 ## 22 - Differenze tra SIGNAL e SIGACTION
-**signal()**
-- semantica variabile reliable/unreliable 
-- segnali da reinstallare ogni volta, corsa critica tra inizio handler e installazione come prima istruzione dell'handler
-- possibile esecuzione innesetata dell'handler se ricezione dello stesso segnale quando siamo ancora nell'handler
+- **signal()**
+   - semantica variabile reliable/unreliable (affidabile/non affidabile)
+   - in alcune realizzazioni UNIX/Linux l'handler ripristina automaticamente l'azione di default
+   - se arriva un segnale durante l'esecuzione dell'handler:
+      - segnale perso
+      - innestamento della routine di gestione
+      - accodamento dei segnali
 
-**sigaction()**
-- sempre reliable
-- semantica ben definita, identica in ogni versione UNIX/Linux
-- non c'è bisogno di installare l'handler
-- non perdiamo segnali: il segnale che ha causato l'attivazione dell'handler è automaticamente bloccato fino alla fine dell'esecuzione dell'handler stesso
+- **sigaction()**
+   - sempre reliable
+   - semantica ben definita, identica in ogni versione UNIX/Linux
+   - non c'è bisogno di installare l'handler
+   - non perdiamo segnali -> il segnale che ha causato l'attivazione dell'handler è automaticamente bloccato fino alla fine dell'esecuzione dell'handler stesso
 
 ## 23 - Storia ed evoluzione dei SO (sistemi batch semplici, time-sharing, ecc.)
-**Prima generazione (anni '50)**: 
-- Linguaggio macchina
-- dati su schede perforate
+1. **Prima generazione (anni '50)**: 
+   - Linguaggio macchina
+   - dati su schede perforate
 
-**Seconda generazione ('55-'65)**: 
-- sistemi batch semplici
-- linguaggio di alto livello (fortran)
-- input mediante schede perforate
-- aggregazione programmi lotti (batch) con esigenze simili
+2. **Seconda generazione ('55 - '65)**: 
+   - sistemi batch semplici
+   - linguaggio di alto livello (fortran)
+   - input mediante schede perforate
+   - aggregazione programmi lotti (batch) con esigenze simili
 
-Un sistema batch è essenzialmente un insieme di programmi (job) che possono eseguire in modo sequenziale. L'esecuzione termina quando l'ultimo dei job è arrivato a terminazione.
+Sistema batch -> insieme di programmi (job) da eseguire in modo sequenziale con la terminazione che avviene solo quando tutti i job sono stati eseguiti.
 
-**Batch semplici**:
-- SO residente in memoria (monitor)
-- assenza di interazione tra utente e job
-- scarsa efficienza: durante l'I/O del job corrente, la CPU rimane inattiva (lentezza dei dispositivi I/O meccanici). Questo perchè in memoria centrale veniva caricato al piu' un solo job.
+3. **Sistemi Batch semplici**:
+   - SO residente in memoria (monitor)
+   - no interazione tra utente e job
+   - scarsa efficienza: durante l'I/O del job corrente la CPU rimane inattiva perchè in memoria centrale veniva caricato al più un solo job.
 
-A causa della scarsa efficienza dei sistemi batch semplici e per migliorare l'utilizzo della CPU, è stato introdotto il meccanismo di **Spooling** (Simultaneous Peripheral Operation On Line)
+   Per migliorare l'utilizzo della CPU, è stato introdotto il meccanismo di **Spooling** (Simultaneous Peripheral Operation On Line): disco usato come buffer per memorizzare i dati in attesa di essere elaborati.
 
-**Sistemi batch multiprogrammati**:
+4. **Sistemi batch multiprogrammati**:
 Per ovviare a questi problemi si è passati a sistemi batch multiprogrammati, in questo caso abbiamo sempre un pool di job che possono eseguire, ma in questo caso contemporaneamente e i job che possono eseguire sono tutti presenti su disco. In questo caso l'SO evolve e ha due compiti principali che nei sistemi batch semplici non aveva:
 - SO seleziona un sottoinsieme di job appartenenti al pool da caricare in memoria centrale;  
 - mentre un job è in attesa di un evento, il sistema operativo assegna CPU a un altro job. Si ha quindi una riduzione dei tempi di esecuzione dei job.
 
-**Sistemi time sharing (Multics, 1965)****:**
+5. **Sistemi time sharing (Multics, 1965)****:**
 Sono sistemi in cui:
 - attività della CPU è dedicata a job diversi che si alternano ciclicamente nell'uso della risorsa
 - frequenza di commutazione della CPU è tale da fornire l'illusione ai vari utenti di una macchina completamente dedicata (macchina virtuale)
