@@ -273,52 +273,62 @@ Sistema batch -> insieme di programmi (job) da eseguire in modo sequenziale con 
    Per migliorare l'utilizzo della CPU, è stato introdotto il meccanismo di **Spooling** (Simultaneous Peripheral Operation On Line): disco usato come buffer per memorizzare i dati in attesa di essere elaborati.
 
 4. **Sistemi batch multiprogrammati**:
-Per ovviare a questi problemi si è passati a sistemi batch multiprogrammati, in questo caso abbiamo sempre un pool di job che possono eseguire, ma in questo caso contemporaneamente e i job che possono eseguire sono tutti presenti su disco. In questo caso l'SO evolve e ha due compiti principali che nei sistemi batch semplici non aveva:
-- SO seleziona un sottoinsieme di job appartenenti al pool da caricare in memoria centrale;  
-- mentre un job è in attesa di un evento, il sistema operativo assegna CPU a un altro job. Si ha quindi una riduzione dei tempi di esecuzione dei job.
+   - evita inattività della CPU -> caricati più job (pool di job) in memoria ad ogni istante
+      1. SO seleziona un sottoinsieme dei job da caricare in memoria
+      2. job in attesa di evento -> CPU assegnata ad altro job (scheduling)
 
-5. **Sistemi time sharing (Multics, 1965)****:**
-Sono sistemi in cui:
-- attività della CPU è dedicata a job diversi che si alternano ciclicamente nell'uso della risorsa
-- frequenza di commutazione della CPU è tale da fornire l'illusione ai vari utenti di una macchina completamente dedicata (macchina virtuale)
-- Cambio di contesto (context switch): operazione di trasferimento del controllo da un job al successivo --> costo aggiuntivo (overhead)
+   ![alt text](images/Scheduling_job_cpu.png)
+
+5. **Sistemi time sharing (Multics, 1965):**
+   - nascono per la necessità di multiutenza (nuova macchina virtuale ad ogni utente) e di interattività (SO interrompe l'esecuzione di un job dopo un tempo prefissato per eseguire un altro job)
+   - la CPU è dedicata a job diversi che si alternano ciclicamente
+   - frequenza di commutazione della CPU talmente alta da fornire l'illusione ai vari utenti di una macchina completamente dedicata
+
+   Context switch -> operazione di trasferimento del controllo da un job al successivo
 
 ## 24 - Cosa succede all'apertura di un file e metodi di accesso (in generale e UNIX)
-In generale aprendo un file viene introdotto un nuovo elemento nella tabella dei file aperti e eventuale memory mapping del file (i file aperti vengono temporaneamente copiati in memoria centrale --> accessi piu' veloci).
+- In generale aprendo un file:
+   - introdotto un nuovo elemento nella tabella dei file aperti
+   - eventuale memory mapping del file (i file aperti vengono temporaneamente copiati in memoria centrale --> accessi piu' veloci)
 
-In UNIX, l'apertura di un file provoca:
-- inserimento di un elemento (individuato da un file descriptor) nella prima posizione libera della tabella dei file aperti del processo
-- inserimento di un nuovo record di attivazione nella tabella dei file aperti di sistema
-- la copia dell'i-node nella tabella dei file attivi (solo se il file non è già in uso)
+- In UNIX, l'apertura di un file provoca:
+   - inserimento di un elemento (come file descriptor) nella prima posizione libera della tabella dei file aperti del processo
+   - inserimento di un nuovo record nella tabella dei file aperti di sistema
+   - la copia dell'i-node nella tabella dei file attivi (solo se il file non è già in uso)
 
 ## 25 - Context switch
-**Context switch** (cambio di contesto) è l'operazione di trasferimento del controllo da un job al successivo.
+**Context switch** (cambio di contesto) -> operazione di trasferimento del controllo da un job al successivo.
 
 Nei processi e thread, il cambio di contesto è la fase in cui l'uso della CPU viene commutato da un processo ad un altro.
 
 ## 26 - Cosa succede se dividiamo un intervallo di tempo?
-Dividere un intervallo di tempo può significare variare la quantità di tempo allocata o riservata per determinare attività o processi. Questo può determinare diverse implicazioni:
+Dividere un intervallo di tempo può significare variare la quantità di tempo allocata o riservata per determinare attività o processi.  
+Questo può determinare diverse implicazioni:
 
 - Scheduling dei processi;
 - Gestione delle risorse; 
 - Timeout di gestione degli eventi.
 
 ## 27 - Pager
-Il **Pager** è un modulo del sistema operativo che realizza i trasferimenti delle pagine da/verso memoria secondaria/centrale.
+**Pager**: modulo del SO che realizza i trasferimenti delle pagine da/verso memoria secondaria/centrale ("swapper" di pagine).  
 Può avere vari utilizzi:
-- **Paginazione su richiesta**: pager lazy trasferisce in memoria centrale una pagina soltanto se è ritenuta necessaria
-- Prima di eseguire lo swap-in di un processo, il pager può prevedere le pagine di cui (probabilmente) il processo avrà bisogno inizialmente --> caricamento
+- **Paginazione su richiesta**:
+   - pager lazy trasferisce in memoria centrale una pagina soltanto se è ritenuta necessaria
+   - working set
+- Prima di eseguire lo swap-in di un processo, il pager può prevedere le pagine di cui (probabilmente) il processo avrà bisogno inizialmente --> caricamento pagine
 
-## 28 - Segmentazione  
-La segmentazione si basa sul partizionamento dello spazio logico degli indirizzi di un processo in parti (segmenti), ognuna caratterizzata da nome e lunghezza.
+## 28 - Segmentazione
+Si basa sul partizionamento dello spazio logico degli indirizzi di un processo in parti (segmenti) con nome e lunghezza.
 
 **Struttura degli indirizzi logici**: ogni indirizzo è costituito da una coppia <segmento, offset>
-- segmento: numero che individua il segmento nel sistema
-- offset: posizione cella all'interno del segmento
+   - segmento: numero di riferimento del segmento
+   - offset: posizione cella nel segmento
 
-**Tabella dei segmenti**: ha una entry per ogni segmento che ne descrive l'allocazione in memoria fisica mediante la coppia <base, limite>
+**Tabella dei segmenti**: ha una entry per ogni segmento con coppia <base, limite>
 - base: indirizzo prima cella del segmento nello spazio fisico
-- limite: indica la dimensione del segmento
+- limite: dimensione del segmento
+
+![alt text](Images/Segmentazione.png)
 
 ## 29 - Raid
 Per migliorare ulteriormente le prestazioni di un sistema concorrente, si possono utilizzare in parallelo piu' dischi fissi. Questo può permettere anche di migliorare l'affidabilità e la tolleranza ai guasti (tramite ridondanza dei dati). 
