@@ -296,6 +296,16 @@ Sistema batch -> insieme di programmi (job) da eseguire in modo sequenziale con 
    - inserimento di un nuovo record nella tabella dei file aperti di sistema
    - la copia dell'i-node nella tabella dei file attivi (solo se il file non è già in uso)
 
+Metodi di accesso:
+- read
+- write
+- execute
+
+Modalità di accesso:
+- owner
+- group
+- others
+
 ## 25 - Context switch
 **Context switch** (cambio di contesto) -> operazione di trasferimento del controllo da un job al successivo.
 
@@ -450,6 +460,11 @@ L'organizzazione fisica del file system in UNIX è divisa in 4 regioni:
    - i blocchi liberi (organizzati in una lista collegata)
 4. **i-List**: contiene la lista di tutti i descrittori (i-node) dei file normali, direttori e dispositivi presenti nel file system (accesso con l'indice i-number)
 
+Metodi di allocazione dei blocchi in memoria secondaria:
+- **Contiguo**: file mappati su insieme di blocchi fisicamente contigui
+- **Lista**: blocchi organizzati in una lista concatenata, puntatori ai blocchi distribuiti sul disco
+- **Indice**: ogni file ha un blocco indice con tutti gli indirizzi dei blocchi in cui è allocato il file
+
 ## 40 - Differenze tra SWAPPER e PAGER
 - **Swapper**: gestisce il trasferimento di interi processi da memoria centrale a secondaria (swap out) e viceversa (swap in)
 - **Pager**: gestisce il trasferimento di singole pagine da/verso memoria secondaria/centrale ("swapper di pagine")
@@ -459,8 +474,8 @@ L'organizzazione fisica del file system in UNIX è divisa in 4 regioni:
 - **SJF (Shortest Job First)**: schedula il processo con il tempo di esecuzione più breve (difficile stimare il tempo di esecuzione)
 - **Round Robin**: assegna un tempo di CPU fisso a ciascun processo in modo ciclico e gestisce la ready queue come FIFO in modo che ogni processo usa la CPU per un $\Delta t$ prefissato
 - **Priority Scheduling**: assegna la CPU al processo con la priorità più alta e con il tempo che:
-   - aumenta se il processo è nella ready queue la priorità
-   - diminuisce se il processo è in esecuzione la priorità
+   - aumenta priorità se il processo è nella ready queue
+   - diminuisce priorità se il processo è in esecuzione
 - **MLFQ (Multi-Level Feedback Queue)**:
    - scheduling in Unix
    - ci sono più livelli di priorità
@@ -472,7 +487,7 @@ L'organizzazione fisica del file system in UNIX è divisa in 4 regioni:
 
 ## 42 - i-node  
 L'i-node è il descrittore del file.  
-- attributi dell'i-node vi sono:
+- attributi dell'i-node:
    - tipo di file
       - ordinario
       - direttorio 
