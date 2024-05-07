@@ -42,7 +42,7 @@ Un processo UNIX è composto da:
       - necessario solo se processo in running
       - se processo in swapping la user structure può essere trasferita in memoria secondaria
 
-![alt text](images/immagine_processo.png)
+![alt text](Images/immagine_processo.png)
 
 Mentre un processo in generale è rappresentato da:
 - **codice (text)** del programma eseguito
@@ -104,7 +104,7 @@ Quando un processo riceve un segnale, può gestirlo in 3 modi diversi:
    - **molti-a-molti**: piu' processi possono spedire messaggi attraverso la stessa pipe, piu' processi possono ricevere messaggi attraverso la stessa pipe
    - **capacità limitata**: in grado di gestire l'accodamento di un numero limitato d messaggi, gestiti in modo FIFO.
 
-![alt text](images/pipe.png)
+![alt text](Images/pipe.png)
 
 - **FIFO**: è un canale di comunicazione tra processi anche non appartenenti alla stessa gerarchia:
    - **unidirezionale**: come le pipe del tipo FIFO
