@@ -331,45 +331,43 @@ Si basa sul partizionamento dello spazio logico degli indirizzi di un processo i
 ![alt text](Images/Segmentazione.png)
 
 ## 29 - Raid
-Per migliorare ulteriormente le prestazioni di un sistema concorrente, si possono utilizzare in parallelo piu' dischi fissi. Questo può permettere anche di migliorare l'affidabilità e la tolleranza ai guasti (tramite ridondanza dei dati). 
+Per migliorare ulteriormente le prestazioni di un sistema concorrente, si possono utilizzare in parallelo più dischi fissi. Questo può permettere anche di migliorare l'affidabilità e la tolleranza ai guasti (tramite ridondanza dei dati). 
 
-I sistemi RAID (Redundant Array of Independent Disks) ha vari livelli:
+I sistemi RAID (Redundant Array of Independent Disks) hanno vari livelli:
 
-- **livello 0 (striping)**: Si crea un solo volume logico su tutti i dischi.
+- **livello 0 (striping)**: Si crea un solo volume logico su tutti i dischi
 - **livello 1 (mirroring)**: tutti i dati sono replicati su due dischi (il sistema scrive un dato sempre su due dischi)
 - **livello 5 (striping con parità)** 
    - ogni sezione di parità contiene l'XOR delle 4 sezioni dati corrispondenti
-   - Nel caso di perdita di una delle selezioni dei dati, il sistema ricostruisce la perdita utilizzando la sezione di parità
+   - nel caso di perdità delle sezioni dati viene ricostruita tramite la sezione di parità
    - minore costo rispetto a mirroring
-   - ogni scrittura richiede modifica sezione di parità
+   - ogni scrittura modifica sezione di parità
 - **livello 6 (striping con doppia parità)**
-   - Molto simile al RAID livello 5 ma con un blocco di parità aggiuntivo: striping dei dati su tutti i dischi con due blocchi di parità
-   - Le operazioni di scrittura sono piu' costose a causa dei calcoli della parità ma le letture non hanno svantaggi prestazionali
-   - Maggiore affidabilità rispetto al RAID livello 5
+   - come RAID livello 5 ma con un blocco di parità aggiuntivo: striping dei dati su tutti i dischi con due blocchi di parità
+   - operazioni di scrittura sono più costose a causa dei calcoli della parità ma le letture non hanno svantaggi prestazionali
+   - maggiore affidabilità rispetto al RAID livello 5
    
 ## 30 - Protezione
-**Protezione**: garantire che le risorse di un sistema di elaborazione siano accedute solo dai soggetti autorizzati, serve per prevenire errori o usi scorretti da parte di processi/utenti che operano nel sistema. 
+**Protezione**: garantire che le risorse di un sistema di elaborazione siano accedute solo dai soggetti autorizzati
 
-**Obiettivo della protezione**: assicurare che ciascun componente di programma/processo/utente attivo in un sistema usi le risorse del sistema solo in modi consistenti con le politiche stabilite per il loro uso.
+**Obiettivo della protezione**: assicurare che ciascun componente di programma/processo/utente attivo in un sistema usi le risorse del sistema solo in modi consistenti con le politiche stabilite per il loro uso
 
 ## 31 - Thread in Java
-Per risolvere i problemi di efficienza del modello a processi pesanti (modello ad ambiente locale) è possibile far ricorso al modello a ambiente globale, a processi leggeri (o thread). Un thread è un singolo flusso sequenziale di controllo all'interno di un processo. Un thread (o processo leggero) è un'unità di esecuzione che condivide codice e dati con altri thread ad esso associati
+ambiente globale a processi leggeri -> risolve il problema di efficienza del modello a processi pesanti
+
+Thread -> entità di esecuzione che condivide codice e dati con altri thread associati
 
 Caratteristiche di un thread:
 - NON ha spazio di memoria riservato per dati e heap: tutti i thread sono appartenenti allo stesso processo e condividono il loro spazio di indirizzamento
-- ha stack e program counter privati  
-
-Caratteristiche del modello computazionale multithreaded (modello ad ambiente globale):
-- I thread non hanno uno spazio di indirizzamento riservato: tutti i thread di un processo condividono lo stesso spazio di indirizzamento --> possibilità di definire dati thread-local, sia in Java che in POSIX
-- I thread hanno execution stack e program counter privati
-- La comunicazione fra thread può avvenire direttamente, tramite la condivisione di aree di memoria -> necessità di meccanismi di sincronizzazione
+- ha stack e program counter privati
+- comunicazione fra thread avviene direttamente, tramite la condivisione di aree di memoria (necessità di meccanismi di sincronizzazione)
 
 Il linguaggio Java supporta nativamente il multithreading. Per creare un nuovo thread ci sono due metodi:
-1. Istanziare `Thread` passando come parametro un oggetto ottenuto implementando l'interfaccia `Runnable`. L'interfaccia `Runnable` definisce il solo metodo `run()`, identico a quello della classe `Thread` (che infatti implementa l'interfaccia `Runnable`). L'implementazione della interfaccia `Runnable` consente alle istanza di una classe non derivata da `Thread` di essere eseguite come un thread (purchè venga agganciata a un oggetto di tipo `Thread`)
+1. Istanziare `Thread` passando come parametro un oggetto ottenuto implementando l'interfaccia `Runnable`. L'interfaccia `Runnable` definisce il solo metodo `run()`, identico a quello della classe `Thread` (che infatti implementa l'interfaccia `Runnable`). L'implementazione della interfaccia `Runnable` consente alle istanze di una classe non derivata da `Thread` di essere eseguite come un thread (purchè venga agganciata a un oggetto di tipo `Thread`)
 2. Estendere direttamente la classe `Thread`. La classe `Thread` è una classe (non astratta) attraverso la quale si accede a tutte le principali funzionalità per la gestione dei thread.
 
 ## 32 - Stati dei thread in C
-Gli stati principali di un thread in C, utilizzando la libreria pthreads, sono:
+Gli stati principali di un thread in C, utilizzando la libreria `pthread.h`, sono:
 
 - **Creato**: stato inziale di un thread appena creato. Il thread è stato istanziato e pronto all'esecuzione, ma non è ancora in esecuzione
 - **In esecuzione**: Il thread si trova in questo stato quando la CPU esegue effettivamente il codice del thread.
@@ -377,10 +375,10 @@ Gli stati principali di un thread in C, utilizzando la libreria pthreads, sono:
 - **Terminato**: Il thread ha completato la sua esecuzione e ha terminato con successo
 - **Interrotto**: un thread può essere interrotto in modo forzato tramite `pthread_cancel()`. Quando viene interrotto il thread si trova in uno stato di terminazione, ma è responsabile di liberare le risorse acquisite prima di terminare definitivamente
 
-## 33 - Sicurezza (continua)
+## 33 - Sicurezza
 **Protezione vs sicurezza**
-- La protezione serve per prevenire errori o usi scorretti da parte di processi/utenti che operano nel sistema
-- La sicurezza serve per difendere un sistema dagli attacchi esterni
+- protezione -> serve per prevenire errori o usi scorretti da parte di processi/utenti che operano nel sistema
+- sicurezza -> serve per difendere un sistema dagli attacchi esterni
 
 La sicurezza ha molti aspetti:
 
@@ -388,60 +386,56 @@ La sicurezza ha molti aspetti:
    - Possesso di un oggetto
    - Conoscenza di un segreto
    - Caratteristica personale fisiologica
-   
+
    Problema della mutua autenticazione, si noti che l'autorizzazione serve per specificare le azioni concesse a ogni utente
-   
 - **Riservatezza**: previene la lettura non autorizzata delle informazioni (es. messaggi cifrati. Se intercettati, non rilevano comunque il contenuto)
-
 - **Integrità**: previene la modifica non autorizzata delle informazioni (es. messaggio spedito dal mittente è ricevuto tale e quale dal destinatario)
-
 - **Disponibilità**: garantire in qualunque momento la possibilità di usare le risorse
-
 - **Paternità**: chi esegue un azione non può negare la paternità (per esempio un assegno firmato)
 
 ## 34 - Come bloccare un thread, cosa non si può fare, cosa sono SUSPEND e STOP
-- `suspend()`: blocca l'esecuzione di un thread in attesa di una successiva operazione di resume. Non libera le risorse (neanche i lock) impegnate dal thread (possibilità di deadlock).
+- `suspend()`: blocca l'esecuzione di un thread in attesa di una successiva operazione, non libera le risorse (possibilità di deadlock)
 
-- `stop()`: forza la terminazione dell'esecuzione di un thread. Tutte le risorse utilizzate dal thread vengono immediatamente liberate (lock inclusi), come effetto della propagazione dell'eccezione ThreadDeath.
+- `stop()`: forza la terminazione dell'esecuzione di un thread, libera tutte le risorse
 
-`stop()` e `suspend()` rappresentano azioni brutali sul ciclo di vita di un thread --> rischio di determinare situazioni di deadlock o di inconsistenze:
-- se il thread sospeso aveva acquisito una risorsa in maniera esclusiva, tale risorsa rimane bloccata e non è utilizzabile da altri, perchè il thread sospeso non ha avuto modo di rilasciare il lock su di essa
-- se il thread interrotto stava compiendo un insieme di operazioni su risorse conuni, da eseguirsi idealmente in maniera atomica, l'interruzione può condurre a uno stato inconsistente del Sistema.
+`stop()` e `suspend()` rappresentano azioni brutali sul ciclo di vita di un thread --> rischio di determinare situazioni di deadlock o di inconsistenze
+
+Soluzione: se la `synchronized` non basta si usa la `wait()` per bloccare un thread in attesa di un evento, senza bloccare l'intero processo
 
 ## 35 - Perchè si crea un deadlock?
-Un deadlock si verifica quando due o piu' processi o thread nel sistema si trovano in uno stato di stallo in cui ciascuno attende il rilascio di una risorsa che è detenuta da un altro processo o thread coinvolto nello stesso stallo.
+deadlock -> quando due o più processi o thread nel sistema si trovano in uno stato di stallo in cui ciascuno attende il rilascio di una risorsa che è detenuta da un altro processo o thread coinvolto nello stesso stallo.
 
-Ci sono quattro condizioni affinché si verifichi un deadlock:
+4 condizioni perchè si verifichi un deadlock:
 1. Mutua esclusione
-2. Appossamento e ritenzione di risorse
+2. Possessione e ritenzione di risorse
 3. Prevenzione del rilascio anticipato delle risorse
 4. Attesa circolare
 
 ## 36 - Cos'è l'HARD DISK e il suo accesso
-Gli Hard Disk sono dispositivi particolarmente importanti perchè offrono uno spazio di memoria di massa, utilizzato per il file system ma anche per la memoria virtuale. Un Hard Disk è un dispositivo di memorizzazione di massa non volatile utilizzato per la conservazione di dati.
+hard disk -> dispositivi che offrono spazio di memoria di massa, usato per file system o per memoria virtuale
 
-L'accesso dei dati all'hard disk è il processo di lettura e scrittura dei dati su di esso, quando bisogna accedere ai dati memorizzati su di esso, vengono compiute diverse azioni:
+accesso dei dati all'hard disk -> processo di lettura e scrittura dei dati su di esso
 
-- **Seek (ricerca)**: il braccio di lettura/scrittura si sposta fisicamente sulla posizione desiderata sul disco.
-- **Latency**: una volta che il braccio di lettura/scrittura è posizionato sulla traccia corretta, il disco rigido deve attendere che il settore desiderato passi sotto il braccio. La latenza è influenzata dalla velocità di rotazione del disco
-- **Lettura/scrittura dei dati**: il braccio di lettura/scrittura, quando il settore desiderato è posizionato sotto di esso, legge o scrive i dati magnetici sulla superficie del disco
-- **Trasferimento dati**: Dopo che i dati vengono letti/scritti, vengono trasferiti alla memoria del computer o viceversa.
+Fasi dell'accesso:
+
+1. **Seek (ricerca)**: il braccio di lettura/scrittura si sposta fisicamente sulla posizione desiderata sul disco.
+2. **Latency**: una volta che il braccio di lettura/scrittura è posizionato sulla traccia corretta, il disco rigido deve attendere che il settore desiderato passi sotto il braccio. La latenza è influenzata dalla velocità di rotazione del disco
+3. **Lettura/scrittura dei dati**: il braccio di lettura/scrittura, quando il settore desiderato è posizionato sotto di esso, legge o scrive i dati magnetici sulla superficie del disco
+4. **Trasferimento dati**: Dopo che i dati vengono letti/scritti, vengono trasferiti alla memoria del computer o viceversa.
 
 ## 37 - Capability list
-Nell'ambito della protezione, per ogni dominio viene indicato l'insieme degli oggetti e dei relativi diritti di accesso (capability list).
-
-Spesso un oggetto è identificato dal suo nome fisico o dal suo indirizzo (capability). Il possesso della capability corrisponde all'autorizzazione a eseguire una certa operazione.
-
-Quando un processo opera in un dominio, chiede di esercitare un diritto di accesso su un oggetto. Se ciò è consentito, il processo entra in possesso di una capability per l'oggetto e può eseguire l'operazione.
-
-La lista delle capability non è direttamente accessibile a un processo in esecuzione in quel dominio. è protetta e gestita dal S.O. Non può migrare in qualsiasi spazio direttamente accessibile a un processo utente (non può essere manipolata dai processi).
+- La Capability List è una soluzione al problema della matrice degli accessi troppo grande
+- **Capability list**: lista di coppie <oggetto, diritti> che definiscono le risorse a cui un processo può accedere e le operazioni che può eseguire su di esse
+- La Capability List è protetta e gestita dal SO, non può essere manipolata dai processi
 
 ## 38 - Politiche di Scheduling HDD
-In un sistema concorrente, molti processi accedono al file system, che si trova quindi a gestire molte richieste, che devono essere schedulate (adottano specifiche politiche) opportunamente per ridurre i tempi di attesa:
+Per ridurre i tempi di accesso ai dati si usano politiche di scheduling dell'hard disk:
 
 - **FCFS (First Come First Served)**
 - **SSTF (Shortest Seek Time Firts)** 
 - **SCAN**: si sposta dal primo cilindro all'ultimo e viceversa
+
+![alt text](Images/Politiche_scheduling_HDD.png)
 
 ## 39 - File system in UNIX (4 regioni) e metodi di allocazione dei blocchi in memoria secondaria
 L'organizzazione fisica del file system in UNIX è divisa in 4 regioni:
@@ -457,43 +451,45 @@ L'organizzazione fisica del file system in UNIX è divisa in 4 regioni:
 4. **i-List**: contiene la lista di tutti i descrittori (i-node) dei file normali, direttori e dispositivi presenti nel file system (accesso con l'indice i-number)
 
 ## 40 - Differenze tra SWAPPER e PAGER
-**SWAPPER** (scheduler a medio termine) gestisce i trasferimenti dei processi da:
-- memoria centrale a secondaria (dispositivo di swap): swap out
-- da memoria secondaria a centrale: swap in
-
-**PAGER**, invece, è un modulo del SO che realizza i trasferimenti delle pagine da/verso memoria secondaria/centrale (chiamato anche "swapper di pagine")
+- **Swapper**: gestisce il trasferimento di interi processi da memoria centrale a secondaria (swap out) e viceversa (swap in)
+- **Pager**: gestisce il trasferimento di singole pagine da/verso memoria secondaria/centrale ("swapper di pagine")
 
 ## 41 - Algoritmi di scheduling a breve termine
-**Scheduler a breve termine (o di CPU)**, è quella parte del SO che si occupa della selezione dei processi a cui assegnare la CPU. 
-
-Nei sistemi time sharing, allo scadere di ogni quanto di tempo, SO:
-- decide a quale processo assegnare la CPU (scheduling di CPU)
-- effettua il cambio di contesto (context switch)
-
-Lo scheduler a breve termine gestisce:
-- la coda dei processi pronti: contiene i PCB dei processi che si trovano in stato Ready
-- Altre strutture necessarie:
-   - code di waiting (una per ogni tipo di attesa): ognuna di esse contiene i PCB dei processi waiting in attesa di un evento del tipo associato in coda.
+- **FCFS (First Come First Served)**: coda dei processi pronti gestita come FIFO, processi schedulati secondo l'ordine di arrivo
+- **SJF (Shortest Job First)**: schedula il processo con il tempo di esecuzione più breve (difficile stimare il tempo di esecuzione)
+- **Round Robin**: assegna un tempo di CPU fisso a ciascun processo in modo ciclico e gestisce la ready queue come FIFO in modo che ogni processo usa la CPU per un $\Delta t$ prefissato
+- **Priority Scheduling**: assegna la CPU al processo con la priorità più alta e con il tempo che:
+   - aumenta se il processo è nella ready queue la priorità
+   - diminuisce se il processo è in esecuzione la priorità
+- **MLFQ (Multi-Level Feedback Queue)**:
+   - scheduling in Unix
+   - ci sono più livelli di priorità
+   - ad ogni livello è associata una coda, gestita Round Robin
+   - ogni secondo viene rilocata la priorità di ogni processo
+   - priorità del processo diminuisce all'aumentare del tempo di CPU usato
+   - l'utente può modificare la priorità di un processo con comando `nice`
+- **Java Thread Scheduling**: usa un algoritmo di scheduling a priorità (FCFS con stessa priorità)
 
 ## 42 - i-node  
-L'i-node è il descrittore del file. Tra gli attributi dell'i-node vi sono:
-
-- tipo di file
-   - ordinario
-   - direttorio 
-   - file speciale, per i dispositivi
-- proprietario, gruppo (user-id, group-id)
-- dimensione
-- data
-- 12 bit di protezione  
-- numero di link
-- 13-15 indirizzi di blocchi (a seconda della realizzazione)
-
-Nell'i-node sono contenuti puntatori a blocchi (ad esempio 13), del quali:
-- i primi 10 indirizzi riferiscono blocchi di dati (indirizzamento diretto)
-- 11esimo indirizzo: indirizzo di un blocco contenente a sua volta indirizzi di blocchi dati (primo livello di indirettezza)
-- 12esimo indirizzo: secondo livello di indirettezza
-- 13esimo indirizzo: terzo livello di indirettezza
+L'i-node è il descrittore del file.  
+- attributi dell'i-node vi sono:
+   - tipo di file
+      - ordinario
+      - direttorio 
+      - file speciale, per i dispositivi
+   - proprietario, gruppo (user-id, group-id)
+   - dimensione
+   - data
+   - 12 bit di protezione  
+   - numero di link
+   - 13-15 indirizzi di blocchi (a seconda della realizzazione)
+- indirizzamento i-node (contenuti puntatori a blocchi):
+   - primi 10 indirizzi -> dati
+   - 11° indirizzo -> altri indirizzi di blocchi di dati (1° livello indirettezza)
+   - 12° indirizzo -> 2° livello indirettezza
+   - 13° indirizzo -> 3° livello indirettezza
 
 ## 43 - Utilizzo dell'export
-L'uso della `export` è importante per rendere variabili d'ambiente o altre impostazioni disponibili per i processi figli o per l'ambiente delle shell successive. Senza l'uso della `export`, le variabili d'ambiente definite in uno script shell non sarebbero visibili al di fuori dello script stesso o dei suoi processi figli. Ad esempio, se si vuole impostare il PATH --> `export PATH=$PATH:`\`pwd`
+L'uso della `export` è importante per rendere le variabili d'ambiente disponibili per i processi figli o per l'ambiente delle shell successive.  
+Senza l'uso della `export`, le variabili d'ambiente definite in uno script shell non sarebbero visibili al di fuori dello script stesso o dei suoi processi figli.  
+Esempio: se si vuole impostare il PATH --> `export PATH=$PATH:`\`pwd`
