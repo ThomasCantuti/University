@@ -5,8 +5,15 @@ Un processo leggero è un'entità di esecuzione che condivide codice e dati con 
 Un processo pesante è una task con un solo thread (task = insieme di thread che riferiscono lo stesso codice e gli stessi dati)
 
 ## 2 - Creazione di un thread, le sue fasi, ciclo di vita
-Un processo padre può richiedere la creazione di un nuovo processo figlio creando gerarchie di processi. (vedere domanda 4)
+Un processo padre può richiedere la creazione di un nuovo processo figlio creando gerarchie di processi.
 
+Ciclo di vita di un thead:
+- **New Thread**: variabili allocate e inizializzate
+- **Runnable**: thread in esecuzione
+- **not Runnable**: thread non in esecuzione, in attesa di un operazione di I/O o sospeso con `sleep()` o `wait()`
+- **Dead**: thread terminato con `stop()` in modo safety
+
+![alt text](Images/Ciclo_vita_thread.png)
 
 ## 3 - Differenze tra fork ed exec, cosa accade in entrambe
 **Fork** -> consente a un processo di generare un processo figlio (padre e figlio condividono lo stesso codice, il figlio eredita una copia dei dati del padre).  
@@ -102,7 +109,7 @@ Quando un processo riceve un segnale, può gestirlo in 3 modi diversi:
 - **Pipe**: è un canale di comunicazione tra processi della stessa gerarchia:
    - **unidirezionale**: accessibile mediante due estremi distinti, uno di lettura e uno di scrittura 
    - **molti-a-molti**: piu' processi possono spedire messaggi attraverso la stessa pipe, piu' processi possono ricevere messaggi attraverso la stessa pipe
-   - **capacità limitata**: in grado di gestire l'accodamento di un numero limitato d messaggi, gestiti in modo FIFO.
+   - **capacità limitata**: in grado di gestire l'accodamento di un numero limitato di messaggi, gestiti in modo FIFO.
 
 ![alt text](Images/pipe.png)
 
