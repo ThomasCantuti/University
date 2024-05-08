@@ -127,14 +127,13 @@ I file sono implementati dal sistema operativo con tecniche diverse per ciò che
 
 ## 13 - Immagine di un processo (PCB)
 **PCB (process control block)**: struttura dati associata ad ogni processo, contiene tutte le informazioni relative al processo:
-- Stato del processo
-- Program counter
-- Contenuto dei registri di CPU (SP, IR, accumulatori, ...)
-- Informazioni di scheduling (priorità, puntatori alle code, ...)
-- Informazioni per gestore di memoria (registri base, limite, ...)
-- Informazioni relative all’I/O (risorse allocate, file aperti, ...)
-- Informazioni di accounting (tempo di CPU utilizzato, ...)
-- ...
+- Stato del processo (init, ready, running, waiting, terminated)
+- Puntatore alla user structure
+- PID
+- Puntatore all'elemento della Text Table associata al codice del processo
+- Informazioni di scheduling (priorità processo, tempo di CPU usato, ...)
+- Riferimento al PID del processo padre
+- Puntatori alle varie aree dati e stack associati al processo
 
 ## 14 - Scelta della pagina vittima
 Se pagina in memoria centrale -> nessuna operazione  
@@ -288,13 +287,15 @@ Sistema batch -> insieme di programmi (job) da eseguire in modo sequenziale con 
 
 ## 24 - Cosa succede all'apertura di un file e metodi di accesso (in generale e UNIX)
 - In generale aprendo un file:
-   - introdotto un nuovo elemento nella tabella dei file aperti
+   - inserito un nuovo elemento nella tabella dei file aperti
    - eventuale memory mapping del file (i file aperti vengono temporaneamente copiati in memoria centrale --> accessi piu' veloci)
 
 - In UNIX, l'apertura di un file provoca:
-   - inserimento di un elemento (come file descriptor) nella prima posizione libera della tabella dei file aperti del processo
-   - inserimento di un nuovo record nella tabella dei file aperti di sistema
-   - la copia dell'i-node nella tabella dei file attivi (solo se il file non è già in uso)
+   - user structure contiene la tabella dei file aperti del processo
+   - ogni elemento della tabella è un file aperto dal processo (individuato con indice -> file descriptor)
+   - inserito un elemento nella prima posizione libera della tabella dei file aperti del processo
+   - inserito un nuovo record nella tabella dei file aperti di sistema
+   - copia l'i-node nella tabella dei file attivi se il file non è già in uso
 
 Metodi di accesso:
 - read
