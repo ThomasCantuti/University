@@ -151,7 +151,7 @@ Se pagina non in memoria centrale (mem. secondaria o invalida) -> page fault
 **Problema**: sovrallocazione in memoria centrale in seguito al page fault  
 **Soluzione**: algoritmi di sostituzione delle pagine vittime con le pagine nuove da caricare
 
-**Algoritmi di sostituzione (esamina dirty bit):**
+**Algoritmi di sostituzione (esamina dirty bit -> se pagina modificata o no):**
 
 - **LFU (Least Frequently Used)**:
    - sostituzione della pagina usata meno frequentemente (tempo prefissato)
