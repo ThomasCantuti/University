@@ -159,15 +159,13 @@ void swapValue(int *arr, int i, int j) {
 int partition(int *arr, int start, int end) {
     int x = arr[end];
     int i = start - 1;
-    int j;
-    for (j = start; j <= end - 1; j ++) {
+    for (int j = start; j <= end - 1; j ++) {
         if (arr[j] <= x) {
-            i ++;
-            swapValue(arr, i, j);
+            swapValue(arr, ++i, j);
         }
     }
-    swapValue(arr, i + 1, end);
-    return i ++;
+    swapValue(arr, ++i, end);
+    return i;
 }
 
 /**
@@ -185,6 +183,7 @@ void quick_sort(int *arr, int start, int end) {
  * Interfaccia per una generica funzione di ordinamento,
  * che ha come argomenti (in ordine):
  * 1) il riferimento al primo elemento di un array
+ * 2) l'inizio del range da ordinare nell'array
  * 3) la fine del range da ordinare nell'array
  */
 typedef void (*algo_ptr)(int*, int, int);
@@ -228,10 +227,12 @@ double run(int size, int repetitions, algo_ptr algorithm) {
         algorithm(arr, 0, size-1);
         end = clock();
 
+        /*
         for (int z = 0; z < size; z ++) {
             printf("%d ", arr[z]);
         }
         printf("\n");
+        */
 
         if (check(arr, size) != 1) {
             printf("ERRORE: L'ordinamento è scorretto.\n");
