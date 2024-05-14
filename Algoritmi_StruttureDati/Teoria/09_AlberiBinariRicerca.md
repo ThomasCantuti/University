@@ -1,6 +1,6 @@
 # Alberi Binari di Ricerca (BST)
 Gli alberi binari di ricerca (Binary Search Trees, BST) sono una struttura dati dinamica, sparsa e basata sull'ordinamento.  
-Poichè la struttura è basata sull'ordinamento delle chiavi possiamo effetuare le operazioni di: inserimento, cancellazione, ricerca, minimo, massimo, successore e predecessore.
+Poichè la struttura è basata sull'ordinamento delle chiavi possiamo effettuare le operazioni di: inserimento, cancellazione, ricerca, minimo, massimo, successore e predecessore.
 
 ## Regole per la definizione di un BST (proprietà BST)
 Per definire un BST si devono seguire obbligatoriamente le seguenti regole per ogni nodo (proprietà BST):
