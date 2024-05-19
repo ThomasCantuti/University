@@ -7,7 +7,7 @@ Un grafo è una tripla G = (V, E, W) dove:
 - E $\sube$ V x V = insieme di archi
 - W: E $\to$ R = funzione che assegna un peso ad ogni arco
 
-Se da un vertice u si può raggiungere un vertice v -> u ⇝ v
+Se da un vertice u si può raggiungere un vertice v --> u ⇝ v
 
 Gradi di un grafo:
 - **Grado entrante**: numero di archi entranti in un vertice
@@ -32,8 +32,7 @@ Rappresentazione di un grafo:
 ![alt text](images/12_01.png)
 
 ## Trattamento di un algoritmo su grafo
-- `u.att` = attributo `att` associato al vertice u
-- `v` = vertice
+- `u.att` = indica un attributo `att` associato con un vertice v (es. colore, tempo di risposta, ...)
 
 Per calcolare le complessità bisogna tenere conto di E e V presi singolarmente e nei casi peggiori si avrà:
 - $\Theta(|V| + |E|)$
