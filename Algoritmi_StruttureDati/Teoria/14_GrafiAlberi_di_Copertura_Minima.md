@@ -115,3 +115,4 @@ Un sottoinsieme S di V è **T-connesso** se (considerando solo archi in T):
 - è un albero
 - è massimale
 
+![alt text](images/14_03.png)
