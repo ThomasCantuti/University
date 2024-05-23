@@ -32,7 +32,7 @@ Esempi di utilizzo:
 
 ## Algoritmo di Prim
 Parte da un vertice qualsiasi e ad ogni passo aggiunge un arco (ed un vertice) in modo che l'arco aggiunto sia un arco sicuro.  
-È necessaria una coda di priorità come struttura dati per mantenere gli archi in ordine di peso.
+**Struttura dati necessaria**: coda di priorità per mantenere gli archi in ordine di peso.
 
 Ogni vertice di G ha due campi in più:
 - `v.key` = peso minimo, inizializzato a ∞, degli archi che collegano qualche vertice di T con v
@@ -116,3 +116,54 @@ Un sottoinsieme S di V è **T-connesso** se (considerando solo archi in T):
 - è massimale
 
 ![alt text](images/14_03.png)
+
+**Taglio generalizzato**:  
+Componenti T-connesse di V: S1, S2, ..., Sn  
+La tupla (S1, S2, ..., Sn) generalizza il concetto di taglio  
+Un arco (u, v) attraversa il taglio (S1, S2, ..., Sn) se u $\in$ Si e v $\in$ Sj con i $\neq$ j quindi se u e v appartengono a componenti diverse T-connesse
+
+**Struttura dati necessaria**: insiemi disgiunti per garantire che un arco scelto attraversi il taglio  
+Operazioni:
+- MakeSet: costruisce un nuovo insieme (una componente T-connessa)
+- FindSet: stabilisce se due elementi appartengono allo stesso insieme (se appartengono alla stessa componente T-connessa)
+- Union: unisce due insiemi in uno solo (unisce due componenti T-connesse in una sola -> conseguenza di aver scelto un arco)
+
+```pseudocode
+proc MST-Kruskal (G, w) {
+    T = vuoto
+    for (v in G.V) 
+        MakeSet(v)
+    // ordina gli archi di G.E in ordine non decrescente di peso
+    SortNoDecreasing(G.E)
+    for ( (u, v) in G.E - in order) {
+        if (FindSet(u) ≠ FindSet(v)) {
+            T = T ∪ {(u, v)}
+            Union(u, v)
+        }
+    }
+    return T
+}
+```
+
+![alt text](images/14_04.png)
+
+**Correttezza**: con il primo MakeSet vengono già creati gli insiemi S1, S2, ..., S|V| e costituiscono un taglio generalizzato, poi si dimostra l'invariante:  
+**Invariante**: ogni arco che viene aggiunto nel ciclo è un arco sicuro
+- **caso base**: poichè gli archi sono prima ordinati il primo arco scelto è di peso minimo e sicuramente attraversa il taglio
+- **caso induttivo**: si considerano due vertici (u, v) con rappresentanti diversi:
+    - se FindSet dei due vertici è diverso, essi devono avere il rappresentante diverso per creare l'arco
+    - se FindSet dei due vertici è uguale, i due vertici sono nello stesso insieme e l'arco non viene creato
+
+**Complessità**: si distingue tra grafi densi e grafi sparsi e molto dipende dalle operazioni di insiemi disgiunti:
+- grafi densi:
+    - inizializzazione: $O(1)$
+    - ordinamento: $\Theta(|E| \cdot \log(|E|)) = \Theta(|V|^2 \cdot \log(|E|)) = \Theta(|V|^2 \cdot \log(|V|))$
+    - MakeSet: $O(|V|)$
+    - diverse operazioni: $O(|V| + |E|)$
+    - totale: $\Theta(|V|^2 \cdot \log(|V|))$
+- grafi sparsi:
+    - inizializzazione: $O(1)$
+    - ordinamento: $\Theta(|E| \cdot \log(|E|))$
+    - MakeSet: $O(|V|)$
+    - diverse operazioni: $O(|V| + |E|)$
+    - totale: $\Theta(|E| \cdot \log(|E|))$
