@@ -83,9 +83,9 @@ proc BellmanFord (G, s) {
     - **caso induttivo**: dopo `i-1` iterazioni, si ha come ipotesi induttiva `v[i-1].d` = $\delta$(s, v[i-1]). Poichè all'`i-esima` iterazione si rilassano tutti gli archi, si rilassa anche l'arco (v[i-1], v[i]) ma dopo ogni rilassamento il valore di `v[i].d` non può cambiare perchè è già minimo
 - se G ha un ciclo negativo raggiungibile da s -> l'algoritmo restituisce `false`
 
-### Caso di percorsi minimi in grafi aciclici
-In questo caso si può usare un'ottimizzazione dell'algoritmo di Bellman-Ford per i grafi aciclici ovvero DAGShortestPath.  
-Questo prevede che un grafo aciclico può essere ordinato topologicamente (se un precede v in un percorso minimo allora u precede v topologicamente)
+## Percorsi minimi in grafi aciclici
+In questo caso si può usare un'ottimizzazione dell'algoritmo di Bellman-Ford **per i grafi aciclici** ovvero DAGShortestPath.  
+Questo prevede che un grafo aciclico può essere ordinato topologicamente (se precede v in un percorso minimo allora u precede v topologicamente)
 
 ```pseudocode
 proc DAGShortestPath (G, s) {
@@ -98,3 +98,60 @@ proc DAGShortestPath (G, s) {
     }
 }
 ```
+
+**Complessità**: si può ricorrere all'analisi aggregata:
+- ordinamento topologico: $\Theta(|V| + |E|)$
+- rilassamento: $\Theta(|V| + |E|)$ -> V volte perchè il primo for viene eseguito |V| volte mentre E volte il secondo for perchè si scorrono al massimo tutti gli archi
+- totale: $\Theta(|V| + |E|)$
+
+**Correttezza**:
+- **Invariante**: v deve essere raggiungibile da s, per un percorso minimo qualsiasi `s = v[0], v[1], ..., v[k] = v`, allora dopo l'`i`-esima escuzione del ciclo, si ha `v[i].d` = $\delta$(s, v[i])
+- **caso base**: `s = v` e `v.d = 0` -> s non può raggiungere sè stesso quindi nessun arco da rilassare
+- **caso induttivo**: siccome i vertici sono in ordine topologico, si ha che `v[i]` precede `v[j]` topologicamente se `i < j`. Quindi dopo il rilassamento di tutti gli archi uscenti da `v[i]` si ha che `v[j].d` = $\delta$(s, v[j]) perchè `v[i]` precede `v[j]` topologicamente
+
+## Algoritmo di Dijkstra
+Anche questo algoritmo è un'ottimizzazione dell'algoritmo di Bellman-Ford e prevede che **tutti i pesi degli archi siano tutti positivi o zero**.
+
+```pseudocode
+proc Dijkstra (G, s) {
+    InizializeSingleSource(G, s)
+    // insieme dei vertici per cui la stima è già corretta
+    S = ∅
+    // coda di priorità (sulla stima di distanza)
+    Q = G.V
+    while (Q ≠ ∅) {
+        u = ExtractMin(Q)
+        S = S ∪ {u}
+        for (v in G.Adj[u]) {
+            if (v in Q)
+                Relax(u, v, W) // -> DecreaseKey(Q, v)
+        }
+    }
+}
+```
+
+![alt text](images/15_03.png)
+
+Come in MSTPrim, l'operazione di `Relax(u, v, W)` in realtà "nasconde" un `DecreaseKey(Q, v)` durante il cambio del valore di una chiave `v.d`.  
+Questa operazione si applica sol ai vertici ancora nella coda Q.  
+Dopo `InitializeSingleSource` il vertice `s` è il primo ad essere estratto dalla coda Q poichè `s.d = 0`.  
+Nessun operazione inserisce elementi in Q, quindi il while viene eseguito $|V|$ volte.
+
+**Correttezza**:
+- **Invariante**: all'inizio di ogni iterazione del while (quindi dopo ogni estrazione `u = ExtractMin(Q)`) si ha che `v.d` = $\delta$(s, v) per ogni `v` $\in$ S
+- **caso base**: all'inizio `S = ∅` e `Q = G.V` -> `s.d = 0` = $\delta$(s, s)
+- **caso induttivo**: l'ipotesi di non avere pesi negativi permette di affermare che se si ha un percorso minimo tra `s` e `u` e si aggiunge l'arco (u, v) allora si ha un percorso minimo tra `s` e `v` poichè tutti gli elementi precedenti sono già stati rilassati
+
+**Complessità**: come per MSTPrim, si può implementare con array o heap binarie e si possono considerare i due casi di grafi densi e sparsi:
+- **se grafo denso -> si usa una coda senza struttura**: 
+    - inizializzazione: $\Theta(|V|)$
+    - costruzione coda: $\Theta(|V|)$
+    - estrazione del minimo: $\Theta(|V|^2)$
+    - decremento: $\Theta(|E|) = \Theta(|V|^2)$
+    - totale: $\Theta(|V|^2)$
+- **se grafo sparso -> si usa una heap binaria**:
+    - inizializzazione: $\Theta(|V|)$
+    - costruzione coda: $\Theta(|V|)$
+    - estrazione del minimo: $\Theta(|V| \cdot \log(|V|))$
+    - decremento: $\Theta(|E| \cdot \log(|V|))$
+    - totale: $\Theta(|E| \cdot \log(|V|))$
