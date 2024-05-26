@@ -99,6 +99,8 @@ proc DAGShortestPath (G, s) {
 }
 ```
 
+![alt text](images/15_02.png)
+
 **Complessità**: si può ricorrere all'analisi aggregata:
 - ordinamento topologico: $\Theta(|V| + |E|)$
 - rilassamento: $\Theta(|V| + |E|)$ -> V volte perchè il primo for viene eseguito |V| volte mentre E volte il secondo for perchè si scorrono al massimo tutti gli archi
