@@ -3,10 +3,10 @@
 Sono una struttura dati astratta, parzialmente dinamica, parzialmente sparsa, non basata sull'ordinamento  
 Hanno un'applicazione fondamnetale in uno degli algoritmi su grafi
 
-Caratteristica principale -> operazioni ad esso associate sono:
-- **MAKE-SET()**: crea un nuovo insieme disgiunto
-- **UNION()**: unisce due insiemi disgiunti in uno solo
-- **FIND-SET()**: trova il rappresentante dell'insieme al quale appartiene l'elemento
+Caratteristica principale -> operazioni ad esso associate che sono:
+- `MakeSet()`: crea un nuovo insieme disgiunto
+- `Union()`: unisce due insiemi disgiunti in uno solo
+- `FindSet()`: trova il rappresentante dell'insieme al quale appartiene l'elemento
 
 Ogni insieme è dotato di un elemento rappresentativo, detto rappresentante (un elemento qualsiasi dell'insieme)  
 Gli insiemi crescono in due modi:
@@ -15,17 +15,8 @@ Gli insiemi crescono in due modi:
 
 ## Visualizzazione astratta di un insieme di insiemi disgiunti e la sua evoluzione
 Esempio:
-1. Insieme iniziale
 
 ![alt text](images/08_00.png)
-
-2. Dopo un'operazione di unione (es. union(a, b))
-
-![alt text](images/08_01.png)
-
-3. Dopo un certo numero di unioni potrei essere arrivato qui
-
-![alt text](images/08_02.png)
 
 Esempio numerico:  
 $S_1 = \{5, 12, 50\}$  
@@ -42,6 +33,7 @@ S $\in S$ è una lista con:
 Ogni elemento x è dotato di:
 - `x.next` -> punta all'elemento successivo
 - `x.head` -> punta all'insieme S che lo contiene
+- `x.key` -> chiave dell'elemento
 
 ![alt text](images/08_03.png)
 
@@ -53,16 +45,16 @@ Esempio:
 
 ![alt text](images/08_05.png)
 
-- MakeSet(x) -> crea nuovo oggetto S (`S.head = S.tail = x`) quindi costa $O(1)$
+- `MakeSet(x)` -> crea nuovo oggetto S (`S.head = S.tail = x`) quindi costa $O(1)$
 - Rappresentante di ogni S -> `S.head`
-- FindSet(x) -> dato x, si cerca prima x.head poi x.head.head (restituisce il rappresentante dell'insieme di x) -> $O(1)$
-- Union(x, y) -> unisce due insiemi in uno già esistente ed eliminando l'altro (es. Union(5, 7) -> $S_1 = \{5, 12, 50, 7\}, S_3 = \{13, 2\}$) -> $\Theta(n)$
+- `FindSet(x)` -> dato x, si cerca prima `x.head` poi `x.head.head` (restituisce il rappresentante dell'insieme di x) -> $O(1)$
+- `Union(x, y)` -> unisce due insiemi in uno già esistente ed eliminando l'altro (es. Union(5, 7) -> $S_1 = \{5, 12, 50, 7\}, S_3 = \{13, 2\}$) -> $\Theta(n)$
 
 ![alt text](images/08_06.png)
 
 ![alt text](images/08_07.png)
 
-### Codici delle operazioni
+### Operazioni
 ```pseudocode
 proc MakeSet (calS, S, x, i) {
     calS[i].set = x
@@ -97,17 +89,17 @@ proc Union (x, y) {
 ### Complessità -> Analisi ammortizzata
 **Analisi ammortizzata** -> calcolare il costo medio di un'operazione qualsiasi in un gruppo di operazioni piuttosto che il costo per operazione
 
-Nell'implementazione con liste il caso peggiore si ha quando le operazioni iniziano con n MakeSet seguite da n-m Union nel peggior ordine possibile
+Nell'implementazione con liste il caso peggiore si ha quando le operazioni iniziano con n MakeSet seguite da $n-m$ Union nel peggior ordine possibile
 
 ![alt text](images/08_08.png)
 
-la prima union costa 1, la 2 costa 2, ..., fino all'ultima che costa n -> totale è $\Theta(n^2)$
+la prima union costa 1, la seconda costa 2, ..., fino all'ultima che costa n -> totale è $\Theta(n^2)$
 
 Sapendo che m operazioni di cui n sono MakeSet() danno il caso peggiore nella situazione vista prima e che in quella situazione, $m = 2\cdot n-1 = \Theta(n)$, il costo medio ammortizzato di un'operazione è $\frac{\Theta(n^2)}{\Theta(n)} = \Theta(n)$
 
 ### Differenza tra analisi costo medio e costo ammortizzato
 Nell'analisi di costo ammortizzato non ci sono considerazioni probabilistiche, calcola il costo medio di ogni operazione nei casi ottimo, medio, pessimo del gruppo di operazioni in questione.  
-Si usa in questo caso poichè le operazioni su insiemi disgiunti sono tali che si influenzano a vicenda
+Si usa in questo caso perchè le operazioni su insiemi disgiunti sono tali che si influenzano a vicenda
 
 ## Insiemi disgiunti: liste con unione pesata (strategia o euristica)
 **Euristica** -> strategia migliorativa e non un'implementazione diversa, ha un effetto soprattutto dal punto di vista pratico  
@@ -167,27 +159,12 @@ Il metodo più efficiente per implementare insiemi disgiunti è usare le foreste
 In questa rappresentazione gli elementi vivono come prima, nelle strutture S, e sono puntati in un albero, mentre i rank sono i limiti superiori dell'altezza dell'albero.
 
 Rappresentazione:
-- nodo x (elemento che non ha puntatore ai figli) contiene:
-    - x.p -> padre
-    - x.rank -> rango
+- nodo `x` (elemento che non ha puntatore ai figli) contiene:
+    - `x.p` -> padre
+    - `x.rank` -> rango
 - alberi (insiemi disgiunti) k-ari e formano una foresta `calS`
 
 ### Operazioni
-#### MakeSet(x)
-Crea un nuovo albero di altezza massima 0 (`rank = 0`) con il solo nodo x
-
-#### FindSet(x)
-Scorrendo i puntatori verso l'alto li aggiorna appiattendo il ramo al quale appartiene il rappresentante e lo restituisce
-
-![alt text](images/08_11.png)
-
-#### Union(x, y)
-1. si trovano i rappresentanti degli elementi (x, y) usati come indici
-2. si sceglie l'elemento di rango inferiore e si aggiorna solo il padre (si fa puntare il rappresentante con rango inferiore al rappresentante con rango superiore)
-
-![alt text](images/08_12.png)
-
-### Codici delle operazioni
 ```pseudocode
 proc MakeSet (x) {
     x.p = x
@@ -218,6 +195,18 @@ proc Union (x, y) {
     }
 }
 ```
+
+`MakeSet(x)` -> crea un nuovo albero di altezza massima 0 (`rank = 0`) con il solo nodo x
+
+`FindSet(x)`-> scorrendo i puntatori verso l'alto li aggiorna appiattendo il ramo al quale appartiene il rappresentante e lo restituisce
+
+![alt text](images/08_11.png)
+
+`Union(x)` -> unisce due alberi in uno solo:
+1. si trovano i rappresentanti degli elementi (x, y) usati come indici
+2. si sceglie l'elemento di rango inferiore e si aggiorna solo il padre (si fa puntare il rappresentante con rango inferiore al rappresentante con rango superiore)
+
+![alt text](images/08_12.png)
 
 ### Complessità
 La complessità di $m$ operazioni si vede con $O(m \cdot \alpha(n))$ con $\alpha(n)$ funzione inversa di Ackermann che cresce lentamente (tanto da essere costante) quindi il costo è $O(m)$
