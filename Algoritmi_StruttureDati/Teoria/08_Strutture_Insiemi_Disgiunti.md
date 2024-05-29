@@ -162,6 +162,7 @@ Rappresentazione:
 - nodo `x` (elemento che non ha puntatore ai figli) contiene:
     - `x.p` -> padre
     - `x.rank` -> rango
+    - `x.key` -> chiave
 - alberi (insiemi disgiunti) k-ari e formano una foresta `calS`
 
 ### Operazioni
