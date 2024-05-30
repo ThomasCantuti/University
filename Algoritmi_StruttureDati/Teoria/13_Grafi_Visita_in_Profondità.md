@@ -70,7 +70,7 @@ Ogni volta che `DepthVisit(G, u)` viene chiamata in `DepthFirstSearch(G)` si sco
 - Complessità totale: $\Theta(|V| + |E|)$
 
 ## Grafi diretti: cicli
-Ciclo: percorso di vertici `v[1], v[2], ..., v[k]` t.c $\forall$ `i` $\exist$ l'arco (v[i], v[i+1]) e v[1] = v[k]
+Ciclo: percorso di vertici `v[1], v[2], ..., v[k]` t.c $\forall$ `i` $\exists$ l'arco (v[i], v[i+1]) e v[1] = v[k]
 
 Grafo diretto senza cicli = DAG (Directed Acyclic Graph)
 
