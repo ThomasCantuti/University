@@ -11,6 +11,7 @@ typedef struct Graph {
     Node** adjacencyList;
 } Graph;
 
+// Funzione che crea il grafo
 Graph* createGraph(int numVertices) {
     Graph* graph = (Graph*)malloc(sizeof(Graph));
     graph->numVertices = numVertices;
@@ -23,22 +24,10 @@ Graph* createGraph(int numVertices) {
     return graph;
 }
 
-void addEdge(Graph* graph, int src, int dest) {
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->data = dest;
-    newNode->next = graph->adjacencyList[src];
-    graph->adjacencyList[src] = newNode;
-    
-    newNode = (Node*)malloc(sizeof(Node));
-    newNode->data = src;
-    newNode->next = graph->adjacencyList[dest];
-    graph->adjacencyList[dest] = newNode;
-}
-
+// Verifica se un vertice è presente nel grafo
 int isPresent(Graph* graph, int vertex) {
     int foundVertex = 0;
     
-    // Check if the vertex is present in the graph
     for (int i = 0; i < graph->numVertices; i++) {
         Node* currentNode = graph->adjacencyList[i];
         while (currentNode != NULL) {
@@ -54,19 +43,20 @@ int isPresent(Graph* graph, int vertex) {
     }
 }
 
+// Connette due vertici se uno dei due è presente, altrimenti crea la connessione
 void connectVertices(Graph* graph, int vertex1, int vertex2) {
     int foundVertex1 = 0;
     int foundVertex2 = 0;
     
-    // Check if vertex1 is present in the graph
+    // Verifica se vertice 1 è nel grafo
     if (isPresent(graph, vertex1))
         foundVertex1 = 1;
     
-    // Check if vertex2 is present in the graph
+    // Verifica se vertice 2 è nel grafo
     if (isPresent(graph, vertex2))
         foundVertex2 = 1;
     
-    // Connect the vertices if one of them is present, otherwise create the connection
+    // Connette i vertici se uno dei due è presente, altrimenti crea la connessione
     if (foundVertex1) {
         Node* newNode = (Node*)malloc(sizeof(Node));
         newNode->data = vertex2;
@@ -90,43 +80,42 @@ void connectVertices(Graph* graph, int vertex1, int vertex2) {
     }
 }
 
-int hasCycle(Graph* graph) {
+// Conta il numero di cicli nel grafo
+int countCycles(Graph* graph) {
     int* visited = (int*)malloc(graph->numVertices * sizeof(int));
     for (int i = 0; i < graph->numVertices; i++) {
         visited[i] = 0;
     }
     
+    int count = 0;
     for (int i = 0; i < graph->numVertices; i++) {
         if (!visited[i]) {
-            if (hasCycleUtil(graph, i, -1, visited)) {
-                free(visited);
-                return 1;
-            }
+            count += countCyclesUtil(graph, i, -1, visited);
         }
     }
     
     free(visited);
-    return 0;
+    return count;
 }
 
-int hasCycleUtil(Graph* graph, int vertex, int parent, int* visited) {
+int countCyclesUtil(Graph* graph, int vertex, int parent, int* visited) {
     visited[vertex] = 1;
     
     Node* currentNode = graph->adjacencyList[vertex];
+    int count = 0;
     while (currentNode != NULL) {
         if (!visited[currentNode->data]) {
-            if (hasCycleUtil(graph, currentNode->data, vertex, visited)) {
-                return 1;
-            }
+            count += countCyclesUtil(graph, currentNode->data, vertex, visited);
         } else if (currentNode->data != parent) {
-            return 1;
+            count++;
         }
         currentNode = currentNode->next;
     }
     
-    return 0;
+    return count;
 }
 
+// Soluzione
 void pugilato (FILE *in_file, FILE *out_file) {
     int N, M;
     int v1, v2;
@@ -140,12 +129,11 @@ void pugilato (FILE *in_file, FILE *out_file) {
             fscanf(in_file, "%d %d", &v1, &v2);
             connectVertices(graph, v1, v2);
         }
-        if (hasCycle(graph))
+        if (countCycles(graph) % 2 != 0)
             fprintf(out_file, "FALSE");
         else
             fprintf(out_file, "TRUE");
     }
-    
 }
 
 int main() {
