@@ -86,7 +86,7 @@ void pianeta_spritz(FILE *in_file, FILE *out_file) {
 
     for (int i = 0; i < Q; i ++) {
         fscanf(in_file, "%u", &raggio);
-        fprintf(out_file, "%d\n", recursiveBinarySearch (distanza, 0, N, raggio));
+        fprintf(out_file, "%d\n", recursiveBinarySearch (distanza, 0, N - 1, raggio));
     }
 
     free(distanza);
