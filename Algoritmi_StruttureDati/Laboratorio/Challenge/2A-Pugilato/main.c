@@ -80,39 +80,63 @@ void connectVertices(Graph* graph, int vertex1, int vertex2) {
     }
 }
 
-// Conta il numero di cicli nel grafo
+// Conta il numero di archi nei cicli del grafo
 int countCycles(Graph* graph) {
-    int* visited = (int*)malloc(graph->numVertices * sizeof(int));
+    int count = 0;
+    
+    for (int i = 0; i < graph->numVertices; i++) {
+        Node* currentNode = graph->adjacencyList[i];
+        while (currentNode != NULL) {
+            int startVertex = i;
+            int currentVertex = currentNode->data;
+            
+            // Verifica se il ciclo è chiuso
+            if (isCycleClosed(graph, startVertex, currentVertex)) {
+                count++;
+            }
+            
+            currentNode = currentNode->next;
+        }
+    }
+    
+    return count;
+}
+
+// Funzione ausiliaria per verificare se un ciclo è chiuso
+int isCycleClosed(Graph* graph, int startVertex, int currentVertex) {
+    int visited[graph->numVertices];
     for (int i = 0; i < graph->numVertices; i++) {
         visited[i] = 0;
     }
     
-    int count = 0;
-    for (int i = 0; i < graph->numVertices; i++) {
-        if (!visited[i]) {
-            count += countCyclesUtil(graph, i, -1, visited);
-        }
-    }
+    visited[currentVertex] = 1;
     
-    free(visited);
-    return count;
+    return isCycleClosedUtil(graph, startVertex, currentVertex, visited);
 }
 
-int countCyclesUtil(Graph* graph, int vertex, int parent, int* visited) {
-    visited[vertex] = 1;
-    
-    Node* currentNode = graph->adjacencyList[vertex];
-    int count = 0;
+// Funzione ausiliaria ricorsiva per verificare se un ciclo è chiuso
+int isCycleClosedUtil(Graph* graph, int startVertex, int currentVertex, int visited[]) {
+    Node* currentNode = graph->adjacencyList[currentVertex];
     while (currentNode != NULL) {
-        if (!visited[currentNode->data]) {
-            count += countCyclesUtil(graph, currentNode->data, vertex, visited);
-        } else if (currentNode->data != parent) {
-            count++;
+        int nextVertex = currentNode->data;
+        
+        // Se il prossimo vertice è il vertice di partenza, il ciclo è chiuso
+        if (nextVertex == startVertex) {
+            return 1;
         }
+        
+        // Se il prossimo vertice non è stato visitato, continua la ricorsione
+        if (!visited[nextVertex]) {
+            visited[nextVertex] = 1;
+            if (isCycleClosedUtil(graph, startVertex, nextVertex, visited)) {
+                return 1;
+            }
+        }
+        
         currentNode = currentNode->next;
     }
     
-    return count;
+    return 0;
 }
 
 // Soluzione
