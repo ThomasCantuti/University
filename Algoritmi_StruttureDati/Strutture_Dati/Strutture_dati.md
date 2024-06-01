@@ -66,3 +66,97 @@ typedef struct {
     struct elemCoda *next;
 } elemCoda;
 ```
+
+# Heap
+Struttura dati astratta statica o dinamica, compatta, parzialmente basata sull'ordinamento (mantiene le chiavi semi-ordinate)
+
+```pseudocode
+typedef struct {
+    int H[..];
+    int length;
+    int heapsize;
+} Heap
+```
+
+# Code di priorità
+Struttura dati astratta statica o dinamica, compatta, basata sull'ordinamento
+
+## Code di priorità su heap binarie
+```pseudocode
+typedef struct {
+    int Q[..];
+    int length;
+    int heapsize;
+    int priority;
+} Queue
+```
+
+## Code di priorità su array
+```pseudocode
+typedef struct {
+    int Q[..];
+    int index;
+    int priority;
+    bool flag_empty;
+} Queue
+```
+
+# Tabella Hash
+Struttura dati astratta, dinamica, parzialmente compatta e non basata sull'ordinamento
+
+## Tabella Hash con Chaining
+```pseudocode
+typedef struct {
+    int key;
+    int value;
+    struct Nodo *next;
+} Nodo;
+
+typedef struct {
+    Nodo *T[];
+    int capacity;
+} HashTable
+```
+
+## Tabella Hash con Open Hashing
+```pseudocode
+typedef struct {
+    int key
+    int value
+    bool isOccupied
+} Entry;
+
+typedef struct {
+    Entry *T[];
+    int capacity; // Dimensione array
+    int size; // Numero attuale di elementi
+} HashTable
+```
+
+# Insiemi disgiunti
+
+## Insiemi disgiunti con liste
+
+## Insiemi disgiunti con liste e unione pesata
+
+## Insiemi disgiunti con alberi
+
+# Alberi
+
+## Alberi binari di ricerca (BST)
+
+## Alberi Red-Black (RBT)
+
+## Alberi bilanciati (BT)
+
+# Grafi
+
+## Grafi per BFS
+
+## Grafi per DFS
+
+## Grafi per copertura minima
+
+## Grafi per cammini minimi con sorgente singola
+
+## Grafi per cammini minimi con sorgente multipla
