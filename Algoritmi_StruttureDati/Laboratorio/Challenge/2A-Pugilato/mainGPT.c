@@ -4,13 +4,13 @@
 
 typedef struct Vertex {
     int data;
-    char color;
     struct Vertex* next;
 } Vertex;
 
 typedef struct Graph {
     int numVertices;
     Vertex** adjacencyList;
+    char* colors;
 } Graph;
 
 // Inizializza il grafo
@@ -18,11 +18,13 @@ Graph* createGraph(int numVertices) {
     Graph* graph = (Graph*)malloc(sizeof(Graph));
     graph->numVertices = numVertices;
     graph->adjacencyList = (Vertex**)malloc(numVertices * sizeof(Vertex*));
-    
+    graph->colors = (char*)malloc(numVertices * sizeof(char));
+
     for (int i = 0; i < numVertices; i++) {
         graph->adjacencyList[i] = NULL;
+        graph->colors[i] = 'U'; // U for uncolored
     }
-    
+
     return graph;
 }
 
@@ -39,72 +41,64 @@ void insertEdge(Graph* graph, int vertex1, int vertex2) {
     graph->adjacencyList[vertex2] = newVertex;
 }
 
-// Inizializza i colori dei vertici
-void initializeColors(Graph* graph) {
-    for (int i = 0; i < graph->numVertices; i++) {
-        Vertex* vertex = graph->adjacencyList[i];
-        while (vertex != NULL) {
-            vertex->color = 'B';
-            vertex = vertex->next;
+// BFS per controllare la bipartizione del grafo
+bool isBipartite(Graph* graph, int startVertex) {
+    graph->colors[startVertex] = 'R'; // Start coloring with Red
+
+    int* queue = (int*)malloc(graph->numVertices * sizeof(int));
+    int front = 0, rear = 0;
+    queue[rear++] = startVertex;
+
+    while (front < rear) {
+        int currentVertex = queue[front++];
+        Vertex* temp = graph->adjacencyList[currentVertex];
+
+        while (temp) {
+            int adjacent = temp->data;
+            if (graph->colors[adjacent] == 'U') {
+                graph->colors[adjacent] = (graph->colors[currentVertex] == 'R') ? 'B' : 'R';
+                queue[rear++] = adjacent;
+            } else if (graph->colors[adjacent] == graph->colors[currentVertex]) {
+                free(queue);
+                return false;
+            }
+            temp = temp->next;
         }
     }
 
-    for (int i = 0; i < graph->numVertices; i++) {
-        if (graph->adjacencyList[i] != NULL && graph->adjacencyList[i]->color == 'B') {
-            Vertex* vertex = graph->adjacencyList[i];
-            while (vertex != NULL) {
-                vertex->color = 'W';
-                Vertex* adjacent = graph->adjacencyList[vertex->data];
-                while (adjacent != NULL) {
-                    if (adjacent->color == 'B') {
-                        adjacent->color = 'W';
-                    }
-                    adjacent = adjacent->next;
-                }
-                vertex = vertex->next;
-            }
-        }
-    }
+    free(queue);
+    return true;
 }
 
-// Verifica se ci sono vertici adiacenti con lo stesso colore
-bool hasSameColorAdjacent(Graph* graph) {
+bool checkBipartite(Graph* graph) {
     for (int i = 0; i < graph->numVertices; i++) {
-        Vertex* vertex = graph->adjacencyList[i];
-        while (vertex != NULL) {
-            Vertex* adjacent = graph->adjacencyList[vertex->data];
-            while (adjacent != NULL) {
-                if (vertex->color == adjacent->color) {
-                    return true;
-                }
-                adjacent = adjacent->next;
+        if (graph->colors[i] == 'U') {
+            if (!isBipartite(graph, i)) {
+                return false;
             }
-            vertex = vertex->next;
         }
     }
-    return false;
+    return true;
 }
 
 void pugilato(FILE* in_file, FILE* out_file) {
     int M, N, v1, v2;
     fscanf(in_file, "%d%d", &M, &N);
-    Graph* graph = createGraph(N);
+    Graph* graph = createGraph(M);
 
-    for (int i = 0; i < M; i++) {
+    for (int i = 0; i < N; i++) {
         fscanf(in_file, "%d%d", &v1, &v2);
         insertEdge(graph, v1, v2);
     }
 
-    initializeColors(graph);
-
-    if (hasSameColorAdjacent(graph)) {
-        fprintf(out_file, "TRUE");
-    } else {
+    if (checkBipartite(graph)) {
         fprintf(out_file, "FALSE");
+    } else {
+        fprintf(out_file, "TRUE");
     }
 
     // Libera la memoria allocata
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < M; i++) {
         Vertex* temp = graph->adjacencyList[i];
         while (temp) {
             Vertex* toFree = temp;
@@ -113,6 +107,7 @@ void pugilato(FILE* in_file, FILE* out_file) {
         }
     }
     free(graph->adjacencyList);
+    free(graph->colors);
     free(graph);
 }
 
