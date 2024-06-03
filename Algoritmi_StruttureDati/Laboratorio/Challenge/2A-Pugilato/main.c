@@ -28,62 +28,6 @@ Graph* createGraph(int numVertices) {
     return graph;
 }
 
-// Verifica se un vertice è presente nel grafo
-int isPresent(Graph* graph, int vertex) {
-    int foundVertex = 0;
-    
-    for (int i = 0; i < graph->numVertices; i++) {
-        Vertex* currentVertex = graph->adjacencyList[i];
-        while (currentVertex != NULL) {
-            if (currentVertex->data == vertex) {
-                foundVertex = 1;
-                return 1;
-            }
-            currentVertex = currentVertex->next;
-        }
-        if (foundVertex) {
-            return 0;
-        }
-    }
-}
-
-// Connette due vertici se uno dei due è presente, altrimenti crea la connessione
-void connectVertices(Graph* graph, int vertex1, int vertex2) {
-    int foundVertex1 = 0;
-    int foundVertex2 = 0;
-    
-    // Verifica se vertice 1 è nel grafo
-    if (isPresent(graph, vertex1))
-        foundVertex1 = 1;
-    
-    // Verifica se vertice 2 è nel grafo
-    if (isPresent(graph, vertex2))
-        foundVertex2 = 1;
-    
-    // Connette i vertici se uno dei due è presente, altrimenti crea la connessione
-    if (foundVertex1) {
-        Vertex* newVertex = (Vertex*)malloc(sizeof(Vertex));
-        newVertex->data = vertex2;
-        newVertex->next = graph->adjacencyList[vertex1];
-        graph->adjacencyList[vertex1] = newVertex;
-    } else if (foundVertex2) {
-        Vertex* newVertex = (Vertex*)malloc(sizeof(Vertex));
-        newVertex->data = vertex1;
-        newVertex->next = graph->adjacencyList[vertex2];
-        graph->adjacencyList[vertex2] = newVertex;
-    } else {
-        Vertex* newVertex1 = (Vertex*)malloc(sizeof(Vertex));
-        newVertex1->data = vertex2;
-        newVertex1->next = graph->adjacencyList[vertex1];
-        graph->adjacencyList[vertex1] = newVertex1;
-        
-        Vertex* newVertex2 = (Vertex*)malloc(sizeof(Vertex));
-        newVertex2->data = vertex1;
-        newVertex2->next = graph->adjacencyList[vertex2];
-        graph->adjacencyList[vertex2] = newVertex2;
-    }
-}
-
 // Inserisce un vertice nel grafo
 void insertEdge(Graph* graph, int vertex1, int vertex2) {
     Vertex* newVertex = (Vertex*)malloc(sizeof(Vertex));
@@ -99,32 +43,45 @@ void insertEdge(Graph* graph, int vertex1, int vertex2) {
 
 // Inizializza i colori dei vertici
 void initializeColors(Graph* graph) {
+    Vertex* vertex;
     for (int i = 0; i < graph->numVertices || graph->adjacencyList[i] == NULL; i++) {
         if (graph->adjacencyList[i] != NULL && graph->color[i] == 'B') {
-            Vertex* vertex;
             for (vertex = graph->adjacencyList[i]; vertex != NULL; vertex = vertex->next) {
                 graph->color[vertex->data] = 'W';
             }
         }
     }
+    free(vertex);
 }
 
 // Verifica se ci sono vertici adiacenti con lo stesso colore
 bool hasSameColorAdjacent(Graph* graph) {
-    for (int i = 0; i < graph->numVertices; i++) {
-        Vertex* vertex = graph->adjacencyList[i];
-        while (vertex != NULL) {
-            Vertex* adjacent = graph->adjacencyList[vertex->data];
-            while (adjacent != NULL) {
-                if (graph->color[vertex[i].data] == graph->color[adjacent->data]) {
-                    return true;
-                }
-                adjacent = adjacent->next;
+    Vertex* vertex;
+    for (int i = 0; i < graph->numVertices && graph->adjacencyList[i] != NULL; i++) {
+        for (vertex = graph->adjacencyList[i]; vertex != NULL; vertex = vertex->next) {
+            if (graph->color[i] == graph->color[graph->adjacencyList[i]->data]) {
+                return true;
             }
-            vertex = vertex->next;
         }
     }
     return false;
+}
+
+void free_graph(Graph *graph) {
+    Vertex *adjacencyList, *tmp;
+ 
+    for (int v = 0; v < graph->numVertices; v++) {
+        adjacencyList = graph->adjacencyList[v];
+        while (adjacencyList != NULL) {
+            tmp = adjacencyList;
+            adjacencyList = adjacencyList->next;
+            free(tmp);
+        }
+    }
+ 
+    free(graph->adjacencyList);
+    free(graph->color);
+    free(graph);
 }
 
 void pugilato(FILE* in_file, FILE* out_file) {
@@ -134,7 +91,7 @@ void pugilato(FILE* in_file, FILE* out_file) {
 
     for (int i = 0; i < N; i++) {
         fscanf(in_file, "%d%d", &v1, &v2);
-        connectVertices(graph, v1, v2);
+        insertEdge(graph, v1, v2);
     }
 
     initializeColors(graph);
@@ -146,17 +103,7 @@ void pugilato(FILE* in_file, FILE* out_file) {
     }
 
     // Libera la memoria allocata
-    for (int i = 0; i < N; i++) {
-        Vertex* temp = graph->adjacencyList[i];
-        while (temp) {
-            Vertex* toFree = temp;
-            temp = temp->next;
-            free(toFree);
-        }
-    }
-    free(graph->adjacencyList);
-    free(graph->color);
-    free(graph);
+    free_graph(graph);
 }
 
 int main() {
