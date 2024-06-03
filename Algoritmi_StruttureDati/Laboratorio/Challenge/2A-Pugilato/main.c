@@ -41,7 +41,18 @@ void insertEdge(Graph* graph, int vertex1, int vertex2) {
     graph->adjacencyList[vertex2] = newVertex;
 }
 
-// Inizializza i colori dei vertici
+/*
+Inizializza i colori dei vertici:
+for (u in G.V)
+    if (u.color = B)
+        for (v in G.Adj[u])
+            v.color = W
+
+Per ogni vertice
+    se il colore del vertice è Black
+        per ogni adiacente al vertice
+            adiacente = White
+*/
 void initializeColors(Graph* graph) {
     for (int i = 0; i < graph->numVertices || graph->adjacencyList[i] == NULL; i++) {
         if (graph->adjacencyList[i] != NULL && graph->color[i] == 'B') {
@@ -52,7 +63,20 @@ void initializeColors(Graph* graph) {
     }
 }
 
-// Verifica se ci sono vertici adiacenti con lo stesso colore
+/*
+Verifica se ci sono vertici adiacenti con lo stesso colore:
+for (u in G.V)
+    for (v in G.Adj[u])
+        if (u.color = v.color)
+            return true
+return false
+
+Per ogni vertice
+    per ogni adiacente al vertice
+        se colore vertice = colore adiacente
+            return true -> insieme non possibile
+return false -> insieme possibile
+*/
 bool hasSameColorAdjacent(Graph* graph) {
     for (int i = 0; i < graph->numVertices && graph->adjacencyList[i] != NULL; i++) {
         for (Vertex* vertex = graph->adjacencyList[i]; vertex != NULL; vertex = vertex->next) {
