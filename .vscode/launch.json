@@ -1,7 +1,18 @@
 {
   "version": "0.2.0",
   "configurations": [
-    
+    {
+      "name": "(lldb) Launch",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "immettere il nome del programma, ad esempio ${workspaceFolder}/a.out",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb"
+    },
     {
       "name": "C/C++: clang++ build and debug active file",
       "type": "cppdbg",
@@ -34,6 +45,14 @@
       "name": "Launch Java Program",
       "request": "launch",
       "mainClass": ""
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/thomas/Documenti/GitHub/University/Algoritmi_StruttureDati/Laboratorio/Challenge/2A-Pugilato",
+      "program": "/Users/thomas/Documenti/GitHub/University/Algoritmi_StruttureDati/Laboratorio/Challenge/2A-Pugilato/build/Debug/outDebug"
     }
   ]
 }
