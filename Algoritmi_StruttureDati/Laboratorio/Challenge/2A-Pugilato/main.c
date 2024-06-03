@@ -43,22 +43,19 @@ void insertEdge(Graph* graph, int vertex1, int vertex2) {
 
 // Inizializza i colori dei vertici
 void initializeColors(Graph* graph) {
-    Vertex* vertex;
     for (int i = 0; i < graph->numVertices || graph->adjacencyList[i] == NULL; i++) {
         if (graph->adjacencyList[i] != NULL && graph->color[i] == 'B') {
-            for (vertex = graph->adjacencyList[i]; vertex != NULL; vertex = vertex->next) {
+            for (Vertex* vertex = graph->adjacencyList[i]; vertex != NULL; vertex = vertex->next) {
                 graph->color[vertex->data] = 'W';
             }
         }
     }
-    free(vertex);
 }
 
 // Verifica se ci sono vertici adiacenti con lo stesso colore
 bool hasSameColorAdjacent(Graph* graph) {
-    Vertex* vertex;
     for (int i = 0; i < graph->numVertices && graph->adjacencyList[i] != NULL; i++) {
-        for (vertex = graph->adjacencyList[i]; vertex != NULL; vertex = vertex->next) {
+        for (Vertex* vertex = graph->adjacencyList[i]; vertex != NULL; vertex = vertex->next) {
             if (graph->color[i] == graph->color[graph->adjacencyList[i]->data]) {
                 return true;
             }
@@ -68,12 +65,10 @@ bool hasSameColorAdjacent(Graph* graph) {
 }
 
 void free_graph(Graph *graph) {
-    Vertex *adjacencyList, *tmp;
- 
     for (int v = 0; v < graph->numVertices; v++) {
-        adjacencyList = graph->adjacencyList[v];
+        Vertex* adjacencyList = graph->adjacencyList[v];
         while (adjacencyList != NULL) {
-            tmp = adjacencyList;
+            Vertex* tmp = adjacencyList;
             adjacencyList = adjacencyList->next;
             free(tmp);
         }
