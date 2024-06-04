@@ -41,27 +41,35 @@ Sviluppo in serie generale se n è potenza esatta di b (non float):
 $T(n) = \sum_{i=0}^{log_b(n)-1} (a^i) \cdot f\left(\frac{n}{b^i}\right) + O\left(n^{log_b(a)}\right)$
 
 ### Il $T(n)$ finale dipende molto da $f(n)$ quindi si distinguono 3 casi quando si generalizza:
-- $f(n) = O(n^{(\log_b{(a)} - \epsilon)})$ -> $f(n)$ polinomicamente di grado inferiore a $n^{(\log_b{(a)})}$
-- $f(n) = \Theta(n^{(\log_b{(a)})})$
-- $f(n) = \Omega(n^{(\log_b{(a)} + \epsilon)})$ -> $f(n)$ polinomicamente di grado superiore a $n^{(\log_b{(a)})}$
+- $f(n) = O(n^{(\log_b{(a)} - \epsilon)})$ --> $f(n)$ polinomicamente di grado inferiore a $n^{(\log_b{(a)})}$
+- $f(n) = \Theta(n^{(\log_b{(a)})})$ --> $f(n)$ polinomicamente di grado uguale a $n^{(\log_b{(a)})}$
+- $f(n) = \Omega(n^{(\log_b{(a)} + \epsilon)})$ --> $f(n)$ polinomicamente di grado superiore a $n^{(\log_b{(a)})}$
 
 ![alt text](images/02_03.png)
 
 **Esempi**:
 1. **$T(n) = T(\frac{n}{2}) + 1$** ---> $a = 1$, $b = 2$, $f(n) = 1$  
-    $f(n) = O(n^{(\log_2{(1)} - \epsilon)}) = O(1)$ -> caso 1 del Master Theorem -> $T(n) = \Theta(\log(n))$  
+    exp = $\log_b(a) = \log_2(1) = 0$  
+    $f(n) = n^{exp} \longleftrightarrow 1 = 1 \longrightarrow$ caso 2 Master Theorem  
+    $f(n) = \Theta(n^{exp}) \longrightarrow T(n) = \Theta(\log(n))$  
     con $a = 1, b = 2$
 
 2. **$T(n) = 2*T(\frac{n}{2}) + n$** ---> $a = 2$, $b = 2$, $f(n) = n$  
-    $f(n) = \Theta(n^{(\log_2{(2)})}) = \Theta(n)$ -> caso 2 del Master Theorem -> $T(n) = \Theta(n*\log(n))$  
+    exp = $log_2(2) = 1$  
+    $f(n) = n^{exp} \longleftrightarrow n = n^1 \longrightarrow$ caso 2 Master Theorem  
+    $f(n) = \Theta(n^{(\log_2{(2)})}) \longrightarrow$ caso 2 del Master Theorem -> $T(n) = \Theta(n*\log(n))$  
     con $a = 2, b = 2, k = 0$
 
 3. **$T(n) = 3*T(\frac{n}{2}) + n^2$** ---> $a = 3$, $b = 2$, $f(n) = n^2$  
-    $f(n) = \Omega(n^{(\log_2{(3)} + \epsilon)}) = \Omega(n^{1.58})$ -> caso 3 del Master Theorem -> $T(n) = \Theta(n^2)$  
+    exp = $\log_2(3) = 1.58$  
+    $f(n) > n^{exp} \longleftrightarrow n^2 > n^{1.58} \longrightarrow$ caso 3 Master Theorem  
+    $f(n) = \Omega(n^{(\log_2{(3)} + \epsilon)}) \longrightarrow T(n) = \Theta(n^2)$  
     con $a = 3, b = 2$
 
-4. **$T(n) = 4*T(\frac{n}{2}) + n^2 * \log_2(n)$** ---> $a = 4$, $b = 2$, $exp = \log_2(4) = 2$, $f(n) = n^{exp} * \log_2(n)$  
-    $f(n) = n^{(\log_2{(4)})} * \log_2(n) = \Theta(n^2 * \log_2(n))$ -> caso 2 del Master Theorem -> $T(n) = \Theta(n^2 * \log^2(n))$  
+4. **$T(n) = 4*T(\frac{n}{2}) + n^2 * \log_2(n)$** ---> $a = 4$, $b = 2$, $k = 1$, $f(n) = n^2 \cdot \log_2(n)$  
+    exp = $\log_2(4) = 2$  
+    $f(n) = n^{exp} \cdot \log^k(n) \longleftrightarrow n^2 \cdot \log_2(n) = n^2 \cdot \log_2(n) \longrightarrow$ caso 2 Master Theorem  
+    $f(n) = \Theta(n^2 \cdot \log_2(n)) \longrightarrow T(n) = \Theta(n^2 \cdot \log^2(n))$  
     con $a = 4, b = 2, k = 1$
     
 
