@@ -95,13 +95,13 @@ Esempio: $T(n) = 3n^2 + 2n + 1$ --> diventa --> $\Theta(n^2)$
 
 ### Notazione asintotica
 #### 1) $O()$
-$f(n)$ è limitata da (oppure è un "o" grande di) $g(n)$, $f(n) = O(g(n))$ $\Leftrightarrow \exists$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ :  
+$f(n)$ è limitata da (oppure è un "o" grande di) $g(n)$ $(scritto: f(n) = O(g(n)))$ $\Leftrightarrow \exists$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ :  
 $0 \leq f(n) \leq c * g(n)$
 
 ![alt text](images/01_00.png)
 
 #### 2) $\Omega()$
-$f(n)$ è limitata dal basso da (oppure è un omega grande di) $g(n)$ (scritto: $f(n) = \Omega(g(n))$) $\Leftrightarrow \exists$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ :  
+$f(n)$ è limitata dal basso da (oppure è un omega grande di) $g(n)$ $(scritto:f(n) = \Omega(g(n)))$ $\Leftrightarrow \exists$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ :  
 0 $\leq c * g(n) \leq f(n)$
 
 ![alt text](images/01_01.png)
@@ -110,7 +110,7 @@ $f(n)$ è limitata dal basso da (oppure è un omega grande di) $g(n)$ (scritto: 
 $f(n)$ è dello stesso ordine di $g(n)$ $\Leftrightarrow \exists$ due costanti $c_1, c_2 > 0$ t.c. per tutti gli $n \geq n_0$ :  
 0 $\leq c_1 * g(n) \leq f(n) \leq c_2 * g(n)$
 
-quindi $f(n) = \Theta(g(n)) \quad \Leftrightarrow \quad f(n) = O(g(n)) \text{ e } f(n) = \Omega(g(n))$
+quindi $f(n) = \Theta(g(n)) \quad \Longleftrightarrow \quad f(n) = O(g(n)) \text{ e } f(n) = \Omega(g(n))$
 
 ![alt text](images/01_02.png)
 
