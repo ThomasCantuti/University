@@ -78,7 +78,7 @@ Per ogni vertice
 return false -> insieme possibile
 */
 bool hasSameColorAdjacent(Graph* graph) {
-    for (int i = 0; i < graph->numVertices && graph->adjacencyList[i] != NULL; i++) {
+    for (int i = 0; i < graph->numVertices; i++) {
         for (Vertex* vertex = graph->adjacencyList[i]; vertex != NULL; vertex = vertex->next) {
             if (graph->color[i] == graph->color[graph->adjacencyList[i]->data]) {
                 return true;
