@@ -1,8 +1,8 @@
 # Ricorrenze
 
 ## Esempi di forme di ricorrenze
-- $T(n) = 2*n^2 + 3*n + 5$ -> forma esplicita e precisa
-- $T(n) = a*n^2 + b*n$ -> forma esplicita e generica
+- $T(n) = 2\cdot n^2 + 3\cdot n + 5$ -> forma esplicita e precisa
+- $T(n) = a \cdot n^2 + b\cdot n$ -> forma esplicita e generica
 - $T(n) = \Theta(n)$ -> forma asintotica
 
 ogni T(n) esplicita ha un'ordine di grandezza
