@@ -95,7 +95,7 @@ Esempio: $T(n) = 3n^2 + 2n + 1$ --> diventa --> $\Theta(n^2)$
 
 ### Notazione asintotica
 #### 1) $O()$
-$f(n)$ è limitata da (oppure è un "o" grande di) $g(n)$ (scritto: $f(n) = O(g(n))$) $\Leftrightarrow \exists$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ :  
+$f(n)$ è limitata da (oppure è un "o" grande di) $g(n)$, $f(n) = O(g(n))$ $\Leftrightarrow \exists$ una costante $c > 0$ t.c. per tutti gli $n \geq n_0$ :  
 $0 \leq f(n) \leq c * g(n)$
 
 ![alt text](images/01_00.png)
