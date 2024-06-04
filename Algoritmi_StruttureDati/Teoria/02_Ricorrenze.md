@@ -74,8 +74,7 @@ $T(n) = \sum_{i=0}^{log_b(n)-1} (a^i) \cdot f\left(\frac{n}{b^i}\right) + O\left
     
 
 ## Metodo di sostituzione
-Quando il Master Theorem non basta si può usare il metodo di sostituzione  
-Indovinare il risultato e poi dimostrarlo per induzione
+Quando il Master Theorem non basta si può usare il metodo di sostituzione: indovinare il risultato e poi dimostrarlo per induzione
 
 **Esempio**:
 $T(n) = T(\frac{n}{3}) + T(\frac{2}{3}\cdot n) + n$
@@ -83,11 +82,12 @@ $T(n) = T(\frac{n}{3}) + T(\frac{2}{3}\cdot n) + n$
 
 ![alt text](images/02_04.png)
 
-2. Provo ad indovinare che $T(n) = O(n \cdot \log_2(n))$ assumendo che $T(n) \leq c \cdot n \cdot \log_2(n)$ per qualche $c > 0$ :
+2. Provo ad indovinare se $T(n) = O(n \cdot \log_2(n))$ assumendo che $T(n) \leq c \cdot n \cdot \log_2(n)$ per qualche $c > 0$ :
 
 ![alt text](images/02_05.png)
 
 poichè $\log_2(3) = 1.58$ e $\frac{2}{3} = 0.6$ la condizione $c > 0$ si verifica quindi posso concludere che $T(n) = O(n \cdot \log_2(n))$
+
 3. Si può proseguire con le sostituzioni per verificare se $T(n) = \Omega(n \cdot \log_2(n))$ :
     - se si -> $T(n) = \Theta(n \cdot \log_2(n))$
     - se no -> $T(n) = O(n \cdot \log_2(n))$
