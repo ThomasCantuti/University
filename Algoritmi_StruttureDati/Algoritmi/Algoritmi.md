@@ -188,6 +188,21 @@ proc RadixSort (A, d)
 
 Dove $d$ è il numero di cifre e $k$ è il valore massimo dell'array A
 
+## HeapSort
+```pseudocode
+proc HeapSort(H) {
+    BuildMaxHeap(H) // oppure BuildMinHeap(H)
+    for (i = H.length downto 2) {
+        SwapValue(H, i, 1)
+        H.heapsize = H.heapsize - 1
+        MaxHeapify(H, 1) // oppure MinHeapify(H, 1)
+    }
+}
+```
+
+- **utilizzo**: Ordina una Min/Max-Heap in modo instable e inplace
+- **complessità**: $\Theta(n \cdot \log(n))$
+
 # Algoritmi di ricerca
 
 ## Recursive Binary Search
@@ -476,3 +491,33 @@ proc HeapSort(H) {
 - **utilizzo**: Ordina una Min/Max-Heap in modo instable e inplace
 - **complessità**: $\Theta(n \cdot \log(n))$
 
+# Algoritmi per Code di priorità
+
+```pseudocode
+proc ExtractMin(Q) {
+    if (Q.heapsize < 1) {
+        then return "underflow"
+    }
+    min = Q[1]
+    Q[1] = Q[Q.heapsize]
+    Q.heapsize = Q.heapsize - 1
+    MinHeapify(Q, 1)
+    return min
+}
+```
+
+- **utilizzo**: Estrae l'elemento dalla coda Q (min/max-heap) con la chiave minima/massima
+- **complessità**: $\Theta(\log(n))$
+
+```pseudocode
+proc DecreaseKey(Q, i, priority) {
+    if (priority > Q[i]) {
+        then return "error"
+    }
+    Q[i] = priority
+    while ((i > 1) and (Q[Parent(i)] > Q[i])) {
+        SwapValue(Q, i, Parent(i))
+        i = Parent(i)
+    }
+}
+```
