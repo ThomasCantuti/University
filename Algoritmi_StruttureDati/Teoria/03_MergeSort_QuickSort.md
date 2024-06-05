@@ -4,6 +4,10 @@ Algoritmi di ordinamento elementari -> metodi basati sui confronti dove ogni ele
 
 Algoritmi di ordinamento non elementari -> es. MergeSort, QuickSort, HeapSort (tipicamente quelli ricorsivi ma non è una regola)
 
+**Algoritmi inplace** -> algoritmi che ordinano l'array senza usare memoria aggiuntiva quindi ordinando l'array moficicando la posizione delle chiavi nell'array stesso (es. SelectionSort, BubbleSort, InsertionSort, ...)  
+**Algoritmi non inplace** -> algoritmi che ordinano l'array creandone uno nuovo (es. CountingSort)  
+**Algoritmi stabili** -> algoritmi che mantengono l'ordine relativo degli elementi con chiavi uguali (es. `A = [1, 2, 3, 4, 2]` se si usa un algoritmo stabile il secondo 2 andrà nella posizione seguente al primo 2, altrimenti potrebbe andare nella posizione precedente)
+
 ## SelectionSort
 ```pseudocode
 proc SelectionSort (A) {
