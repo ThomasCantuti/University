@@ -6,7 +6,8 @@ Algoritmi di ordinamento non elementari -> es. MergeSort, QuickSort, HeapSort (t
 
 **Algoritmi inplace** -> algoritmi che ordinano l'array senza usare memoria aggiuntiva quindi ordinando l'array moficicando la posizione delle chiavi nell'array stesso (es. SelectionSort, BubbleSort, InsertionSort, ...)  
 **Algoritmi non inplace** -> algoritmi che ordinano l'array creandone uno nuovo (es. CountingSort)  
-**Algoritmi stabili** -> algoritmi che mantengono l'ordine relativo degli elementi con chiavi uguali (es. `A = [1, 2, 3, 4, 2]` se si usa un algoritmo stabile il secondo 2 andrà nella posizione seguente al primo 2, altrimenti potrebbe andare nella posizione precedente)
+**Algoritmi stabili** -> algoritmi che mantengono l'ordine relativo degli elementi con chiavi uguali (es. `A = [1, 2, 3, 4, 2]` se si usa un algoritmo stabile il secondo 2 andrà nella posizione seguente al primo 2, altrimenti potrebbe andare nella posizione precedente).  
+Tutti gli algoritmi di ordinamento instabili possono essere resi stabili scrivendo nella struttura dati un indice di posizione (es. array con indice e valore)
 
 ## SelectionSort
 ```pseudocode

@@ -190,7 +190,7 @@ Dove $d$ è il numero di cifre e $k$ è il valore massimo dell'array A
 
 # Algoritmi di ricerca
 
-## Analisi algoritmica
+## Recursive Binary Search
 ```pseudocode
 proc RecursiveBinarySearch (A, low, high, k) {
     if (low > high)
@@ -205,14 +205,13 @@ proc RecursiveBinarySearch (A, low, high, k) {
 }
 ```
 
-- **utilizzo**: per trovare l'indice dell'elemento $k$ richiesto in un array ordinato, con high e low indici di inizio e fine array
+- **utilizzo**: Per trovare l'indice dell'elemento $k$ richiesto in un array ordinato, con high e low indici di inizio e fine array
 - **complessità**: 
     - **caso migliore**: $\Theta(1)$
     - **caso peggiore**: $\Theta(\log_2(n))$
     - **caso medio**: $\Theta(\log_2(n))$
 
-# Algoritmi per liste, pile e code
-## Liste
+# Algoritmi per Liste
 
 ```pseudocode
 proc ListInsert (L, x) {
@@ -225,6 +224,9 @@ proc ListInsert (L, x) {
 }
 ```
 
+- **utilizzo**: Per inserire un elemento in testa ad una lista
+- **complessità**: $\Theta(1)$
+
 ```pseudocode
 proc ListSearch (L, k) {
     x = L.head
@@ -234,6 +236,9 @@ proc ListSearch (L, k) {
     return x
 }
 ```
+
+- **utilizzo**: Per cercare in ogni nodo della lista se la chiave $k$ è presente e restituirla in caso positivo
+- **complessità**: $\Theta(n)$
 
 ```pseudocode
 proc ListDelete (L, x) {
@@ -248,8 +253,11 @@ proc ListDelete (L, x) {
 }
 ```
 
-## Pile
-### Pile basate su array
+- **utilizzo**: Per eliminare l'elemento x dalla lista, dove x punta all'elemento da eliminare
+- **complessità**: $\Theta(1)$
+
+# Algoritmi per Pile
+## Pile basate su array
 ```pseudocode
 proc Empty (S) {
     if (S.top == 0)
@@ -257,6 +265,9 @@ proc Empty (S) {
     return false
 }
 ```
+
+- **utilizzo**: Verifica se la pila è vuota
+- **complessità**: $\Theta(1)$
 
 ```pseudocode
 proc Push (S, x) {
@@ -267,6 +278,9 @@ proc Push (S, x) {
 }
 ```
 
+- **utilizzo**: Inserisce x in cima alla pila
+- **complessità**: $\Theta(1)$
+
 ```pseudocode
 proc Pop (S) {
     if (Empty(S)) 
@@ -276,7 +290,12 @@ proc Pop (S) {
 }
 ```
 
-### Pile basate su liste
+- **utilizzo**: Estrae l'elemento in cima alla pila
+- **complessità**: $\Theta(1)$
+
+## Pile basate su liste
+Utilizzi e complessità uguali alle pile basate su array
+
 ```pseudocode
 proc Empty (S) {
     if (S.head == nil)
@@ -301,8 +320,8 @@ proc Pop (S) {
 }
 ```
 
-## Code
-### Code basate su array
+# Algoritmi per Code
+## Code basate su array
 ```pseudocode
 proc Enqueue (Q, x) {
     if (Q.dim == Q.length)
@@ -314,6 +333,9 @@ proc Enqueue (Q, x) {
     Q.dim = Q.dim + 1
 }
 ```
+
+- **utilizzo**: Inserisce x in coda alla coda
+- **complessità**: $\Theta(1)$
 
 ```pseudocode
 proc Dequeue (Q) {
@@ -328,7 +350,12 @@ proc Dequeue (Q) {
 }
 ```
 
-### Code basate su liste
+- **utilizzo**: Estrae l'elemento in testa alla coda
+- **complessità**: $\Theta(1)$
+
+## Code basate su liste
+Utilizzi e complessità uguali alle code basate su array
+
 ```pseudocode
 proc Empty (Q) {
     if (Q.head == nil)
@@ -353,3 +380,99 @@ proc Dequeue (Q) {
     return x.key
 }
 ```
+
+# Algoritmi per Heap
+
+```pseudocode
+proc Parent(i) {
+    return i/2 // divisione intera
+}
+
+proc Left(i) {
+    return 2*i
+}
+
+proc Right(i) {
+    return 2*i + 1
+}
+```
+
+- **utilizzo**: Per trovare l'indice del genitore, del figlio sinistro e del figlio destro di un nodo
+- **complessità**: $\Theta(1)$
+
+```pseudocode
+proc MinHeapify (H, i) {
+    l = Left(i) --> l = i*2
+    r = Right(i) --> i*2 + 1
+    smallest = i
+    if ((l ≤ H.heapsize) and (H[l] < H[i]))
+        then smallest = l
+    if ((r ≤ H.heapsize) and (H[r] < H[smallest]))
+        then smallest = r
+    if smallest ≠ i {
+        then
+        SwapValue(H, i, smallest)
+        MinHeapify(H, smallest)
+    }
+}
+```
+
+- **utilizzo**: Valuta la posizione del padre e dei due figli per poi modificare eventualmente la posizione di un elemento per farlo diventare min-heap
+- **complessità**: $\Theta(\log(n))$
+
+```pseudocode
+proc BuildMinHeap (H) {
+    H.heapsize = H.length
+    for (i = [H.length/2] downto 1)
+        MinHeapify(H, i)
+}
+```
+
+- **utilizzo**: Costruisce un min-heap a partire da un array
+- **complessità**: $\Theta(n)$
+
+```pseudocode
+proc MaxHeapify (H, i) {
+    l = Left(i)
+    r = Right(i)
+    largest = i
+    if ((l ≤ H.heapsize) and (H[l] > H[i]))
+        then largest = l
+    if ((r ≤ H.heapsize) and (H[r] > H[largest]))
+        then largest = r
+    if (largest ≠ i) {
+        then
+        SwapValue(H, i, largest)
+        MaxHeapify(H, largest)
+    }
+}
+```
+
+- **utilizzo**: Valuta la posizione del padre e dei due figli per poi modificare eventualmente la posizione di un elemento per farlo diventare max-heap
+- **complessità**: $\Theta(\log(n))$
+
+```pseudocode
+proc BuildMaxHeap (H) {
+    H.heapsize = H.length
+    for (i = [H.length/2] downto 1)
+        MaxHeapify(H, i)
+}
+```
+
+- **utilizzo**: Costruisce una max-heap a partire da un array
+- **complessità**: $\Theta(n)$
+
+```pseudocode
+proc HeapSort(H) {
+    BuildMaxHeap(H) // oppure BuildMinHeap(H)
+    for (i = H.length downto 2) {
+        SwapValue(H, i, 1)
+        H.heapsize = H.heapsize - 1
+        MaxHeapify(H, 1) // oppure MinHeapify(H, 1)
+    }
+}
+```
+
+- **utilizzo**: Ordina una Min/Max-Heap in modo instable e inplace
+- **complessità**: $\Theta(n \cdot \log(n))$
+
