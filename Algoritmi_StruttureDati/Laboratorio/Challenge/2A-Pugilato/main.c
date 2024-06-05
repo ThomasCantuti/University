@@ -54,7 +54,7 @@ Per ogni vertice
             adiacente = White
 */
 void initializeColors(Graph* graph) {
-    for (int i = 0; i < graph->numVertices || graph->adjacencyList[i] == NULL; i++) {
+    for (int i = 0; i < graph->numVertices; i++) {
         if (graph->adjacencyList[i] != NULL && graph->color[i] == 'B') {
             for (Vertex* vertex = graph->adjacencyList[i]; vertex != NULL; vertex = vertex->next) {
                 graph->color[vertex->data] = 'W';
