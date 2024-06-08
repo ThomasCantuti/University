@@ -51,8 +51,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/thomas/Documenti/GitHub/University/Algoritmi_StruttureDati/Laboratorio/Challenge/2A-Pugilato",
-      "program": "/Users/thomas/Documenti/GitHub/University/Algoritmi_StruttureDati/Laboratorio/Challenge/2A-Pugilato/build/Debug/outDebug"
+      "cwd": "/Users/thomas/Documenti/GitHub/University/Algoritmi_StruttureDati/Laboratorio/Challenge/2B-Uffici",
+      "program": "/Users/thomas/Documenti/GitHub/University/Algoritmi_StruttureDati/Laboratorio/Challenge/2B-Uffici/build/Debug/outDebug"
     }
   ]
 }
