@@ -10,6 +10,7 @@ typedef struct Vertex {
 typedef struct Graph {
     int numVertices;
     char *color;
+    int *pred;
     Vertex** adjacencyList;
 } Graph;
 
@@ -19,10 +20,12 @@ Graph* createGraph(int numVertices) {
     graph->numVertices = numVertices;
     graph->adjacencyList = (Vertex**)malloc(numVertices * sizeof(Vertex*));
     graph->color = (char*)malloc(numVertices * sizeof(char*));
+    graph->pred = (int*)malloc(numVertices * sizeof(int*));
     
     for (int i = 0; i < numVertices; i++) {
         graph->adjacencyList[i] = NULL;
         graph->color[i] = 'B';
+        graph->pred[i] = -1;
     }
     
     return graph;
@@ -41,6 +44,26 @@ void insertEdge(Graph* graph, int vertex1, int vertex2) {
     graph->adjacencyList[vertex2] = newVertex;
 }
 
+void DepthVisit (Graph *graph, Vertex *vertex, int i) {
+    graph->color[i] = 'W';
+    for (vertex = graph->adjacencyList[i]; vertex != NULL; vertex = vertex->next) {
+        if (graph->color[vertex->data] == 'B') {
+            graph->pred[vertex->data] = i;
+            if (vertex->next != NULL)
+                DepthVisit(graph, vertex, vertex->data);
+        }
+    }
+    if (vertex != NULL)
+        graph->color[vertex->data] = 'G';
+}
+
+void DepthFirstSearch (Graph *graph) {
+    for (int i = 0; i < graph->numVertices; i ++) {
+        if (graph->adjacencyList[i] != NULL && graph->color[i] == 'B')
+            DepthVisit(graph, graph->adjacencyList[i], i);
+    }
+}
+
 /*
 Inizializza i colori dei vertici:
 for (u in G.V)
@@ -53,13 +76,20 @@ Per ogni vertice
         per ogni adiacente al vertice
             adiacente = White
 */
-void initializeColors(Graph* graph) {
+void initializeColors(Graph* graph, FILE *out_file) {
     for (int i = 0; i < graph->numVertices; i++) {
         if (graph->color[i] == 'B') {
+            graph->color[i] = 'W';
             for (Vertex* vertex = graph->adjacencyList[i]; vertex != NULL; vertex = vertex->next) {
-                graph->color[vertex->data] = 'W';
+                if (graph->color[vertex->data] == 'B' && graph->color[graph->pred[vertex->data]] == 'G')
+                    graph->color[vertex->data] = 'W';
+                if (graph->color[vertex->data] == 'B' && graph->color[graph->pred[vertex->data]] == 'W')
+                    graph->color[vertex->data] = 'G';
             }
         }
+        for (Vertex* vertex = graph->adjacencyList[i]; vertex != NULL; vertex = vertex->next)
+            fprintf(out_file, "%d %c ", vertex->data, graph->color[vertex->data]);
+        fprintf(out_file, "\n");
     }
 }
 
@@ -80,9 +110,14 @@ return false -> insieme possibile
 bool hasSameColorAdjacent(Graph* graph) {
     for (int i = 0; i < graph->numVertices; i++) {
         for (Vertex* vertex = graph->adjacencyList[i]; vertex != NULL; vertex = vertex->next) {
+            //if (i == 5905) {
+                //for (Vertex* vertexAdj = vertex; vertexAdj != NULL; vertexAdj = vertexAdj->next)
+                    //printf("%d %c ", vertexAdj->data, graph->color[vertexAdj->data]);
             if (graph->color[i] == graph->color[graph->adjacencyList[i]->data]) {
+                printf("%d %c %d %c", i, graph->color[i], graph->adjacencyList[i]->data, graph->color[graph->adjacencyList[i]->data]);
                 return true;
             }
+            //}
         }
     }
     return false;
@@ -100,6 +135,7 @@ void free_graph(Graph *graph) {
  
     free(graph->adjacencyList);
     free(graph->color);
+    free(graph->pred);
     free(graph);
 }
 
@@ -113,7 +149,12 @@ void pugilato(FILE* in_file, FILE* out_file) {
         insertEdge(graph, v1, v2);
     }
 
-    initializeColors(graph);
+    DepthFirstSearch(graph);
+
+    for (int i = 0; i < graph->numVertices; i ++)
+        graph->color[i] = 'B';
+
+    initializeColors(graph, out_file);
 
     if (hasSameColorAdjacent(graph)) {
         fprintf(out_file, "FALSE");
