@@ -3,7 +3,8 @@ Si considerano solo dei **problemi decisionali** (se output è {si; no}) e non g
 
 ## Classe P
 In questo contesto esiste un insieme dei problemi:  
-$P = \{ problemi\ che\ possono\ essere\ risolti\ in\ tempo\ polinomiale\ \}$
+$P = \{ \text{problemi che possono essere risolti in tempo polinomiale} \}$
+
 
 Appartengono però tutti i problemi alla classe P?  
 Si considera:
