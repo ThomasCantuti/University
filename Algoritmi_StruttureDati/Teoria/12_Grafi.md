@@ -4,7 +4,7 @@ Il fatto di essere statiche comporta che non ci siano operazioni di inserimento 
 
 Un grafo è una tripla G = (V, E, W) dove:
 - V = insieme di vertici
-- E $\sube$ V x V = insieme di archi
+- E $\subseteq$ V x V = insieme di archi
 - W: E $\to$ R = funzione che assegna un peso ad ogni arco
 
 Se da un vertice u si può raggiungere un vertice v --> u ⇝ v
