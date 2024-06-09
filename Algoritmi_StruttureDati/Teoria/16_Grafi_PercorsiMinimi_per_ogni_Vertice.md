@@ -20,9 +20,9 @@ Risolve in maniera efficiente un problema di ottimizzazione suddividendo dei pro
 ## Algoritmo della moltiplicazione di matrici
 Caratterizzazione della sottotruttura ottima basata su archi:  
 - $L^m_{i j}$ = peso del cammino minimo tra il vertice `i` e il vertice `j` che si puó costruire usando al piú `m` archi
-- $L^m_{i j} =$ $min(L^{m-1}_{i j}, min_k(L^m_{i k} + W_{kj}))$ = $min_k(L^m_{i k} + W_{kj})$
+- $L^m_{i j} =$ $\min(L^{m-1}_{i j}, \min_k(L^m_{i k} + W_{kj}))$ $= \min_k(L^m_{i k} + W_{kj})$
 - Struttura percorso minimo: i ----> k ----> j  
-- $min_k(L^m_{i k} + W_{kj})$ è la soluzione più conveniente usando k come ultimo predecessore
+- $\min_k(L^m_{i k} + W_{kj})$ è la soluzione più conveniente usando k come ultimo predecessore
 
 Esempio: il modo migliore per andare da `i` a `j` con al massimo due archi si trova cercando il modo migliore per andare da `i` a qualsiasi `k` e da `k` a `j` usando un solo arco (moltiplicazione tra una riga e una colonna)
 
