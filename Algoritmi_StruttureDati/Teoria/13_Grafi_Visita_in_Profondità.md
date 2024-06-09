@@ -173,7 +173,7 @@ Esempio: studiando la SCC di un elemento della rete sociale, si possono trovare 
 
 ![alt text](images/13_05.png)
 
-**Grafo trasposto**: $G^T$ di G è ottenuto invertendo la direzione di ogni arco (complessità $\Theta(|V| + |E|)$)
+**Grafo trasposto**: $G^T$ di G è ottenuto invertendo la direzione di ogni arco ( complessità $\Theta(|V| + |E|)$ )
 
 L'importanza del grafo trasposto è data dal fatto che G e $G^T$ hanno le stesse SCC.
 
