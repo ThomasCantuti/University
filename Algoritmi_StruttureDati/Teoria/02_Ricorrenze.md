@@ -14,6 +14,7 @@ Per trasformare una ricorrenza in una funzione da implicita ad esplicita si poss
 ## Albero di ricorsione
 Si sviluppa la ricorrenza per cercare di estrarne il comportamento.  
 Esempio: $T(n) = T(frazione\ di\ n) + f(n)$  
+Costo totale $T(n) =$ altezza dell'albero $+$ costo totale  
 Osservazione: la chiamata più piccola possibile è $T(1) = 1$ (somma di casi base o parti non ricorsive)
 
 ### Esempi di sviluppi di alberi di ricorsione
