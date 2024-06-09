@@ -3,7 +3,7 @@ Si considerano solo dei **problemi decisionali** (se output è {si; no}) e non g
 
 ## Classe P
 In questo contesto esiste un insieme dei problemi:  
-$P = \{ problemi\ che\ possono\ essere\ risolti\ in\ tempo\ polinomiale\}\ $
+$P = \{problemi\space che\space possono\space essere\space risolti\space in\space tempo\space polinomiale\}$
 
 Appartengono però tutti i problemi alla classe P?  
 Si considera:
@@ -35,7 +35,7 @@ Il problema della k-clique probabilmente non appartiene alla classe P.
 
 ## Classe NP
 Dato un grafo G con un insieme di vertici, sarebbe difficile stabilire se si tratta di una k-clique?  
-$NP = \{problemi\ la\ cui\ soluzione\ può\ essere\ verificata\ in\ tempo\ polinomiale\}$  
+$NP = \{problemi\space la\space cui\space soluzione\space può\space essere\space verificata\space in\space tempo\space polinomiale\}$  
 $P \subseteq NP$
 
 ```pseudocode
@@ -101,7 +101,7 @@ proc HasIWinningStrategy (G, p, v) {
 
 ## Classe PSPACE
 Il problema della geografia generalizzata si trova nella classe di quei problemi la cui soluzione può essere trovata/vericata usando al massimo spazio polinomiale per la computazione.  
-$PSPACE = \{problemi\ che\ possono\ essere\ risolti/verificati\ in\ spazio\ polinomiale\}$  
+$PSPACE = \{problemi\space che\space possono\space essere\space risolti/verificati\space in\space spazio\space polinomiale\}$  
 $NP \subset PSPACE$
 
 ![alt text](images/17_01.png)
