@@ -78,7 +78,7 @@ Complessità: $\Theta(1)$
 - **Caratteristica**: accesso agli elementi vincolato ad una politica per far risparmiare dettagli implementativi, assicurando un certo ordine di inserimento ed estrazione
 
 ## Pile
-**Pila (o stack)**: struttura dati astratta con politica FIFO  
+**Pila (o stack)**: struttura dati astratta con politica LIFO (Last In First Out)  
 Esempi d'uso: valutazione di espressioni, processi di backtracking, eliminazione di ricorsione, etc ...
 
 ### Pile su array
@@ -148,7 +148,7 @@ proc Pop (S) {
 ```
 
 ## Code
-**Coda (o queue)**: struttura dati astratta con politica FIFO  
+**Coda (o queue)**: struttura dati astratta con politica FIFO (First In First Out)  
 Esempi d'uso: in una playlist le canzoni sono in coda (circolare), processi di visita di strutture dati come grafi, etc ...
 
 ### Code su array
