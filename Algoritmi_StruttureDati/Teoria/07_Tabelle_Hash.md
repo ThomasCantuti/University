@@ -87,10 +87,10 @@ Esempio 2:
 A = 0.6  
 k = 5  
 m = 2^3 = 8  
-passo 1: 5 * 0.6 = 3  
-passo 2: 3 - 3 = 0  
-passo 3: 0 * 8 = 0  
-passo 4: 0 + 1 = 1
+passo 1: 5 * 0.6 = 3 --> k * A  
+passo 2: 3 - 3 = 0 --> k * A - parte intera di k * A  
+passo 3: 0 * 8 = 0 --> (k * A - parte intera di k * A) * m  
+passo 4: 0 + 1 = 1 --> (k * A - parte intera di k * A) * m + 1
 
 3. **Addizione**: $h(k) = ((a_1 \cdot B + a_2) \cdot B + a_3) \cdot B + ...a_d$
     - chiavi sono stringhe o insiemi di stringhe o oggetti complessi
