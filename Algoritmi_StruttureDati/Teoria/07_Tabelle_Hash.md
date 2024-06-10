@@ -61,7 +61,7 @@ Sia nel caso pessimo che in quello positivo, la complessità è $\Theta(1 + \fra
 ## Funzioni di hash per il chaining
 Perchè una funzione di hash sia buona, deve distribuire le chiavi in maniera uniforme sulle m posizioni della tabella.  
 Per farlo esistono diversi metodi:
-1. **Divisione**: $h(k) = k \mod m + 1$ --> resto della divisione tra k ed m+1
+1. **Divisione**: $h(k) = k\ mod\ m + 1$ --> resto della divisione tra k ed m+1
     - chiavi naturali
     - m numero primo
     - m lontano da una potenza di 2
@@ -174,8 +174,8 @@ proc OaHashSearch (T, k) {
 ```
 
 Una sequenza di probing uniforme si ottiene da:
-- **Probing lineare**: $h(k, i) = ((h'(k) + i) \mod m) + 1$
-- **Probing quadrato**: $h(k, i) = ((h'(k) + c_1 \cdot i + c_2 \cdot i^2) \mod m) + 1$
+- **Probing lineare**: $h(k, i) = ((h'(k) + i)\ mod\ m) + 1$
+- **Probing quadrato**: $h(k, i) = ((h'(k) + c_1 \cdot i + c_2 \cdot i^2)\ mod\ m) + 1$
 
 ## Conclusioni
 L'open hashing è più efficiente del chaining e il probing quadrato è più efficiente del probing lineare.
