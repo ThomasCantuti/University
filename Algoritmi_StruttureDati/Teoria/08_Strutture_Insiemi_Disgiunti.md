@@ -1,14 +1,14 @@
 # Strutture per insiemi disgiunti
 
-Sono una struttura dati astratta, parzialmente dinamica, parzialmente sparsa, non basata sull'ordinamento  
-Hanno un'applicazione fondamnetale in uno degli algoritmi su grafi
+Sono una struttura dati astratta, parzialmente dinamica, parzialmente sparsa, non basata sull'ordinamento.  
+Hanno un'applicazione fondamentale in uno degli algoritmi su grafi.
 
 Caratteristica principale -> operazioni ad esso associate che sono:
 - `MakeSet()`: crea un nuovo insieme disgiunto
 - `Union()`: unisce due insiemi disgiunti in uno solo
 - `FindSet()`: trova il rappresentante dell'insieme al quale appartiene l'elemento
 
-Ogni insieme è dotato di un elemento rappresentativo, detto rappresentante (un elemento qualsiasi dell'insieme)  
+Ogni insieme è dotato di un elemento rappresentativo, detto rappresentante (un elemento qualsiasi dell'insieme).  
 Gli insiemi crescono in due modi:
 - quando vengono creati (e hanno un solo elemento)
 - quando vengono uniti due insiemi in unico che contiene gli elementi di entrambi
@@ -99,7 +99,7 @@ Sapendo che m operazioni di cui n sono MakeSet() danno il caso peggiore nella si
 
 ### Differenza tra analisi costo medio e costo ammortizzato
 Nell'analisi di costo ammortizzato non ci sono considerazioni probabilistiche, calcola il costo medio di ogni operazione nei casi ottimo, medio, pessimo del gruppo di operazioni in questione.  
-Si usa in questo caso perchè le operazioni su insiemi disgiunti sono tali che si influenzano a vicenda
+Si usa in questo caso perchè le operazioni su insiemi disgiunti sono tali che si influenzano a vicenda.
 
 ## Insiemi disgiunti: liste con unione pesata (strategia o euristica)
 **Euristica** -> strategia migliorativa e non un'implementazione diversa, ha un effetto soprattutto dal punto di vista pratico  
@@ -144,7 +144,7 @@ Nell'implementazione con lista e unione per rango si ha il caso peggiore quando 
 
 ![alt text](images/08_10.png)
 
-1. la prima costa n, la seconda n/2, la terza n/4, ..., l'ultima 1 -> per arrivare a una sola lista devo fare $\frac{n}{2} + \frac{n}{4} + \frac{n}{8} + ... + 1 = \sum_{i=1}^{\log(n)}{\frac{n}{2^i}} = \Theta(n)$ unioni
+1. la prima costa n, la seconda n/2, la terza n/4, ..., l'ultima 1 -> per arrivare a una sola lista devo fare $\frac{n}{2} + \frac{n}{4} + \frac{n}{8} + ... + 1 = \sum^{\log(n)}_{i = 1}{\frac{n}{2^i}} = \Theta(n)$ unioni
 2. costo totale delle $\Theta(n)$ unioni è $\frac{n}{2} + 2 \cdot \frac{n}{4} + 4 \cdot \frac{n}{8} + ... = \log(n) \rightarrow \Theta(n \cdot log(n))$
 
 Le n operazioni sono distribuite tra:  
