@@ -521,3 +521,95 @@ proc DecreaseKey(Q, i, priority) {
     }
 }
 ```
+
+# Algoritmi per Tabelle Hash
+
+## Tabelle Hash con chaining (concatenamento)
+```pseudocode
+proc HashInsert (T, k) {
+    let x be a new node with key k
+    i = h(k)
+    ListInsert(T[i], x)
+}
+```
+
+- **utilizzo**: Inserisce un elemento con chiave k nella tabella hash T
+- **complessità**: $\Theta(1)$
+
+```pseudocode
+proc HashSearch (T, k) {
+    i = h(k)
+    return ListSearch(T[i], k)
+}
+```
+
+- **utilizzo**: Cerca un elemento con chiave k nella tabella hash T
+- **complessità**: $\Theta(1 + \frac{n}{m})$
+
+```pseudocode
+proc HashDelete (T, k) {
+    i = h(k)
+    x = ListSearch(T[i], k)
+    ListDelete(T[i], x)
+}
+```
+
+- **utilizzo**: Elimina un elemento con chiave k dalla tabella hash T
+- **complessità**: $\Theta(n)$
+
+## Funzione di Hash con chaining per metodo dell'addizione
+
+```pseudocode
+proc HashComputeModulo (w, B, m) {
+    let d = |w|
+    z[0] = 0
+    for (i = 1 to d) z[i+1] = ((z[i] * B) + a[i]) mod m
+    return z[d] + 1
+}
+```
+
+- w = stringa
+- B = cardinalità dell'alfabeto
+- m = dimensione della tabella hash
+
+**Ricorda**: scegliere B in maniera che ogni sottoprodotto sia rappresentabile
+
+- **utilizzo**: Calcola la posizione in cui inserire la chiave k nella tabella hash T
+- **complessità**: $\Theta(d)$
+
+## Tabelle Hash con Open Hashing (indirizzamento aperto)
+
+```pseudocode
+proc OaHashInsert (T, k) {
+    i = 0
+    repeat {
+        j = h(k, i)
+        if (T[j] = nil) {
+            T[j] = k
+            return j
+        }
+        else i = i + 1
+    } until (i = m)
+    return “overflow”
+}
+```
+
+- **utilizzo**: Inserisce un elemento con chiave k nella tabella hash T
+- **complessità**: $\Theta(m)$
+
+```pseudocode
+proc OaHashSearch (T, k) {
+    i = 0
+    repeat {
+        j = h(k, i)
+        if T[j] = k
+            then
+            return j
+        else i = i + 1
+    } until (T[j] = nil or i = m)
+    return nil
+}
+```
+
+- **utilizzo**: Cerca un elemento con chiave k nella tabella hash T
+- **complessità**: $\Theta(m)$
