@@ -613,3 +613,248 @@ proc OaHashSearch (T, k) {
 
 - **utilizzo**: Cerca un elemento con chiave k nella tabella hash T
 - **complessità**: $\Theta(m)$
+
+# Algoritmi per Insiemi Disgiunti
+
+## Insiemi disgiunti: Liste
+```pseudocode
+proc MakeSet (calS, S, x, i) {
+    calS[i].set = x
+    S.head = x
+    S.tail = x
+}
+```
+
+- **utilizzo**: Crea un nuovo oggetto S
+- **complessità**: $\Theta(1)$
+
+```pseudocode
+proc FindSet (x) {
+    return x.head.head
+}
+```
+
+- **utilizzo**: Dato x, restituisce il rappresentante dell'insieme di x
+- **complessità**: $\Theta(1)$
+
+```pseudocode
+proc Union (x, y) {
+    S1 = x.head
+    S2 = y.head
+    if (S1 ≠ S2) {
+        then
+        S1.tail.next = S2.head
+        z = S2.head
+        while (z ≠ nil) {
+            z.head = S1
+            z = z.next
+        }
+        S1.tail = S2.tail
+    }
+}
+```
+
+- **utilizzo**: Unisce due insiemi in uno già esistente ed eliminando l'altro
+- **complessità**: $\Theta(n)$
+
+## Insiemi disgiunti: Liste con unione pesata
+```pseudocode
+proc MakeSet (calS, S, x, i) {
+    calS[i].set = x
+    S.head = x
+    S.tail = x
+    S.rank = 1
+}
+```
+
+- **utilizzo**: Crea un nuovo oggetto S
+- **complessità**: $\Theta(1)$
+
+```pseudocode
+proc Union (x, y) {
+    S1 = x.head
+    S2 = y.head
+    if (S1 ≠ S2) {
+        then
+        if (S2.rank > S1.rank) {
+            then SwapVariable(S1, S2)
+        }
+        S1.tail.next = S2.head
+        z = S2.head
+        while (z ≠ nil) {
+            z.head = S1
+            z = z.next
+        }
+        S1.tail = S2.tail
+        S1.rank = S1.rank + S2.rank
+    }
+}
+```
+
+- **utilizzo**: Unisce due insiemi in uno già esistente ed eliminando l'altro, l'unione viene fatta sempre sull'insieme con rango maggiore
+- **complessità**: $\Theta(\log(n))$
+
+## Insiemi disgiunti: Foreste di alberi
+```pseudocode
+proc MakeSet (x) {
+    x.p = x
+    x.rank = 0
+}
+```
+
+- **utilizzo**: crea un nuovo albero di altezza massima 0 (rank = 0) con il solo nodo x
+- **complessità**: $\Theta(1)$
+
+```pseudocode
+proc FindSet (x) {
+    if (x ≠ x.p) {
+        then x.p = FindSet(x.p)
+    }
+    return x.p
+}
+```
+
+- **utilizzo**: Scorrendo i puntatori verso l'alto li aggiorna appiattendo il ramo al quale appartiene il rappresentante e lo restituisce
+- **complessità**: $\Theta(\log(n))$
+
+```pseudocode
+proc Union (x, y) {
+    x = FindSet(x)
+    y = FindSet(y)
+    if (x.rank > y.rank) {
+        then y.p = x
+    } else {
+        x.p = y
+        if (x.rank = y.rank) {
+            then y.rank = y.rank + 1
+        }
+    }
+}
+```
+
+- **utilizzo**: Unisce due alberi in uno solo:
+    1. si trovano i rappresentanti degli elementi (x, y) usati come indici
+    2. si sceglie l'elemento di rango inferiore e si aggiorna solo il padre (si fa puntare il rappresentante con rango inferiore al rappresentante con rango superiore)
+- **complessità**: $O(m)$
+
+# Algoritmi per Alberi
+
+## Visite
+```pseudocode
+proc TreeInOrderTreeWalk (x) {
+    if (x ≠ nil) {
+        TreeInOrderTreeWalk(x.left)
+        print(x.key)
+        TreeInOrderTreeWalk(x.right)
+    }
+}
+```
+
+- **utilizzo**: Visita l'albero in ordine
+- **complessità**: $\Theta(n)$
+
+```pseudocode
+proc TreePreOrderTreeWalk (x) {
+    if (x ≠ nil) {
+        print(x.key)
+        TreePreOrderTreeWalk(x.left)
+        TreePreOrderTreeWalk(x.right)
+    }
+}
+```
+
+- **utilizzo**: Se si volesse valutare un'espressione algebrica bisognerebbe partire dall'alto, tenendo conto che il nodo più in alto è considerato l'operazione più esterna
+- **complessità**: $\Theta(n)$
+
+```pseudocode
+proc TreePostOrderTreeWalk (x) {
+    if (x ≠ nil) {
+        TreePostOrderTreeWalk(x.left)
+        TreePostOrderTreeWalk(x.right)
+        print(x.key)
+    }
+}
+```
+
+- **utilizzo**: Se si volesse liberare la memoria si dovrebbe iniziare dai nodi senza figli, quindi dalle foglie
+- **complessità**: $\Theta(n)$
+
+## Alberi binari di ricerca
+```pseudocode
+proc BSTTreeSearch (x, k) {
+    if ( (x = nil) or (x.key = k) )
+        return x
+    if (k ≤ x.key)
+        return BSTTreeSearch(x.left, k)
+    else
+        return BSTTreeSearch(x.right, k)
+}
+```
+
+- **utilizzo**: Cerca un elemento con chiave k nell'albero (visita in order)
+- **complessità**:
+    - **caso medio**: $\Theta(\log(n))$
+    - **caso peggiore**: $\Theta(n)$
+
+```pseudocode
+proc BSTTreeMinimum (x) {
+    if (x.left = nil)
+        return x
+    return BSTTreeMinimum(x.left)
+}
+```
+
+- **utilizzo**: Restituisce il nodo con chiave minima (foglia più a sinistra)
+- **complessità**:
+    - **caso medio**: $\Theta(\log(n))$
+    - **caso peggiore**: $\Theta(n)$
+
+```pseudocode
+proc BSTTreeMaximum (x) {
+    if (x.right = nil)
+        return x
+    return BSTTreeMaximum(x.right)
+}
+```
+
+- **utilizzo**: Restituisce il nodo con chiave massima (foglia più a destra)
+- **complessità**:
+    - **caso medio**: $\Theta(\log(n))$
+    - **caso peggiore**: $\Theta(n)$
+
+```pseudocode
+proc BSTTreeSuccessor (x) {
+    if (x.right ≠ nil)
+        return BSTTreeMinimum(x.right)
+    y = x.p
+    while ( (y ≠ nil) and (x = y.right) ) {
+        x = y
+        y = y.p
+    }
+    return y
+}
+```
+
+- **utilizzo**: Restituisce il nodo successore di x
+- **complessità**:
+    - **caso medio**: $\Theta(\log(n))$
+    - **caso peggiore**: $\Theta(n)$
+
+```pseudocode
+proc BSTTreePredecessor (x) {
+    if (x.left ≠ nil)
+        return BSTTreeMaximum(x.left)
+    y = x.p
+    while ( (y ≠ nil) and (x = y.left) ) {
+        x = y
+        y = y.p
+    }
+    return y
+}
+```
+
+- **utilizzo**: Restituisce il nodo predecessore di x
+- **complessità**:
+    - **caso medio**: $\Theta(\log(n))$
+    - **caso peggiore**: $\Theta(n)$
+
