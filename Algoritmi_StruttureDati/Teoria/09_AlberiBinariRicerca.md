@@ -97,7 +97,7 @@ L'operazione di inserimento di un nodo inserisce un nuovo elemento come foglia n
 
 `T` = BST  
 `T.root = nil` -> albero vuoto, punta alla radice di `T` in caso contrario  
-`z.left = z.right = z.p = nil` -> nodo `z` da inserire initilizzato a `nil`
+`z.left = z.right = z.p = nil` -> nodo `z` da inserire inizializzato a `nil`
 
 ```pseudocode
 proc BSTTreeInsert (T, z) {
