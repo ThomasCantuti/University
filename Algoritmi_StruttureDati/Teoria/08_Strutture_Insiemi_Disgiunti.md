@@ -199,7 +199,7 @@ proc Union (x, y) {
 
 `MakeSet(x)` -> crea un nuovo albero di altezza massima 0 (`rank = 0`) con il solo nodo x
 
-`FindSet(x)`-> scorrendo i puntatori verso l'alto li aggiorna appiattendo il ramo al quale appartiene il rappresentante e lo restituisce
+`FindSet(x)` -> scorrendo i puntatori verso l'alto li aggiorna appiattendo il ramo al quale appartiene il rappresentante e lo restituisce
 
 ![alt text](images/08_11.png)
 
