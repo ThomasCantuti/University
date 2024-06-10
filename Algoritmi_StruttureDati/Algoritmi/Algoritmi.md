@@ -858,3 +858,73 @@ proc BSTTreePredecessor (x) {
     - **caso medio**: $\Theta(\log(n))$
     - **caso peggiore**: $\Theta(n)$
 
+```pseudocode
+proc BSTTreeInsert (T, z) {
+    y = nil
+    x = T.root
+    // scendo lungo l'albero finchè z.key ≤ x.key
+    // quando x sarà nil avrò trovato la posizione corretta
+    while (x ≠ nil) {
+        y = x
+        if (z.key ≤ x.key)
+            x = x.left
+        else
+            x = x.right
+    }
+    // ora si decide se z sarà figlio sx, dx o root
+    z.p = y
+    if (y = nil)
+        T.root = z
+    if ( (y ≠ nil ) and (z.key ≤ y.key) )
+        y.left = z
+    if ( (y ≠ nil ) and (z.key > y.key) )
+        y.right = z
+}
+```
+
+- **utilizzo**: Inserisce un nuovo elemento come foglia nell'albero
+- **complessità**:
+    - **caso medio**: $\Theta(\log(n))$
+    - **caso peggiore**: $\Theta(n)$
+
+```pseudocode
+proc BSTTreeDelete (T, z) {
+    // caso 1
+    if (z.left = nil)
+        BSTTreeTransplant(T, z, z.right)
+    // caso 2.a o 2.b
+    if ( (z.left ≠ nil) and (z.right = nil) )
+        BSTTreeTransplant(T, z, z.left)
+    // caso 3
+    if ( (z.left ≠ nil) and (z.right ≠ nil) ) {
+        y = BSTTreeMinimum(z.right)
+        if (y.p ≠ z) {
+            BSTTreeTransplant(T, y, y.right)
+            y.right = z.right
+            y.right.p = y
+        }
+        BSTTreeTransplant(T, z, y)
+        y.left = z.left
+        y.left.p = y
+    }
+}
+
+proc BSTTreeTransplant (T, u, v) {
+    if (u.p = nil)
+        T.root = v
+    if ( (u.p ≠ nil) and (u = u.p.left) )
+        u.p.left = v
+    if ( (u.p ≠ nil) and (u = u.p.right) )
+        u.p.right = v
+    if (v ≠ nil)
+        v.p = u.p
+}
+```
+
+- **utilizzo**: Eliminazione di un nodo z la quale può essere complessa, si distinguono 3 casi:
+1. se z è foglia (non ha figli) -> si elimina z
+2. se z ha un solo figlio -> si elimina z facendo puntare il padre di z al figlio di z (come eliminare un nodo in una lista)
+3. se z ha due figli -> si cerca il successore di z (es. y) e si scambia z con y, poi si elimina y
+- **complessità**:
+    - **caso medio**: $\Theta(\log(n))$
+    - **caso peggiore**: $\Theta(n)$
