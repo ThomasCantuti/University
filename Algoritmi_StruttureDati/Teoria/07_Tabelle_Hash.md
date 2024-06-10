@@ -61,16 +61,16 @@ Sia nel caso pessimo che in quello positivo, la complessità è $\Theta(1 + \fra
 ## Funzioni di hash per il chaining
 Perchè una funzione di hash sia buona, deve distribuire le chiavi in maniera uniforme sulle m posizioni della tabella.  
 Per farlo esistono diversi metodi:
-1. **Divisione**: $h(k) = k\ mod\ m + 1$ --> resto della divisione tra k ed m+1
+1. **Divisione**: $h(k) = (k\ mod\ m) + 1$ --> resto della divisione tra k ed m+1
     - chiavi naturali
     - m numero primo
     - m lontano da una potenza di 2
 
 Esempio di m non primo:  
 $m = 12 = 3 \cdot 4 = 3 \cdot 2^2$  
-0, 12, 24, ... -> vanno nello slot k mod m + 1 = 12 mod 12 + 1 = 1  
-3, 15, 27, ... -> vanno nello slot k mod m + 1 = 15 mod 12 + 1 = 4  
-6, 18, 30, ... -> vanno nello slot k mod m + 1 = 18 mod 12 + 1 = 7
+0, 12, 24, ... -> vanno nello slot (k mod m) + 1 = (12 mod 12) + 1 = 1  
+3, 15, 27, ... -> vanno nello slot (k mod m) + 1 = (15 mod 12) + 1 = 4  
+6, 18, 30, ... -> vanno nello slot (k mod m) + 1 = (18 mod 12) + 1 = 7
 
 2. **Moltiplicazione**: $h(k) = \lfloor m \cdot (k \cdot A - \lfloor k \cdot A \rfloor) \rfloor + 1$ 
     - chiavi naturali
