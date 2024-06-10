@@ -144,7 +144,7 @@ Nell'implementazione con lista e unione per rango si ha il caso peggiore quando 
 
 ![alt text](images/08_10.png)
 
-1. la prima costa n, la seconda n/2, la terza n/4, ..., l'ultima 1 -> per arrivare a una sola lista devo fare $\frac{n}{2} + \frac{n}{4} + \frac{n}{8} + ... + 1 =$ $\sum^{\log(n)}_{i = 1}{\frac{n}{2^i}}$ $= \Theta(n)$ unioni
+1. la prima costa n, la seconda n/2, la terza n/4, ..., l'ultima 1 -> per arrivare a una sola lista devo fare $\frac{n}{2} + \frac{n}{4} + \frac{n}{8} + ... + 1 = \sum^{\log(n)}_{i = 1}{\frac{n}{2^i}} = \Theta(n)$ unioni
 2. costo totale delle $\Theta(n)$ unioni è $\frac{n}{2} + 2 \cdot \frac{n}{4} + 4 \cdot \frac{n}{8} + ... = \log(n) \rightarrow \Theta(n \cdot log(n))$
 
 Le n operazioni sono distribuite tra:  
