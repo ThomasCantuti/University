@@ -82,7 +82,7 @@ Dato un grafo diretto G, l'algoritmo stabilisce se G contiene almeno un ciclo.
 2. Restituisce `true` se visita un nodo grigio, `false` altrimenti
 
 ```pseudocode
-proc CycleDet (G)
+proc CycleDet (G) {
     cycle = false
     for (u in G.V)
         u.color = WHITE
@@ -91,10 +91,11 @@ proc CycleDet (G)
             DepthVisitCycle (G, u)
     }
     return cycle
+}
 ```
 
 ```pseudocode
-proc DepthVisit (G, u) {
+proc DepthVisitCycle (G, u) {
     u.color = GREY
     for (v in G.Adj[u]) {
         if (v.color == WHITE)
@@ -134,16 +135,17 @@ Algoritmo:
 3. Restituire la lista collegata
 
 ```pseudocode
-proc TopologicalSort (G)
+proc TopologicalSort (G) {
     for (u in G.V)
         u.color = WHITE
     L = Nil
     time = 0
     for (u in G.V) {
         if (u.color == WHITE)
-            DepthVisitTS (G, u)
+            DepthVisitTS(G, u)
     }
     return L
+}
 ```
 
 ```
@@ -153,7 +155,7 @@ proc DepthVisitTS (G, u) {
     u.color = GREY
     for (v in G.Adj[u]) {
         if (v.color == WHITE)
-            DepthVisit(G, v)
+            DepthVisitTS(G, v)
     }
     u.color = BLACK
     time = time + 1
