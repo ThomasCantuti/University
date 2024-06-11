@@ -522,6 +522,9 @@ proc DecreaseKey(Q, i, priority) {
 }
 ```
 
+- **utilizzo**: Diminuisce la chiave dell'elemento i e lo posiziona correttamente nella coda Q
+- **complessità**: $\Theta(\log(n))$
+
 # Algoritmi per Tabelle Hash
 
 ## Tabelle Hash con chaining (concatenamento)
@@ -1332,3 +1335,54 @@ proc DepthVisit (G, u) {
 
 - **utilizzo**: Per trovare i componenti fortemente connessi di un grafo diretto ovvero il sottoinsieme di vertici dove esiste un cammino da u a v e da v a u
 - **complessità**: $\Theta(|V| + |E|)$
+
+## Grafi e alberi di copertura minima: grafi indiretti, pesati, connessi
+```pseudocode
+proc MST-Prim (G, w, r) {
+    // inizializzazione
+    for (v in G.V) {
+        v.key = ∞
+        v.π = Nil
+    }
+    r.key = 0
+    // costruzione coda
+    Q = G.V
+    while (Q ≠ vuoto) {
+        u = ExtractMin(Q)
+        // aggiorna la coda
+        for (v in G.Adj[u]) {
+            if ( (v in Q) and (w(u, v) < v.key) ) {
+                v.π = u
+                v.key = w(u, v) // -> DecreaseKey(Q, v)
+            }
+        }
+    }
+}
+```
+
+- **utilizzo**: Per trovare il percorso minimo tra una sorgente e tutti gli altri vertici, restituendo ogni volta un albero con i soli archi di peso minimo necessari per raggiungere tutti i vertici
+- **complessità**:
+    - **implementazione con array**: $\Theta(|V|^2)$
+    - **implementazione con min-heap**: $\Theta(|E| \cdot \log(|V|))$
+
+```pseudocode
+proc MST-Kruskal (G, w) {
+    T = vuoto
+    for (v in G.V) 
+        MakeSet(v)
+    // ordina gli archi di G.E in ordine non decrescente di peso
+    SortNoDecreasing(G.E)
+    for ( (u, v) in G.E - in order) {
+        if (FindSet(u) ≠ FindSet(v)) {
+            T = T ∪ {(u, v)}
+            Union(u, v)
+        }
+    }
+    return T
+}
+```
+
+- **utilizzo**: Per trovare il percorso minimo tra una sorgente e tutti gli altri vertici, restituendo sicuramente alla fine un albero con i soli archi di peso minimo necessari per raggiungere tutti i vertici
+- **complessità**:
+    - **grafi densi**: $\Theta(|V|^2 \cdot \log(|V|))$
+    - **grafi sparsi**: $\Theta(|E| \cdot \log(|E|))$
