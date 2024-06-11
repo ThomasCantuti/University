@@ -1039,4 +1039,122 @@ proc RBTreeInsertFixUpRight (T, z) {
 
 - **utilizzo**: Corregge le proprietà di un albero Red-Black dopo l'inserimento di un nodo rosso ed in base alla posizione del nodo z rispetto al padre e al nonno
 
-## ALberi Bilanciati
+## Alberi Bilanciati
+```pseudocode
+proc BTreeSearch(x, k) {
+    i = 1
+    while ( (i ≤ x.n) and (k > x.key[i]) )
+        i = i + 1
+    if ( (i ≤ x.n) and (k == x.key[i]) )
+        return (x, i)
+    if (x.leaf = true)
+        return nil
+    DiskRead(x.c[i])
+    return BTreeSearch(x.c[i], k)
+}
+```
+
+- **utilizzo**: Cerca un elemento con chiave k nell'albero B
+- **complessità**:
+    - numero di accessi al disco: $O(h) = O(\log_t(n))$
+    - uso di CPU: $\Theta(t \cdot h) = \Theta(t \cdot \log_t(n))$
+
+```pseudocode
+proc BTreeCreate(T) {
+    x = Allocate()
+    x.leaf = true
+    x.n = 0
+    DiskWrite(x)
+    T.root = x
+}
+```
+
+- **utilizzo**: Crea un nuovo albero B
+- **complessità**: $\Theta(1)$
+
+Allocate() -> funzione che crea e occupa uno spazio sufficiente per un nodo in memoria secondaria
+
+```pseudocode
+proc BTreeSplitChild(x, i) {
+    z = Allocate()
+    y = x.c[i]
+    z.leaf = y.leaf
+    for (j = 1 to t - 1)
+        z.key[j] = y.key[j + t]
+    if (y.leaf = false)
+        for (j = 1 to t)
+            z.c[j] = y.c[j + t]
+    y.n = t - 1
+    for (j = x.n + 1 downto i + 1)
+        x.c[j + 1] = x.c[j]
+    x.c[i + 1] = z
+    for (j = x.n downto i)
+        x.key[j + 1] = x.key[j]
+    x.key[i] = y.key[t]
+    x.n = x.n + 1
+    DiskWrite(y)
+    DiskWrite(z)
+    DiskWrite(x)
+}
+```
+
+- **utilizzo**: Suddivide un nodo x figlio di un nodo interno in due nodi
+- **complessità**:
+    - numero di accessi al disco: $\Theta(1)$
+    - uso di CPU: $\Theta(t)$
+
+```pseudocode
+proc BTreeInsert(T, k) {
+    r = T.root
+    // se il nodo è pieno
+    if (r.n == 2t - 1) {
+        s = Allocate()
+        T.root = s
+        s.leaf = false
+        s.n = 0
+        s.c[1] = r
+        BTreeSplitChild(s, 1)
+        BTreeInsertNonFull(s, k)
+    }
+    else
+        BTreeInsertNonFull(r, k)
+}
+```
+
+- **utilizzo**: Inserisce una chiave k in un nodo x
+- **complessità**:
+    - numero di accessi al disco: $\Theta(h) = \Theta(\log_t(n))$
+    - uso di CPU: $\Theta(t \cdot h) = \Theta(t \cdot \log_t(n))$
+
+```pseudocode
+proc BTreeInsertNonFull(x, k) {
+    i = x.n
+    if (x.leaf = true) {
+        // si spostano a dx gli elementi necessari
+        // e si inserisce la chiave
+        while ( (i ≥ 1) and (k < x.key[i]) ) {
+            x.key[i + 1] = x.key[i]
+            i = i - 1
+        }
+        x.key[i + 1] = k
+        x.n = x.n + 1
+        DiskWrite(x)
+    }
+    else {
+        // trova il sotto-albero in cui inserire la chiave
+        while ( (i ≥ 1) and (k < x.key[i]) )
+            i = i - 1
+        i = i + 1
+        DiskRead(x.c[i])
+        // se il figlio è pieno -> split
+        if (x.c[i].n == 2t - 1) {
+            BTreeSplitChild(x, i)
+            if (k > x.key[i])
+                i = i + 1
+        }
+        BTreeInsertNonFull(x.c[i], k)
+    }
+}
+```
+
+- **utilizzo**: Inserisce una chiave k in un nodo non pieno
