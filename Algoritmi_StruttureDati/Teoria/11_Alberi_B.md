@@ -18,7 +18,7 @@ Un nodo di un albero B è composto da:
 - x.p -> puntatore al padre
 - x.n -> numero di chiavi nel nodo
 - x.leaf -> booleano che indica se il nodo è foglia
-- x.c[1...x.n+1] -> puntatori ai figli se x.leaf = true, altrimenti nil
+- x.c[1...x.n+1] -> puntatori ai figli se x.leaf = false, altrimenti nil
 - x.key[1...x.n] -> n chiavi ordinate
 
 Proprietà:
