@@ -1158,3 +1158,177 @@ proc BTreeInsertNonFull(x, k) {
 ```
 
 - **utilizzo**: Inserisce una chiave k in un nodo non pieno
+
+# Algoritmi per Grafi
+
+## Visita in ampiezza: grafi diretti o indiretti, non pesati, sorgente singola
+```pseudocode
+proc BreadthFirstSearch(G, s) {
+    // inizializzazione
+    for (u in G.V \ {s}) {
+        u.color = WHITE
+        u.d = infinity // distanza ancora sconosciuta
+        u.π = Nil // predecessore ancora sconosciuto
+    }
+    s.color = GREY
+    s.d = 0
+    s.π = Nil
+    Q = vuoto
+    Enqueue(Q, s)
+    // algoritmo di visita
+    while (Q != vuoto) {
+        u = Dequeue(Q)
+        for (v in G.Adj[u]) {
+            if (v.color == WHITE) {
+                v.color = GREY
+                v.d = u.d + 1
+                v.π = u
+                Enqueue(Q, v)
+            }
+        }
+        u.color = BLACK
+    }
+}
+```
+
+- **utilizzo**: Per conoscere quanti archi sono necessari per raggiungere qualunque altro vertice dalla sorgente s (distanza minima da s a v qualunque in G)
+- **complessità**:
+    - **grafo connesso**: $\Theta(|V| + |E|)$
+    - **grafo non connesso**: $O(|V| + |E|)$ perchè potrebbero non vedersi tutti gli archi
+    - **grafo denso**: $\Theta(|V|^2)$ ma si accetta anche $\Theta(|V| + |E|)$
+
+## Visita in profondità: grafi diretti, non pesati, sorgente singola
+```pseudocode
+proc DepthFirstSearch (G)
+    for (u in G.V) {
+        u.color = WHITE
+        u.π = Nil
+    }
+    time = 0
+    for (u in G.V) {
+        if (u.color == WHITE)
+            DepthVisit(G, u)
+    }
+
+proc DepthVisit (G, u) {
+    time = time + 1
+    u.d = time
+    u.color = GREY
+    for (v in G.Adj[u]) {
+        if (v.color == WHITE) {
+            v.π = u
+            DepthVisit(G, v)
+        }
+    }
+    u.color = BLACK
+    time = time + 1
+    u.f = time
+}
+```
+
+- **utilizzo**: Per scoprire tutti i vertici raggiungibili da ogni potenziale sorgente s
+- **complessità**:
+    - `for (u in G.V)` -> $\Theta(|V|)$
+    - `for (u in G.V) con DepthVisit(G, u)` -> $\Theta(|V| + |E|)$
+    - `for (v in G.Adj[u])` -> $\Theta(|E|)$
+    - Complessità totale: $\Theta(|V| + |E|)$
+
+```pseudocode
+proc CycleDet (G) {
+    cycle = false
+    for (u in G.V)
+        u.color = WHITE
+    for (u in G.V) {
+        if (u.color == WHITE)
+            DepthVisitCycle (G, u)
+    }
+    return cycle
+}
+
+proc DepthVisitCycle (G, u) {
+    u.color = GREY
+    for (v in G.Adj[u]) {
+        if (v.color == WHITE)
+            DepthVisitCycle(G, v)
+        // se nodo nero -> vado avanti
+        // se nodo grigio -> ciclo e mi fermo
+        if (v.color == GREY)
+            cycle = true
+    }
+    u.color = BLACK
+}
+```
+
+- **utilizzo**: Per verificare se un grafo contiene almeno un ciclo
+- **complessità**: $\Theta(|V| + |E|)$
+
+```pseudocode
+proc TopologicalSort (G) {
+    for (u in G.V)
+        u.color = WHITE
+    L = Nil
+    time = 0
+    for (u in G.V) {
+        if (u.color == WHITE)
+            DepthVisitTS(G, u)
+    }
+    return L
+}
+
+proc DepthVisitTS (G, u) {
+    time = time + 1
+    u.d = time
+    u.color = GREY
+    for (v in G.Adj[u]) {
+        if (v.color == WHITE)
+            DepthVisitTS(G, v)
+    }
+    u.color = BLACK
+    time = time + 1
+    u.f = time
+    ListInsert(L, u)
+}
+```
+
+- **utilizzo**: Per ordinare i vertici di un grafo diretto **aciclico** in modo che se esiste un arco da u a v, allora u appare prima di v
+- **complessità**: $\Theta(|V| + |E|)$
+
+```pseudocode
+proc StronglyConnectedComponents (G) {
+    for (u in G.V) {
+        u.color = WHITE
+        u.π = Nil
+    }
+    time = 0
+    for (u in G.V) {
+        if (u.color == WHITE)
+            DepthVisit(G, u)
+    }
+    time = 0
+    L = Nil
+    for (u in G^T.V in reverse finish time order -> u.f) {
+        if (u.color == WHITE)
+            DepthVisit(G^T, u)
+        ListInsert(L, u)
+    }
+    return L
+}
+
+proc DepthVisit (G, u) {
+    time = time + 1
+    u.d = time
+    u.color = GREY
+    for (v in G.Adj[u]) {
+        if (v.color == WHITE) {
+            v.π = u
+            DepthVisit(G, v)
+        }
+    }
+    u.color = BLACK
+    time = time + 1
+    u.f = time
+}
+```
+
+- **utilizzo**: Per trovare i componenti fortemente connessi di un grafo diretto ovvero il sottoinsieme di vertici dove esiste un cammino da u a v e da v a u
+- **complessità**: $\Theta(|V| + |E|)$
