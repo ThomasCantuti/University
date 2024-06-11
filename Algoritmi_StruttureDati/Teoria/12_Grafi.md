@@ -22,8 +22,8 @@ Proprietà **statiche** di un grafo:
 ![alt text](images/12_00.png)
 
 Proprietà **dinamiche** di un grafo:
-- **Sparso**: |E| << |V|$^2$ --> numero di archi molto minore rispetto al numero di vertici
-- **Denso**: |E| ≈ |V|$^2$ --> numero di archi simile al numero di vertici
+- **Sparso**: |E| << $|V|^2$ --> numero di archi molto minore rispetto al numero di vertici
+- **Denso**: |E| ≈ $|V|^2$ --> numero di archi simile al numero di vertici
 
 Rappresentazione di un grafo:
 - **liste di adiacenza**: si usa un'array `Adj[1, ..., |V|]` dove ogni elemento punta ad una lista (preferibile per grafi sparsi)
