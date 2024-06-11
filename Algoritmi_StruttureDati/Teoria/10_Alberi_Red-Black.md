@@ -29,7 +29,7 @@ Esempio di RBT con 7 nodi interni e 8 nodi esterni:
 Le proprietà garantiscono il bilanciamento dell'albero.  
 Il bilanciamento è una proprietà dinamica -> relazione tra numero di nodi e altezza.
 
-Altezza nera (`bh(x)`) di un nodo x in T: numero di nodi neri su qualsiasi per corso semplice da x (senza contare x) ad una foglia esterna (contandola).  
+Altezza nera (`bh(x)`) di un nodo x in T: numero di nodi neri su qualsiasi percorso semplice da x (senza contare x) ad una foglia esterna (contandola).  
 Altezza nera dell'albero T: altezza nera della root `bh(T.root)`.
 
 Il sotto-albero in x ha almeno $2^{bh(x)} - 1$ nodi interni per la proprietà 5.
