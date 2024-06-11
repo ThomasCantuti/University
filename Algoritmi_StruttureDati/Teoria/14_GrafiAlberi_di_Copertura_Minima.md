@@ -63,7 +63,8 @@ proc MST-Prim (G, w, r) {
 }
 ```
 
-`v.π = Nil` e `v.π = u` codificano il risultato poichè indicano la direzionalità
+`v.π = Nil` e `v.π = u` codificano il risultato poichè indicano la direzionalità.  
+`DecreaseKey(Q, v)` ha il compito di aggiornare nella coda Q il valore di `v.key` e la sua posizione
 
 ![alt text](images/14_02.png)
 
@@ -149,7 +150,7 @@ proc MST-Kruskal (G, w) {
 
 **Correttezza**: con il primo MakeSet vengono già creati gli insiemi S1, S2, ..., S|V| e costituiscono un taglio generalizzato, poi si dimostra l'invariante:  
 **Invariante**: ogni arco che viene aggiunto nel ciclo è un arco sicuro
-- **caso base**: poichè gli archi sono prima ordinati il primo arco scelto è di peso minimo e sicuramente attraversa il taglio
+- **caso base**: poichè gli archi sono prima ordinati, il primo arco scelto è di peso minimo e sicuramente attraversa il taglio
 - **caso induttivo**: si considerano due vertici (u, v) con rappresentanti diversi:
     - se FindSet dei due vertici è diverso, essi devono avere il rappresentante diverso per creare l'arco
     - se FindSet dei due vertici è uguale, i due vertici sono nello stesso insieme e l'arco non viene creato
