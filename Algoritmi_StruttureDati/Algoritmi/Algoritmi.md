@@ -1336,7 +1336,7 @@ proc DepthVisit (G, u) {
 - **utilizzo**: Per trovare i componenti fortemente connessi di un grafo diretto ovvero il sottoinsieme di vertici dove esiste un cammino da u a v e da v a u
 - **complessità**: $\Theta(|V| + |E|)$
 
-## Grafi e alberi di copertura minima: grafi indiretti, pesati, connessi
+## Percorsi minimi: grafi (MST) indiretti, pesati, connessi, sorgente singola
 ```pseudocode
 proc MST-Prim (G, w, r) {
     // inizializzazione
@@ -1386,3 +1386,88 @@ proc MST-Kruskal (G, w) {
 - **complessità**:
     - **grafi densi**: $\Theta(|V|^2 \cdot \log(|V|))$
     - **grafi sparsi**: $\Theta(|E| \cdot \log(|E|))$
+
+## Percorsi minimi: grafi diretti, pesati, connessi, sorgente singola
+```pseudocode
+proc InizializeSingleSource (G, s) {
+    for (v in G.V) {
+        v.d = ∞
+        v.π = Nil
+    }
+    s.d = 0
+}
+```
+
+- **utilizzo**: Inizializza i valori di distanza e predecessore per ogni vertice
+- **complessità**: $\Theta(|V|)$
+
+```pseudocode
+proc Relax (u, v, W) {
+    if (v.d > u.d + W(u, v)) {
+        v.d = u.d + W(u, v)
+        v.π = u
+    }
+}
+```
+
+- **utilizzo**: Rilassa l'arco (u, v) se è possibile migliorare il percorso minimo da s a v passando per u
+- **complessità**: $\Theta(1)$
+
+```pseudocode
+proc BellmanFord (G, s) {
+    // algoritmo vero e prorpio
+    InizializeSingleSource(G, s)
+    for (i = 1 to |G.V| - 1) {
+        // rilassamento degli archi |V| - 1 volte
+        for ((u, v) in G.E)
+            Relax(u, v, W)
+    }
+    // controllo esistenza cicli negativi
+    for ((u, v) in G.E) {
+        if (v.d > u.d + W(u, v))
+            return false
+    }
+    return true
+}
+```
+
+- **utilizzo**: Dati cicli e pesi negativi, l'algoritmo trova il percorso minimo da s a tutti gli altri vertici se non ci sono cicli negativi raggiungibili da s, altrimenti restituisce false
+- **complessità**: $\Theta(|V| \cdot |E|) = O(|V|^3)$
+
+```pseudocode
+proc DAGShortestPath (G, s) {
+    // ordinamento topologico
+    TopologicalSort(G)
+    InizializeSingleSource(G, s)
+    for (u in G.V - in order) {
+        for (v in G.Adj[u])
+            Relax(u, v, W)
+    }
+}
+```
+
+- **utilizzo**: Dato un grafo **aciclico**, l'algoritmo trova il percorso minimo da s a tutti gli altri vertici
+- **complessità**: $\Theta(|V| + |E|)$
+
+```pseudocode
+proc Dijkstra (G, s) {
+    InizializeSingleSource(G, s)
+    // insieme dei vertici per cui la stima è già corretta
+    S = ∅
+    // coda di priorità (sulla stima di distanza)
+    Q = G.V
+    while (Q ≠ ∅) {
+        u = ExtractMin(Q)
+        S = S ∪ {u}
+        for (v in G.Adj[u]) {
+            if (v in Q)
+                Relax(u, v, W) // -> DecreaseKey(Q, v)
+        }
+    }
+}
+```
+
+- **utilizzo**: Dato un grafo con pesi **positivi o zero**, l'algoritmo trova il percorso minimo da s a tutti gli altri vertici
+- **complessità**:
+    - **se grafo denso -> si usa una coda senza struttura**: $\Theta(|V|^2)$
+    - **se grafo sparso -> si usa una heap binaria**: $\Theta(|E| \cdot \log(|V|))$
