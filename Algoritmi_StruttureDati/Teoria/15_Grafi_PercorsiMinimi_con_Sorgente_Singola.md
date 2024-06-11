@@ -135,7 +135,7 @@ proc Dijkstra (G, s) {
 ![alt text](images/15_03.png)
 
 Come in MSTPrim, l'operazione di `Relax(u, v, W)` in realtà "nasconde" un `DecreaseKey(Q, v)` durante il cambio del valore di una chiave `v.d`.  
-Questa operazione si applica sol ai vertici ancora nella coda Q.  
+Questa operazione si applica solo ai vertici ancora nella coda Q.  
 Dopo `InitializeSingleSource` il vertice `s` è il primo ad essere estratto dalla coda Q poichè `s.d = 0`.  
 Nessun operazione inserisce elementi in Q, quindi il while viene eseguito $|V|$ volte.
 
