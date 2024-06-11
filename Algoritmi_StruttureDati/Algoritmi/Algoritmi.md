@@ -928,3 +928,115 @@ proc BSTTreeTransplant (T, u, v) {
 - **complessità**:
     - **caso medio**: $\Theta(\log(n))$
     - **caso peggiore**: $\Theta(n)$
+
+## Alberi Red-Black
+```pseudocode
+proc BSTTreeLeftRotate (T, x) {
+    y = x.right
+    x.right = y.left
+    if (y.left ≠ T.Nil)
+        y.left.p = x
+    y.p = x.p
+    if (x.p = T.Nil)
+        T.root = y
+    if ( (x.p ≠ T.Nil) and (x = x.p.left) )
+        x.p.left = y
+    if ( (x.p ≠ T.Nil) and (x = x.p.right) )
+        x.p.right = y
+    y.left = x
+    x.p = y
+}
+```
+
+- **utilizzo**: Ruota a sinistra l'albero per mantenere le proprietà di un BST quando si fanno le operazioni di inserimento e cancellazione
+- **complessità**: $O(1)$
+
+```pseudocode
+proc RBTreeInsert (T, z) {
+    y = T.Nil
+    x = T.root
+    while (x ≠ T.Nil) {
+        y = x
+        if (z.key < x.key)
+            x = x.left
+        else
+            x = x.right
+    }
+    z.p = y
+    if (y = T.Nil)
+        T.root = z
+    if ( (y ≠ T.Nil) and (z.key < y.key) )
+        y.left = z
+    if ( (y ≠ T.Nil) and (z.key ≥ y.key) )
+        y.right = z
+    z.left = T.Nil
+    z.right = T.Nil
+    z.color = RED
+    RBTreeInsertFixup(T, z)
+}
+```
+
+- **utilizzo**: Inserisce un nuovo nodo nell'albero, mantenendo le proprietà di un albero Red-Black
+- **complessità**: $\Theta(\log(n))$
+
+```pseudocode
+proc RBTreeInsertFixup (T, z) {
+    while (z.p.color = RED) {
+        if (z.p = z.p.p.left)
+            RBTreeInsertFixUpLeft(T, z)
+        else
+            RBTreeInsertFixUpRight(T, z)
+    }
+    T.root.color = BLACK
+}
+```
+
+- **utilizzo**: Corregge le proprietà di un albero Red-Black dopo l'inserimento di un nodo rosso
+
+```pseudocode
+proc RBTreeInsertFixUpLeft (T, z) {
+    y = z.p.p.right
+    // caso 1
+    if (y.color = RED) {
+        z.p.color = BLACK
+        y.color = BLACK
+        z.p.p.color = RED
+        z = z.p.p
+    } else {
+        // caso 3
+        if (z = z.p.right) {
+            z = z.p
+            BSTTreeLeftRotate(T, z)
+        }
+        // caso 2
+        z.p.color = BLACK
+        z.p.p.color = RED
+        BSTTreeRightRotate(T, z.p.p)
+    }
+}
+
+proc RBTreeInsertFixUpRight (T, z) {
+    y = z.p.p.left
+    // caso 1
+    if (y.color = RED) {
+        z.p.color = BLACK
+        y.color = BLACK
+        z.p.p.color = RED
+        z = z.p.p
+    } else {
+        // caso 2
+        if (z = z.p.left) {
+            z = z.p
+            BSTTreeRightRotate(T, z)
+        }
+        // caso 3
+        z.p.color = BLACK
+        z.p.p.color = RED
+        BSTTreeLeftRotate(T, z.p.p)
+    }
+}
+```
+
+- **utilizzo**: Corregge le proprietà di un albero Red-Black dopo l'inserimento di un nodo rosso ed in base alla posizione del nodo z rispetto al padre e al nonno
+
+## ALberi Bilanciati
