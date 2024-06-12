@@ -18,7 +18,7 @@ Risolve in maniera efficiente un problema di ottimizzazione suddividendo dei pro
 **Caratteristica della programmazione dinamica**: tutta la complessità di progettazione si accumula nella progettazione iniziale
 
 ## Algoritmo della moltiplicazione di matrici
-Caratterizzazione della sottotruttura ottima basata su archi:  
+Caratterizzazione della sottostruttura ottima basata su archi:  
 - $L^m_{i j}$ = peso del cammino minimo tra il vertice `i` e il vertice `j` che si puó costruire usando al piú `m` archi
 - $L^m_{ij} = \min_k(L^m_{ik} + W_{kj})$
 - Struttura percorso minimo: i ----> k ----> j  
@@ -91,7 +91,7 @@ proc FasterAllPairsMatrix (W) {
 **Complessità**: $\Theta(|V|^3 \cdot \log(|V|))$
 
 ## Algoritmo di Floyd-Warshall
-Caratterizzazione della sottotruttura ottima **basata su vertici**: dati due vertici `i` e `j` e un insieme di vertici diversi da `i` e `j`, sul cammino minimo tra `i` e `j` potrebbero esserci altri vertici (vertici intermediari)
+Caratterizzazione della sottostruttura ottima **basata su vertici**: dati due vertici `i` e `j` e un insieme di vertici diversi da `i` e `j`, sul cammino minimo tra `i` e `j` potrebbero esserci altri vertici (vertici intermediari)
 
 Nel cambiare il focus da numero di archi usabili a quali intermediari usare, si ha un algoritmo più efficiente:
 - mi ricordo che i vertici sono ordinati 1, 2, ..., n
