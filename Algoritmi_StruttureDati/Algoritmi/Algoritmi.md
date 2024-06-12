@@ -1471,3 +1471,70 @@ proc Dijkstra (G, s) {
 - **complessità**:
     - **se grafo denso -> si usa una coda senza struttura**: $\Theta(|V|^2)$
     - **se grafo sparso -> si usa una heap binaria**: $\Theta(|E| \cdot \log(|V|))$
+
+## Percorsi minimi: grafi diretti, pesati, connessi, sorgente multipla
+```pseudocode
+proc ExtendShortestPaths (L, W) {
+    n = L.rows
+    let L' be a new matrix
+    for (i = 1 to n)
+        for (j = 1 to n)
+            L'ij = ∞
+            for (k = 1 to n)
+                L'ij = min{L'ij, Lik + Wkj}
+    return L'
+}
+
+proc SlowAllPairsMatrix (W) {
+    n = L.rows
+    L(1) = W
+    for m = 2 to n - 1
+        L(m) = ExtendShortestPaths(L(m-1), W)
+    return L(n-1)
+}
+```
+
+- **utilizzo**: Guardando il numero di **archi**, l'algoritmo calcola la matrice delle distanze minime tra tutti i vertici per ogni numero di archi
+- **complessità**: $\Theta(|V|^4)$
+
+```pseudocode
+proc ExtendShortestPaths (L, W) {
+    n = L.rows
+    let L' be a new matrix
+    for (i = 1 to n)
+        for (j = 1 to n)
+            L'ij = ∞
+            for (k = 1 to n)
+                L'ij = min{L'ij, Lik + Wkj}
+    return L'
+}
+
+proc FasterAllPairsMatrix (W) {
+    n = L.rows
+    L(1) = W
+    m = 1
+    while (m < n - 1) {
+        L(2m) = ExtendShortestPaths(L(m), L(m))
+        m = 2m
+    }
+    return L(m)
+}
+```
+
+- **utilizzo**: Guardando il numero di **archi**, l'algoritmo calcola la matrice delle distanze minime tra tutti i vertici per ogni potenza di 2
+- **complessità**: $\Theta(|V|^3 \cdot \log(|V|))$
+
+```pseudocode
+proc FloydWarshall (W) {
+    n = W.rows
+    let D(0) = W
+    for (k = 1 to n)
+        let D(k) be a new matrix
+        for (i = 1 to n)
+            for (j = 1 to n)
+                D(k)ij = min{D(k-1)ij, D(k-1)ik + D(k-1)kj}
+}
+```
+
+- **utilizzo**: Guardando il numero di **vertici**, l'algoritmo calcola la matrice delle distanze minime tra tutti i vertici per ogni vertice intermedio
+- **complessità**: $\Theta(|V|^3)$
