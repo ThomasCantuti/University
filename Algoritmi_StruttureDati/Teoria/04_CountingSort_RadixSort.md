@@ -34,10 +34,10 @@ proc CountingSort (A, B, k) {
     for (i = 0 to k) C[i] = 0 --> azzerare i contatori
     for (j = 1 to A.length) C[A[j]] = C[A[j]] + 1 --> 1.
     for (i = 1 to k) C[i] = C[i] + C[i − 1] --> 2.
-    for (j = A.length downto 1)
-
-    B[C[A[j]]] = A[j]
-    C[A[j]] = C[A[j]] − 1
+    for (j = A.length downto 1) {
+        B[C[A[j]]] = A[j]
+        C[A[j]] = C[A[j]] − 1
+    }
 }
 ```
 1. inizializza i contatori in maniera tale che `C[i]` = numero di volte che `i` compare in A
