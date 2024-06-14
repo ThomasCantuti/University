@@ -444,7 +444,7 @@ proc BuildMinHeap (H) {
 ```
 
 - **utilizzo**: Costruisce un min-heap a partire da un array
-- **complessità**: $\O(n \cdot \log(n))$
+- **complessità**: $O(n \cdot \log(n))$
 
 ```pseudocode
 proc MaxHeapify (H, i) {
@@ -475,7 +475,7 @@ proc BuildMaxHeap (H) {
 ```
 
 - **utilizzo**: Costruisce una max-heap a partire da un array
-- **complessità**: $\O(n \cdot \log(n))$
+- **complessità**: $O(n \cdot \log(n))$
 
 ```pseudocode
 proc HeapSort(H) {
