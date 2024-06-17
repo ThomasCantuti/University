@@ -492,7 +492,7 @@ proc HeapSort(H) {
 - **complessità**: $\Theta(n \cdot \log(n))$
 
 # Algoritmi per Code di priorità
-
+## Code di priorità su Heap
 ```pseudocode
 proc ExtractMin(Q) {
     if (Q.heapsize < 1) {
@@ -524,6 +524,49 @@ proc DecreaseKey(Q, i, priority) {
 
 - **utilizzo**: Diminuisce la chiave dell'elemento i e lo posiziona correttamente nella coda Q
 - **complessità**: $\Theta(\log(n))$
+
+## Code di priorità su Array
+```pseudocode
+proc Enqueue (Q, i, priority) {
+    if (i > Q.length)
+        return "overflow"
+    Q[i] = priority
+}
+```
+
+- **utilizzo**: Inserisce un elemento i con priorità priority nella coda Q
+- **complessità**: $\Theta(1)$
+
+```pseudocode
+proc DecreaseKey (Q, i, priority) {
+    if ( (Q[i] < priority) or (Q[i].empty = 1) )
+        return "error"
+    Q[i] = priority
+}
+```
+
+- **utilizzo**: Diminuisce la chiave dell'elemento i e lo posiziona correttamente nella coda Q
+- **complessità**: $\Theta(1)$
+
+```pseudocode
+proc ExtractMin (Q) {
+    MinIndex = 0
+    MinPriority = ∞
+    for (i = 1 to Q.length) {
+        if ( (Q[i] < MinPriority) and (Q[i].empty = 0) ) {
+            MinIndex = i
+            MinPriority = Q[i]
+        }
+    }
+    if (MinIndex = 0)
+        return "underflow"
+    Q[MinIndex].empty = 1
+    return MinIndex
+}
+```
+
+- **utilizzo**: Estrae l'elemento dalla coda Q con la chiave minima
+- **complessità**: $\Theta(n)$
 
 # Algoritmi per Tabelle Hash
 
@@ -605,10 +648,10 @@ proc OaHashSearch (T, k) {
     i = 0
     repeat {
         j = h(k, i)
-        if T[j] = k
+        if (T[j] = k)
             then
             return j
-        else i = i + 1
+        i = i + 1
     } until (T[j] = nil or i = m)
     return nil
 }
@@ -726,11 +769,11 @@ proc Union (x, y) {
     y = FindSet(y)
     if (x.rank > y.rank) {
         then y.p = x
-    } else {
+    }
+    if (x.rank ≤ y.rank) {
         x.p = y
-        if (x.rank = y.rank) {
-            then y.rank = y.rank + 1
-        }
+        if (x.rank = y.rank)
+            y.rank = y.rank + 1
     }
 }
 ```
@@ -760,8 +803,8 @@ proc TreeInOrderTreeWalk (x) {
 proc TreePreOrderTreeWalk (x) {
     if (x ≠ nil) {
         print(x.key)
-        TreePreOrderTreeWalk(x.left)
-        TreePreOrderTreeWalk(x.right)
+        TreeInOrderTreeWalk(x.left)
+        TreeInOrderTreeWalk(x.right)
     }
 }
 ```
@@ -772,8 +815,8 @@ proc TreePreOrderTreeWalk (x) {
 ```pseudocode
 proc TreePostOrderTreeWalk (x) {
     if (x ≠ nil) {
-        TreePostOrderTreeWalk(x.left)
-        TreePostOrderTreeWalk(x.right)
+        TreeInOrderTreeWalk(x.left)
+        TreeInOrderTreeWalk(x.right)
         print(x.key)
     }
 }
