@@ -803,8 +803,8 @@ proc TreeInOrderTreeWalk (x) {
 proc TreePreOrderTreeWalk (x) {
     if (x ≠ nil) {
         print(x.key)
-        TreeInOrderTreeWalk(x.left)
-        TreeInOrderTreeWalk(x.right)
+        TreePreOrderTreeWalk(x.left)
+        TreePreOrderTreeWalk(x.right)
     }
 }
 ```
@@ -815,8 +815,8 @@ proc TreePreOrderTreeWalk (x) {
 ```pseudocode
 proc TreePostOrderTreeWalk (x) {
     if (x ≠ nil) {
-        TreeInOrderTreeWalk(x.left)
-        TreeInOrderTreeWalk(x.right)
+        TreePostOrderTreeWalk(x.left)
+        TreePostOrderTreeWalk(x.right)
         print(x.key)
     }
 }
