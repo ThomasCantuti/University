@@ -11,7 +11,7 @@ Richieste sintetiche dell'azienda (analisi requisiti):
 
 ## Modello ER
 Entità e Attributi:
-- **Entità** -> oggetto del mondo reale (dipartimento, progetto, dipendente)
+- **Entità** (o tipi di entità) -> oggetto del mondo reale (dipartimento, progetto, dipendente)
 - **Istanza** -> singola occorrenza di un'entità (dipartimento "Vendite", progetto "Sviluppo App", dipendente "Mario Rossi")
 - **Attributo** -> proprietà per descrivere un'entità (nome, cognome di un dipendente)
 - **Attributo chiave** -> attributo che identifica univocamente un'istanza di un'entità (codice fiscale di un dipendente)
@@ -26,11 +26,14 @@ Entità e Attributi:
 - **Data** -> esiste un'attributo tutto suo (data di nascita, data di assunzione)
 
 ## Entità, Istanze e Attributi chiave
-Entità (o tipi di entità) -> Istanza -> Attributo (o attributo chiave) -> Valore
+- istanza dell'entità -> ogni elemento di un'entità
+- attributo chiave -> identifica univocamente un'istanza di un'entità (può essere composto, es. targa di un'auto)
+- un'entità può avere più attributi chiave (es. targa e numero di telaio di un'auto)
 
-Esempio: entità AUTO ed istanze
-AUTO: Targa(Provincia, Numero), NumeroTelaio, Marca, Modello, Anno, {Colore}
-auto1: ((FE, 541080), TK629, Fiat, Tipo, 1993, {verde met.})
+
+Esempio: entità AUTO ed istanze  
+AUTO: Targa(Provincia, Numero), NumeroTelaio, Marca, Modello, Anno, {Colore}  
+auto1: ((FE, 541080), TK629, Fiat, Tipo, 1993, {verde met.})  
 auto2: ((BO, 371166), TD729, Fiat, Panda, 2004, {nero, bianco})
 
 ## Notazione ER
@@ -38,6 +41,8 @@ auto2: ((BO, 371166), TD729, Fiat, Panda, 2004, {nero, bianco})
 
 ## Esempio Database Azienda per gestire: Dipartimenti, Progetti e Dipendenti
 Entità: Dipartimento, Progetto, Dipendente
+
+![alt text](image/03_06.png)
 
 ## Associazioni
 - **Associazione** -> relazione tra due o più entità con un significato (dipendente lavora in un dipartimento, progetto è assegnato a un dipartimento)
