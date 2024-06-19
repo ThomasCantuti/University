@@ -60,10 +60,10 @@ utenti che lavorano per la manutenzione del database ma non sono direttamente in
 - operatori per la manutenzione (mentenere efficiente hw e sw per il DBMS)
 
 ## Vantaggi dei database
-- ridondanza ridotta
+- ridondanza ridotta nella memorizzazione dei dati
 - condivisione dati tra più utenti
-- controllo degli accessi
-- strumenti di memorizzazione efficienti per le query
+- controllo degli accessi ai dati
+- strutture di memorizzazione efficienti per le query
 - backup e recovery
 - interfacce multiple per gli utenti
 - rappresentazione di relazioni complesse tra i dati
