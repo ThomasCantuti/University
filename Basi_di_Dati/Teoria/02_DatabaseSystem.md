@@ -27,9 +27,9 @@
 2. Separare l'applicazione dell'utente dal database
 
 3. Definire gli schemi del DBMS a 3 livelli
-    - **schema interno** -> descrive la struttura fisica del database
-    - **schema concettuale** -> descrive la struttura logica del database
-    - **schema esterno** -> descrive la struttura di una vista dell'utente
+    - **schema interno** -> descrive la struttura di memorizzazione fisica ed i percorsi di accesso ai dati (modello fisico)
+    - **schema concettuale** -> descrive le strutture ed i vincoli del database (modello concettuale)
+    - **schema esterno** -> descrive le varie viste dell'utente (stesso modello del livello concettuale)
 
 Per gli schemi è necessaria una mappatura tra i livelli per trasformare le richieste ed i dati:
 
@@ -47,7 +47,7 @@ quando si cambia uno schema, gli altri non devono essere influenzati
     - **SDL** (Storage Definition Language) -> definizione dello schema interno (memorizzazione)
     - **VDL** (View Definition Language) -> definizione dello schema esterno (viste)
 - **DML** (Data Manipulation Language) -> definire query e aggiornamenti (comandi incapsulati in linguaggi di programmazione (data sublanguage) o applicati direttamente (query language))
-- **Linguaggi di alto livello** (non procedurali) -> specificano quali dati ceracre e come estrarli (linguaggi dichiarativi, SQL)
+- **Linguaggi di alto livello** (non procedurali) -> specificano quali dati cercare e come estrarli (linguaggi dichiarativi, SQL)
 - **Linguaggi di basso livello** (procedurali) -> specificano come estrarre i dati, usano cicli, lavorano su un record per volta (C, Java, Python)
 
 ## Interfacce dei DBMS
@@ -69,12 +69,13 @@ quando si cambia uno schema, gli altri non devono essere influenzati
 - fare il backup periodicamente
 - riorganizzare la struttura del db
 - monitorare le prestazioni
-...
+- ...
 
 ## Architettura centralizzate e Client-Server
 - **DBMS Centralizzato** -> unico server, tutti i client si collegano a lui
 
 ![alt text](image/02_01.png)
+
 - **DBMS Client-Server** -> server centrale, client si collegano a lui, server può collegarsi ad altri server
 
 ![alt text](image/02_02.png)
