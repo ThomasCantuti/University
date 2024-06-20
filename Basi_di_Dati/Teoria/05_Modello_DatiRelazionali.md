@@ -78,30 +78,46 @@ Condizioni che devono essere rispettate da tutti gli stati di relazione validi e
 - vincoli di integrità Referenziale
 
 ### Vincoli sulla Chiave
-- **Superchiave** di R: insieme di attributi che identificano univocamente una tupla
-- **Chiave** di R: superchiave di R che è minimale (se ce ne sono varie se ne sceglie una come chiave primaria)
-- **Chiave Primaria** di R: chiave scelta come chiave di riferimento per la relazione
+- **Superchiave** di R: insieme di attributi che identificano univocamente una tupla (per ogni coppia di tuple t1 e t2, t1[A] != t2[A])
+- **Chiave** di R: superchiave minimale -> se si rimuove un attributo dalla superchiave, non è più una superchiave  
+Esempio: AUTO(NumTelaio, Targa, Modello, Casa)  
+{NumTelaio} e {Targa} sono chiavi  
+{NumTelaio, Targa} è una superchiave  
+{NumTelaio, Casa} è superchiave ma non chiave
+- **Chiave Primaria** di R: chiave scelta come riferimento per la relazione tra varie chiavi possibili
 
 ### Vincoli di integrità dell'Entità
-Gli **Attributi chiave** non possono essere NULL in nessuna tupla
+Gli attributi chiave primaria di ogni schema di database relazionale (insieme S di schemi di relazione nello stesso database -> S = {R1, R2, ..., Rn}) devono avere valori diversi da NULL in ogni tupla
 
 ### Vincoli di integrità Referenziale
-Quando si hanno due relazioni e una di queste fa riferimento all'altra per un attributo, il valore dell'attributo deve esistere nell'altra relazione
+Vincolo che coinvolge due relazioni  
+Specifica un riferimento tra tuple in due relazioni: relazione referenziante e relazione riferita
+- tuple nella relazione referenziante R1 hanno attributi FK (chiave esterna) che fanno riferimento agli attributi chiave primaria PK della relazione riferita R2
+- tupla t1 in R1 è in riferimento con una tupla t2 in R2 se t1[FK] = t2[PK]
+Il valore della colonna (o colonne) FK in R1 può essere:
+- NULL (FK in R1 non deve far parte della chiave primaria di R1)
+- un valore che esiste in una tupla della relazione riferita R2
+Esempio:  
+CLIENTI (ID-Cli, Nome-Cli, Indirizzo, Tel)  
+ORDINI (ID-Ord, Data, ID-Cli)  
+Il vincolo di integrità referenziale richiede che ogni ID-Cli in ORDINI esista in CLIENTI
 
 ### Altri Vincoli
-- **Vincoli di Integrità Semantica**: vincoli basati sulla semantica dell'applicazione
+- **Vincoli di Integrità Semantici**: vincoli basati sulla semantica dell'applicazione  
 Esempio: se in una scuola si ha l'attributo età e si vuole che sia compreso tra 18 e 65
+
+![alt text](image/05_02.png)
 
 ## Operazioni sulle Relazioni
 - **Inserimento** di una tupla (INSERT)
 - **Cancellazione** di una tupla (DELETE)
 - **Modifica** di una tupla (MODIFY, UPDATE)
-- i vincoli di integrità devono essere rispettati anche dale operazioni di aggiornamento
-- una serie di operazioni di aggiornamento possono essere raggruppate insieme (bulk insert)
+- i vincoli di integrità devono essere rispettati anche dalle operazioni di aggiornamento
+- una serie di operazioni di aggiornamento possono essere raggruppate insieme
 - le operazioni di aggiornamento possono creare in automatico altri aggiornamenti
 
 Se un'operazione di aggiornamento viola un vincolo di integrità:
 - si annulla l'operazione che causa la violazione (REJECT)
-- eseguire l'operazione, informando l'utente della violazione
-- eseguire altri aggiornamenti per correggere la violazzione (CASCADE, SET NULL)
-- eseguire una routine dell'utente pre correggere la violazione
+- si esegue l'operazione, informando l'utente della violazione
+- si eseguono altri aggiornamenti per correggere la violazione (CASCADE, SET NULL)
+- si esegue una routine dall'utente per correggere la violazione
