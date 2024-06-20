@@ -3,72 +3,79 @@
 Modello basato sul concetto di **Relazione** (concetto matematico basato sulla teoria degli insiemi)
 
 ## Relazione
-La relazione è una tabella di valori:
-    - insieme di righe
-    - insieme di colonne
+Relazione -> tabella di valori vista come insieme di righe o colonne
 
-Ogni riga rappresenta un'**istanza** di un'entità  
-Ogni riga possiede un valore per un elemento o insisme di elementi che la identificano univocamente
+- ogni riga rappresenta un'**istanza** di un'entità o di un'associazione
+- ogni riga ha un valore per un elemento o per un insieme di elementi che identifica univocamente la riga
+- si possono assegnare identificatori di riga (row-id) o numeri sequenziali per identificare le righe
+- colonne tipicamente individuata con nome o intestazione colonna o nome dell'attributo
 
-## Definizioni formali
-
-### Schema di una relazione
-R(A1, A2, ..., An) con R nome della relazione e A1, A2, ..., An attributi della relazione
+## Schema di una relazione
+Schema di una relazione R definisce una relazione.  
+Schema della relazione R = R(A1, A2, ..., An)
+- R nome della relazione
+- A1, A2, ..., An attributi della relazione
 
 Esempio:
 CLIENTI (ID-Cli, Nome-Cli, Indirizzo, Tel)  
-CLIENTI è una relazione definita sui quattro attributi ID-Cli, Nome-Cli, Indirizzo e Tel, ciascuno dei quali possiede un dominio, o insieme di valori validi.  
-ID-Cli è un numero di 6 cifre.
+CLIENTI è una relazione definita sui quattro attributi ID-Cli, Nome-Cli, Indirizzo e Tel.  
+Ognuno possiede un dominio o un insieme di valori validi (es. ID-Cli -> numero di 6 cifre)
 
-### Tuple
-Insieme ordinato di valori dove ogni valore è derivato da un dominio  
-Le colonne sono gli attributi della relazione
+## Tupla
+Tupla -> insieme ordinato di valori dove ogni valore è derivato da un dominio  
+Esempio: ogni riga della tabella CLIENTI può essere vista come una tupla composta da 4 valori:  
+<632895, “Giacomo Piva", "via Saragat 1, 44122, Ferrara", "+39 (0532) 974344">
 
-Esempio:
-<632895, “Giacomo Piva", "via Saragat 1, 44122, Ferrara", "+39 (0532) 974344"> è una tupla appartenente alla relazione CLIENTI
+Una relazione può essere usata come insieme di tuple (righe).  
+Le colonne sono gli attributi della relazione.
 
+## Dominio
+Dominio -> ha una definizione logica (es. numeri di telefono -> insieme dei numeri di telefono validi)  
+Può avere:
+- un tipo di dati (es. numeri di telefono -> stringa di caratteri)
+- formato (es. numeri di telefono ha formato +dd (dddd) dddddddd dove d è una cifra decimale)
 
-### Dominio
-Ha una definizione logica (es. numeri di telefono -> insieme dei numeri di telefono validi)  
-Può avere **un tipo di dati** o un **formato** definito (es. numeri di telefono ha formato +dd (dddd) dddddddd dove d è una cifra decimale)  
-Il ruolo del dominio è l'attributo (es. dominio date -> attributo "DataFattura")
+attributo -> specifica il ruolo del dominio (es. dominio date -> attributo "DataFattura" o "DataScadenza")
 
-### Relazione
-Relazione o stato della relazione è formata dal prodotto cartesiano degli insiemi dominio (es. S1 x S2) dove ciascun insieme ha valori provenienti da un dominio (dominio usato per definire il ruolo dell'attributo)
+## Stato della Relazione
+Stato della relazione (o relazione) -> è formata dal prodotto cartesiano degli insiemi dominio (es. S1 x S2) dove ciascun insieme ha valori provenienti da un dominio (dominio usato per definire il ruolo dell'attributo in questione)  
+Esempio: l'attributo Nome-Cli è definito sul dominio delle stringhe di 25 caratteri (ruolo delle stringhe nella relazione CLIENTI -> specificare il nome dei clienti)
 
-### Esempio formale:
+Esempio formale:
 - dato R(A1, A2, ..., An)
 - r(R) $\subset$ dom(A1) x dom(A2) x ... x dom(An)
     - R -> schema della relazione
-    r di R -> stato della relazione (specifico "valore" o popolazione di R)
+    - r di R -> stato della relazione (specifico "valore" o popolazione di R)
     - R -> intensione della relazione
     - r -> estensione della relazione
 
-### Esempio:
+## Esempio:
 - S1 = {0, 1} e S2 = {a, b, c}
 - R $\subset$ S1 x S2
-- r(R) = {<0, a>, <0, b>, <1, c>} è un possibile stato (o popolazione o intensione) r della relazione R, definita nei domini S1 e S2 con 3 tuple
+- r(R) = {<0, a>, <0, b>, <1, c>} è un possibile stato (o entensione) r della relazione R (o intensione), definita nei domini S1 e S2, contenente 3 tuple
 
 ![alt text](image/05_00.png)
 
 Esempio:
+
 ![alt text](image/05_01.png)
 
 
-## Caratteristiche Relazioni
-- Le tuple non si devono considerare ordinate
-- L'ordinamento degli attributi esiste ed è R(A1, A2, ..., An) ed i valori in t = <v1, v2, ..., vn>
+## Caratteristiche delle Relazioni
+- le tuple non si devono considerare ordinate in una relazione r(R)
+- gli attributi in R(A1, A2, ..., An) ed i valori in ogni tupla t = <v1, v2, ..., vn> si devono considerare ordinati
 - una relazione più generale non richiede ordinamento
 - tutti i valori in una tupla sono atomici e NULL si usa per valori sconosciuti
 
 ### Notazione
-valori in una tupla t: t[A_i] = v_i
+valori in una tupla t: t[A[i]] = v[i] (A[i] valore dell'attributo i-esimo per la tupla t)  
+valori di una sotto-tupla t: t[A[u], A[v], ..., A[w]] contiene i valori degli attributi A[u], A[v], ..., A[w]
 
 ## Vincoli di Integrità
-Condizioni che devono essere rispettate da tutti gli stati di una relazione validi ed esistono 3 vincoli:
-- **Vincoli sulla Chiave**
-- **Vincoli di integrità dell'Entità**
-- **Vincoli di integrità Referenziale**
+Condizioni che devono essere rispettate da tutti gli stati di relazione validi ed esistono 3 vincoli:
+- vincoli sulla Chiave
+- vincoli di integrità dell'Entità
+- vincoli di integrità Referenziale
 
 ### Vincoli sulla Chiave
 - **Superchiave** di R: insieme di attributi che identificano univocamente una tupla
