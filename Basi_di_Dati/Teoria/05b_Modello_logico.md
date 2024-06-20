@@ -38,9 +38,9 @@ per ogni associazione A n-aria (n > 2) si crea una relazione S per rappresentare
 - si includono come chiavi esterne in S le chiavi primarie delle relazioni che rappresentano le n entità coinvolte in A
 - si includono tutti gli attributi di A in S
 
-![alt text](image/06_00.png)
+![alt text](image/05_03.png)
 
-![alt text](image/06_01.png)
+![alt text](image/05_04.png)
 
 ## EER - Relazionale
 ### Specializzazioni e Generalizzazione
@@ -51,24 +51,24 @@ Relazioni multiple - superclasse e sottoclasse (per tutte le specializzazioni: t
 - si crea una relazione L per C con i suoi attributi Attr(L) e la sua chiave primaria PK(L) = k
 - si crea una relazione L[i] per ogni sottoclasse S[i], 1 < i < m, con attributi Attr(L[i]) = {k} U {attr di S[i]} e chiave primaria PK(L[i]) = k
 
-![alt text](image/06_02.png)
+![alt text](image/05_05.png)
 
 #### opzione B
 Relazioni multiple - solo relazioni sottoclasse (per una specializzazione con sottoclassi totali):
 - si crea una relazione L[i] per ogni sottoclasse S[i], 1 < i < m, con attributi Attr(L[i]) = {attr. di S[i]} U {k, A1, ..., An} e chiave primaria PK(L[i]) = k
 
-![alt text](image/06_03.png)
+![alt text](image/05_06.png)
 
 #### opzione C
 Relazione singola con un attributo tipo:
 - si crea una relazione L con gli attributi Attr(L) = {k, A1, ..., An} U {attr. di S1} U ... U {attr. di Sm} U {t} e chiave primaria PK(L) = k
 - l'attributo t è chiamato tipo e indica a quale sottoclasse appartiene ogni tupla
 
-![alt text](image/06_04.png)
+![alt text](image/05_07.png)
 
 #### opzione D
 Relazione singola con molti attributi tipo:
 - si crea una relazione L con gli attributi Attr(L) = {k, A1, ..., An} U {attr. di S1} U ... U {attr. di Sm} U {t1, t2, ..., tm} e chiave primaria PK(L) = k
 - ogni t[i], 1 < i < m, è un attributo booleano (flag) che indica se la tupla appartiene alla sottoclasse S[i]
 
-![alt text](image/06_05.png)
+![alt text](image/05_08.png)
