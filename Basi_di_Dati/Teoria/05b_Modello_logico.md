@@ -71,4 +71,4 @@ Relazione singola con molti attributi tipo:
 - si crea una relazione L con gli attributi Attr(L) = {k, A1, ..., An} U {attr. di S1} U ... U {attr. di Sm} U {t1, t2, ..., tm} e chiave primaria PK(L) = k
 - ogni t[i], 1 < i < m, è un attributo booleano (flag) che indica se la tupla appartiene alla sottoclasse S[i]
 
-![alt text](06_05.png)
+![alt text](image/06_05.png)
