@@ -106,3 +106,15 @@ Esempi:
 - ℱMAX<sub>Stipendio</sub>(DIPENDENTE) -> restituisce il massimo stipendio tra i dipendenti
 - ℱMIN<sub>Stipendio</sub>(DIPENDENTE) -> restituisce il minimo stipendio tra i dipendenti
 - ℱSUM<sub>Stipendio</sub>(DIPENDENTE) -> restituisce la somma degli stipendi dei dipendenti
+
+**Operazioni di chiusura ricorsiva**: operazioni che permettono di eseguire operazioni ricorsive su relazioni  
+Esempio: cercare tutti i supervisori di un dipendente e a tutti i livelli (supervisore, supervisore del supervisore, ecc.)
+
+![alt text](image/06_06.png)
+
+**Operazione di join esterna (OUTER JOIN)**: quando si vuole includere le tuple che non hanno corrispondenza in una delle due relazioni (a differenza del JOIN che include solo le tuple che hanno corrispondenza in entrambe le relazioni)
+- join esterno sinistro (LEFT OUTER JOIN): R ⨝<sub>LEFT</sub> S mantiene tutte le tuple della prima relazione R (se non c'è corrispondenza con la seconda relazione S, gli attributi di S sono NULL)
+- join esterno destro (RIGHT OUTER JOIN): R ⨝<sub>RIGHT</sub> S mantiene tutte le tuple della seconda relazione S (se non c'è corrispondenza con la prima relazione R, gli attributi di R sono NULL)
+- join esterno totale (FULL OUTER JOIN): R ⨝<sub>FULL</sub> S mantiene tutte le tuple di entrambe le relazioni
+
+![alt text](image/06_07.png)
