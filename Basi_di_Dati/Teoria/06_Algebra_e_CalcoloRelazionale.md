@@ -86,3 +86,23 @@ Notazione: R ⨝<sub>cond AND cond AND ... AND cond</sub> S
 **NATURAL JOIN**: JOIN (indicata con *) che non include i duplicati in una condizione di uguaglianza. Se due relazioni hanno attributi con lo stesso nome, la condizione di JOIN diventa una ridenominazione
 
 ![alt text](image/06_05.png)
+
+L'insieme delle operazioni relazionali selezione (σ), proiezione (π), unione (U), differenza (-), prodotto cartesiano (x) è detto **insieme completo** in quanto è possibile esprimere qualsiasi operazione relazionale in termini di queste operazioni  
+Esempio:  
+R ∩ S = (R U S) - ((R - S) U (S - R))  
+R ⨝<sub>condizione</sub> S = σ<sub>condizione</sub>(R x S)
+
+**Operazione di divisione (DIVISION)**: date due relazioni R(Z) ÷ S(X) e Y = Z - X (Y è l'insieme degli attributi di R che non sono in S), il risultato della divisione è una relazione T(Y) con le tuple t di R tali che, per ogni tupla in S, esiste almeno una tupla in R che abbia gli stessi valori per gli attributi in X e Y
+
+### Altre operazioni relazionali
+**Funzioni aggregate e raggruppamento**: operazioni che permettono di calcolare valori aggregati (es. SUM, AVERAGE, MAXIMUM, MINIMUM, COUNT) su gruppi di tuple
+
+**Uso dell'operatore funzionale ℱ**: operatore di funzione aggregata dove risulta una relazione con gli attributi di raggruppamento più un attributo per ogni elemento della lista di funzioni  
+Notazione: attributi_raggruppamento ℱlista_funzioni (R) con
+- attributi_raggruppamento: lista di attributi della relazione R
+- lista_funzioni: lista di coppie (funzione, attributo)
+
+Esempi:
+- ℱMAX<sub>Stipendio</sub>(DIPENDENTE) -> restituisce il massimo stipendio tra i dipendenti
+- ℱMIN<sub>Stipendio</sub>(DIPENDENTE) -> restituisce il minimo stipendio tra i dipendenti
+- ℱSUM<sub>Stipendio</sub>(DIPENDENTE) -> restituisce la somma degli stipendi dei dipendenti
