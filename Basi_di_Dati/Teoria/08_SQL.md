@@ -222,4 +222,106 @@ SELECT DISTINCT SALARY
 FROM EMPLOYEE
 ```
 
-## Operazioni di Unioni
+## Operazioni insiemistiche
+SQL supporta le operazioni insiemistiche UNION, INTERSECT e MINUS.  
+Le relazioni risultanti da queste operazioni sono insiemi di tuple e non multi-set di tuple (no tuple duplicate).  
+Le operazioni insiemistiche vengono applicate alle unioni compatibili: le due relazioni devono avere gli stessi attributi e gli attributi devono essere nello stesso ordine.
+
+Q4: crea una lista di tutti i nomi di progetto per i progetti che coinvolgono un impiegato con il nome 'Smith' come impiegato o manager di un dipartimento che controlla il progetto
+```sql
+(SELECT PNAME
+FROM PROJECT, EMPLOYEE, WORKS_ON
+WHERE PNUMBER = PNO AND ESSN = SSN AND LNAME = 'Smith')
+UNION 
+(SELECT PNAME
+FROM PROJECT, EMPLOYEE, DEPARTMENT
+WHERE DNUM = DNUMBER AND SSN = MGRSSN AND LNAME = 'Smith')
+```
+
+## Queries annidate
+Le queries annidate sono queries che appaiono all'interno di una clausola WHERE di un'altra query (outer query).
+
+Q1: recupera il nome e l'indirizzo di tutti gli impiegati che lavorano per il dipartimento di 'Ricerca'
+```sql
+SELECT FNAME, LNAME, ADDRESS
+FROM EMPLOYEE
+WHERE DNO IN (
+    SELECT DNUMBER 
+    FROM DEPARTMENT 
+    WHERE DNAME = 'Research'
+)
+```
+
+### Queries annidate correlate
+Le queries annidate correlate sono queries annidate in cui l'inner query fa riferimento a un attributo di una relazione definita nell'outer query.  
+Il risultato è diverso per ogni tupla dell'outer query.
+
+Q12: recupera il nome di ogni impiegato che ha un dipendente con lo stesso nome
+```sql
+SELECT E.FNAME, E.LNAME
+FROM EMPLOYEE AS E
+WHERE E.SSN IN (
+    SELECT ESSN
+    FROM DEPENDENT
+    WHERE ESSN = E.SSN AND E.FNAME = DEPENDENT_NAME
+)
+
+-- Stessa query ma senza annidamento
+SELECT E.NAME, E.LNAME
+FROM EMPLOYEE E, DEPENDENT D
+WHERE E.SSN = D.ESSN AND E.FNAME = D.DEPENDENT_NAME
+```
+
+L'operatore `CONTAINS` viene usato nelle queries annidate correlate per confrontare due insiemi di valori e restituire TRUE se un insieme contiene tutti i valori nell'altro insieme
+
+Q3: recupera il nome di ogni impiegato che lavora in tutti i progetti controllati dal dipartimento 5
+
+```sql
+SELECT FNAME, LNAME
+FROM EMPLOYEE
+WHERE (
+    (SELECT PNO
+    FROM WORK_ON
+    WHERE SSN = ESSN)
+    CONTAINS
+    (SELECT PNUMBER
+    FROM PROJECT
+    WHERE DNUM = 5)
+)
+```
+
+## Funzione di esistenza
+La funzione di esistenza `EXISTS` è usata per testare se il risultato di una query annidata correlata è vuota o meno.
+
+Q12: recupera il nome di ogni impiegato che ha un dipendente con lo stesso nome
+```sql
+SELECT FNAME, LNAME
+FROM EMPLOYEE
+WHERE EXISTS (
+    SELECT *
+    FROM DEPENDENT
+    WHERE SSN = ESSN AND FNAME = DEPENDENT_NAME
+)
+```
+
+Q6: recupera i nomi degli impiegati che non hanno dipendenti
+```sql
+SELECT FNAME, LNAME
+FROM EMPLOYEE
+WHERE NOT EXISTS (
+    SELECT *
+    FROM DEPENDENT
+    WHERE SSN = ESSN
+)
+```
+
+## NULL in queries SQL
+SQL accetta query che verificano se un valore è NULL (mancante o indefinito o non applicabile).  
+SQL usa `IS` o `IS NOT` per confrontare NULL perchè considera ogni valore NULL diverso dagli altri NULL (confronti di eguaglianza non sono appropriati).
+
+Q14: recupera i nomi di tutti gli impiegati che non hanno supervisori
+```sql
+SELECT FNAME, LNAME
+FROM EMPLOYEE
+WHERE SUPERSSN IS NULL
+```
