@@ -129,6 +129,8 @@ U6: UPDATE EMPOYEE SET SALARY = SALARY * 1.10 WHERE DNO IN (SELECT DNUMBER FROM 
 
 ![alt text](image/08_00.png)
 
+![alt text](image/08_01.png)
+
 ## Recupero queries
 Le queries di recupero usano come statement `SELECT` (diverso dal `SELECT` usato nell'algebra relazionale) per specificare quali tuple devono essere recuperate.  
 In SQL è permesso avere due o più tuple uguali in ogni loro attributo (a differenza dell'algebra relazionale).  
@@ -324,4 +326,132 @@ Q14: recupera i nomi di tutti gli impiegati che non hanno supervisori
 SELECT FNAME, LNAME
 FROM EMPLOYEE
 WHERE SUPERSSN IS NULL
+```
+
+## Funzioni di aggregazione
+SQL supporta funzioni di aggregazione come `SUM`, `COUNT`, `AVG`, `MIN`, `MAX`.  
+Alcune implementazioni di SQL non permottono di usare più di una funzione di aggregazione in un SELECT.
+
+Q15: trova il massimo salario, il minimo salario e la media dei salari degli impiegati
+```sql
+SELECT MAX(SALARY), MIN(SALARY), AVG(SALARY)
+FROM EMPLOYEE
+```
+
+Q16: trova il massimo, il minimo e la media dei salari degli impiegati per il dipartimento di 'Ricerca'
+```sql
+SELECT MAX(SALARY), MIN(SALARY), AVG(SALARY)
+FROM EMPLOYEE, DEPARTEMENT
+WHERE DNAME = 'Research' AND DNO = DNUMBER
+```
+
+Q17: recupera il numero totale di impiegati nell'azienda
+```sql
+SELECT COUNT(*)
+FROM EMPLOYEE
+```
+
+Q18: recupera il numero totale di impiegati nel dipartimento di 'Ricerca'
+```sql
+SELECT COUNT(*)
+FROM EMPLOYEE, DEPARTMENT
+WHERE DNO = DNUMBER AND DNAME = 'Research'
+```
+
+## Raggruppamento
+`GROUP BY-clause` si usa per raggruppare le tuple di attributi con lo stesso valore in un attributo specificato.
+
+Q20: per ogni dipartimento, recupera il numero di dipartimento, il numero di impiegati nel dipartimento e il loro salario medio
+```sql
+SELECT DNO, COUNT(*), AVG(SALARY)
+FROM EMPLOYEE, DEPARTMENT
+GROUP BY DNO
+```
+
+Q21: per ogni progetto, recupera il numero di progetto, il nome di progetto e il numero di impiegati che lavorano in quel progetto
+```sql
+SELECT PNUMBER, PNAME, COUNT(*)
+FROM PROJECT, WORKS_ON
+WHERE PNUMBER = PNO
+GROUP BY PNUMBER, PNAME
+```
+
+## Inserimenti
+Se si volesse creare una relazione temporanea con il risultato di una query e in seguito caricare queste informazioni in un'altra relazione, si può usare `INSERT INTO ... SELECT ...`.
+
+Esempio: creare una relazione temporanea con i nomi, i numeri di dipartimento e i salari totali per ogni dipartimento
+```sql
+CREATE TABLE DEPTS_INFO (
+    DEPT_NAME VARCHAR(10),
+    NO_OF_EMPS INTEGER,
+    TOTAL_SALARY INTEGER
+);
+
+INSERT INTO DEPTS_INFO (
+    DEPT_NAME,
+    NO_OF_EMPS,
+    TOTAL_SALARY
+)
+SELECT DNAME, COUNT(*), SUM(SALARY)
+FROM EMPLOYEE, DEPARTEMENT
+WHERE DNUMBER = DNO
+GROUP BY DNAME;
+```
+
+## Having-clause
+Quando si vuole recuperare i valori delle funzioni per i soli gruppi che soddisfano una certa condizione si usa `HAVING-clause`.
+
+Q22: per ogni progetto con più di 2 impiegati, recupera il numero del progetto, il nome del progetto e il numero di impiegati che lavorano al progetto
+```sql
+SELECT PNUMBER, PNAME, COUNT(*)
+FROM PROJECT, WORKS_ON
+WHERE PNUMBER = PNO
+GROUP BY PNUMBER, PNAME
+HAVING COUNT(*) > 2
+```
+
+## Confronto di sottostringhe
+`LIKE` è usato per confrontare stringhe parziali.
+- '%' (o '*' in alcune implementazioni) rimpiazza un numero arbitrario di caratteri
+- '_' un singolo carattere arbitrario
+
+Q25: recupera tutti gli impiegati i quali indirizzi sono in Houston, Texas, il valore dell'indirizzo deve contenere 'Houston, TX'
+```sql
+SELECT FNAME, LNAME
+FROM EMPLOYEE
+WHERE ADDRESS LIKE '%Houston, TX%'
+```
+
+## Operazioni aritmetiche
+`+, -, *, /` possono essere usati per eseguire operazioni aritmetiche su attributi numerici.
+
+Q27: mostra l'effetto di dare a tutti gli impiegati che lavorano al progetto 'ProductX' un aumento del 10% del salario
+```sql
+SELECT FNAME, LNAME, 1.1*SALARY
+FROM EMPLOYEE, PROJECT, WORKS_ON
+WHERE SSN = ESSN AND PNO = PNUMBER AND PNAME = 'ProductX'
+```
+
+## Ordinamento
+`ORDER BY-clause` è usata per ordinare le tuple in una query risultante in base a uno o più attributi.  
+Si può specificare l'ordine di ordinamento con `ASC` (default) o `DESC`.
+
+Q28: recupera una lista di impiegati e i progetti a cui lavorano, ordinati per dipartimenti degli impiegati e ogni dipartimento ordinato per nome dell'impiegato in ordine alfabetico
+```sql
+SELECT FNAME, LNAME, PNAME
+FROM EMPLOYEE, DEPARTEMENT, PROJECT, WORKS_ON
+WHERE PNO = PNUMBER AND DNO = DNUMBER AND SSN = ESSN
+ORDER BY DNAME, LNAME
+```
+
+Riassunto delle queries:
+Una query può avere fino a 6 clausole ma solo SELECT e FROM sono obbligatorie.
+
+```sql
+SELECT attribute-list
+FROM relation-list
+[WHERE condition]
+[GROUP BY grouping-attribute-list]
+[HAVING group-condition]
+[ORDER BY attribute-list]
 ```
