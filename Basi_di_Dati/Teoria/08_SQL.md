@@ -444,7 +444,7 @@ WHERE PNO = PNUMBER AND DNO = DNUMBER AND SSN = ESSN
 ORDER BY DNAME, LNAME
 ```
 
-Riassunto delle queries:
+## Riassunto delle queries:
 Una query può avere fino a 6 clausole ma solo SELECT e FROM sono obbligatorie.
 
 ```sql
