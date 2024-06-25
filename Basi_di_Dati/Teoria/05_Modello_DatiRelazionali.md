@@ -94,9 +94,9 @@ Vincolo che coinvolge due relazioni
 Specifica un riferimento tra tuple in due relazioni: relazione referenziante e relazione riferita
 - tuple nella relazione referenziante R1 hanno attributi FK (chiave esterna) che fanno riferimento agli attributi chiave primaria PK della relazione riferita R2
 - tupla t1 in R1 è in riferimento con una tupla t2 in R2 se t1[FK] = t2[PK]
-Il valore della colonna (o colonne) FK in R1 può essere:
-- NULL (FK in R1 non deve far parte della chiave primaria di R1)
-- un valore che esiste in una tupla della relazione riferita R2
+- Il valore della colonna (o colonne) FK in R1 può essere:
+    - NULL (FK in R1 non deve far parte della chiave primaria di R1)
+    - un valore che esiste in una tupla della relazione riferita R2
 Esempio:  
 CLIENTI (ID-Cli, Nome-Cli, Indirizzo, Tel)  
 ORDINI (ID-Ord, Data, ID-Cli)  
