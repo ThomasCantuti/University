@@ -1,0 +1,16 @@
+# Web page functions
+- Intranet web page
+    - my profile
+        - several rolee
+            - administration
+            - customer
+            - ...
+    - my ...
+- A online shop
+    - A catalog of products
+    - Online payment
+    - ...
+- Database with:
+    - products 
+    - sales
+    - customers
