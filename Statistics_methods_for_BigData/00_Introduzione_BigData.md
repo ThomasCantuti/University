@@ -54,7 +54,7 @@ Se molte variabili -> dati micro-array:
 - siano veri tutti i p-value ($p_i, i = 1, . . . , N_0$) delle ipotesi nulle $N_0$
 - R = evento che rifiuta alcune delle $N$ ipotesi nulle
 
-$$ P(R) = P(\cup_{i=1}^{N_0} \{p_i \leq \alpha'\}) \leq \sum_{i=1}^{N_0} P(p_i \leq \alpha') = \\
+$$ P(R) = P(\cup_{i=1}^{N_0} \{p_i \leq \alpha'\}) \leq \sum_{i=1}^{N_0} P(p_i \leq \alpha') \longrightarrow \\
 (N_0 \alpha' = N_0 \frac{\alpha}{N}) \leq \alpha $$
 
 ### Stima dei parametri
