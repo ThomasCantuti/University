@@ -68,6 +68,9 @@ $$m(x_{n+1}|x) = \int_{\Theta}{f(x_{n+1}|\theta, x)\pi(\theta|x)d\theta} = \int_
 - dati $x = \{x_1, ..., x_n\}$ e $f(x|\theta) = P_{\theta}\{X = x|\theta\}$
 - calcolare la distribuzione associata al modello parametrico bayesiano $(X, f(x|\theta), \pi(\theta))$
 
+**Soluzione**:
+1. **distribuzione a priori di $\theta, \pi(\theta)$**: visto che $\theta \sim \mathcal{U}(0, 1) \rightarrow \pi(\theta) = 1$ per $\theta \in [0, 1]$ (poiché è uniforme ha densità costante pari a 1 lungo tutto l'intervallo $[0, 1]$)
+
 ## Distribuzioni coniugate
 Nell'inferenza bayesiana si combinano due informazioni per strimare un parametro $\theta$:
 - **distribuzione a priori** $\pi(\theta)$
