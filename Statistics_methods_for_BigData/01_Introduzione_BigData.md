@@ -29,7 +29,7 @@
 ## Errori sulla verifica delle ipotesi
 Non sempre avere molti dati è un bene e in alcuni casi può essere un problema.
 
-![alt text](images/01_00.png)
+<img src="images/01_00.png" alt="descrizione" width="400" height="225">
 
 - **livello di significatività**: probabilità di commettere un errore di tipo I (rifiutare l'ipotesi nulla quando è vera)
 - **potenza del test**: probabilità di rifiutare l'ipotesi nulla quando è falsa
