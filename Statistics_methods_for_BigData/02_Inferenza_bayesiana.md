@@ -103,7 +103,7 @@ La **distribuzione a priori** è **coniugata** rispetto alla verosimiglianza se 
 $$\pi(\theta| x) \sim Beta(\alpha + \sum_{i=1}^n{x_i}, \beta + n - \sum_{i=1}^n{x_i})$$
 - la distribuzione a posteriori è della stessa famiglia della distribuzione a priori quindi la distribuzione Beta è coniugata rispetto alla distribuzione Binomiale
 
-**Proprietà distribuzione Beta**:
+### Proprietà distribuzione Beta
 $X \sim Beta(\alpha, \beta), \alpha, \beta > 0$ se:
 $$f(x) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha - 1}(1-x)^{\beta - 1}, \space 0 < x < 1$$
 con $\Gamma$ funzione Gamma definita come:
