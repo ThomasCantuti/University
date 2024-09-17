@@ -64,12 +64,24 @@ $$\pi(\theta|x) = \frac{f(x|\theta)\pi(\theta)}{m(x)} = \frac{f(x|\theta)\pi(\th
 $$m(x_{n+1}|x) = \int_{\Theta}{f(x_{n+1}|\theta, x)\pi(\theta|x)d\theta} = \int_{\Theta}{f(x_{n+1}|\theta)\pi(\theta|x)d\theta}$$
 
 **Esempio**:
-- dati $X_1, ..., X_n \sim \mathcal{B}(1, \theta)$ e $\theta \sim \mathcal{U}(0, 1)$
+- dato il campione $X_1, ..., X_n \sim \mathcal{B}(1, \theta)$ e $\theta \sim \mathcal{U}(0, 1)$
 - dati $x = \{x_1, ..., x_n\}$ e $f(x|\theta) = P_{\theta}\{X = x|\theta\}$
 - calcolare la distribuzione associata al modello parametrico bayesiano $(X, f(x|\theta), \pi(\theta))$
 
 **Soluzione**:
 1. **distribuzione a priori di $\theta, \pi(\theta)$**: visto che $\theta \sim \mathcal{U}(0, 1) \rightarrow \pi(\theta) = 1$ per $\theta \in [0, 1]$ (poiché è uniforme ha densità costante pari a 1 lungo tutto l'intervallo $[0, 1]$)
+2. **verosimiglianza $f(x|\theta)$**:
+    - per il campione a disposizione e il $\theta$, la verosimiglianza è basato sulla PMF (probability mass function) della distribuzione binomiale
+    - per una distribuzione binomiale con $n = 1$ prove e probabilità di successo $\theta$, la probabilità di osservare $x_i$ successi è $f(x_i|\theta) = \theta^x_i(1-\theta)^{1-x_i}$
+    - quindi la verosimiglianza totale per il campione sarà il prodotto di ogni verosimiglianza per ogni osservazione: $f(x|\theta) = \prod_{i=1}^n{\theta^{x_i}(1-\theta)^{1-x_i}} = \theta^{\sum_{i=1}^n{x_i}}(1-\theta)^{n - \sum_{i=1}^n{x_i}}$
+    - $\sum_{i=1}^n{x_i}$ è il numero di successi osservati nel campione
+3. **distribuzione a posteriori di $\theta, \pi(\theta|x)$**:
+    - si applica il teorema di Bayes e si ottiene che:
+    $$\pi(\theta|x) \propto f(x|\theta)\pi(\theta) = \theta^{\sum_{i=1}^n{x_i}}(1-\theta)^{n - \sum_{i=1}^n{x_i}}$$
+    - la forma ottenuta è quella di una distribuzione Beta con parametri:
+        - $\alpha = 1 + \sum_{i=1}^n{x_i} \rightarrow$ numero di successi osservati $+ 1$
+        - $\beta = 1 + n - \sum_{i=1}^n{x_i} \rightarrow$ numero di insuccessi osservati $+ 1$
+        $$\pi(\theta|x) \sim Beta(\alpha, \beta)$$
 
 ## Distribuzioni coniugate
 Nell'inferenza bayesiana si combinano due informazioni per strimare un parametro $\theta$:
