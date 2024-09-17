@@ -1,7 +1,7 @@
 # Inferenza Bayesiana
 ## Enunciazione del problema dell'inferenza statistica
 
-![alt text](images/02_00.png)
+<img src="images/02_00.png" alt="descrizione" width="500" height="300">
 
 **Nozioni di base**:
 - **popolazione** $\rightarrow$ descritta da una v.a. $X$ (caratteristica di interesse) quindi la sua caratterizzazione sarà data dalla sua distribuzione
@@ -41,7 +41,7 @@ Esempio: in un esperimento sulla probabilità di successo di un evento, $\theta$
 Esempio: dato un campione $1, X \sim \mathcal{B}(50, p)$, la funzione di verosimiglianza è  
 $L(p|x) = \binom{50}{x} p^x(1-p)^{50-x}$
 
-![alt text](images/02_01.png)
+<img src="images/02_01.png" alt="descrizione" width="500" height="300">
 
 ### Approccio Bayesiano per trovare $\theta$
 - **variabile sconosciuta** $\theta$ $\rightarrow$ usata come una variabile casuale e consente di introdurre informazione su di essa (informazioni a priori) anche prima di osservare i dati
