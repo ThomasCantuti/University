@@ -1,4 +1,7 @@
 # Categorie di modellazione UML
+![alt text](<Screenshot 2024-09-18 alle 11.16.16.png>)
+<img src="images/00_02_00.png" alt="descrizione" width="650" height="400">
+
 ## Diagramma del caso di uso
 
 ...
