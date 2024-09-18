@@ -39,6 +39,7 @@ Esempio: un cliente, il personale di vendita, la banca, i corrieri, un server es
         - l'estensione avviene in punti specifici dell'esecuzione, quando si verificano alcune condizioni
 
 **Relazioni tra attori e casi d'uso:**
+
 <img src="images/00_02_02.png" alt="descrizione" width="500" height="300">
 
 I diagrammi dei casi d'uso servono nei processi iniziali di ingegneria dei requisiti per identificare e raccogliere i requisiti del sistema.  
