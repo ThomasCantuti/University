@@ -1,42 +1,56 @@
-# Modellazione dei casi d'uso
+# Modellazione di Casi d'uso
 <img src="images/00_02_00.png" alt="descrizione" width="450" height="300">
 
-## Cos'è la modellazione dei casi d'uso
-1. cattura funzioni, capacità o comportamento del sistema in sviluppo senza specificare l'implementazione
-2. metodo per modellare i requisiti
-3. mostra le capacità del sistema realizzate dagli attori e agli attori
-4. definisce interazioni tra attore e sistema (ma non tra attori)
-5. aiuta a definire l'ambito del sistema da sviluppare
-6. la modellazione è definita tramite:
-    - diagrammi dei casi d'uso: forniscono un modo grafico per rappresentare le funzionalità del sistema
-    - descrizione dei casi d'uso:
-        * utilizzando modelli di testo (con un elenco di eventi)
-        * accompagnati da diagrammi comportamentali (ad esempio, diagrammi di sequenza o diagrammi di attività)
+## Modellazione dei casi d'uso
+- **Obiettivo**: Descrivere **cosa** fa un sistema senza specificare **come**.
+- **Finalità**:
+    - Raccogliere e organizzare i **requisiti** del sistema.
+    - Definire le **interazioni** tra **attori** (utenti o sistemi esterni) e il **sistema**.
+- **Capacità del sistema**:
+    - Mostrare come le funzionalità del sistema sono realizzate **dagli attori**.
+    - Delineare il **confine** tra sistema e ambiente esterno.
+- **Strumenti di rappresentazione**:
+    - **Diagrammi di casi di uso**: Visualizzano graficamente le funzionalità principali.
+    - **Descrizioni testuali**: Supportate da diagrammi comportamentali per chiarire il flusso operativo.
+- **Vantaggi**:
+    - Chiarisce le esigenze degli attori.
+    - Definisce le funzionalità chiave del sistema.
 
-## Elementi di un diagramma dei casi d'uso
+## Elementi di un Diagramma di Casi d'uso
 <img src="images/00_02_01.png" alt="descrizione" width="500" height="300">
 
-- **caso d'uso**: sequenza di azioni che possono essere eseguite dal sistema interagendo con gli attori del sistema  
-Esempio di sequenza di un Login: inserire l'ID, premere un pulsante, controllare se è corretto e, in caso affermativo, continuare
-- **attore**: è esterno al sistema ed è il ruolo svolto da un utente (o da un altro sistema) che interagisce con il sistema  
-Esempio: un cliente, il personale di vendita, la banca, i corrieri, un server esterno, un reparto, ...
-- **sistema**: limite del sistema / confine tra sistema e attori che interagiscono con esso
-- **relazione**: associazione tra attori, casi d'uso e sistema
-    - **associazione**:
-        - collega sempre un attore a un caso d'uso
-        - rappresenta le azioni principali dell'attore con/verso il sistema
-        - l'attore comunica attraverso i principali casi d'uso
-    - **eredità: generalizzazione/specializzazione**:
-        - rappresenta un sottoinsieme (uno più generale, l'altro più specifico)
-        - si usa o tra due casi d'uso o tra due attori
-        - non può essere usato tra attori e casi d'uso
-    - **inclusione**:
-        - rappresenta "è composto dal" o "include il" comportamento di un altro caso d'uso
-        - si usa solo tra i casi d'uso
-        - le inclusioni sono sobbligatorie durante l'esecuzione
-    - **estensione**:
-        - estende il comportamento di un altro caso d'uso
-        - l'estensione avviene in punti specifici dell'esecuzione, quando si verificano alcune condizioni
+- **Attore**:  
+  - **Definizione**: Rappresenta un utente o un sistema esterno che interagisce con il sistema.  
+  - **Esempi**: Cliente, banca, personale di vendita.
+
+- **Caso d'uso**:  
+  - **Definizione**: Sequenza di azioni che il sistema esegue con l'interazione di un attore.  
+  - **Esempio**: Login (inserimento credenziali, verifica, accesso).
+
+- **Sistema**:  
+  - **Definizione**: Rappresenta il confine tra ciò che è all'interno del sistema e ciò che è esterno.  
+  - **Ruolo**: Determina i limiti del sistema, delimitando le interazioni possibili con gli attori.
+
+- **Relazioni**:  
+    - **Associazione**:  
+        - **Definizione**: Connessione tra un **attore** e un **caso di uso**.
+        - **Ruolo**: Rappresenta le azioni principali che un attore compie con il sistema.
+        - **Esempio**: Un cliente (attore) che esegue l’azione di "effettuare un acquisto" (caso di uso).
+
+    - **Include**:  
+        - **Definizione**: Relazione che indica che un **caso di uso** include sempre il comportamento di un altro caso di uso.
+        - **Ruolo**: Il comportamento dell’altro caso è **obbligatorio** e viene eseguito ogni volta che si verifica il primo.
+        - **Esempio**: L’acquisto di un prodotto include il caso di uso "verifica disponibilità".
+
+    - **Extend**:  
+        - **Definizione**: Relazione che permette a un **caso di uso** di estendere il comportamento di un altro caso di uso.
+        - **Ruolo**: Il comportamento aggiuntivo è **opzionale** e viene attivato solo in condizioni specifiche.
+        - **Esempio**: Il caso di uso "pagamento" può estendere con "inserimento sconto" in caso di promozioni.
+
+    - **Generalizzazione/Specializzazione (eredità)**:  
+        - **Definizione**: Relazione "è_un" tra **casi di uso** o **attori**.
+        - **Ruolo**: Un attore o caso di uso più specifico eredita il comportamento o le caratteristiche di uno più generale.
+        - **Esempio**: Un "cliente premium" è_un "cliente", quindi eredita le stesse azioni di base con funzionalità aggiuntive.
 
 **Relazioni tra attori e casi d'uso:**
 
@@ -60,3 +74,10 @@ Esempi di diagrammi dei casi d'uso:
 **Ereditarietà tra attori**: per organizzare la semantica della specificazione
 
 <img src="images/00_02_06.png" alt="descrizione" width="600" height="300">
+
+Elaborazione di un diagramma dei casi d'uso:
+1. familiarizzare con il dominio del problema da risolvere
+2. individuare e sottolineare i verbi e i nomi o i sostantivi rilevanti (indicazioni delle possibili funzioni future del sistema e degli attori)
+3. partendo dagli elementi individuati si crea uno schema, individuando i casi d'uso di base e la struttura organizzativa dei casi d'uso interni
+4. si fa un primo rapido schizzo a partire dallo schema poi si risolve ogni attore separatamente e poi li si unisce in un diagramma unico
+5. si analizza il diagramma per verificare gli aspetti sintattici e semantici (vincoli imposti, risoluzioni per specializzazione, ereditarietà degli attori)
