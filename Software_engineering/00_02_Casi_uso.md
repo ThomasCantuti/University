@@ -44,3 +44,19 @@ Esempio: un cliente, il personale di vendita, la banca, i corrieri, un server es
 
 I diagrammi dei casi d'uso servono nei processi iniziali di ingegneria dei requisiti per identificare e raccogliere i requisiti del sistema.  
 Strumenti come VP4UML consentono un'analisi testuale delle specifiche preliminari, che aiuta a ottenere le prime approssimazioni dei diagrammi dei casi d'uso (diagrammi preliminari).
+
+Esempi di diagrammi dei casi d'uso:
+
+<img src="images/00_02_03.png" alt="descrizione" width="550" height="300">
+<img src="images/00_02_04.png" alt="descrizione" width="550" height="300">
+
+**Casi d'uso di base**: quando il caso d'uso è direttamente collegato all'attore (il primo esempio ha 3 casi d'uso di base e il secondo ne ha 2)
+
+**Casi d'uso condiviso**: quando due o più attori intervengono contemporaneamente sul caso d'uso per soddisfare il requisito (la funzionalità)
+
+<img src="images/00_02_05.png" alt="descrizione" width="550" height="400">
+<img src="images/00_02_07.png" alt="descrizione" width="600" height="350">
+
+**Ereditarietà tra attori**: per organizzare la semantica della specificazione
+
+<img src="images/00_02_06.png" alt="descrizione" width="600" height="300">
