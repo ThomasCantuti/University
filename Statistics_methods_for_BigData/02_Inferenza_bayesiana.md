@@ -154,29 +154,21 @@ $$f(x | \theta) = \theta(1-\theta)^x$$
 ### Distribuzione Multinomial
 - Una variabile casuale $X = (X_1, X_2, \dots, X_k)$, con $X_i \geq 0$ e $\sum X_i = n$, segue una distribuzione **Multinomiale** $\mathcal{MN}(n, \theta_1, \dots, \theta_k)$.
 - La sua funzione di probabilità è:
-$$
-f(x_1, \dots, x_k | n, \theta_1, \dots, \theta_k) = \frac{n!}{x_1! x_2! \dots x_k!} \theta_1^{x_1} \theta_2^{x_2} \dots \theta_k^{x_k}
-$$
+$$f(x_1, \dots, x_k | n, \theta_1, \dots, \theta_k) = \frac{n!}{x_1! x_2! \dots x_k!} \theta_1^{x_1} \theta_2^{x_2} \dots \theta_k^{x_k}$$
 - Condizione: $\sum_{i=1}^{k} \theta_i = 1$
 
 ### Distribuzione Dirichlet
 - Una variabile casuale $X = (X_1, X_2, \dots, X_k)$, con $0 < X_i < 1$ e $\sum X_i = 1$, segue una distribuzione **Dirichlet** $Dir(\alpha_1, \dots, \alpha_k)$.
 - La sua funzione di probabilità è:
-$$
-f(x_1, \dots, x_k | \alpha_1, \dots, \alpha_k) = \frac{\Gamma(\alpha_1 + \dots + \alpha_k)}{\Gamma(\alpha_1)\Gamma(\alpha_2)\dots\Gamma(\alpha_k)} x_1^{\alpha_1 - 1} \dots x_k^{\alpha_k - 1}
-$$
+$$f(x_1, \dots, x_k | \alpha_1, \dots, \alpha_k) = \frac{\Gamma(\alpha_1 + \dots + \alpha_k)}{\Gamma(\alpha_1)\Gamma(\alpha_2)\dots\Gamma(\alpha_k)} x_1^{\alpha_1 - 1} \dots x_k^{\alpha_k - 1}$$
 - La **media** della distribuzione Dirichlet è:
-$$
-E[X_i] = \frac{\alpha_i}{\alpha_0} \quad \text{dove} \quad \alpha_0 = \sum_{i=1}^{k} \alpha_i
-$$
+$$E[X_i] = \frac{\alpha_i}{\alpha_0} \quad \text{dove} \quad \alpha_0 = \sum_{i=1}^{k} \alpha_i$$
 
 ### Distribuzione Multinomial-Dirichlet
 - dato $X = (X_1, X_2, \dots, X_k)$ con distribuzione **Multinomiale** $\mathcal{MN}(n, \theta_1, \dots, \theta_k)$
 - data la distribuzione a priori $\theta_1, \dots, \theta_k$ con distribuzione **Dirichlet** $Dir(\alpha_1, \dots, \alpha_k)$
 - la distribuzione a posteriori di $\theta_1, \dots, \theta_k$ è ancora una Dirichlet:
-$$
-\pi(\theta_1, \dots, \theta_k | x_1, \dots, x_k) \sim Dir(\alpha_1 + x_1, \dots, \alpha_k + x_k)
-$$
+$$\pi(\theta_1, \dots, \theta_k | x_1, \dots, x_k) \sim Dir(\alpha_1 + x_1, \dots, \alpha_k + x_k)$$
 - la distribuzione **Dirichlet** è coniugata per la **Multinomiale**
 
 ### Distribuzione di Poisson
