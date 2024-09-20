@@ -119,3 +119,90 @@ $$\Gamma(\alpha) = \int_0^{\infty}{x^{\alpha - 1}e^{-x}dx}$$
 - **concentrazione della distribuzione**:
     - $\alpha$ e $\beta$ grandi $\rightarrow$ distribuzione concentrata attorno alla media (più informazioni su $\theta$)
     - $\alpha$ e $\beta$ piccoli $\rightarrow$ distribuzione piatta
+
+### Assegnazione dei parametri alla distribuzione a priori
+**Scopo**: determinare in modo empirico i parametri della distribuzione Beta a priori a partire dalle conoscenze esperte
+1. **domande all'esperto**:
+    - probabilità di successo nella prima prova $(r_1)$
+    - probabilità di successo nella seconda prova $(r_2)$, dato che la prima prova è stata un successo
+2. **equazioni**:
+    - probabilità di successo nella prima prova: $r_1 = \frac{\alpha}{\alpha + \beta}$
+    - probabilità di successo nella seconda prova, condizionata dal successo della prima: $r_2 = \frac{\alpha + 1}{\alpha + \beta + 1}$
+3. **risoluzione**:
+    - risolvendo il sistema di equazioni si ottiene:
+        - $\alpha = \frac{r_1(1 - r_2)}{r_2 - r_1}$
+        - $\beta = \frac{(1 - r_1)(1 - r_2)}{r_2 - r_1}$
+
+### Distribuzione Binomiale Negativa
+- dato un campione $X_1, ..., X_n \sim \mathcal{BN}(r, \theta)$ con $r > 0$ noto
+- si suppone che la distribuzione a priori $\pi(\theta)$ sia di tipo $Beta(\alpha, \beta)$ con $\alpha, \beta > 0$
+- la distribuzione a posteriori $\pi(\theta|x)$ per un campione $x = (x_1, ..., x_n)$ e con $x_i = r, r+1, ...$ è:
+$$\pi(\theta| x) \sim Beta(\alpha + rn, \beta - nr + \sum_{i=1}^n{x_i})$$
+- se $X \sim \mathcal{BN}(r, \theta)$:
+$$f(x | r, \theta) = \binom{x - 1}{x - r} \theta^r(1-\theta)^{x-r}$$
+- la distribuzione **Beta** è coniugata anche alla distribuzione **negativa**
+
+### Distribuzione Geometrica
+- dato un campione $X_1, ..., X_n \sim \mathcal{G}(\theta)$
+- si suppone che la distribuzione a priori $\pi(\theta)$ sia di tipo $Beta(\alpha, \beta)$ con $\alpha, \beta > 0$
+- la distribuzione a posteriori $\pi(\theta|x)$ per un campione $x = (x_1, ..., x_n)$ è:
+$$\pi(\theta| x) \sim Beta(\alpha + n, \beta + \sum_{i=1}^n{x_i})$$
+- se $X \sim \mathcal{G}(\theta)$:
+$$f(x | \theta) = \theta(1-\theta)^x$$
+- la distribuzione **Beta** è coniugata anche alla distribuzione **Geometrica**
+
+### Distribuzione Multinomial
+- Una variabile casuale $X = (X_1, X_2, \dots, X_k)$, con $X_i \geq 0$ e $\sum X_i = n$, segue una distribuzione **Multinomiale** $\mathcal{MN}(n, \theta_1, \dots, \theta_k)$.
+- La sua funzione di probabilità è:
+  $$
+  f(x_1, \dots, x_k | n, \theta_1, \dots, \theta_k) = \frac{n!}{x_1! x_2! \dots x_k!} \theta_1^{x_1} \theta_2^{x_2} \dots \theta_k^{x_k}
+  $$
+- Condizione: $\sum_{i=1}^{k} \theta_i = 1$
+
+### Distribuzione Dirichlet
+- Una variabile casuale $X = (X_1, X_2, \dots, X_k)$, con $0 < X_i < 1$ e $\sum X_i = 1$, segue una distribuzione **Dirichlet** $Dir(\alpha_1, \dots, \alpha_k)$.
+- La sua funzione di probabilità è:
+  $$
+  f(x_1, \dots, x_k | \alpha_1, \dots, \alpha_k) = \frac{\Gamma(\alpha_1 + \dots + \alpha_k)}{\Gamma(\alpha_1)\Gamma(\alpha_2)\dots\Gamma(\alpha_k)} x_1^{\alpha_1 - 1} \dots x_k^{\alpha_k - 1}
+  $$
+- La **media** della distribuzione Dirichlet è:
+  $$
+  E[X_i] = \frac{\alpha_i}{\alpha_0} \quad \text{dove} \quad \alpha_0 = \sum_{i=1}^{k} \alpha_i
+  $$
+
+### Distribuzione Multinomial-Dirichlet
+- dato $X = (X_1, X_2, \dots, X_k)$ con distribuzione **Multinomiale** $\mathcal{MN}(n, \theta_1, \dots, \theta_k)$
+- data la distribuzione a priori $\theta_1, \dots, \theta_k$ con distribuzione **Dirichlet** $Dir(\alpha_1, \dots, \alpha_k)$
+- la distribuzione a posteriori di $\theta_1, \dots, \theta_k$ è ancora una Dirichlet:
+  $$
+  \pi(\theta_1, \dots, \theta_k | x_1, \dots, x_k) \sim Dir(\alpha_1 + x_1, \dots, \alpha_k + x_k)
+  $$
+- la distribuzione **Dirichlet** è coniugata per la **Multinomiale**
+
+### Distribuzione di Poisson
+- dato un campione $X_1, ..., X_n \sim P(\theta)$
+- si suppone che la distribuzione a priori $\pi(\theta) \sim \Gamma(\alpha, \beta)$
+- la distribuzione a posteriori $\pi(\theta|x)$ per un campione $x = (x_1, ..., x_n)$ è:
+$$\pi(\theta| x_1, ..., x_n) \sim \Gamma(\alpha + \sum_{i=1}^n{x_i}, \beta + n)$$
+- se $X \sim \Gamma(\alpha, \beta)$:
+$$f(x | \alpha, \beta) = \frac{\beta^{\alpha}}{\Gamma(\alpha)}x^{\alpha - 1}e^{-\beta x}, x > 0$$
+- la distribuzione **Gamma** è coniugata anche alla distribuzione di **Poisson**
+
+### Distribuzione Esponenziale
+- dato un campione $X_1, ..., X_n \sim Exp(\theta)$
+- si suppone che la distribuzione a priori $\pi(\theta) \sim \Gamma(\alpha, \beta)$
+- la distribuzione a posteriori $\pi(\theta|x)$ per un campione $x = (x_1, ..., x_n)$ è:
+$$\pi(\theta| x_1, ..., x_n) \sim \Gamma(\alpha + n, \beta + \sum_{i=1}^n{x_i})$$
+- la distribuzione **Gamma** è coniugata anche alla distribuzione **Esponenziale**
+
+### Distribuzione Normale
+- **parametrizzazione**:
+    - data una v.a. $X \sim \mathcal{N}(\mu, \sigma^2)$ si va a considerare il parametro di precisione $\tau = \frac{1}{\sigma^2}$
+    - la funzione di densità è $f(x|\mu, \tau) = \sqrt{\frac{\tau}{2\pi}}e^{-\frac{\tau}{2}(x - \mu)^2}$
+- **$\tau$ noto**:
+    - dato $X_1, ..., X_n \sim \mathcal{N}(\mu, \tau)$ con $\tau > 0$ noto
+    - si suppone una distribuzione a priori $\pi(\mu) \sim \mathcal{N}(\mu_0, \tau_0)$ con $\mu_0$ e $\tau_0$ noti
+    - la distribuzione a posteriori $\pi(\mu|x)$ per un campione $x = (x_1, ..., x_n)$ è:
+    $$\pi(\mu| x_1, ..., x_n) \sim \mathcal{N}(\mu_1, \tau_1)$$
+    - $\mu_1 = \frac{\tau_0\mu_0 + n\bar{x}\tau}{\tau_0 + n\tau}$
+    - $\tau_1 = \tau_0 + n\tau$
