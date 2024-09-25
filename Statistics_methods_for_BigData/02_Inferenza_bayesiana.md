@@ -63,6 +63,8 @@ $$\pi(\theta|x) = \frac{f(x|\theta)\pi(\theta)}{m(x)} = \frac{f(x|\theta)\pi(\th
 5. **distribuzione predittiva date le osservazioni** $x = \{x_1, ..., x_n\}$ $\rightarrow$ distribuzione di probabilità dei dati futuri $X_{n+1}$ dopo aver osservato i dati $x$ (usando la distribuzione a posteriori è possibile fare previsioni sui dati futuri)
 $$m(x_{n+1}|x) = \int_{\Theta}{f(x_{n+1}|\theta, x)\pi(\theta|x)d\theta} = \int_{\Theta}{f(x_{n+1}|\theta)\pi(\theta|x)d\theta}$$
 
+**Nota**: $\int_{\Theta}{f(x_{n+1}|\theta, x)\pi(\theta|x)d\theta} = \int_{\Theta}{f(x_{n+1}|\theta)\pi(\theta|x)d\theta}$ perchè $x$ è una variabile indipendente da $x_{n+1}$
+
 **Esempio**:
 - dato il campione $X_1, ..., X_n \sim \mathcal{B}(1, \theta)$ e $\theta \sim \mathcal{U}(0, 1)$
 - dati $x = \{x_1, ..., x_n\}$ e $f(x|\theta) = P_{\theta}\{X = x|\theta\}$
@@ -198,3 +200,20 @@ $$\pi(\theta| x_1, ..., x_n) \sim \Gamma(\alpha + n, \beta + \sum_{i=1}^n{x_i})$
     $$\pi(\mu| x_1, ..., x_n) \sim \mathcal{N}(\mu_1, \tau_1)$$
     - $\mu_1 = \frac{\tau_0\mu_0 + n\bar{x}\tau}{\tau_0 + n\tau}$
     - $\tau_1 = \tau_0 + n\tau$
+- **$\mu$ nota**:
+    - dato $X_1, ..., X_n \sim \mathcal{N}(\mu, \tau)$ con $\mu$ noto
+    - si suppone una distribuzione a priori $\pi(\tau) \sim \Gamma(\alpha_0, \beta_0)$
+    - la distribuzione a posteriori $\pi(\tau|x)$ per un campione $x = (x_1, ..., x_n)$ è:
+    $$\pi(\tau| x_1, ..., x_n) \sim \Gamma(\alpha_1, \beta_1)$$
+    - $\alpha_1 = \alpha_0 + \frac{n}{2}$
+    - $\beta_1 = \beta_0 + \frac{1}{2}\sum_{i=1}^n{(x_i - \mu)^2}$
+- **$\mu$ e $\tau$ non noti**:
+    - dato $X_1, ..., X_n \sim \mathcal{N}(\mu, \tau)$ con $\mu$ e $\tau$ entrambi sconosciuti
+    - si suppone una distribuzione a priori $\pi(\mu, \tau)$ condizionata:
+        - $(\mu | \tau = r) \sim \mathcal{N}(\mu_0, \tau_0r)$
+        - $\tau \sim \Gamma(\alpha_0, \beta_0)$
+    - per ogni campione $x = (x_1, ..., x_n)$ la distribuzione a posteriori è condizionata:
+        - $\pi(\mu| ) \sim \mathcal{N}(\mu_1, \tau_1)$
+        - $\pi(\tau| ) \sim \Gamma(\alpha_1, \beta_1)$
+
+## La famiglia esponenziale coniugata
