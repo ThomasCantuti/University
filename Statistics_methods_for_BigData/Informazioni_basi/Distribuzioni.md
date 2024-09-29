@@ -21,6 +21,8 @@ Descrive il numero di successi in una serie di $n$ prove indipendenti, ognuna de
 - **Media (o valore atteso):** $\mu = n \cdot p$
 - **Varianza:** $\sigma^2 = n \cdot p \cdot (1 - p)$
 
+<img src="images/01_Binomiale.png" alt="Distribuzioni" width="700" height="375">
+
 ## 2. Distribuzione di Poisson
 Descrive il numero di eventi che si verificano in un intervallo di tempo o spazio, quando gli eventi sono indipendenti e si verificano con una certa media costante $\lambda$.
 
@@ -36,6 +38,8 @@ Descrive il numero di eventi che si verificano in un intervallo di tempo o spazi
 
 - **Media:** $\mu = \lambda$
 - **Varianza:** $\sigma^2 = \lambda$
+
+<img src="images/02_Poisson.png" alt="Distribuzioni" width="700" height="375">
 
 ### Approssimazione di Poisson alla Binomiale
 Quando $n$ è grande e $p$ è piccolo, la distribuzione binomiale può essere approssimata dalla distribuzione di Poisson con $\lambda = n \cdot p$.
@@ -57,6 +61,8 @@ Descrive la probabilità di ottenere $k$ successi in $n$ prove, estratte senza r
   - $n$ è il numero di estrazioni;
   - $k$ è il numero di successi nelle estrazioni.
 
+<img src="images/03_Ipergeometrica.png" alt="Distribuzioni" width="700" height="375">
+
 ## 4. Distribuzione Binomiale Negativa
 Descrive il numero di fallimenti $k$ che si verificano prima di osservare un numero prefissato di successi $r$ in prove indipendenti con probabilità di successo $p$.
 
@@ -73,6 +79,8 @@ Descrive il numero di fallimenti $k$ che si verificano prima di osservare un num
 - **Media:** $\mu = \frac{r(1 - p)}{p}$
 - **Varianza:** $\sigma^2 = \frac{r(1 - p)}{p^2}$
 
+<img src="images/04_Binom_Neg.png" alt="Distribuzioni" width="700" height="375">
+
 ## 5. Distribuzione Geometrica
 Descrive il numero di prove necessarie $k$ per ottenere il primo successo in una sequenza di prove indipendenti con probabilità di successo $p$.
 
@@ -87,6 +95,8 @@ Descrive il numero di prove necessarie $k$ per ottenere il primo successo in una
 
 - **Media:** $\mu = \frac{1}{p}$
 - **Varianza:** $\sigma^2 = \frac{1 - p}{p^2}$
+
+<img src="images/05_Geometrica.png" alt="Distribuzioni" width="700" height="375">
 
 ---
 
@@ -106,6 +116,8 @@ Descrive una variabile casuale che ha la stessa probabilità di assumere qualsia
 
 - **Media:** $\mu = \frac{a + b}{2}$
 - **Varianza:** $\sigma^2 = \frac{(b - a)^2}{12}$
+
+<img src="images/06_Uniforme.png" alt="Distribuzioni" width="700" height="375">
 
 ## 2. Distribuzione Gamma
 Utilizzata per modellare il tempo $x$ fino al verificarsi di un evento specifico.
@@ -130,6 +142,8 @@ Utilizzata per modellare il tempo $x$ fino al verificarsi di un evento specifico
 - **Media:** $\mu = \frac{\alpha}{\beta}$
 - **Varianza:** $\sigma^2 = \frac{\alpha}{\beta^2}$
 
+<img src="images/07_Gamma.png" alt="Distribuzioni" width="700" height="375">
+
 ## 3. Distribuzione Esponenziale Negativa
 Caso particolare della distribuzione Gamma con $\alpha = 1$, viene utilizzata per modellare il tempo $x$ tra eventi in un processo Poisson.
 
@@ -143,6 +157,8 @@ Caso particolare della distribuzione Gamma con $\alpha = 1$, viene utilizzata pe
 
 - **Media:** $\mu = \frac{1}{\lambda}$
 - **Varianza:** $\sigma^2 = \frac{1}{\lambda^2}$
+
+<img src="images/08_Esponenziale.png" alt="Distribuzioni" width="700" height="375">
 
 ## 4. Distribuzione Beta
 Distribuzione definita sull'intervallo $[0, 1]$ ed è usata per modellare variabili casuali con limiti superiori e inferiori conosciuti.
@@ -163,6 +179,8 @@ Distribuzione definita sull'intervallo $[0, 1]$ ed è usata per modellare variab
 - **Media:** $\mu = \frac{\alpha}{\alpha + \beta}$
 - **Varianza:** $\sigma^2 = \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}$
 
+
+
 ## 5. Distribuzione Normale
 Descrive la distribuzione di variabili casuali che tendono a concentrarsi attorno a un valore medio, descrivendola con media $\mu$ e deviazione standard $\sigma$.
 
@@ -175,7 +193,9 @@ Descrive la distribuzione di variabili casuali che tendono a concentrarsi attorn
 - **Media:** $\mu$
 - **Varianza:** $\sigma^2$
 
+<img src="images/09_Normale.png" alt="Distribuzioni" width="700" height="375">
+
 ### Approssimazioni della Distribuzione Normale
 La distribuzione normale viene spesso utilizzata per approssimare altre distribuzioni discrete (come la binomiale) quando il numero di osservazioni è grande e soddisfa certe condizioni (es. Teorema Centrale del Limite).
 
-<img src="Figure_1.png" alt="Distribuzioni" width="700" height="400">
+<img src="images/All_Distributions.png" alt="Distribuzioni" width="700" height="400">
