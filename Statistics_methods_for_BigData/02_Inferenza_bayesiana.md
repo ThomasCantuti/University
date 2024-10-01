@@ -213,7 +213,34 @@ $$\pi(\theta| x_1, ..., x_n) \sim \Gamma(\alpha + n, \beta + \sum_{i=1}^n{x_i})$
         - $(\mu | \tau = r) \sim \mathcal{N}(\mu_0, \tau_0r)$
         - $\tau \sim \Gamma(\alpha_0, \beta_0)$
     - per ogni campione $x = (x_1, ..., x_n)$ la distribuzione a posteriori è condizionata:
-        - $\pi(\mu| ) \sim \mathcal{N}(\mu_1, \tau_1)$
-        - $\pi(\tau| ) \sim \Gamma(\alpha_1, \beta_1)$
+        - $\pi(\mu|\tau = r, X = x ) \sim \mathcal{N}(\mu_1, \tau_1)$
+            - $\mu_1 = \frac{\tau_0\mu_0 + n\bar{x}}{\tau_0 + n}$
+            - $\tau_1 = (\tau_0 + n)r$
+        - $\pi(\tau|X = x ) \sim \Gamma(\alpha_1, \beta_1)$
+            - $\alpha_1 = \alpha_0 + \frac{n}{2}$
+            - $\beta_1 = \beta_0 + \frac{1}{2}\sum_{i=1}^n{(x_i - \bar{x})^2} + \frac{n\tau(\bar{x} - \mu_0)^2}{2(\tau + n)}$
 
 ## La famiglia esponenziale coniugata
+### Famiglia esponenziale uniparametrica
+Una densità (o p.d.f.) $f(x|\theta)$ appartiene alla **famiglia esponenziale uniparametrica** se può essere scritta nella forma:
+$$f(x|\theta) = g(x)h(\theta)e^{t(x)q(\theta)}$$
+
+**Verosimiglianza** per $x = (x_1, ..., x_n)$:
+$$f(x_1, ..., x_n | \theta) \propto h(\theta)^n e^{\sum_{i=1}^n{t(x_i)q(\theta)}}$$
+
+**Teorema**:
+- dato un modello con verosimiglianza della famiglia esponenziale uniparmetrica
+- dato $\pi(\theta) \propto h(\theta)e^{\nu q(\theta)}$
+- la distribuzione a posteriori $\pi(\theta|x)$ è ancora della famiglia esponenziale uniparametrica
+
+### Famiglia esponenziale biparametrica
+Una densità (o p.d.f.) $f(x|\theta)$ appartiene alla **famiglia esponenziale biparametrica** se può essere scritta nella forma:
+$$f(x|\theta) = g(x)h(\theta, \phi)e^{t(x)q(\theta, \phi) + u(x)r(\theta, \phi)}$$
+
+**Verosimiglianza** per $x = (x_1, ..., x_n)$:
+$$f(x_1, ..., x_n | \theta, \phi) \propto h(\theta, \phi)^n e^{\sum_{i=1}^n{t(x_i)q(\theta, \phi)} + \sum_{i=1}^n{u(x_i)r(\theta, \phi)}}$$
+
+**Teorema**:
+- dato un modello con verosimiglianza della famiglia esponenziale biparametrica
+- dato $\pi(\theta, \phi) \propto h(\theta, \phi)e^{\nu q(\theta, \phi) + \eta r(\theta, \phi)}$
+- la distribuzione a posteriori $\pi(\theta, \phi|x)$ è ancora della famiglia esponenziale biparametrica
