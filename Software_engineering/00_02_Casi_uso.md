@@ -102,3 +102,23 @@ Esempi di diagrammi dei casi d'uso:
 <img src="images/00_02_08.png" alt="descrizione" width="650" height="350">
 
 ## Qualità di un progetto
+**qualità del design** -> prodotto che risponde ai requisiti del cliente, adattando il progetto alle aspettative e ai requisiti specifici.
+
+**Determinare la qualità del design**:
+- **sintattica**: corretta rappresentazione degli elementi nel modello (es. ruote quadrate, colori sbagliati)
+- **semantica**: soddisfare i requisiti funzionali e le caratteristiche richieste (es. auto con 3 ruote invece di 4, alerone non richiesto)
+
+**Requisiti di un design corretto**:
+- **inclusione di tutti i requisiti** stabiliti nella specifica
+- **rappresentazione fedele** dei requisiti nel modello proposto
+
+**Politiche di denominazione**:
+1. Casi d'uso: verbo all'infinito o sostantivo (prima lettera maiuscola), possibilmente nome corto
+
+2. Attori: singolare e prima lettera maiuscola
+
+3. Attori di generalizzazione (ereditarietà): corsivo
+
+4. Relazioni di ereditarietà e associazione: non nominare né ripetere
+
+5. Nelle versioni preliminari non seguire rigorosamente la nomenclatura
