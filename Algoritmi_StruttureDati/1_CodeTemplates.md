@@ -461,6 +461,19 @@ def fn(arr):
     return dp(STATE_FOR_WHOLE_INPUT)
 ```
 
+# Dynamic programming: bottom-up tabulation
+
+```python
+def fn(arr):
+    dp = [0] * n
+    dp[0] = 0
+
+    for i in range(1, n):
+        dp[i] = SOME_RECURRING_RELATION(dp[:i])
+    
+    return dp[-1]
+```
+
 # Build a trie
 
 ```python
