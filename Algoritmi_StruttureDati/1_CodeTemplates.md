@@ -442,6 +442,19 @@ def backtrack(curr, OTHER_ARGUMENTS...):
     return ans
 ```
 
+# When to use Dynamic Programming
+1. The problem will ask for the optimum value (maximum or minimum) of something, or the number of ways there are to do something.  
+For example:
+- What is the minimum cost of doing...
+- What is the maximum profit from...
+- How many ways are there to do...
+- What is the longest possible...
+- Is it possible to reach a certain point...
+
+2. Future "decisions" depend on earlier decisions. Deciding to do something at one step may affect the ability to do something in a later step. This characteristic is what makes a greedy algorithm invalid for a DP problem - we need to factor in results from previous decisions. Admittedly, this characteristic is not as well defined as the first one, and the best way to identify it is to go through some examples.
+
+When you're solving a problem on your own and trying to decide if the second characteristic is applicable, assume it isn't, then try to think of a counterexample that proves a greedy algorithm won't work. If you can think of an example where earlier decisions affect future decisions, then DP is applicable.
+
 # Dynamic programming: top-down memoization
 
 ```python
