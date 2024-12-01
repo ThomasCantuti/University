@@ -445,11 +445,13 @@ def backtrack(curr, OTHER_ARGUMENTS...):
 # When to use Dynamic Programming
 1. The problem will ask for the optimum value (maximum or minimum) of something, or the number of ways there are to do something.  
 For example:
-- What is the minimum cost of doing...
-- What is the maximum profit from...
-- How many ways are there to do...
-- What is the longest possible...
-- Is it possible to reach a certain point...
+- use max() o min() in recurrence relation and set the base case to 0 or inf
+    - What is the minimum cost of doing...
+    - What is the maximum profit from...
+    - What is the longest possible...
+- sum the number of ways in the recurrence relation (e.g. dp[i] = dp[i - 1] + dp[i - 2]) and set the base case to a number different from 0
+    - How many ways are there to do...
+    - Is it possible to reach a certain point...
 
 2. Future "decisions" depend on earlier decisions. Deciding to do something at one step may affect the ability to do something in a later step. This characteristic is what makes a greedy algorithm invalid for a DP problem - we need to factor in results from previous decisions. Admittedly, this characteristic is not as well defined as the first one, and the best way to identify it is to go through some examples.
 
@@ -485,6 +487,36 @@ def fn(arr):
         dp[i] = SOME_RECURRING_RELATION(dp[:i])
     
     return dp[-1]
+```
+
+# Kadane's algorithm
+Use: find the maximum sum subarray given an array of numbers and is only useful when the array can contain negative numbers.
+
+```python
+def fn(arr):
+    best = float('-inf')
+    curr = 0
+    for num in arr:
+        curr = max(num, curr + num)
+        best = max(best, curr)
+    
+    return best
+```
+
+Esempio con una condizione
+
+```python
+def maxProfit(self, prices: List[int]) -> int:
+    best = 0
+    curr_price = float('inf')
+    n = len(prices)
+    
+    for i in range(0, n):
+        curr_price = min(curr_price, prices[i])
+        if i+1 < n and curr_price < prices[i+1]:
+            best = max(best, prices[i+1] - curr_price)
+        
+    return best
 ```
 
 # Build a trie
