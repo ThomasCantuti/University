@@ -278,7 +278,14 @@ def fn(graph):
 # Graph: DFS (iterative)
 
 ```python
+from collections import defaultdict
+
 def fn(graph):
+    graph = defaultdict(list)
+    for u,v in edges:
+        graph[u].append(v)
+        graph[v].append(u) # if undirected graph
+
     stack = [START_NODE]
     seen = {START_NODE}
     ans = 0
@@ -564,4 +571,24 @@ while heap:
         if dist < distances[nei]:
             distances[nei] = dist
             heappush(heap, (dist, nei))
+```
+
+# Divide and conquer
+1. Divide the problem $S$ into smaller subproblems ${S_1, S_2, ..., S_n}$ where $n > 1$.
+2. Solve each subproblem recursively.
+3. Combine the solutions of each subproblems.
+
+```python
+def divide_and_conquer( S ):
+    # (1). Divide the problem into a set of subproblems.
+    [S1, S2, ... Sn] = divide(S)
+
+    # (2). Solve the subproblem recursively,
+    #   obtain the results of subproblems as [R1, R2... Rn].
+    rets = [divide_and_conquer(Si) for Si in [S1, S2, ... Sn]]
+    [R1, R2,... Rn] = rets
+
+    # (3). combine the results from the subproblems.
+    #   and return the combined result.
+    return combine([R1, R2,... Rn])
 ```
