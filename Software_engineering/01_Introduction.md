@@ -1,6 +1,6 @@
 # Introduction to Software Engineering
 
-SWEBOK = Guide to the Software Engineering Body of Knowledge
+SWEBOK = Software Engineering Body of Knowledge
 
 ## Why Software Engineering?
 word “engineering” --> comes from “ingenuity”
