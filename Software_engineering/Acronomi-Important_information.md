@@ -41,3 +41,13 @@ Reference 05_Design
 - DFD = Data Flow Diagram
 - SIMULA (1967) -> first object-oriented programming language
 - OCL = Object Constraint Language
+- MVP = Model-View-Presenter
+- MVC = Model-View-Controller
+- EAI = Enterprise Application Integration
+- CBSE = Component-Based Software Engineering
+- MOOD (1996) = Metrics for Object-Oriented Design
+- MHF = Method Hiding Factor
+- AHF = Attribute Hiding Factor
+- MIF = Method Inheritance Factor
+- AIF = Attribute Inheritance Factor
+- PF = Polymorphism Factor

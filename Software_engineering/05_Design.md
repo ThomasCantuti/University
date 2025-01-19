@@ -255,4 +255,153 @@ functional decomposition from the complete system down to the necessary level of
         
         ![alt text](<imgs/Screenshot 2025-01-17 alle 18.05.21.png>)
 
-## Others
+## Patterns
+
+**Patterns** --> recurring problems and their solutions, so we can reuse the solution without rethinking it
+
+### Pattern Languages
+---
+- **User Interface Patterns** --> describe human-computer interaction (e.g. MVC, MVP)
+- **Design Patterns** --> set of classes and their relationships for object-oriented models (e.g. Observer, Composite, Mediator, Proxy)
+- **Programming Idioms** --> tips or rules for writing code in programming languages (e.g. incrementing a counter, changing a variable’s value)
+- **System Integration Patterns (EAI)** --> define communication and coordination between systems (e.g. file exchange, remote invocation, database sharing)
+- **Workflow and Organization Patterns** --> describe workflows and processes in business systems (e.g. organizing personnel, synchronizing processes, exclusive process selection)
+
+### Design Patterns
+---
+- **Design Patterns** --> solutions to recurring problems in terms of classes, interfaces, objects, and interactions between them
+
+**Conditions for a Solution to Be Considered a Pattern**:
+- **The Rule of Three** --> must be tested at least three times or in different domains
+- comparison with other possible solutions in the same domain, showing their weaknesses
+
+**Advantages**:
+- reuse of entire architectures
+- provides a common vocabulary for designers
+- improves learning by grouping existing knowledge
+
+**Disadvantage**:
+- steep learning curve
+
+#### Types of Design Patterns
+---
+- **Creation Patterns** --> solutions for creating objects
+    - **singleton** --> ensures a class has only one instance and provides a global access to it (e.g. only one database connection instance)
+    - **factory method** --> defines how to create objects, but allows subclasses to change the type of objects created (e.g. create different shapes like circles and squares)
+    - **abstract factory** --> provides a way to create related objects without specifying their exact classes (e.g. produce related buttons like dark mode, light mode)
+    - **builder** --> separates the process of building an object from its final appearance, allowing for different object versions (e.g. build a complex object like a car with options)
+    - **prototype** --> allows creating new objects by copying existing ones, without needing to know their class (e.g. clone an object with similar properties)
+- **Structural Patterns** --> help model how classes and objects combine to create more complex structures
+    - **adapter** -->  changes the interface of one object so that it can work with another object (e.g. convert a legacy system API to a new one)
+    - **bridge** --> separates the interface from its implementation, allowing both to evolve independently (e.g. separate database interface from storage logic)
+    - **composite** --> combines objects into tree-like structures that can be treated as a single object (e.g. a tree of UI components like buttons and panels)
+    - **decorator** --> adds additional functionality to objects at runtime, offering flexibility over using inheritance (e.g. add new features to a car like sports mode)
+    - **facade** --> simplifies interactions with a subsystem by providing a unified interface (e.g. simplify complex system calls with a single method)
+    - **flyweight** --> reduces memory usage by sharing common data between similar objects (e.g. share font data for text rendering)
+    - **proxy** --> acts as an intermediary or placeholder to control access to another object (e.g. control access to sensitive system operations)
+- **Behavioral Patterns** --> focus on modeling communication and interaction between system objects
+    - **chain of responsibility** --> passes a request through a chain of handlers, allowing multiple objects to handle the request (e.g. log messages processed by different handlers)
+    - **command** --> encapsulates a request as an object, allowing clients to queue requests or perform undo operations (e.g. queue a series of user actions like undo/redo)
+    - **interpreter** --> defines the rules (grammar) of a language and interprets it to perform actions (e.g. parse mathematical expressions and evaluate)
+    - **iterator** --> provides a way to access elements in a collection one by one, without revealing the collection’s internal structure (e.g. loop through items in a collection)
+    - **mediator** --> centralizes communication between objects, reducing direct interactions between them (e.g. centralize control of chatroom messages)
+    - **memento** --> saves an object’s state so it can be restored later, useful for undo operations (e.g. save and restore game state)
+    - **observer** --> notifies and updates dependent objects whenever an object’s state changes (e.g. update UI when data changes)
+    - **state** --> changes an object’s behavior when its internal state changes, making it appear as though it is a different object (e.g. change behavior when a ticket status updates)
+    - **strategy** --> defines different algorithms and allows them to be switched out easily (e.g. choose the best sorting algorithm)
+    - **template method** --> defines a general algorithm structure, but lets subclasses implement specific steps (e.g. define a general recipe, let subclasses modify steps)
+    - **visitor** --> allows new operations to be added to objects without modifying the objects themselves (e.g. add operations to a class structure like tax calculation)
+
+- **Abstract Factory (creation pattern)** --> provides a common interface to create related objects without specifying their exact class
+
+![alt text](<imgs/Screenshot 2025-01-18 alle 18.58.55.png>)
+
+- **Composite (structural pattern)** --> used to build hierarchies of objects that share an interface (some elements can contain others)
+
+![alt text](<imgs/Screenshot 2025-01-18 alle 19.04.54.png>)
+
+- **Observer (behavioral pattern)** --> defines a one-to-many relationship where changes in one object notify all dependent objects
+
+![alt text](<imgs/Screenshot 2025-01-18 alle 19.05.29.png>)
+
+- **Strategy (behavioral pattern)** --> implements interchangeable algorithms that share a common interface
+
+![alt text](<imgs/Screenshot 2025-01-18 alle 19.06.12.png>)
+
+- **Antipatterns** --> prevent common design mistakes and describe problems where disadvantages outweigh the benefits
+    - **Sequential Coupling** --> building a class that requires methods to be called in a specific order
+    - **Yo-Yo Problem** --> creating structures (e.g., inheritance) that are difficult to understand due to excessive fragmentation
+    - **Blob** --> a class or component that holds too much information about properties and operations (monolithic solution)
+
+![alt text](<imgs/Screenshot 2025-01-18 alle 21.23.23.png>)
+
+## Software Frameworks, Plug-ins, and Components
+Frameworks, plug-ins, and components allow for the reuse of complete designs and architectures (more powerful than reusing individual classes)
+
+### Frameworks
+---
+**Framework** --> set of classes, interfaces, and their relationships that provide a **reusable design** intended to be extended (not used as a final application) and abstract entities, states, and behaviors within a domain
+
+**Popular Frameworks**:
+- **User Interface Development** --> focuses on the interface while abstracting components behavior
+- **JUnit** --> framework for unit testing Java code
+- Eclipse, Apache Struts, Spring, etc.
+
+**Disadvantages** --> more expensive to develop than a normal application and have a steep learning curve
+
+### Plug-ins
+---
+**Plug-in** --> complete application, module, or component that interacts with a host application to extend or adapt its behavior (current trend for improving software reuse)
+
+**Popular Plug-ins**:
+- Browser extensions for video, audio, etc.
+- For Eclipse or NetBeans
+
+**Implementation** --> follows the **Inversion of Control** pattern (host application doesn’t need to be modified or know the plug-in’s implementation details)
+
+### Components
+---
+**Component** --> functional unit that can be added to an application (built by composing interfaces) for multiple uses, described by a specification that defines its interfaces and developed by third parties without sharing source code
+
+**Goal** --> assemble components to build a custom system solution (Component-Based Software Engineering, CBSE)
+
+**Examples**: JavaBeans, Microsoft COM, CORBA, SOAP components, etc.
+
+## Design by Contract
+**design by contract** --> each method has a precondition and a postcondition that must be met at input and output, respectively, using assertions (formal constraints) to check these conditions (formal agreement (contract) between a class and its clients)
+
+## Evaluation and Metrics in Design
+**Goal**:
+- evaluate and measure different quality criteria
+- compare design alternatives
+- used criteria: cohesion, coupling, quality factors, etc.
+- used methods and standards for quality to generate or calculate metrics
+- **evaluationa dn validation** --> using quality and design metrics, mathematical validation, and reviews and inspections
+
+**Design Factors**:
+- **Extensibility** --> add new features without more changes to the architecture
+- **Robustness** --> handle invalid and unpredictable inputs
+- **Reliability** --> perform consistently under certain conditions and for a specified time
+- **Fault Tolerance** --> system’s strength and ability to recover from failures
+- **Compatibility** --> operate with other products
+- **Reusability** --> use designs with similar needs
+
+**Design Complexity Metrics**:
+
+$HK_m = C_m \cdot (fan\_in_m \cdot fan\_out_m)^2$
+
+- $HK_m$ --> structural complexity
+- $C_m$ --> complexity of the module (e.g., lines of code)
+- $fan\_in_m$ --> number of modules that call module m
+- $fan\_out_m$ --> number of modules that are called by module m
+
+**metrics based on morphology (graph theory)** --> measures size (in nodes and arcs), depth of nesting, width, and the ratio of arcs to nodes
+
+**metrics for object-oriented design (MOOD)** --> measures encapsulation, inheritance, polymorphism, and message passing
+
+Examples of MOOD Metrics:
+- **Method Hiding Factor (MHF)** --> measures encapsulation
+- **Attribute Hiding Factor (AHF)** --> measures encapsulation
+- **Method Inheritance Factor (MIF)** --> measures inheritance
+- **Attribute Inheritance Factor (AIF)** --> measures inheritance
+- **Polymorphism Factor (PF)** --> measures polymorphism by calculating the ratio of overridden inherited methods to possible polymorphisms
