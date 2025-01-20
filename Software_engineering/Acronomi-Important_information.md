@@ -51,3 +51,17 @@ Reference 05_Design
 - MIF = Method Inheritance Factor
 - AIF = Attribute Inheritance Factor
 - PF = Polymorphism Factor
+
+Reference 06_Construction
+- IEEE 1990 -> coding definition
+- IEEE 1990 -> code reusability definition
+- IEEE 1990 -> software library definition
+- ISO, IEEE, IETF, OMG, W3C -> external standards
+    - ISO 9001 (quality system)
+    - IEEE 1008-1987 (unit testing)
+    - UML (OMG)
+    - HTML (W3C)
+- IEEE 1990 -> assertion definition
+- IEEE 1990 -> invariant definition
+- IEEE 1990 -> debugging definition
+- Agans 2002 -> debugging rules
