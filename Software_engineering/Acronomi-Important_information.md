@@ -65,3 +65,6 @@ Reference 06_Construction
 - IEEE 1990 -> invariant definition
 - IEEE 1990 -> debugging definition
 - Agans 2002 -> debugging rules
+
+Reference 07_Testing
+- IEEE 830-1998 -> standard to define: test plan, test design specification, etc.
