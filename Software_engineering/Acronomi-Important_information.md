@@ -68,3 +68,6 @@ Reference 06_Construction
 
 Reference 07_Testing
 - IEEE 830-1998 -> standard to define: test plan, test design specification, etc.
+
+Reference 08_Maintenance
+- IEEE, 1998c -> software maintenance definition
