@@ -71,3 +71,24 @@ Reference 07_Testing
 
 Reference 08_Maintenance
 - IEEE, 1998c -> software maintenance definition
+
+Reference 09_Quality
+- IEEE 1061-1998 -> software quality definition
+- McCall’s Quality Model
+- Boehm’s Quality Model
+- ISO/IEC 9126 Quality Model
+- ISO/IEC 25000 Quality Model (ISO/IEC 9126 model update)
+    - ISO/IEC 25010 -> product quality model / used quality
+    - ISO/IEC 25012 -> data quality model
+- Dromey
+- FURPS/FURPS+
+- IEEE 1061
+- SQuaRE -> System and Software Quality Requirements and Evaluation
+- CMMI -> Capability Maturity Model Integration
+- SPICE -> Software Process Improvement and Capability Determination
+- ISO 9000 family of standards
+    - ISO 9000
+    - ISO 9000:2015
+    - ISO 9001:2015
+    - ISO 9004:2015
+- ITIL -> Information Technology Infrastructure Library
