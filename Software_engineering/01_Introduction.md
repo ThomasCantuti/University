@@ -5,15 +5,14 @@ SWEBOK = Software Engineering Body of Knowledge
 ## Why Software Engineering?
 word “engineering” --> comes from “ingenuity”
 
-“You have to be resourceful to solve the problem”
+resourcefulness of a person to solve the problem
 
-“Skills, abilities, and capacities that an individual or a group of individuals possesses to solve a problem”
+Skills, abilities, and capacities that an individual or a group of individuals possesses to solve a problem
 
 ## Software Characteristics
-Software charateristics:
-- Systematicity --> Software development activities follow predefined guidelines, adhering to a specific methodology (methodical)
-- Discipline --> the software is subject to standard controls during its development, as well as to behavioral guidelines established and known by the members of the group
-- Quantification --> both the development process and the resulting product can (or should) be measured, with the aim of improving the quality of the processes used during development and the artifacts produced
+- **Systematic** --> following a clear, organized approach to software development
+- **Discipline** --> applying structured and consistent methods throughout software development
+- **Quantification** --> measuring and using data to evaluate the software development process
 
 Software development should **follow a “coordinated” approach**
 
@@ -25,8 +24,9 @@ Software is characterized by being:
 - measurable
 
 ## Why Engineering?
-Software development is supported by a wide variety of methodologies, standards, organizations, technologies, tools, techniques, and methods that make it an engineering discipline.  
-Therefore, engineering processes are applied before, during, and after the development of the product.
+**Software development** --> supported by a wide variety of methodologies, standards, organizations, technologies, tools, techniques, and methods that make it an engineering discipline
+
+**Engineering processes** --> applied before, during, and after the development of the product
 
 ## Organizations in Software Engineering
 - W3C (World Wide Web Consortium)
@@ -36,16 +36,15 @@ Therefore, engineering processes are applied before, during, and after the devel
 - ACM (Association for Computing Machinery)
 
 **Concepts**:
-- **Norm/Normalization**:
-    - adjusting several similar things to a common type or norm (defined by RAE - Royal Spanish Academy)
+- **Norm/Normalization (same of standard)**:
+    - general rule or guideline that is commonly accepted or followed (defined by RAE - Royal Spanish Academy)
     - organizations: ISO, IEC (International Electrotechnical Commission), ITU-T (International Telecommunication Union - Telecommunication Standardization Sector)
-- **Standard/Standardization**:
-    - establishes a set of technical specifications or criteria intended to be used consistently as rules or guidelines in a specific context
+- **Standard/Standardization (same of norm)**:
+    - official or formal rule that defines how something should be done
     - organizations: ACM, ISO, IEC, ITU-T, AENOR (Spanish Association for Standardization and Certification) = UNE, CTN (Technical Standardization Committee)
 - **Recommendation**:
-    - similar to a norm or standard
+    - suggestion or advice, usually not mandatory, on how to improve or do something (similar to a norm or standard but free which they often require a fee)
     - organizations: W3C and OMG
-    - usually free, unlike norms or standards, which often require a fee
 
 **Organizations**:
 - **W3C**:
