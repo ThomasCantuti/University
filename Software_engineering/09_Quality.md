@@ -10,7 +10,7 @@
 
 ## McCall’s Quality Model
 
-![alt text](image.png)
+![alt text](imgs/image.png)
 
 **goal** --> align the quality perspectives of developers and users
 
