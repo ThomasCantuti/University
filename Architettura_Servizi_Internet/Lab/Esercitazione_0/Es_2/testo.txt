@@ -1,0 +1,31 @@
+Si progetti un'applicazione distribuita Client/Server utilizzando le socket
+datagram in Java.
+Il Client deve offrire la seguente interfaccia:
+
+	java QuoteClient nodoServer portaServer
+
+dove nodoServer e portaServer sono rispettivamente il nome della macchina e il
+numero di porta su cui il Server è in ascolto.
+
+Ogni volta che viene lanciato, il Client deve inviare una richiesta al server,
+che a sua volta risponde con una citazione, ovverosia una stringa presa da un 
+array predefinito di aforismi, proverbi e frasi celebri.
+
+Ad esempio, dato l'array:
+
+    String[] quotations = {
+        "Adoro i piani ben riusciti",
+        "Quel tappeto dava veramente un tono all'ambiente",
+        "Se ci riprovi ti stacco un braccio",
+        "Questo è un colpo di genio, Leonard",
+        "I fagioli comunque erano uno schifo"
+    };
+
+alla prima richiesta del Client il server restituirà la citazione "doro i 
+piani ben riusciti", alla seconda la seconda stringa, ..., ripartendo dalla
+prima una volta raggiunta la fine dell'array.
+
+Protocollo:
+C                          S
+--------> "QUOTE" (UTF-8)
+<-------- citazione (UTF-8)
