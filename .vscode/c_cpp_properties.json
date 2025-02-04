@@ -1,32 +1,33 @@
 {
-  "configurations": [
-    {
-      "name": "macos-gcc-arm64",
-      "includePath": [
-        "${workspaceFolder}/**"
-      ],
-      "compilerPath": "/usr/bin/gcc",
-      "cStandard": "${default}",
-      "cppStandard": "${default}",
-      "intelliSenseMode": "macos-gcc-arm64",
-      "compilerArgs": [
-        ""
-      ]
-    },
-    {
-      "name": "Mac",
-      "includePath": [
-        "${workspaceFolder}/**"
-      ],
-      "defines": [],
-      "macFrameworkPath": [
-        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
-      ],
-      "compilerPath": "/usr/bin/clang",
-      "cStandard": "c17",
-      "cppStandard": "c++17",
-      "intelliSenseMode": "macos-clang-arm64"
-    }
-  ],
-  "version": 4
+    "configurations": [
+        {
+            "name": "macos-gcc-arm64",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "${default}",
+            "cppStandard": "${default}",
+            "intelliSenseMode": "macos-gcc-arm64",
+            "compilerArgs": [
+                ""
+            ]
+        },
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/Architettura_Servizi_Internet/Lab/Esercitazione_0/Es_1/C"
+            ],
+            "defines": [],
+            "macFrameworkPath": [
+                "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "macos-clang-arm64"
+        }
+    ],
+    "version": 4
 }
