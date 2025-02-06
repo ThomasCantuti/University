@@ -16,7 +16,7 @@ public class ClientTDConnreuse {
             BufferedWriter networkOut = new BufferedWriter(
                     new OutputStreamWriter(theSocket.getOutputStream(), "UTF-8"));
             
-            for (;;) {
+            while (true) {
                 System.out.println("Inserisci username utente ('fine' per terminare):");
                 String username = userIn.readLine();
                 if (username.equals("fine"))
@@ -41,7 +41,7 @@ public class ClientTDConnreuse {
                 networkOut.flush();
                 
                 String theLine;
-                for (;;) {
+                while (true) {
                     theLine = networkIn.readLine();
                     if (theLine == null) {
                         System.err.println("Errore! Il server ha chiuso la connessione");
