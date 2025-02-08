@@ -20,12 +20,9 @@
 
 #define MAX_REQUEST_SIZE (64*1024)
 
-// Gestore del segnale SIGCHLD
 void sigchld_handler(int signo) {
     int status;
     (void)signo;
-
-    // Gestione (deallocazione) figli terminati
     while (waitpid(-1, &status, WNOHANG) > 0)
         continue;
 }
@@ -53,42 +50,33 @@ int main(int argc, char **argv) {
     }
 
     memset(&hints, 0, sizeof(hints));
-    // AF_UNSPEC: accetta sia IPv4 che IPv6
-    // AF_INET: solo IPv4
-    // AF_INET6: solo IPv6
     hints.ai_family = AF_UNSPEC;
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_flags = AI_PASSIVE;
 
-    // Uso getaddrinfo per preparare le strutture dati per la connessione con socket e bind
     if ((err = getaddrinfo(NULL, argv[1], &hints, &res)) != 0) {
         fprintf(stderr, "Errore setup indirizzo bind: %s\n", gai_strerror(err));
         exit(EXIT_FAILURE);
     }
 
-    // Creazione socket
     if ((sd = socket(res->ai_family, res->ai_socktype, res->ai_protocol)) < 0) {
         perror("socket");
         exit(EXIT_FAILURE);
     }
 
-    // Disabilito attesa uscita fase TIME_WAIT prima di riavviare il server
     on = 1;
     if (setsockopt(sd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) < 0) {
         perror("setsockopt");
         exit(EXIT_FAILURE);
     }
 
-    // Metto in ascolto il server sulla porta specificata
     if (bind(sd, res->ai_addr, res->ai_addrlen) < 0) {
         perror("Errore bind");
         exit(EXIT_FAILURE);
     }
 
-    // Libero memoria allocata da getaddrinfo
     freeaddrinfo(res);
 
-    // Metto il server in ascolto (socket passiva)
     if (listen(sd, SOMAXCONN) < 0) {
         perror("listen");
         exit(EXIT_FAILURE);
@@ -102,23 +90,21 @@ int main(int argc, char **argv) {
             exit(EXIT_FAILURE);
         }
 
-        // Generazione figlio per gestire la richiesta
         if ((pid_child = fork()) < 0) {
             perror("fork pid_child");
             exit(EXIT_FAILURE);
         }
 
         if (pid_child == 0) {
-            // Processo figlio: gestisce la richiesta
+            /* Processo figlio: gestisce la richiesta */
             pid_t pid_n1, pid_n2;
             int status, pipe_n1n2[2];
             const char *end_request = "\n--- END REQUEST ---\n";
             rxb_t rxb;
 
-            // Chiusura socket passiva
             close(sd);
 
-            // Ripristina il comportamento di default per SIGCHLD
+            /* Ripristina il comportamento di default per SIGCHLD */
             memset(&sa, 0, sizeof(sa));
             sigemptyset(&sa.sa_mask);
             sa.sa_handler = SIG_DFL;
@@ -127,53 +113,24 @@ int main(int argc, char **argv) {
                 exit(EXIT_FAILURE);
             }
 
-            // Inizializzazione buffer ricezione
+            // inizializzazione buffer ricezione
             rxb_init(&rxb, MAX_REQUEST_SIZE);
 
-            // Avvio gestione richiesta
+            // avvio gestione richiesta
             while (1) {
-                char username[1024], nome_progetto[1024], nome_versione[1024];
-                size_t username_len, nome_progetto_len, nome_versione_len;
+                char categoria[MAX_REQUEST_SIZE];
+                size_t categoria_len;
                 char filename[PATH_MAX];
 
-                memset(username, 0, sizeof(username));
-                username_len = sizeof(username) - 1;
+                memset(categoria, 0, sizeof(categoria));
+                categoria_len = sizeof(categoria) - 1;
 
-                // Lettura richiesta dal Client
-                if (rxb_readline(&rxb, ns, username, &username_len) < 0) {
+                if (rxb_readline(&rxb, ns, categoria, &categoria_len) < 0) {
                     rxb_destroy(&rxb);
                     break;
                 }
 #ifdef USE_LIBUNISTRING
-                if (u8_check((uint8_t*)username, username_len) != NULL) {
-                    fprintf(stderr, "Richiesta non in utf-8\n");
-                    close(ns);
-                    exit(EXIT_SUCCESS);
-                }
-#endif
-
-                memset(nome_progetto, 0, sizeof(nome_progetto));
-                nome_progetto_len = sizeof(nome_progetto) - 1;
-                if (rxb_readline(&rxb, ns, nome_progetto, &nome_progetto_len) < 0) {
-                    rxb_destroy(&rxb);
-                    break;
-                }
-#ifdef USE_LIBUNISTRING
-                if (u8_check((uint8_t*)nome_progetto, nome_progetto_len) != NULL) {
-                    fprintf(stderr, "Richiesta non in utf-8\n");
-                    close(ns);
-                    exit(EXIT_SUCCESS);
-                }
-#endif
-
-                memset(nome_versione, 0, sizeof(nome_versione));
-                nome_versione_len = sizeof(nome_versione) - 1;
-                if (rxb_readline(&rxb, ns, nome_versione, &nome_versione_len) < 0) {
-                    rxb_destroy(&rxb);
-                    break;
-                }
-#ifdef USE_LIBUNISTRING
-                if (u8_check((uint8_t*)nome_versione, nome_versione_len) != NULL) {
+                if (u8_check((uint8_t*)categoria, categoria_len) != NULL) {
                     fprintf(stderr, "Richiesta non in utf-8\n");
                     close(ns);
                     exit(EXIT_SUCCESS);
@@ -181,16 +138,16 @@ int main(int argc, char **argv) {
 #endif
 
                 /* Se necessario, qui si potrebbe inserire una funzione di autorizzazione */
-                // if (autorizza(username, password) != 1) {
+                // if (autorizza(categoria, password) != 1) {
                 //     char *unauthorized = "Non autorizzato!\n";
                 //     write_all(ns, unauthorized, strlen(unauthorized));
                 //     write_all(ns, end_request, strlen(end_request));
                 //     continue;
                 // }
 
-                snprintf(filename, sizeof(filename), "./compilation_reports/%s.txt", nome_progetto);
+                snprintf(filename, sizeof(filename), "./var/local/conto_corrente.txt");
 
-                // Creazione pipe
+                // Creo pipe
                 if (pipe(pipe_n1n2) < 0) {
                     perror("creazione pipe");
                     exit(EXIT_FAILURE);
@@ -202,7 +159,7 @@ int main(int argc, char **argv) {
                 }
 
                 if (pid_n1 == 0) {
-                    // Nipote 1: esegue 'grep' per cercare 'username' nel file
+                    // Nipote 1: esegue 'grep' per cercare 'categoria' nel file
 
                     // Chiusura descrittori non utilizzati
                     close(ns);
@@ -217,8 +174,8 @@ int main(int argc, char **argv) {
                     close(pipe_n1n2[1]);
 
                     // Esecuzione comando 'grep'
-                    execlp("grep", "grep", username, filename, (char *)NULL);
-                    perror("execlp grep username");
+                    execlp("grep", "grep", categoria, filename, (char *)NULL);
+                    perror("execlp grep");
                     exit(EXIT_FAILURE);
                 }
 
@@ -248,9 +205,9 @@ int main(int argc, char **argv) {
                         exit(EXIT_FAILURE);
                     }
                     close(ns);
-
-                    execlp("grep", "grep", nome_versione, (char *)NULL);
-                    perror("execlp grep nome_versione");
+                    
+                    execlp("sort", "sort", "-r", "-n", (char *)NULL);
+                    perror("execlp sort");
                     exit(EXIT_FAILURE);
                 }
 
@@ -269,14 +226,14 @@ int main(int argc, char **argv) {
                     exit(EXIT_FAILURE);
                 }
             }
-            // Chiusura connessione figlio
-            close(ns); // Commentare se connessione aperta per più richieste
+            // chiusura connessione figlio
+            // se voglio connessione aperta per più richieste, devo commentare
+            close(ns);
             exit(EXIT_SUCCESS);
         }
-        // Chiusura socket padre
         close(ns);
     }
-    // Chiusura socket passiva
+
     close(sd);
     return EXIT_SUCCESS;
 }

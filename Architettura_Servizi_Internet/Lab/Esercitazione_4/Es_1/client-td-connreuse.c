@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
     rxb_t rxb;
     char *server, *porta;
 
-    if (argc != 3) {
+    if (argc < 3) {
         fprintf(stderr, "Uso: %s server porta\n", argv[0]);
         exit(EXIT_FAILURE);
     }
@@ -70,63 +70,31 @@ int main(int argc, char **argv) {
     rxb_init(&rxb, MAX_REQUEST_SIZE);
 
     while (1) {
-        char username[1024], nome_progetto[1024], nome_versione[1024];
+        char categoria[4096];
 
-        // Lettura dati dall'utente
-        puts("Inserire il username utente ('fine' per terminare):");
-        if (fgets(username, sizeof(username), stdin) == NULL) {
-            perror("fgets username");
+        puts("Inserire la categoria ('fine' per terminare):");
+        if (fgets(categoria, sizeof(categoria), stdin) == NULL) {
+            perror("fgets categoria");
             exit(EXIT_FAILURE);
         }
-        // Esco se l'utente inserisce 'fine'
-        if (strcmp(username, "fine\n") == 0) {
+
+        if (strcmp(categoria, "fine\n") == 0) {
             printf("Ricevuto 'fine' ... terminazione\n");
             break;
         }
 
-        puts("Inserire il nome_progetto ('fine' per terminare):");
-        if (fgets(nome_progetto, sizeof(nome_progetto), stdin) == NULL) {
-            perror("fgets nome_progetto");
-            exit(EXIT_FAILURE);
-        }
-        if (strcmp(nome_progetto, "fine\n") == 0) {
-            printf("Ricevuto 'fine' ... terminazione\n");
-            break;
-        }
-
-        puts("Inserire il nome_versione ('fine' per terminare):");
-        if (fgets(nome_versione, sizeof(nome_versione), stdin) == NULL) {
-            perror("fgets nome_versione");
-            exit(EXIT_FAILURE);
-        }
-        if (strcmp(nome_versione, "fine\n") == 0) {
-            printf("Ricevuto 'fine' ... terminazione\n");
-            break;
-        }
-
-        // Invio dati/richiesta al Server
-        if (write_all(sd, username, strlen(username)) < 0) {
-            perror("write username");
-            exit(EXIT_FAILURE);
-        }
-        if (write_all(sd, nome_progetto, strlen(nome_progetto)) < 0) {
-            perror("write nome_progetto");
-            exit(EXIT_FAILURE);
-        }
-        if (write_all(sd, nome_versione, strlen(nome_versione)) < 0) {
-            perror("write nome_versione");
+        if (write_all(sd, categoria, strlen(categoria)) < 0) {
+            perror("write categoria");
             exit(EXIT_FAILURE);
         }
 
-        // Leggo la risposta del server e la stampo a video
+        /* Leggo la risposta del server riga per riga */
         while (1) {
             char response[MAX_REQUEST_SIZE];
             size_t response_len = sizeof(response) - 1;
             memset(response, 0, sizeof(response));
 
-            // Ricezione risulato dal server
             if (rxb_readline(&rxb, sd, response, &response_len) < 0) {
-                // Chiusura connessione in caso di errore (lettura EOF)
                 fprintf(stderr, "Connessione chiusa dal server\n");
                 rxb_destroy(&rxb);
                 close(sd);
@@ -134,24 +102,18 @@ int main(int argc, char **argv) {
             }
 
 #ifdef USE_LIBUNISTRNG
-            // Verifica se la risposta è in utf-8
             if (u_8check((uint8_t *)response, response_len) != NULL) {
                 fprintf(stderr, "Risposta non in utf-8\n");
                 close(sd);
                 exit(EXIT_FAILURE);
             }
 #endif
-
-            // Stampo a video riga letta dal Server
             puts(response);
-
-            // Passo a nuova richiesta una volta terminato input Server
             if (strcmp(response, "--- END REQUEST ---") == 0)
                 break;
         }
     }
 
-    // Chiusura connessione socket
     close(sd);
     return EXIT_SUCCESS;
 }
