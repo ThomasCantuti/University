@@ -132,48 +132,34 @@ int main(int argc, char **argv) {
 
             // Avvio gestione richiesta
             while (1) {
-                char username[1024], nome_progetto[1024], nome_versione[1024];
-                size_t username_len, nome_progetto_len, nome_versione_len;
+                char localita[1024], N_localita[1024];
+                size_t localita_len, N_localita_len;
                 char filename[PATH_MAX];
 
-                memset(username, 0, sizeof(username));
-                username_len = sizeof(username) - 1;
+                memset(localita, 0, sizeof(localita));
+                localita_len = sizeof(localita) - 1;
 
                 // Lettura richiesta dal Client
-                if (rxb_readline(&rxb, ns, username, &username_len) < 0) {
+                if (rxb_readline(&rxb, ns, localita, &localita_len) < 0) {
                     rxb_destroy(&rxb);
                     break;
                 }
 #ifdef USE_LIBUNISTRING
-                if (u8_check((uint8_t*)username, username_len) != NULL) {
+                if (u8_check((uint8_t*)localita, localita_len) != NULL) {
                     fprintf(stderr, "Richiesta non in utf-8\n");
                     close(ns);
                     exit(EXIT_SUCCESS);
                 }
 #endif
 
-                memset(nome_progetto, 0, sizeof(nome_progetto));
-                nome_progetto_len = sizeof(nome_progetto) - 1;
-                if (rxb_readline(&rxb, ns, nome_progetto, &nome_progetto_len) < 0) {
+                memset(N_localita, 0, sizeof(N_localita));
+                N_localita_len = sizeof(N_localita) - 1;
+                if (rxb_readline(&rxb, ns, N_localita, &N_localita_len) < 0) {
                     rxb_destroy(&rxb);
                     break;
                 }
 #ifdef USE_LIBUNISTRING
-                if (u8_check((uint8_t*)nome_progetto, nome_progetto_len) != NULL) {
-                    fprintf(stderr, "Richiesta non in utf-8\n");
-                    close(ns);
-                    exit(EXIT_SUCCESS);
-                }
-#endif
-
-                memset(nome_versione, 0, sizeof(nome_versione));
-                nome_versione_len = sizeof(nome_versione) - 1;
-                if (rxb_readline(&rxb, ns, nome_versione, &nome_versione_len) < 0) {
-                    rxb_destroy(&rxb);
-                    break;
-                }
-#ifdef USE_LIBUNISTRING
-                if (u8_check((uint8_t*)nome_versione, nome_versione_len) != NULL) {
+                if (u8_check((uint8_t*)N_localita, N_localita_len) != NULL) {
                     fprintf(stderr, "Richiesta non in utf-8\n");
                     close(ns);
                     exit(EXIT_SUCCESS);
@@ -181,14 +167,16 @@ int main(int argc, char **argv) {
 #endif
 
                 /* Se necessario, qui si potrebbe inserire una funzione di autorizzazione */
-                // if (autorizza(username, password) != 1) {
+                // if (autorizza(localita, password) != 1) {
                 //     char *unauthorized = "Non autorizzato!\n";
                 //     write_all(ns, unauthorized, strlen(unauthorized));
                 //     write_all(ns, end_request, strlen(end_request));
                 //     continue;
                 // }
 
-                snprintf(filename, sizeof(filename), "./compilation_reports/%s.txt", nome_progetto);
+                // Usare il seguente percorso: /var/local/bollettino_neve/"localita".txt
+                // cambio percorso per testing
+                snprintf(filename, sizeof(filename), "/Users/thomas/Documenti/GitHub/University/Architettura_Servizi_Internet/Lab/Esercitazione_5/%s.txt", localita);
 
                 // Creazione pipe
                 if (pipe(pipe_n1n2) < 0) {
@@ -202,7 +190,7 @@ int main(int argc, char **argv) {
                 }
 
                 if (pid_n1 == 0) {
-                    // Nipote 1: esegue 'grep' per cercare 'username' nel file
+                    // Nipote 1: esegue 'sort' per ordinare
 
                     // Chiusura descrittori non utilizzati
                     close(ns);
@@ -216,9 +204,9 @@ int main(int argc, char **argv) {
                     }
                     close(pipe_n1n2[1]);
 
-                    // Esecuzione comando 'grep'
-                    execlp("grep", "grep", username, filename, (char *)NULL);
-                    perror("execlp grep username");
+                    // Esecuzione comando 'sort'
+                    execlp("sort", "sort", "-n", "-r", filename, (char *)NULL);
+                    perror("execlp sort");
                     exit(EXIT_FAILURE);
                 }
 
@@ -228,7 +216,7 @@ int main(int argc, char **argv) {
                 }
 
                 if (pid_n2 == 0) {
-                    // Nipote 2: esegue 'sort' per ordinare 'nome_versione' fra i risultati
+                    // Nipote 2: esegue 'head' per restistuire i primi N risultati
 
                     // Chiusura descrittori non utilizzati
                     close(pipe_n1n2[1]);
@@ -249,13 +237,13 @@ int main(int argc, char **argv) {
                     }
                     close(ns);
 
-                    execlp("sort", "sort", "-n", "-r", nome_versione, (char *)NULL);
-                    perror("execlp sort nome_versione");
+                    execlp("head", "head", "-n", N_localita, (char *)NULL);
+                    perror("execlp head nome_versione");
                     exit(EXIT_FAILURE);
                 }
 
                 // Nel processo figlio principale:
-                // 1. Chiusura pipe (descrittori non utilizzati)
+                // 1. Chiusura la pipe (descrittori non utilizzati)
                 close(pipe_n1n2[0]);
                 close(pipe_n1n2[1]);
 
