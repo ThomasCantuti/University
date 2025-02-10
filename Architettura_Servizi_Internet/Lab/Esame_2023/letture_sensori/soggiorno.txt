@@ -1,0 +1,6 @@
+18:52:21 pressione 25
+18:52:21 temperatura 26
+18:52:21 umidità 30
+20:52:21 pressione 24
+20:52:21 temperatura 22
+20:52:21 umidità 37
