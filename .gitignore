@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Python and Environment
+.venv/
+__pycache__/
+
+.vscode/
