@@ -1,0 +1,14 @@
+[Unit]
+Description=CPU Usage Logger Service
+After=network.target
+
+[Service]
+Type=simple
+User=thomas
+WorkingDirectory=/Users/thomas/Documenti/GitHub/University/Sistemi_Reti_Cybersecurity/Lab
+ExecStart=/usr/bin/python3 /Users/thomas/Documenti/GitHub/University/Sistemi_Reti_Cybersecurity/Lab/cpu_logger.py --interval 5
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

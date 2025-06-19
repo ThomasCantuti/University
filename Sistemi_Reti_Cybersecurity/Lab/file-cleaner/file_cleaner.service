@@ -1,0 +1,14 @@
+# $HOME/.config/systemd/user/file_cleaner.service
+# systemctl --user start file_cleaner.service -> per avviare
+# systemctl --user enable file_cleaner.service -> per abilitarlo ogni volta che il pc viene acceso
+
+[Unit]
+Description=File Cleaner daemon
+
+[Service]
+WorkingDirectory=%h/file-cleaner
+ExecStart=user/bin/python3 app.py --path %h/myapp --extension .tmp
+Restart=always
+
+[Install]
+WantedBy=default.target
