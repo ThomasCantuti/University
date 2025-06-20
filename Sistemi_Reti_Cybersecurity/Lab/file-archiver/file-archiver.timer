@@ -1,0 +1,12 @@
+# ~/.config/systemd/user/file-archiver.timer
+# Per abilitare: systemctl --user enable file-archiver.timer
+
+[Unit]
+Description=Attiva l'unità .service alle 04:00 di ogni sabato e domenica
+
+[Timer]
+Unit=file-archiver.service
+OnCalendar=Sat,Sun *-*-* 04:00
+
+[Install]
+WantedBy=timers.target

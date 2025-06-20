@@ -1,0 +1,9 @@
+# ~/.config/systemd/user/file-archiver.service
+
+[Unit]
+Description=Sposta file più vecchio
+
+[Service]
+WorkingDirectory=%h/file-archiver
+ExecStart=/usr/bin/python app.py --path %h/mydocs --seconds 30
+Restart=on-failure
